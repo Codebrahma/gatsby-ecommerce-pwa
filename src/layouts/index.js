@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Navbar from './Navbar';
-import NavbarMobile from './NavbarMobile';
+import Navbar from './Navbar'
+import NavbarMobile from './NavbarMobile'
 
 import './index.css'
-import '../components/css/custom.scss';
+import '../components/css/custom.scss'
 
 const Layout = ({ children }) => (
   <header id="header">
@@ -22,11 +22,10 @@ const Layout = ({ children }) => (
       </div>
     </nav>
   </header>
-
 )
 
 Layout.propTypes = {
   children: PropTypes.func,
 }
 
-export default Layout;
+export default Layout

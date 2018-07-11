@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 const Navbar = () => (
   <div className="nav-container">
@@ -13,9 +13,12 @@ const Navbar = () => (
         </div>
         <div id="pt_menu" className="pt_menu act nav-1">
           <div className="parentMenu">
-            <a href="http://demo.posthemes.com/pos_nevara/layout3/en/10-shop" className="fontcustom2">
+            <a
+              href="http://demo.posthemes.com/pos_nevara/layout3/en/10-shop"
+              className="fontcustom2"
+            >
               <span>Women</span>
-              <i className="icon-caret-down"></i>
+              <i className="icon-caret-down" />
             </a>
           </div>
         </div>
@@ -29,6 +32,6 @@ const Navbar = () => (
       </div>
     </div>
   </div>
-);
+)
 
-export default Navbar;
+export default Navbar
