@@ -1,13 +1,28 @@
 import React from 'react'
 import Link from 'gatsby-link'
+import axios from 'axios';
 
-const IndexPage = () => (
-  <div>
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <Link to="/page-2/">Go to page 2</Link>
-  </div>
-)
+class IndexPage extends React.Component {
+  constructor(props) {
+    super(props)
 
-export default IndexPage
+  }
+  componentDidMount() {
+    axios('https://api.github.com/users/prasanna1211')
+      .then((res) => {
+        console.log(res);
+      })
+  }
+
+  render() {
+    return (
+      <div>
+        IndexPage
+      </div>
+    )
+  }
+}
+
+export default IndexPage;
+
+
