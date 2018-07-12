@@ -5,13 +5,15 @@
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
     "axios": "^0.18.0",
+    "bootstrap": "^4.0.0-beta.2",
     "gatsby": "^1.9.247",
     "gatsby-link": "^1.6.40",
     "gatsby-plugin-react-helmet": "^2.0.10",
     "gatsby-plugin-react-next": "^1.0.11",
     "gatsby-plugin-sass": "^1.0.26",
     "gatsby-source-shopify": "^1.1.0",
-    "react-helmet": "^5.2.0"
+    "react-helmet": "^5.2.0",
+    "reactstrap": "^6.3.0"
   },
   "keywords": [
     "gatsby"
