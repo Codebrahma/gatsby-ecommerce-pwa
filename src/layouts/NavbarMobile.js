@@ -8,10 +8,9 @@ class NavbarMobile extends Component {
   }
 
  mainMenuClick = (e)=> {
-  const { displaySubMenu } = this.state;
-  this.setState({
-    displaySubMenu: !displaySubMenu,
-  })
+  this.setState((prevState) => ({
+      displaySubMenu: !prevState.displaySubMenu,
+  }))
 }
 render() {
   const { displaySubMenu } = this.state;
