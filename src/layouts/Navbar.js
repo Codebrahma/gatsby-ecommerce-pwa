@@ -1,5 +1,5 @@
 import React from 'react'
-
+import Link from 'gatsby-link'
 
 const Navbar = () => (
   <div className="nav-container">
@@ -7,27 +7,23 @@ const Navbar = () => (
       <div id="pt_custommenu" className="pt_custommenu">
         <div id="pt_menu10" className="pt_menu nav-1">
           <div className="parentMenu">
-            <a className="fontcustom2" href="/pos_nevara/layout3/">
-            <span>Men</span>
-            </a>
+            <span className="fontcustom2">
+              <Link to="/men">Men</Link>
+            </span>
           </div>
         </div>
         <div id="pt_menu11" className="pt_menu nav-2">
           <div className="parentMenu">
-            <a
-            href="http://demo.posthemes.com/pos_nevara/layout3/en/10-shop"
-            className="fontcustom2"
-            >
-            <span>Women</span>
-            <i className="icon-caret-down" />
-            </a>
+            <span className="fontcustom2">
+              <Link to="/women">Women</Link>
+            </span>
           </div>
         </div>
         <div id="pt_menu12" className="pt_menu nav-3">
           <div className="parentMenu">
-            <a className="fontcustom2" href="/pos_nevara/layout3/">
-            <span>Furniture</span>
-            </a>
+            <span className="fontcustom2">
+              <Link to="/furniture">Furniture</Link>
+            </span>
           </div>
         </div>
       </div>

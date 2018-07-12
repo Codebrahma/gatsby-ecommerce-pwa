@@ -1417,6 +1417,7 @@ main {
 			letter-spacing: 0.025em;
 			text-transform: uppercase;
 			line-height: 40px;
+			pointer-events: none;
 			&:after {
 				display: block;
 				position: absolute;
@@ -1430,6 +1431,7 @@ main {
 				font-weight: 400;
 				font-family: "FontAwesome";
 				cursor:pointer;
+				pointer-events: all;
 			}
 		}
 		.navbar-inner.navbar-inactive .btn-navbar:after {
@@ -1438,6 +1440,9 @@ main {
 		.navbar-inner.navbar-active .btn-navbar:after {
 			content: "\f03a";
 		}
+	}
+	@media (min-width: 992px) {
+		display: none;
 	}
 }
 

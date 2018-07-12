@@ -1,17 +1,33 @@
-import React from 'react'
+import React, { Component } from 'react'
 import Menu from '../components/menu.js'
 
-const NavbarMobile = () => (
-  <div className="ma-nav-mobile-container hidden-lg-up">
-    <div className="pt_custommenu_mobile">
-      <div className="navbar">
-        <div id="navbar-inner" className="navbar-inner navbar-inactive">
-          <a className="btn-navbar">Category</a>
-          <Menu />
+
+class NavbarMobile extends Component {
+  state = {
+    displaySubMenu: false,
+  }
+
+ mainMenuClick = (e)=> {
+  const { displaySubMenu } = this.state;
+  this.setState({
+    displaySubMenu: !displaySubMenu,
+  })
+}
+render() {
+  const { displaySubMenu } = this.state;
+  return (
+    <div className="ma-nav-mobile-container hidden-lg-up">
+      <div className="pt_custommenu_mobile">
+        <div className="navbar">
+          <div id="navbar-inner" className="navbar-inner navbar-inactive">
+            <span className="btn-navbar" onClick={this.mainMenuClick}>Category</span>
+            {displaySubMenu && <Menu />}
+          </div>
         </div>
       </div>
     </div>
-  </div>
-)
+  )
+}
+}
 
 export default NavbarMobile

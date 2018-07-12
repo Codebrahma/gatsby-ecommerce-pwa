@@ -1,18 +1,17 @@
 import React from 'react'
+import Link from 'gatsby-link'
+
 
 const Menu = () => (
-  <ul id="pt_custommenu_itemmobile" className="tree dhtml  mobilemenu nav-collapse collapse" style={{display: "block"}}>
-      <li>
-        <a href="http://demo.posthemes.com/pos_nevara/layout3/en/10-shop">Men</a>
-            <span className="grower"><a href="javascript:void(0)"></a></span>
+  <ul id="pt_custommenu_itemmobile" className="tree dhtml  mobilemenu nav-collapse collapse" style={{display: "block"}} >
+      <li style={{display: "block"}}>
+        <Link to="/men">Men</Link>
       </li>
-      <li>
-        <a href="http://demo.posthemes.com/pos_nevara/layout3/en/10-shop">Women</a>
-            <span className="grower"><a href="javascript:void(0)"></a></span>
+      <li style={{display: "block"}}>
+        <Link to="/women">Women</Link>
       </li>
-      <li>
-        <a href="http://demo.posthemes.com/pos_nevara/layout3/en/10-shop">Furniture</a>
-            <span className="grower"><a href="javascript:void(0)"></a></span>
+      <li style={{display: "block"}}>
+        <Link to="/furniture">Furniture</Link>
       </li>
     </ul>
 )
