@@ -3,14 +3,14 @@ import Link from 'gatsby-link'
 
 
 const Menu = () => (
-  <ul id="pt_custommenu_itemmobile" className="tree dhtml  mobilemenu nav-collapse collapse" style={{display: "block"}} >
-      <li style={{display: "block"}}>
+  <ul id="pt_custommenu_itemmobile" className="tree dhtml  mobilemenu nav-collapse collapse" >
+      <li>
         <Link to="/men">Men</Link>
       </li>
-      <li style={{display: "block"}}>
+      <li>
         <Link to="/women">Women</Link>
       </li>
-      <li style={{display: "block"}}>
+      <li>
         <Link to="/furniture">Furniture</Link>
       </li>
     </ul>
