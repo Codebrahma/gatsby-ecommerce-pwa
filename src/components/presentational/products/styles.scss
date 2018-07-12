@@ -1,0 +1,13 @@
+#search_filters {
+  .facet {
+    .collapse {
+      display: block;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  #search_filters {
+    display: none;
+  }
+}
