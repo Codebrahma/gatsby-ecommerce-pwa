@@ -38,7 +38,7 @@ ProductCard.propTypes = {
 }
 
 ProductCard.defaultProps = {
-  productImage: "https://source.unsplash.com/random/300x300",
+  productImage: "https://source.unsplash.com/random/300x400",
   productName: "I am default",
   price: 10,
 }
