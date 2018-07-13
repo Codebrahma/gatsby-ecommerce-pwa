@@ -1,0 +1,12 @@
+.homepage {
+  .content {
+    .t-second-header {
+      text-align: center;
+    } 
+  }
+  @media (max-width: 768px) {
+    .hidden-sm {
+      display: none;
+    }
+  }
+}

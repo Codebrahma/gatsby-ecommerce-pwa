@@ -22,7 +22,7 @@ const Navbar = () => (
         <div id="pt_menu12" className="pt_menu nav-3">
           <div className="parentMenu">
             <span className="fontcustom2">
-              <Link to="/furniture">Furniture</Link>
+              <Link to="/furniture">Kids</Link>
             </span>
           </div>
         </div>
