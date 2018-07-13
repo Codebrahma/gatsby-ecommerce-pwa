@@ -6,14 +6,13 @@ import ProductFilter from '../components/presentational/filters/ProductFilter'
 const MenCategory = ({ data }) => {
   const products = data.allShopifyProduct.edges.map((data) => {
     return {
-      productName: 'Dummy',
-      price: 100,
+      productName: data.node.title,
+      price: data.node.priceRange.minVariantPrice.amount,
       productImage: data.node.images[0].originalSrc,
     }
   })
   return (
     <div>
-      <h1>Welcome to MEN categories</h1>
       <ProductList
         products={products}
       />
@@ -33,8 +32,20 @@ export const query = graphql`
             originalSrc
           }
           id
+          title
           productType
           description
+          priceRange {
+            minVariantPrice{
+              amount
+            }
+          }
+          variants {
+            selectedOptions {
+              name
+              value
+            }
+          }
         }
       }
     }
