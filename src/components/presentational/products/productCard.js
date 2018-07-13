@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import '../../css/productCard.scss'
 
 const ProductCard = (props) => (
-  <div className="item-product col-xs-12 col-sm-6 col-md-6 col-lg-3">
+  <div className="item-product col-xs-12 col-sm-6 col-md-6 col-lg-4">
     <article className="product-miniature js-product-miniature">
       <div className="img_block">
         <img src={props.productImage} alt={props.productName} />
@@ -12,18 +12,20 @@ const ProductCard = (props) => (
         <h1 itemProp="name"><a href="#" className="product_name">{props.productName}</a></h1>
         <div className="product-price-and-shipping">
           <span itemProp="price" className="price">${props.price}</span>
+          <div className="">
           <div className="product-quantity">
-            <button type="button" className="btn btn-light qty">
+            <button type="button" className="btn btn-light">
               <i className="fa fa-minus" />
             </button>
-            <button className="btn btn-primary add-to-cart qty" type="submit">
-              <i className="fa fa-shopping-cart" />
-              <span>  Add to cart</span>
-            </button>
-            <button type="button" className="btn btn-dark qty">
+            <div className="quantityDisp">0</div>
+            <button type="button" className="btn btn-dark">
               <i className="fa fa-plus" />
             </button>
-            <div className="quantityDisp qty">0</div>
+            <button className="btn btn-primary add-to-cart" type="submit">
+            <i className="fa fa-shopping-cart" />
+            <span>  Add to cart</span>
+            </button>
+          </div>
           </div>
         </div>
       </div>
