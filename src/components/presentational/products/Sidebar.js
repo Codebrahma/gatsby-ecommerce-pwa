@@ -1,7 +1,7 @@
-import React from 'react';
-import SideBarItem from './SideBarItem';
-import SideBarHeader from './SidebarHeader';
-import './styles.scss';
+import React from 'react'
+import SideBarItem from './SideBarItem'
+import SideBarHeader from './SidebarHeader'
+import './styles.scss'
 
 const SideBar = () => (
   <div id="left-column" className="col-xs-12 col-sm-4 col-md-3">
@@ -12,9 +12,7 @@ const SideBar = () => (
           id="_desktop_search_filters_clear_all"
           className="hidden-sm-down clear-all-wrapper"
         >
-          <button       
-            className="btn btn-tertiary js-search-filters-clear-all"
-          >
+          <button className="btn btn-tertiary js-search-filters-clear-all">
             <i className="material-icons"></i>
             Clear all
           </button>
@@ -22,19 +20,17 @@ const SideBar = () => (
 
         <div className="facet-content">
           <section className="facet clearfix">
-            <SideBarHeader 
-              title="Categories"
-            />
+            <SideBarHeader title="Categories" />
             <ul id="facet_20275" className="collapse in">
-              <SideBarItem title="Category 1"/>
-              <SideBarItem title="Category 2"/>
-              <SideBarItem title="Category 3"/>
+              <SideBarItem title="Category 1" />
+              <SideBarItem title="Category 2" />
+              <SideBarItem title="Category 3" />
             </ul>
           </section>
         </div>
       </div>
     </div>
-  </div>  
+  </div>
 )
 
 export default SideBar
