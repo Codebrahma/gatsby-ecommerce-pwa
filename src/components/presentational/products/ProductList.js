@@ -1,8 +1,8 @@
 import React from 'react'
 import ProductCard from './productCard'
+import map from 'lodash'
 
-const dummyProducts = {
-  products: [
+const products = [
     {
       name: 'One',
       image: 'https://source.unsplash.com/random/350x400',
@@ -129,14 +129,13 @@ const dummyProducts = {
       size: 10,
       color: 'red',
     },
-  ],
-}
+  ]
 
 const ProductList = () => (
   <section id="product-list">
     <div className="js-product-list right-column">
       <div className="products row product_content grid">
-        {dummyProducts.products.map(product => (
+        {_.map(products,product => (
           <ProductCard
             key={product.name}
             productName={product.name}

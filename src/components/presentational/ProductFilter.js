@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import CustomCheckbox from './CustomCheckbox'
+import map from 'lodash'
 import './filter.scss'
 
 const sizes = [10, 11, 12, 13, 14]
@@ -15,7 +16,7 @@ class ProductFilter extends Component {
         <div className="row">
           <div className="filterBy ">
             <h4>SIZE</h4>
-            {sizes.map(size => (
+            {_.map(sizes,size => (
               <div key={size}>
                 <CustomCheckbox
                   filter={size}
@@ -29,7 +30,7 @@ class ProductFilter extends Component {
           </div>
           <div className="filterBy">
             <h4>COLOR</h4>
-            {colors.map(color => (
+            {_.map(colors,color => (
               <div key={color}>
                 <CustomCheckbox
                   filter={color}
