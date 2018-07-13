@@ -12,7 +12,6 @@ const ProductCard = (props) => (
         <h1 itemProp="name"><a href="#" className="product_name">{props.productName}</a></h1>
         <div className="product-price-and-shipping">
           <span itemProp="price" className="price">${props.price}</span>
-          <div className="">
           <div className="product-quantity">
             <button type="button" className="btn btn-light">
               <i className="fa fa-minus" />
@@ -25,7 +24,6 @@ const ProductCard = (props) => (
             <i className="fa fa-shopping-cart" />
             <span>  Add to cart</span>
             </button>
-          </div>
           </div>
         </div>
       </div>
