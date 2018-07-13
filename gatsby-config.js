@@ -6,6 +6,14 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-react-next',
     {
+      resolve: 'gatsby-source-shopify',
+      options: {
+        shopName: 'ecommerce-codebrahma',
+        accessToken: 'c9e65f71dc1b5c80fad0dacacc7485f2',
+        verbose: true,
+      },
+    },
+    {
       resolve: `gatsby-plugin-sass`,
       options: {
         precision: 8,

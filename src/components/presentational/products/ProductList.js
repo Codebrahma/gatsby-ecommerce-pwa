@@ -131,7 +131,7 @@ const products = [
   },
 ]
 
-const ProductList = () => (
+const ProductList = ({ products }) => (
   <section id="product-list">
     <div className="js-product-list right-column">
       <div className="products row product_content grid">
