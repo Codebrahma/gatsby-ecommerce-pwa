@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Menu from '../components/menu.js'
+import '../components/css/menuBarStyle.scss'
 
 class NavbarMobile extends Component {
   state = {
