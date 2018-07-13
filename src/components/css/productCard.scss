@@ -1,7 +1,10 @@
   .item-product {
     background: white;
-    padding: 10px 50px;
+    padding: 20px 15px;
     margin: 20px 0;
+    @media ( max-width:991px) {
+      padding: 20px 10px;
+    }
     .product-miniature {
       display: flex;
       flex-direction: column;
