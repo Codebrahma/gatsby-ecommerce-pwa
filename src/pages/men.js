@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'gatsby-link'
 import ProductList from '../components/presentational/products/ProductList'
-import ProductFilter from '../components/presentational/ProductFilter'
+import ProductFilter from '../components/presentational/filters/ProductFilter'
 
 const MenCategory = () => (
   <section id="wrapper">
