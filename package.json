@@ -12,6 +12,7 @@
     "gatsby-plugin-react-next": "^1.0.11",
     "gatsby-plugin-sass": "^1.0.26",
     "gatsby-source-shopify": "^1.1.0",
+    "lodash": "^4.17.10",
     "react-helmet": "^5.2.0",
     "reactstrap": "^6.3.0"
   },

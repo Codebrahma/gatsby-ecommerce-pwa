@@ -1,5 +1,5 @@
 import React from 'react'
-import SideBar from '../../components/presentational/products/Sidebar';
+import SideBar from '../../components/presentational/products/Sidebar'
 import '../../components/css/custom.scss'
 
 const ProductList = () => (
