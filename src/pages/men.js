@@ -6,7 +6,7 @@ import ProductFilter from '../components/presentational/filters/ProductFilter'
 const MenCategory = () => (
   <section id="wrapper">
     <div className="container">
-      <h1 className="category-welcome">Welcome to MEN categories</h1>
+      <h3 className="category-welcome">Welcome to MEN categories</h3>
       <div className="row">
         <div
           id="left-column"

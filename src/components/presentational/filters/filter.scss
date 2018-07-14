@@ -1,14 +1,16 @@
   .filterBy{
-    margin: 10px;
+    margin: 0 10px 10px 10px;
+    p{
+      margin: 5px 0;
+    }
     .color-box {
       display: inline-block;
-      border: 1px solid black;
+      border: 1px solid #CCC;
       width: 28px;
       height: 28px;
       margin: 4px 4px 4px 10px;
       padding: 2px;
     }
-
     .red {
       background: red;
     }
@@ -23,6 +25,26 @@
     }
     .yellow {
       background: yellow;
+    }
+    @media (max-width: 767px) {
+      .checkbox-group {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .small-screen {
+        display: grid;
+        grid-template-rows: 1fr 0;
+        align-items: center;
+        justify-content: center;
+        margin: 0 5px;
+        .color-box {
+          margin: 4px;
+          transform: translateY(-12px);
+          @media (max-width: 480px) {
+            transform: translateY(-9px);
+          }
+        }
+      }
     }
   }
 
@@ -42,7 +64,7 @@
       top: 0;
       left: 0;
       background: #eee;
-      border: 1px solid #ddd;
+      border: 1px solid #eee;
       &:after {
         opacity: 0;
         content: '';
@@ -57,9 +79,26 @@
         border-right: none;
         transform: rotate(-45deg);
       }
+      @media (max-width: 767px) {
+        background: rgba(0,0,0,0);
+        border: 1px solid #aaa;
+        width: 30px;
+        height: 30px;
+        margin: 0 3px;
+        padding: 0 4px;
+        z-index: 99;
+      }
     }
     input[type=checkbox]:checked + label:after {
       opacity: 1;
+    }
+    @media (max-width: 767px) {
+      input[type=checkbox]:checked + label {
+        box-shadow: 3px 3px 3px;
+        &:after {
+          opacity: 0;
+        }
+      }
     }
   }
 
@@ -67,7 +106,7 @@
     justify-content: center;
     text-align: center;
     .center {
-      margin-top: 30px;
+      margin-top: 20px;
     }
   }
 

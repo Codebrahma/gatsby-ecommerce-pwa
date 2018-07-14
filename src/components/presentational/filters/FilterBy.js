@@ -13,13 +13,15 @@ class FilterBy extends Component {
   handleChange = e => {
     console.log(e.target)
   }
+
   render() {
     const { label, filterWhat } = this.state
     return (
       <div className="filterBy ">
-        <h4>{label.toUpperCase()}</h4>
+        <p>{label.toUpperCase()}</p>
+        <div className="checkbox-group">
         {_.map(filterWhat, i => (
-          <div key={i}>
+          <div key={i} className="small-screen">
             <CustomCheckbox
               filter={`${i}`}
               id={`filterBy${label}${i}`}
@@ -37,6 +39,7 @@ class FilterBy extends Component {
             )}
           </div>
         ))}
+        </div>
       </div>
     )
   }
