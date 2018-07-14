@@ -52,6 +52,12 @@ $main_border:1px solid #e5e5e5;
 }
 /* fonts */
 
+@font-face {
+  font-family: 'pt-sans';
+  src: url('./PT_SANS-Web-Bold.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
 
 [class^="pe-7s-"], [class*=" pe-7s-"] {
   display: inline-block;

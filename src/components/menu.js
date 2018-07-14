@@ -13,7 +13,7 @@ const Menu = () => (
       <Link to="/women">Women</Link>
     </li>
     <li>
-      <Link to="/furniture">Furniture</Link>
+      <Link to="/kids">Kids</Link>
     </li>
   </ul>
 )
