@@ -84,4 +84,12 @@
       justify-content: left;
     }
   }
+  @media (max-width: 768px) {
+    .hidden-sm {
+      display: none;
+    }
+  }
+  .item-info {
+    text-align: left;
+  }
 }
