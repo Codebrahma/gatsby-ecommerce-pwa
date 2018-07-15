@@ -5,7 +5,7 @@ import map from 'lodash'
 const ProductList = ({ products }) => (
   <section id="product-list">
     <div className="js-product-list right-column">
-      <div className="products row product_content grid">
+      <div className="products product_content grid">
         {_.map(products, product => (
           <ProductCard
             key={product.name}
