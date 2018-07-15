@@ -34,12 +34,14 @@ ProductCard.propTypes = {
   productImage: PropTypes.string.isRequired,
   productName: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
+  onClickView: PropTypes.func
 }
 
 ProductCard.defaultProps = {
   productImage: 'https://source.unsplash.com/random/300x400',
   productName: 'I am default',
   price: 10,
+  onClickView: (id) => { console.log(id) }
 }
 
 export default ProductCard
