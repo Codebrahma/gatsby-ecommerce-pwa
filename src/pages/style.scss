@@ -10,3 +10,78 @@
     }
   }
 }
+
+
+
+.homepage-container {
+  padding: 5%;
+  .info.desc1 {
+    width: 90%;
+    background-color: #eef7fa;
+    padding: 4%;
+  }
+  
+  .home_page_content {
+    margin-top: 450px;
+  }
+  
+  @media (max-width: 768px) {
+    .home_page_content {
+      margin-top: 300px;
+    }
+  }
+  .img_block {
+    display: flex;
+    justify-content: center;
+  }
+  .advantage {
+    padding-top: 50px;
+    width: 100%;
+    img {
+      width: 230px;
+    }
+    .text {
+      padding-top: 50px;
+      padding-left: 60px;
+      h2 {
+        span {
+          font-size: 28px;
+          color: #1a1a1a;
+        }
+      }
+      h3 {
+        color: gray;
+        font-weight: 300;
+        letter-spacing: .05em;
+      }
+      a {
+        &.shop {
+          padding: 13px 20px;
+          border: 1px solid #1a1a1a;
+          font-size: 18px;
+          color: #1a1a1a;
+          text-transform: capitalize;
+          margin-top: 30px;
+          display: inline-block;
+          letter-spacing: .05em;
+        }
+      }
+    }
+    article {
+      box-shadow: none;
+    }
+    @media (max-width: 992px) {
+      .offered-img {
+        display: none;
+      }
+    }
+  }
+}
+
+.product-item {
+  .container {
+    .row {
+      justify-content: left;
+    }
+  }
+}

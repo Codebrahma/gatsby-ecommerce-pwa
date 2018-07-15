@@ -36,7 +36,7 @@ const MenCategory = ({ data }) => {
 export default MenCategory
 
 export const query = graphql`
-  query productQuery {
+  query menProductQuery {
     allShopifyProduct {
       edges {
         node {
