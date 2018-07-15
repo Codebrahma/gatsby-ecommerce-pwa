@@ -13,7 +13,10 @@ const Menu = () => (
       <Link to="/women">Women</Link>
     </li>
     <li>
-      <Link to="/kids">Kids</Link>
+      <Link to="/boys">boys</Link>
+    </li>
+    <li>
+      <Link to="/girls">girls</Link>
     </li>
   </ul>
 )

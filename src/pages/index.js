@@ -10,34 +10,40 @@ const newProducts = [
     productName: "Men's watch Model 1",
     productImage: "https://cdn.shopify.com/s/files/1/0067/7986/3099/products/1.jpeg?v=1531631131",
     price: "400",
+    productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzEzOTQyNzc0ODI1NTU=",
   },
   {
     productName: "Men's watch Model 6",
     productImage: "https://cdn.shopify.com/s/files/1/0067/7986/3099/products/1_5fbccc5a-7fe3-4070-9a9c-77c8f4a457a8.jpeg?v=1531647682",
     price: "250",
+    productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzEzOTQ1MTQ0NjA3MzE=",
   },
   {
-    productName: "Men's watch Model 4",
+    productName: "Men's watch Model 2",
     productImage: "https://cdn.shopify.com/s/files/1/0067/7986/3099/products/1_28ab3d5a-d53c-421f-a0d1-13a9ee5af45d.jpeg?v=1531646859",
-    price: "370",
+    price: "500",
+    productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzEzOTQ1MTE1MTE2MTE=",
   },
 ];
 
 const topProducts = [
   {
-    productName: "Men's watch Model 2",
-    productImage: "https://cdn.shopify.com/s/files/1/0067/7986/3099/products/1.jpeg?v=1531631131",
-    price: "500",
-  },
-  {
-    productName: "Men's watch Model 3",
-    productImage: "https://cdn.shopify.com/s/files/1/0067/7986/3099/products/1_5fbccc5a-7fe3-4070-9a9c-77c8f4a457a8.jpeg?v=1531647682",
-    price: "210",
-  },
-  {
-    productName: "Men's watch Model 8",
+    productName: "Men's watch Model 1",
     productImage: "https://cdn.shopify.com/s/files/1/0067/7986/3099/products/1_28ab3d5a-d53c-421f-a0d1-13a9ee5af45d.jpeg?v=1531646859",
+    price: "500",
+    productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzEzOTQ1MDk0NDcyMjc=",
+  },
+  {
+    productName: "Men's watch Model 6",
+    productImage: "https://cdn.shopify.com/s/files/1/0067/7986/3099/products/1_8b98eeb3-8c13-458c-9117-ea5a88879b54.jpeg?v=1531647043",
+    price: "210",
+    productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzEzOTQ1MTA5MjE3ODc=",
+  },
+  {
+    productName: "Men's watch Model 2",
+    productImage: "https://cdn.shopify.com/s/files/1/0067/7986/3099/products/1_1d25fa84-273a-4298-918e-6db39f4e630f.jpeg?v=1531647902",
     price: "400",
+    productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzEzOTQ1MjY2ODMxOTU=",
   },
 ];
 
