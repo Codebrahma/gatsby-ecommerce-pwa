@@ -4,9 +4,9 @@ import '../../css/productCard.scss'
 
 const ProductCard = props => (
   <div className="item-product col-xs-12 col-sm-6 col-md-6 col-lg-4">
-    <article className="product-miniature js-product-miniature">
+    <article className="product-miniature js-product-miniature card-content">
       <div className="img_block">
-        <img src={props.productImage} alt={props.productName} />
+        <img src={props.productImage} alt={props.productName} className="product-img"/>
       </div>
       <div className="product_desc">
         <h1 itemProp="name">
@@ -18,20 +18,13 @@ const ProductCard = props => (
           <span itemProp="price" className="price">
             ${props.price}
           </span>
-          <div className="product-quantity">
-            <button type="button" className="btn btn-light">
-              <i className="fa fa-minus" />
-            </button>
-            <div className="quantityDisp">0</div>
-            <button type="button" className="btn btn-dark">
-              <i className="fa fa-plus" />
-            </button>
-            <button className="btn btn-primary add-to-cart" type="submit">
-              <i className="fa fa-shopping-cart" />
-              <span> Add to cart</span>
-            </button>
-          </div>
+         
         </div>
+      </div>
+      <div className="view-card" onClick={() => props.onClickView(props.id)}>
+        <span>
+          View Item
+        </span>
       </div>
     </article>
   </div>
