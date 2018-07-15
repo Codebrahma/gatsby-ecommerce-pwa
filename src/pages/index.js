@@ -48,48 +48,108 @@ class IndexPage extends React.Component {
 
   render() {
     return (
-      <div className="homepage">
-        <div className="container">
-          <div className="row">
-            <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-              <img alt="" src="//cdn.shopify.com/s/files/1/1104/4168/files/Homepage_Tree_Wool.gif?v=1520026237" />
-            </div>
-            <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 content">
-              <h2 className="t-second-header">We’re Branching Out</h2>
-              <p className="t-content-blurb">Once you’ve created the world’s most comfortable shoe, where do you go? Right back into nature. Lo and behold, with the help of our planet’s incredible 
-              we’re delivering the same comfort you’ve come to love in a soft, silky-smooth new material: Tree.</p>
+      <div className="homepage-container">
+        <div class="banner7-des">
+          <div class="container">
+            <div class="info desc1">
+              <div class="container">
+                <p class="title1">Shop your Favourite watches</p>
+                <p class="title2">in a single place</p>
+                <p class="title3">We'll give you a FREE delivery!</p>
+                <p class="readmore"><Link to="/men"><span>Shop Now</span></Link></p>
+              </div>
             </div>
           </div>
-          <div className="row">
-            <div className="col-xs-12 col-md-6 col-lg-6">
-              <div className="row">
-                <div className="col-xs-12 col-md-12 col-lg-12">
-                  <img src="//cdn.allbirds.com/image/fetch/q_auto,f_auto/q_auto,f_auto/https://cdn.shopify.com/s/files/1/1104/4168/files/Homepage_grid_wool.png%3Fv%3D1528390826" />
+        </div>
+        <div className="home_page_content">
+          <div class="pos_title">
+            <span>Newly Added Watches</span>
+            <h2>
+              New products
+            </h2>	
+          </div>
+          <ProductList products={newProducts} />
+        </div>
+        
+        <div className="home_page_content">
+          <div class="pos_title">
+            <span>Top sold Watches</span>
+            <h2>
+              Top Products
+            </h2>	
+          </div>
+          <ProductList products={topProducts} />
+        </div>
+        <div className="home_page_content">
+          <div class="pos_title">
+            <span>Latest Offers</span>
+            <h2>
+              Get latest offers on
+            </h2>	
+          </div>
+        </div>
+        <div className="">
+          <div className="static1_home3">
+            <div className="top">
+              <div className="advantage row">
+                <div className="box2 col col-lg-6 col-md-12 col-xs-12 offered-img">
+                  <div className="img1"><a className="shop" href="#">
+                    <div className="item-product col-xs-12 col-sm-6 col-md-6 col-lg-12">
+                    <article className="product-miniature js-product-miniature card-content">
+                      <div className="img_block">
+                        <img src="https://cdn.shopify.com/s/files/1/0067/7986/3099/products/1_28ab3d5a-d53c-421f-a0d1-13a9ee5af45d.jpeg?v=1531646859"
+                          className="product-img img-responsive"
+                          alt=""
+                        />
+                      </div>
+                    </article>
+                  </div>
+                    </a>
+                  </div>
                 </div>
-                <div className="col-md-6 col-lg-6 hidden-sm">
-                  <img src="//cdn.allbirds.com/image/fetch/q_auto,f_auto/q_auto,f_auto/https://cdn.shopify.com/s/files/1/1104/4168/files/pink-wool.jpg%3Fv%3D1520020037" />
-                </div>
-                <div className="col-md-6 col-lg-6 hidden-sm">
-                  <img src="//cdn.allbirds.com/image/fetch/q_auto,f_auto/q_auto,f_auto/https://cdn.shopify.com/s/files/1/1104/4168/files/pink-wool.jpg%3Fv%3D1520020037" />
+                <div className="box2 col col-lg-6 col-md-12 col-xs-12 text">
+                  <div className="text">
+                  <h2><span>Top Quality Men's Watches</span></h2>
+                  <h3>Get it now to avail the offer!!!</h3>
+                  <a className="shop" href="#">shop now</a></div>
                 </div>
               </div>
             </div>
-            <div className="col-xs-12 col-md-6 col-lg-6">
-              <div className="row">
-                <div className="col-md-6 col-lg-6 hidden-sm">
-                  <img src="//cdn.allbirds.com/image/fetch/q_auto,f_auto/q_auto,f_auto/https://cdn.shopify.com/s/files/1/1104/4168/files/Homepage_Pulp.gif%3Fv%3D1520959769" />
+          </div>
+        </div>
+        <div className="">
+          <div className="static1_home3">
+            <div className="top">
+              <div className="advantage row">
+                <div className="box2 col col-lg-6 col-md-12 col-xs-12 text">
+                  <div className="text">
+                  <h2><span>Top Quality Men's Watches</span></h2>
+                  <h3>Get it now to avail the offer!!!</h3>
+                  <a className="shop" href="#">shop now</a></div>
                 </div>
-                <div className="col-md-6 col-lg-6 hidden-sm">
-                  <img src="//cdn.allbirds.com/image/fetch/q_auto,f_auto/q_auto,f_auto/https://cdn.shopify.com/s/files/1/1104/4168/files/Homepage_Grid_Small_Skipper.jpg%3Fv%3D1520025795" />
+                <div className="box2 col col-lg-6 col-md-12 col-xs-12 offered-img">
+                  <div className="img1"><a className="shop" href="#">
+                  <div className="item-product col-xs-12 col-sm-6 col-md-6 col-lg-12">
+                  <article className="product-miniature js-product-miniature card-content">
+                    <div className="img_block">
+                      <img src="https://cdn.shopify.com/s/files/1/0067/7986/3099/products/1_28ab3d5a-d53c-421f-a0d1-13a9ee5af45d.jpeg?v=1531646859"
+                        className="product-img img-responsive"
+                        alt=""
+                      />
+                    </div>
+                  </article>
                 </div>
-                <div className="col-xs-12 col-md-12 col-lg-12">
-                  <img src="//cdn.allbirds.com/image/fetch/q_auto,f_auto/q_auto,f_auto/https://cdn.shopify.com/s/files/1/1104/4168/files/Homepage_grid_tree.png%3Fv%3D1528390845" />
+
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+
     )
   }
 }

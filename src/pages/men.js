@@ -1,28 +1,22 @@
 import React from 'react'
 import Link from 'gatsby-link'
 import ProductList from '../components/presentational/products/ProductList'
-import ProductFilter from '../components/presentational/filters/ProductFilter'
+import Sidebar from '../components/presentational/products/Sidebar'
 
 const MenCategory = ({ data }) => {
-  const products = data.allShopifyProduct.edges.map((data) => {
-    return {
-      productName: data.node.title,
-      price: data.node.priceRange.minVariantPrice.amount,
-      productImage: data.node.images[0].originalSrc,
-    }
-  })
-  console.log('products ', products)
+  const filteredProducts = data.allShopifyProduct.edges.filter(data => data.node.productType === 'Men');
+  console.log(filteredProducts);
+  const products = filteredProducts.map((data) => ({
+    productName: data.node.title,
+    price: data.node.priceRange.minVariantPrice.amount,
+    productImage: data.node.images[0].originalSrc,
+  }));
+
   return (
     <section id="wrapper">
       <div className="container">
-        <h3 className="category-welcome">Welcome to MEN categories</h3>
         <div className="row">
-          <div
-            id="left-column"
-            className="col-xs-12 col-sm-12 col-md-3 col-lg-2 center"
-          >
-            <ProductFilter />
-          </div>
+          <Sidebar />
           <div
             id="content-wrapper"
             className="left-column col-xs-12 col-sm-12 col-md-9 col-lg-10"
@@ -35,7 +29,6 @@ const MenCategory = ({ data }) => {
           </div>
         </div>
       </div>
-      <Link to="/">Go back to the homepage</Link>
     </section>
   );
 }
