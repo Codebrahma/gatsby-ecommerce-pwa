@@ -15,10 +15,19 @@ const ProductItem = (props) => (
                         <div className="owl-stage" >
                           <div className="owl-item cloned" style={{ width: '98px' }}>
                             <div className="thumb-container hidden-sm">
-                              <img className="thumb js-thumb  selected " data-image-medium-src="http://demo.posthemes.com/pos_nevara/197-medium_default/compete-track-tote.jpg" data-image-large-src="http://demo.posthemes.com/pos_nevara/197-large_default/compete-track-tote.jpg" src="http://demo.posthemes.com/pos_nevara/197-cart_default/compete-track-tote.jpg" alt="" title="" width="100" itemprop="image" />
-                              <img className="thumb js-thumb " data-image-medium-src="http://demo.posthemes.com/pos_nevara/198-medium_default/compete-track-tote.jpg" data-image-large-src="http://demo.posthemes.com/pos_nevara/198-large_default/compete-track-tote.jpg" src="http://demo.posthemes.com/pos_nevara/198-cart_default/compete-track-tote.jpg" alt="" title="" width="100" itemprop="image" />
-                              <img className="thumb js-thumb " data-image-medium-src="http://demo.posthemes.com/pos_nevara/199-medium_default/compete-track-tote.jpg" data-image-large-src="http://demo.posthemes.com/pos_nevara/199-large_default/compete-track-tote.jpg" src="http://demo.posthemes.com/pos_nevara/199-cart_default/compete-track-tote.jpg" alt="" title="" width="100" itemprop="image"/>
-                              <img className="thumb js-thumb " data-image-medium-src="http://demo.posthemes.com/pos_nevara/199-medium_default/compete-track-tote.jpg" data-image-large-src="http://demo.posthemes.com/pos_nevara/199-large_default/compete-track-tote.jpg" src="http://demo.posthemes.com/pos_nevara/199-cart_default/compete-track-tote.jpg" alt="" title="" width="100" itemprop="image"/>
+                              {
+                                props.pathContext.images.map((img) => (
+                                  <img 
+                                    className="thumb js-thumb  selected " 
+                                    data-image-medium-src="http://demo.posthemes.com/pos_nevara/197-medium_default/compete-track-tote.jpg" data-image-large-src="http://demo.posthemes.com/pos_nevara/197-large_default/compete-track-tote.jpg" 
+                                    src={img.originalSrc}
+                                    alt="" 
+                                    title="" 
+                                    width="100" 
+                                    itemprop="image" 
+                                  />    
+                                ))
+                              }
                             </div>
                           </div>  
                         </div>
@@ -30,12 +39,20 @@ const ProductItem = (props) => (
             </div>
             <div className="colxs-12 col-md-4">
               <img 
-                className="thumb js-thumb  selected " data-image-medium-src="http://demo.posthemes.com/pos_nevara/197-medium_default/compete-track-tote.jpg" data-image-large-src="http://demo.posthemes.com/pos_nevara/197-large_default/compete-track-tote.jpg" src="http://demo.posthemes.com/pos_nevara/197-cart_default/compete-track-tote.jpg" alt="" title="" width="100" itemprop="image" style={{ width: "100%" }}/>
+                className="thumb js-thumb  selected " 
+                data-image-medium-src="http://demo.posthemes.com/pos_nevara/197-medium_default/compete-track-tote.jpg" data-image-large-src="http://demo.posthemes.com/pos_nevara/197-large_default/compete-track-tote.jpg"
+                src={props.pathContext.images[0].originalSrc}
+                alt=""
+                title=""
+                width="200"
+                itemprop="image"
+                style={{ width: "100%" }}
+              />
             </div>
 
 
             <div className="col-md-6 item-info">              
-              <h1 className="h1 namne_details" itemprop="name">{props.productName}</h1>
+              <h1 className="h1 namne_details" itemprop="name">{props.pathContext.productName}</h1>
               <p className="reference">Reference: demo_15</p>
               <div id="product_comments_block_extra" className="no-print" itemprop="aggregateRating" itemscope="" itemtype="https://schema.org/AggregateRating">
                 <ul className="comments_advices">
@@ -51,7 +68,7 @@ const ProductItem = (props) => (
                   <link itemprop="availability" />
                     <meta itemprop="priceCurrency" content="USD" />
                     <div className="current-price">
-                      <span itemprop="price" content="76.8">${props.productPrice}</span>
+                      <span itemprop="price" content="76.8">${props.pathContext.productPrice}</span>
                     </div>
                 </div>
                 <div className="tax-shipping-delivery-label">

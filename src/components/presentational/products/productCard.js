@@ -1,9 +1,11 @@
 import React from 'react'
+import Link from 'gatsby-link';
 import PropTypes from 'prop-types'
 import '../../css/productCard.scss'
 
 const ProductCard = props => (
   <div className="item-product col-xs-12 col-sm-6 col-md-6 col-lg-4">
+    <Link to={`product/${props.productId}`}>
     <article className="product-miniature js-product-miniature card-content">
       <div className="img_block">
         <img src={props.productImage} alt={props.productName} className="product-img"/>
@@ -21,12 +23,11 @@ const ProductCard = props => (
          
         </div>
       </div>
-      <div className="view-card" onClick={() => props.onClickView(props.id)}>
-        <span>
+      <div className="view-card">
           View Item
-        </span>
       </div>
     </article>
+    </Link>
   </div>
 )
 

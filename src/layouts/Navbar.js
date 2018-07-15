@@ -29,14 +29,14 @@ const Navbar = () => (
         <div id="pt_menu12" className="pt_menu nav-3 nav-left-items">
           <div className="parentMenu">
             <span className="fontcustom2">
-              <Link to="/furniture">BOYS</Link>
+              <Link to="/boys">BOYS</Link>
             </span>
           </div>
         </div>
         <div id="pt_menu12" className="pt_menu nav-3 nav-left-items">
           <div className="parentMenu">
             <span className="fontcustom2">
-              <Link to="/furniture">GIRLS</Link>
+              <Link to="/girls">GIRLS</Link>
             </span>
           </div>
         </div>

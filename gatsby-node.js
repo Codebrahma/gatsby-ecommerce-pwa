@@ -47,10 +47,10 @@
          path: `product/${node.id}`,
          component: path.resolve(`./src/pages/productItem.js`),
          context: {
-           title: node.title,
+           productName: node.title,
            images: node.images,
            tags: node.tags,
-           price: node.priceRange.minVariantPrice.amount,
+           productPrice: node.priceRange.minVariantPrice.amount,
            variants: node.variants.selectedOptions
          },
        })

@@ -5,11 +5,11 @@ import Sidebar from '../components/presentational/products/Sidebar'
 
 const MenCategory = ({ data }) => {
   const filteredProducts = data.allShopifyProduct.edges.filter(data => data.node.productType === 'Men');
-  console.log(filteredProducts);
   const products = filteredProducts.map((data) => ({
     productName: data.node.title,
     price: data.node.priceRange.minVariantPrice.amount,
     productImage: data.node.images[0].originalSrc,
+    productId: data.node.id
   }));
 
   return (
