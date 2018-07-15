@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'gatsby-link'
 import axios from 'axios'
-import ProductList from '../components/presentational/products/productList';
+import ProductList from '../components/presentational/products/ProductList';
 import ProductCard from '../components/presentational/products/productCard';
 import './style.scss'
 

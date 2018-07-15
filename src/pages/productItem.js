@@ -16,7 +16,7 @@ const ProductItem = (props) => (
                           <div className="owl-item cloned" style={{ width: '98px' }}>
                             <div className="thumb-container hidden-sm">
                               {
-                                props.pathContext.images.map((img) => (
+                                props.pathContext.images && props.pathContext.images.map((img) => (
                                   <img 
                                     className="thumb js-thumb  selected " 
                                     data-image-medium-src="http://demo.posthemes.com/pos_nevara/197-medium_default/compete-track-tote.jpg" data-image-large-src="http://demo.posthemes.com/pos_nevara/197-large_default/compete-track-tote.jpg" 
@@ -41,7 +41,7 @@ const ProductItem = (props) => (
               <img 
                 className="thumb js-thumb  selected " 
                 data-image-medium-src="http://demo.posthemes.com/pos_nevara/197-medium_default/compete-track-tote.jpg" data-image-large-src="http://demo.posthemes.com/pos_nevara/197-large_default/compete-track-tote.jpg"
-                src={props.pathContext.images[0].originalSrc}
+                src={props.pathContext.images && props.pathContext.images[0].originalSrc}
                 alt=""
                 title=""
                 width="200"
