@@ -6,6 +6,8 @@ $font-icon:  "FontAwesome";
 $main_border:1px solid #e5e5e5;
 @import "animate";
 @import "font-awesome";
+@import "theme";
+
 @mixin pos-transition($number) {
 	-webkit-transition: all $number ease-in;
 	-moz-transition: all $number ease-in;
