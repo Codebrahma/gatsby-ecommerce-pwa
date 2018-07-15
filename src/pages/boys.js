@@ -4,7 +4,8 @@ import ProductList from '../components/presentational/products/ProductList'
 import Sidebar from '../components/presentational/products/Sidebar'
 
 const MenCategory = ({ data }) => {
-  const filteredProducts = data.allShopifyProduct.edges.filter(data => data.node.productType === 'Women');
+  
+  const filteredProducts = data.allShopifyProduct.edges.filter(data => data.node.productType === 'Men');
   const products = filteredProducts.map((data) => ({
     productName: data.node.title,
     price: data.node.priceRange.minVariantPrice.amount,
@@ -36,7 +37,7 @@ const MenCategory = ({ data }) => {
 export default MenCategory
 
 export const query = graphql`
-  query womenProductQuery {
+  query boysProductQuery {
     allShopifyProduct {
       edges {
         node {

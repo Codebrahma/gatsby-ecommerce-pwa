@@ -1,12 +1,14 @@
 import React from 'react'
+import Link from 'gatsby-link';
 import PropTypes from 'prop-types'
 import '../../css/productCard.scss'
 
 const ProductCard = props => (
   <div className="item-product col-xs-12 col-sm-6 col-md-6 col-lg-4">
-    <article className="product-miniature js-product-miniature">
+    <Link to={`product/${props.productId}`}>
+    <article className="product-miniature js-product-miniature card-content">
       <div className="img_block">
-        <img src={props.productImage} alt={props.productName} />
+        <img src={props.productImage} alt={props.productName} className="product-img"/>
       </div>
       <div className="product_desc">
         <h1 itemProp="name">
@@ -18,22 +20,14 @@ const ProductCard = props => (
           <span itemProp="price" className="price">
             ${props.price}
           </span>
-          <div className="product-quantity">
-            <button type="button" className="btn btn-light">
-              <i className="fa fa-minus" />
-            </button>
-            <div className="quantityDisp">0</div>
-            <button type="button" className="btn btn-dark">
-              <i className="fa fa-plus" />
-            </button>
-            <button className="btn btn-primary add-to-cart" type="submit">
-              <i className="fa fa-shopping-cart" />
-              <span> Add to cart</span>
-            </button>
-          </div>
+         
         </div>
       </div>
+      <div className="view-card">
+          View Item
+      </div>
     </article>
+    </Link>
   </div>
 )
 
@@ -41,12 +35,14 @@ ProductCard.propTypes = {
   productImage: PropTypes.string.isRequired,
   productName: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
+  onClickView: PropTypes.func
 }
 
 ProductCard.defaultProps = {
   productImage: 'https://source.unsplash.com/random/300x400',
   productName: 'I am default',
   price: 10,
+  onClickView: (id) => { console.log(id) }
 }
 
 export default ProductCard

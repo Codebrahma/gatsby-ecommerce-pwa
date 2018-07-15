@@ -624,3 +624,21 @@ pre tt:after {
     font-size: 100%;
   }
 }
+
+.nav-left-items {
+  float: left;
+  a {
+    font-size: 18px !important;
+    color: #000 !important;
+    font-weight: bold;
+  }
+}
+
+.nav-right-items {
+  float: right;
+  a {
+    font-size: 18px !important;
+    color: #000 !important;
+    font-weight: bold;
+  }
+}
