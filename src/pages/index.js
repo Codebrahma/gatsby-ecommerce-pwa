@@ -1,7 +1,45 @@
 import React from 'react'
 import Link from 'gatsby-link'
 import axios from 'axios'
+import ProductList from '../components/presentational/products/productList';
+import ProductCard from '../components/presentational/products/productCard';
 import './style.scss'
+
+const newProducts = [
+  {
+    productName: "Men's watch Model 1",
+    productImage: "https://cdn.shopify.com/s/files/1/0067/7986/3099/products/1.jpeg?v=1531631131",
+    price: "400",
+  },
+  {
+    productName: "Men's watch Model 6",
+    productImage: "https://cdn.shopify.com/s/files/1/0067/7986/3099/products/1_5fbccc5a-7fe3-4070-9a9c-77c8f4a457a8.jpeg?v=1531647682",
+    price: "250",
+  },
+  {
+    productName: "Men's watch Model 4",
+    productImage: "https://cdn.shopify.com/s/files/1/0067/7986/3099/products/1_28ab3d5a-d53c-421f-a0d1-13a9ee5af45d.jpeg?v=1531646859",
+    price: "370",
+  },
+];
+
+const topProducts = [
+  {
+    productName: "Men's watch Model 2",
+    productImage: "https://cdn.shopify.com/s/files/1/0067/7986/3099/products/1.jpeg?v=1531631131",
+    price: "500",
+  },
+  {
+    productName: "Men's watch Model 3",
+    productImage: "https://cdn.shopify.com/s/files/1/0067/7986/3099/products/1_5fbccc5a-7fe3-4070-9a9c-77c8f4a457a8.jpeg?v=1531647682",
+    price: "210",
+  },
+  {
+    productName: "Men's watch Model 8",
+    productImage: "https://cdn.shopify.com/s/files/1/0067/7986/3099/products/1_28ab3d5a-d53c-421f-a0d1-13a9ee5af45d.jpeg?v=1531646859",
+    price: "400",
+  },
+];
 
 class IndexPage extends React.Component {
   constructor(props) {
