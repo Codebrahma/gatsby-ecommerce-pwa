@@ -55,5 +55,16 @@ export const updateCart = (itemsToUpdate) => {
   }
   const currentCartId = localStorage.getItem('currentCartId')
 
-  return shopifyClient.checkout.updateLineItems(currentCartId, itemsToAdd);
+  return shopifyClient.checkout.updateLineItems(currentCartId, itemsToUpdate);
+}
+
+export const getCart = () => {
+  return new Promise((resolve, reject) => {
+    const currentCartId = localStorage.getItem('currentCartId');
+
+    shopifyClient.checkout.fetch(currentCartId).then(checkout => {
+      resolve(checkout.lineItems);
+    })
+    .catch(err => reject(err));
+  })
 }
