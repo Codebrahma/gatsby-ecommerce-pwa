@@ -27,17 +27,24 @@ export const createCart = () => {
 };
 
 export const addToCart = (productId, quantity) => {
-  const currentCartId = localStorage.getItem('currentCartId')
-  const itemsToAdd = [
-    { variantId: productId, quantity}
-  ];
-  return shopifyClient.checkout.addLineItems(currentCartId, itemsToAdd);
+  return new Promise((resolve, reject) => {
+    const currentCartId = localStorage.getItem('currentCartId')
+    const itemsToAdd = [
+      { variantId: productId, quantity}
+    ];
+    shopifyClient.checkout.addLineItems(currentCartId, itemsToAdd)
+      .then(checkout => {
+        const lineItemId = checkout.lineItems[checkout.lineItems.length - 1].id;
+        resolve(lineItemId);      
+      })
+      .catch(err => reject(err));
+  });
 }
 
 export const removeFromCart = (productId) => {
   const currentCartId = localStorage.getItem('currentCartId')
   const itemsToRemove = [
-    'Z2lkOi8vc2hvcGlmeS9DaGVja291dExpbmVJdGVtL2ExNTNjYmM4MmU5NDQ4NTIxNTYwMjU3N2RhYjYyZDQ4P2NoZWNrb3V0PWQyODk2YjI4NWZiMGIyMjAyOWRiNjU1ZmI1ODNlNjQx'
+    productId
   ];
   return shopifyClient.checkout.removeLineItems(currentCartId, itemsToRemove);
 }

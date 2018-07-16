@@ -6,7 +6,6 @@ export default class ProductItem extends React.Component {
     super(props);
     this.state = {
       quantityToAdded: 1,
-      addedToCart: false,
       lineItemId: ''
     }
   }
@@ -21,23 +20,19 @@ export default class ProductItem extends React.Component {
 
   handleAddToCart = (event) => {
     event.preventDefault();
-    if (!this.state.addedToCart) {
+    if (!this.state.lineItemId) {
       const productId = this.props.pathContext.variants[0].id.split('__')[2];      
       addToCart(productId, this.state.quantityToAdded)
-          .then((checkout) => {
-            console.log(checkout);
-            const lineItemId = checkout.lineItems[checkout.lineItems.length - 1];
+          .then((lineItemId) => {
             this.setState({
-            addedToCart: true,
-            lineItemId,
-          })})
+              lineItemId,
+            })
+          })
           .catch(err => console.log(err));
     } else {
       removeFromCart(this.state.lineItemId)
           .then((checkout) => {
-            console.log('removed ', checkout)
             this.setState({
-            addedToCart: false,
             lineItemId: '',
           })})
           .catch(err => console.log(err));
@@ -143,7 +138,7 @@ export default class ProductItem extends React.Component {
                           <span className="input-group-addon bootstrap-touchspin-postfix" style={{ display: 'none' }}>
                           </span>
                           <span className="input-group-btn-vertical">
-                          <button className="btn btn-touchspin js-touchspin bootstrap-touchspin-up" type="button" onClick={() => this.handleQuantitChange(true)}>
+                          <button disabled={this.state.lineItemId !== ''} className="btn btn-touchspin js-touchspin bootstrap-touchspin-up" type="button" onClick={() => this.handleQuantitChange(true)}>
                           <i className="material-icons touchspin-up"></i></button>
                           <button disabled={this.state.quantityToAdded < 2} className="btn btn-touchspin js-touchspin bootstrap-touchspin-down" type="button" onClick={() => this.handleQuantitChange(false)}>
                           <i className="material-icons touchspin-down"></i></button></span>
@@ -152,7 +147,7 @@ export default class ProductItem extends React.Component {
                     <div className="add">
                       <button className="btn btn-primary add-to-cart" data-button-action="add-to-cart" onClick={this.handleAddToCart}>
                         <i className="fa fa-shopping-cart"></i>
-                        {this.state.addedToCart ? `Remove From Cart` : 'Add To Cart'}
+                        {this.state.lineItemId ? `Remove From Cart` : 'Add To Cart'}
                       </button>
                     </div>
                   </div>
