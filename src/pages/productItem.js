@@ -39,6 +39,12 @@ export default class ProductItem extends React.Component {
     }
   }
 
+  handleThumbClick = (clickedImgSrc) => {
+    this.setState({
+      currentMainImageSrc: clickedImgSrc,
+    })
+  }
+
   render() {
     return (
       <div className="product-item">
@@ -58,7 +64,8 @@ export default class ProductItem extends React.Component {
                                   {
                                     this.props.pathContext.images && this.props.pathContext.images.map((img) => (
                                       <img 
-                                        className="thumb js-thumb  selected " 
+                                        onClick={() => this.handleThumbClick(img.originalSrc)}
+                                        className="thumb js-thumb  selected"
                                         data-image-medium-src="http://demo.posthemes.com/pos_nevara/197-medium_default/compete-track-tote.jpg" data-image-large-src="http://demo.posthemes.com/pos_nevara/197-large_default/compete-track-tote.jpg" 
                                         src={img.originalSrc}
                                         alt="" 
@@ -80,8 +87,7 @@ export default class ProductItem extends React.Component {
                 <div className="colxs-12 col-md-4">
                   <img 
                     className="thumb js-thumb  selected " 
-                    data-image-medium-src="http://demo.posthemes.com/pos_nevara/197-medium_default/compete-track-tote.jpg" data-image-large-src="http://demo.posthemes.com/pos_nevara/197-large_default/compete-track-tote.jpg"
-                    src={this.props.pathContext.images && this.props.pathContext.images[0].originalSrc}
+                    src={this.state.currentMainImageSrc || this.props.pathContext.images[0].originalSrc}
                     alt=""
                     title=""
                     width="200"
