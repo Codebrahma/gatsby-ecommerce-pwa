@@ -6,22 +6,32 @@ const shopifyClient = Client.buildClient({
 });
 
 export const createCart = () => {
-  const currentCartId = localStorage.getItem('currentCartId')
-  if (!currentCartId) {
-    shopifyClient.checkout.create().then(checkout => {
-      localStorage.setItem('currentCartId', checkout.id);
-    })
-    .catch(err => console.log('Error ', err));
-  }
+  return new Promise((resolve, reject) => {
+    const currentCartId = localStorage.getItem('currentCartId')
+    if (!currentCartId) {
+      shopifyClient.checkout.create().then(checkout => {
+        localStorage.setItem('currentCartId', checkout.id);
+        resolve({success: true})
+      })
+      .catch(err => {
+        console.log('Error ', err);
+        reject({
+          success: false,
+          err,
+        });
+      });
+    } else {
+      resolve({success: true})
+    }
+  });
 };
 
 export const addToCart = (productId, quantity) => {
   const currentCartId = localStorage.getItem('currentCartId')
-
   const itemsToAdd = [
     { variantId: productId, quantity}
   ];
-  return Client.checkout.addLineItems(currentCartId, itemsToAdd);
+  return shopifyClient.checkout.addLineItems(currentCartId, itemsToAdd);
 }
 
 export const updateCart = (itemsToUpdate) => {
@@ -30,5 +40,5 @@ export const updateCart = (itemsToUpdate) => {
   }
   const currentCartId = localStorage.getItem('currentCartId')
 
-  return Client.checkout.updateLineItems(currentCartId, itemsToAdd);
+  return shopifyClient.checkout.updateLineItems(currentCartId, itemsToAdd);
 }

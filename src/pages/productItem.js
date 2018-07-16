@@ -1,5 +1,5 @@
 import React from 'react';
-import { createCart } from '../utils/shopifyUtils';
+import { createCart, addToCart } from '../utils/shopifyUtils';
 
 export default class ProductItem extends React.Component {
   constructor(props) {
@@ -19,8 +19,12 @@ export default class ProductItem extends React.Component {
 
   handleAddToCart = (event) => {
     event.preventDefault();
-    console.log('Herer -------------------------------------------------------------------->')
-    createCart();
+    createCart().then(result => {
+      addToCart(this.props.pathContext.productId, this.state.quantityToAdded)
+        .then((checkout) => console.log('Added to cart', checkout))
+        .catch(err => console.log(err))
+    })
+    .catch(err => console.log(err));
   }
 
   render() {

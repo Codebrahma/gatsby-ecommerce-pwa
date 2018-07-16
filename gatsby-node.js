@@ -47,6 +47,7 @@
          path: `product/${node.id}`,
          component: path.resolve(`./src/pages/productItem.js`),
          context: {
+           productId: node.id,
            productName: node.title,
            images: node.images,
            tags: node.tags,
