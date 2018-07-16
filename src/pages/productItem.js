@@ -1,4 +1,5 @@
 import React from 'react';
+import { createCart } from '../utils/shopifyUtils';
 
 export default class ProductItem extends React.Component {
   constructor(props) {
@@ -16,7 +17,11 @@ export default class ProductItem extends React.Component {
     });
   }
 
-  handleAddToCart
+  handleAddToCart = (event) => {
+    event.preventDefault();
+    console.log('Herer -------------------------------------------------------------------->')
+    createCart();
+  }
 
   render() {
     return (
@@ -124,7 +129,7 @@ export default class ProductItem extends React.Component {
                         </div>
                     </div>
                     <div className="add">
-                      <button className="btn btn-primary add-to-cart" data-button-action="add-to-cart" type="submit">
+                      <button className="btn btn-primary add-to-cart" data-button-action="add-to-cart" onClick={this.handleAddToCart}>
                         <i className="fa fa-shopping-cart"></i>
                         Add to cart
                       </button>
