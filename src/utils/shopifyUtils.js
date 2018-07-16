@@ -34,6 +34,14 @@ export const addToCart = (productId, quantity) => {
   return shopifyClient.checkout.addLineItems(currentCartId, itemsToAdd);
 }
 
+export const removeFromCart = (productId) => {
+  const currentCartId = localStorage.getItem('currentCartId')
+  const itemsToRemove = [
+    'Z2lkOi8vc2hvcGlmeS9DaGVja291dExpbmVJdGVtL2ExNTNjYmM4MmU5NDQ4NTIxNTYwMjU3N2RhYjYyZDQ4P2NoZWNrb3V0PWQyODk2YjI4NWZiMGIyMjAyOWRiNjU1ZmI1ODNlNjQx'
+  ];
+  return shopifyClient.checkout.removeLineItems(currentCartId, itemsToRemove);
+}
+
 export const updateCart = (itemsToUpdate) => {
   if (itemsToUpdate.length === 0) {
     return Promise.resolve();

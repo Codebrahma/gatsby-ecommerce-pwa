@@ -32,6 +32,7 @@
               }
             }
             variants {
+              id
               selectedOptions {
                 name
                 value
@@ -52,7 +53,7 @@
            images: node.images,
            tags: node.tags,
            productPrice: node.priceRange.minVariantPrice.amount,
-           variants: node.variants.selectedOptions
+           variants: node.variants
          },
        })
      })

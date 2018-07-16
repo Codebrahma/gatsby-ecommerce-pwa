@@ -1,11 +1,13 @@
 import React from 'react';
-import { createCart, addToCart } from '../utils/shopifyUtils';
+import { createCart, addToCart, removeFromCart } from '../utils/shopifyUtils';
 
 export default class ProductItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      quantityToAdded: 1
+      quantityToAdded: 1,
+      addedToCart: false,
+      lineItemId: ''
     }
   }
 
@@ -19,12 +21,27 @@ export default class ProductItem extends React.Component {
 
   handleAddToCart = (event) => {
     event.preventDefault();
-    createCart().then(result => {
-      addToCart(this.props.pathContext.productId, this.state.quantityToAdded)
-        .then((checkout) => console.log('Added to cart', checkout))
-        .catch(err => console.log(err))
-    })
-    .catch(err => console.log(err));
+    if (!this.state.addedToCart) {
+      const productId = this.props.pathContext.variants[0].id.split('__')[2];      
+      addToCart(productId, this.state.quantityToAdded)
+          .then((checkout) => {
+            console.log(checkout);
+            const lineItemId = checkout.lineItems[checkout.lineItems.length - 1];
+            this.setState({
+            addedToCart: true,
+            lineItemId,
+          })})
+          .catch(err => console.log(err));
+    } else {
+      removeFromCart(this.state.lineItemId)
+          .then((checkout) => {
+            console.log('removed ', checkout)
+            this.setState({
+            addedToCart: false,
+            lineItemId: '',
+          })})
+          .catch(err => console.log(err));
+    }
   }
 
   render() {
@@ -135,7 +152,7 @@ export default class ProductItem extends React.Component {
                     <div className="add">
                       <button className="btn btn-primary add-to-cart" data-button-action="add-to-cart" onClick={this.handleAddToCart}>
                         <i className="fa fa-shopping-cart"></i>
-                        Add to cart
+                        {this.state.addedToCart ? `Remove From Cart` : 'Add To Cart'}
                       </button>
                     </div>
                   </div>
