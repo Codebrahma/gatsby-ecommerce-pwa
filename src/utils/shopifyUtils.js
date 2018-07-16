@@ -26,11 +26,11 @@ export const createCart = () => {
   });
 };
 
-export const addToCart = (productId, quantity) => {
+export const addToCart = (productVariantId, quantity) => {
   return new Promise((resolve, reject) => {
     const currentCartId = localStorage.getItem('currentCartId')
     const itemsToAdd = [
-      { variantId: productId, quantity}
+      { variantId: productVariantId, quantity}
     ];
     shopifyClient.checkout.addLineItems(currentCartId, itemsToAdd)
       .then(checkout => {
@@ -41,10 +41,10 @@ export const addToCart = (productId, quantity) => {
   });
 }
 
-export const removeFromCart = (productId) => {
+export const removeFromCart = (productLineItemId) => {
   const currentCartId = localStorage.getItem('currentCartId')
   const itemsToRemove = [
-    productId
+    productLineItemId
   ];
   return shopifyClient.checkout.removeLineItems(currentCartId, itemsToRemove);
 }
