@@ -1,10 +1,14 @@
 import React from 'react'
 
-const SideBarItem = ({ title }) => (
+const SideBarItem = ({ title, type, onClickFilter }) => (
   <li>
     <label className="facet-label" htmlFor="facet_input_16268_0">
       <label>
-        <input type="checkbox" class="option-input checkbox"/>
+        <input
+          type="checkbox"
+          class="option-input checkbox"
+          onChange={() => onClickFilter(type, title)}
+        />
       </label>
       <a className="_gray-darker search-link js-search-link" rel="nofollow">
         {title}
