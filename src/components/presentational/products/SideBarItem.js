@@ -6,7 +6,7 @@ const SideBarItem = ({ title, type, onClickFilter }) => (
       <label>
         <input
           type="checkbox"
-          class="option-input checkbox"
+          className="option-input checkbox"
           onChange={() => onClickFilter(type, title)}
         />
       </label>

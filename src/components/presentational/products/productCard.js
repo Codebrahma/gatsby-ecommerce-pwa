@@ -20,7 +20,7 @@ const ProductCard = props => (
           <span itemProp="price" className="price">
             ${props.price}
           </span>
-         
+
         </div>
       </div>
       <div className="view-card">
@@ -34,7 +34,7 @@ const ProductCard = props => (
 ProductCard.propTypes = {
   productImage: PropTypes.string.isRequired,
   productName: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
+  price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onClickView: PropTypes.func
 }
 
