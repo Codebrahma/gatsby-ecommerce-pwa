@@ -51,6 +51,7 @@ class MenCategory extends React.Component {
     const {
       data
     } = this.props;
+
     let filteredProducts = data.allShopifyProduct.edges.filter(data => data.node.productType === 'Men');
     if (indexOf(values(this.state), true) !== -1) {
       filteredProducts = filteredProducts.filter((data) => {

@@ -54,26 +54,6 @@ const SideBar = ({ onClickFilter }) => (
               />
             </ul>
           </section>
-          <section className="facet clearfix">
-            <SideBarHeader title="Strap Type" />
-            <ul id="facet_20275" className="collapse in">
-              <SideBarItem
-                onClickFilter={onClickFilter}
-                title="Metal"
-                type="strap"
-              />
-              <SideBarItem
-                onClickFilter={onClickFilter}
-                title="Leather"
-                type="strap"
-              />
-              <SideBarItem
-                onClickFilter={onClickFilter}
-                title="Ceramic"
-                type="strap"
-              />
-            </ul>
-        </section>
         </div>
       </div>
     </div>
