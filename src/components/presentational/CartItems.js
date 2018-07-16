@@ -4,26 +4,26 @@ import PropTypes from 'prop-types'
 
 
 const CartItems = (props) => {
-const items = [...props.items].slice(0,3)
+// const items = [...props.items].slice(0,3)
 
 return (
   <ul className="cart-items">
   {
-    _.map(items, item => (
+    _.map(props.items, item => (
       <li className="cart-item" key={item.productName}>
       <div className="product-line-grid">
         <div className="product-line-grid-left col-md-3 col-xs-4">
           <span className="product-image media-middle">
-            <img src={item.productImage} alt={item.productImage} />
+            <img src={item.variant.image.src} alt={item.variant.image.alt} />
           </span>
         </div>
         <div className="product-line-grid-body col-md-4 col-xs-8">
           <div className="product-line-info">
-            <a href="#" className="label" data-id_customization="0">{item.productName}</a>
+            <a href="#" className="label" data-id_customization="0">{item.title}</a>
           </div>
           <div className="product-line-info product-price h5 ">
             <div className="current-price">
-              <span className="price">${item.price}</span>
+              <span className="price">Rs.{item.variant.price}</span>
             </div>
           </div>
           <br />
@@ -36,7 +36,7 @@ return (
                   <div className="col-md-6 col-xs-6 qty">
                     <div className="input-group bootstrap-touchspin">
                       <span className="input-group-addon bootstrap-touchspin-prefix" style={{display: "none"}}></span>
-                      <input className="js-cart-line-product-quantity form-control"   type="text" defaultValue="2" name="product-quantity-spin" min="1"  />
+                      <input className="js-cart-line-product-quantity form-control"   type="text" defaultValue="1" value={item.quantity} name="product-quantity-spin" min="1"  />
                       <span className="input-group-addon bootstrap-touchspin-postfix" style={{display: "none"}}></span>
                       <span className="input-group-btn-vertical">
                         <button className="btn btn-touchspin js-touchspin js-increase-product-quantity bootstrap-touchspin-up" type="button">
@@ -51,7 +51,7 @@ return (
                   <div className="col-md-6 col-xs-2 price">
                     <span className="product-price">
                       <strong>
-                        $P X Q
+                        {`Rs.${item.variant.price * item.quantity}`}
                       </strong>
                     </span>
                   </div>

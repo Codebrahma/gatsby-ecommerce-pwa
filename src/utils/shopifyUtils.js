@@ -63,7 +63,7 @@ export const getCart = () => {
     const currentCartId = localStorage.getItem('currentCartId');
 
     shopifyClient.checkout.fetch(currentCartId).then(checkout => {
-      resolve(checkout.lineItems);
+      resolve(checkout);
     })
     .catch(err => reject(err));
   })
