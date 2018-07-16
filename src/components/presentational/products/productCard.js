@@ -12,15 +12,15 @@ const ProductCard = props => (
       </div>
       <div className="product_desc">
         <h1 itemProp="name">
-          <a href="#" className="product_name">
+          <p className="product_name">
             {props.productName}
-          </a>
+          </p>
         </h1>
         <div className="product-price-and-shipping">
           <span itemProp="price" className="price">
             ${props.price}
           </span>
-         
+
         </div>
       </div>
       <div className="view-card">
@@ -34,7 +34,7 @@ const ProductCard = props => (
 ProductCard.propTypes = {
   productImage: PropTypes.string.isRequired,
   productName: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
+  price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onClickView: PropTypes.func
 }
 
