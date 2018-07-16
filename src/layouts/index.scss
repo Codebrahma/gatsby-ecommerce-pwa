@@ -46,6 +46,8 @@ a {
 a:active,
 a:hover {
   outline-width: 0;
+  border-bottom: 2px solid #777;
+  text-decoration: none !important;
 }
 abbr[title] {
   border-bottom: none;
@@ -641,4 +643,8 @@ pre tt:after {
     color: #000 !important;
     font-weight: bold;
   }
+}
+
+.active {
+  border-bottom: 2px solid #777;
 }
