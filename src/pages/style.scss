@@ -16,18 +16,20 @@
 .homepage-container {
   padding: 5%;
   .info.desc1 {
-    width: 90%;
+    width: 100%;
     background-color: #eef7fa;
     padding: 4%;
+    position: relative;
+    top: 0%;
+    margin-top: 100px;
   }
   
   .home_page_content {
-    margin-top: 450px;
+
   }
   
   @media (max-width: 768px) {
     .home_page_content {
-      margin-top: 300px;
     }
   }
   .img_block {
@@ -35,13 +37,13 @@
     justify-content: center;
   }
   .advantage {
-    padding-top: 50px;
+    
     width: 100%;
     img {
       width: 230px;
     }
     .text {
-      padding-top: 50px;
+      padding-top: 20px;
       padding-left: 60px;
       h2 {
         span {
