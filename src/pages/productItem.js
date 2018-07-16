@@ -152,7 +152,7 @@ export default class ProductItem extends React.Component {
                           <span className="input-group-btn-vertical">
                           <button disabled={this.state.lineItemId !== ''} className="btn btn-touchspin js-touchspin bootstrap-touchspin-up" type="button" onClick={() => this.handleQuantitChange(true)}>
                           <i className="material-icons touchspin-up"></i></button>
-                          <button disabled={this.state.quantityToAdded < 2} className="btn btn-touchspin js-touchspin bootstrap-touchspin-down" type="button" onClick={() => this.handleQuantitChange(false)}>
+                          <button disabled={this.state.quantityToAdded < 2 || this.state.lineItemId !== ''} className="btn btn-touchspin js-touchspin bootstrap-touchspin-down" type="button" onClick={() => this.handleQuantitChange(false)}>
                           <i className="material-icons touchspin-down"></i></button></span>
                         </div>
                     </div>
