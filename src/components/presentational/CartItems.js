@@ -68,7 +68,7 @@ export default class CartItems extends React.Component {
               <div className="clearfix"></div>
             </div>
           </li>
-        ): <div style={{textAlign:'center'}}><Spinner name="ball-clip-rotate" /></div>)
+        ): null)
       }
       </ul>
     )
