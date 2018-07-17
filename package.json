@@ -20,7 +20,8 @@
     "lodash": "^4.17.10",
     "react-helmet": "^5.2.0",
     "react-icheck": "^0.3.8",
-    "reactstrap": "^6.3.0"
+    "reactstrap": "^6.3.0",
+    "shopify-buy": "^1.6.0"
   },
   "keywords": [
     "gatsby"

@@ -15,9 +15,11 @@ const CartContainer = (props) => (
           <hr className="separator" />
           <div className="cart-overview js-cart">
           {
-            props.items.length === 0
+            props.cart.lineItems.length === 0
               ? <span className="no-items">There are no more items in your cart</span>
-              : <CartItems items={props.items}/>
+              : <CartItems 
+                    items={props.cart.lineItems}
+                    {...props}/>
           }
           </div>
         </div>
@@ -28,8 +30,8 @@ const CartContainer = (props) => (
       </div>
       <div className="cart-grid-right col-xs-12 col-lg-4">
         <CartSummary
-            totalItems={props.items.length}
-            price={props.items[2].price}
+            // totalItems={props.items.length}
+            price={props.cart.totalPrice}
         />
       </div>
     </div>

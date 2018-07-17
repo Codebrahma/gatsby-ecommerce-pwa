@@ -4,6 +4,7 @@ import axios from 'axios'
 import ProductList from '../components/presentational/products/ProductList';
 import ProductCard from '../components/presentational/products/productCard';
 import './style.scss'
+import { createCart } from '../utils/shopifyUtils';
 
 const newProducts = [
   {
@@ -49,7 +50,12 @@ const topProducts = [
 
 class IndexPage extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
+  }
+
+  componentDidMount() {
+    createCart()
+      .catch(err => console.log('Error creating cart ', err));
   }
 
   render() {

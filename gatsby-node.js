@@ -32,6 +32,7 @@
               }
             }
             variants {
+              id
               selectedOptions {
                 name
                 value
@@ -47,11 +48,12 @@
          path: `product/${node.id}`,
          component: path.resolve(`./src/pages/productItem.js`),
          context: {
+           productId: node.id,
            productName: node.title,
            images: node.images,
            tags: node.tags,
            productPrice: node.priceRange.minVariantPrice.amount,
-           variants: node.variants.selectedOptions
+           variants: node.variants
          },
        })
      })
