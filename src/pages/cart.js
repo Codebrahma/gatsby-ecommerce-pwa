@@ -1,7 +1,7 @@
 import React from 'react'
 import ProductList from '../components/presentational/products/ProductList'
 import CartContainer from '../components/presentational/CartContainer'
-import { getCart  } from '../utils/shopifyUtils';
+import { getCart, removeFromCart  } from '../utils/shopifyUtils';
 import '../components/css/cartStyle.scss'
 
 export default class Cart extends React.Component {
@@ -11,14 +11,27 @@ export default class Cart extends React.Component {
       cartItems: [],
     }
   }
+
   componentDidMount() {
-    console.log('Didmount')
+    this.fetchCartData();
+  }
+
+  fetchCartData = () => {
     getCart().then(data => {
       console.log(data);
       this.setState({
         cartItems: data,
       })
-    })
+    });
+  }
+
+  handleDeleteItem = (lineItem) => {
+    console.log(lineItem.id);
+    removeFromCart(lineItem.id)
+      .then(this.fetchCartData)
+      .catch(err => {
+        console.log('Failed to remove item from cart')
+      });
   }
 
   render() {
@@ -30,7 +43,9 @@ export default class Cart extends React.Component {
         <div className="container">
           <div className="row">
             <div id="content-wrapper" className="col-xs-12">
-              <CartContainer cart={this.state.cartItems}/>
+              <CartContainer 
+                cart={this.state.cartItems}
+                handleDeleteItem={this.handleDeleteItem}/>
             </div>
           </div>
         </div>

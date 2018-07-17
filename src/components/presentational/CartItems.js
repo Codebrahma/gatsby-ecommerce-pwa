@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 
 
 const CartItems = (props) => {
-// const items = [...props.items].slice(0,3)
 
 return (
   <ul className="cart-items">
@@ -59,7 +58,7 @@ return (
               </div>
               <div className="col-md-2 col-xs-2 text-xs-right">
                 <div className="cart-line-product-actions">
-                  <a href="#" className="remove-from-cart" rel="nofollow"  data-link-action="delete-from-cart" data-id-product="25" data-id-product-attribute="0" data-id-customization="">
+                  <a onClick={() => props.handleDeleteItem(item)} className="remove-from-cart" rel="nofollow"  data-link-action="delete-from-cart" data-id-product="25" data-id-product-attribute="0" data-id-customization="">
                     <i className="material-icons float-xs-left">delete</i>
                   </a>
                 </div>

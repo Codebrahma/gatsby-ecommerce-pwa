@@ -17,7 +17,9 @@ const CartContainer = (props) => (
           {
             props.cart.lineItems.length === 0
               ? <span className="no-items">There are no more items in your cart</span>
-              : <CartItems items={props.cart.lineItems}/>
+              : <CartItems 
+                    items={props.cart.lineItems}
+                    {...props}/>
           }
           </div>
         </div>
