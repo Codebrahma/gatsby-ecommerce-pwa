@@ -8,11 +8,13 @@ export default class ProductItem extends React.Component {
       quantityToAdded: 1,
       lineItemId: '',
       isLoading: false,
-      isAppOnline: window.navigator.onLine,
     }
     
   }
   componentDidMount() {
+    this.setState({
+      isAppOnline: window.navigator.onLine,
+    })
     window.addEventListener('online', this.cameOnline);    
     window.addEventListener('offline', this.cameOffline);    
   }

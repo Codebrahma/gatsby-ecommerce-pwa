@@ -9,13 +9,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 class Layout extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      isAppOnline: window.navigator.onLine,
-    }
-    
+
+    };  
   }
   componentDidMount() {
+    this.setState({
+      isAppOnline: window.navigator.onLine,
+    })
     window.addEventListener('online', this.cameOnline);    
     window.addEventListener('offline', this.cameOffline);    
   }

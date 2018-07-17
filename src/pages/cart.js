@@ -10,12 +10,14 @@ export default class Cart extends React.Component {
     super(props);
     this.state = {
       cartItems: [],
-      isAppOnline: window.navigator.onLine,
       
     }
   }
 
   componentDidMount() {
+    this.setState({
+      isAppOnline: window.navigator.onLine,
+    })
     window.addEventListener('online', this.cameOnline);    
     window.addEventListener('offline', this.cameOffline);   
     this.fetchCartData();
