@@ -85,8 +85,8 @@ export default class ProductItem extends React.Component {
           </div>
         </section>
       </div>
-      <div className="colxs-12 col-md-4 image-container">
-        <img 
+      <div className="col-xs-12 col-md-4 image-container">
+        <img
           className="thumb js-thumb  selected product-image"
           src={this.state.currentMainImageSrc || this.props.pathContext.images && this.props.pathContext.images[0].originalSrc}
           alt=""
