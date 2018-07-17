@@ -25,7 +25,7 @@ export default class ProductItem extends React.Component {
       isLoading: true
     });
     if (!this.state.lineItemId) {
-      const productId = this.props.pathContext.variants[0].id.split('__')[2];      
+      const productId = this.props.pathContext.variants[0].id.split('__')[2];
       addToCart(productId, this.state.quantityToAdded)
           .then((lineItemId) => {
             this.setState({
@@ -135,7 +135,7 @@ export default class ProductItem extends React.Component {
               <div className="product-variants">
           </div>
           <section className="product-discounts">
-          </section>    
+          </section>
           <div className="product-add-to-cart">
             <span className="control-label">Quantity</span>
               <div className="product-quantity clearfix">
@@ -156,7 +156,7 @@ export default class ProductItem extends React.Component {
           <div className="add">
             <button disabled={this.state.isLoading} className="btn btn-primary add-to-cart" data-button-action="add-to-cart" onClick={this.handleAddToCart}>
               {
-                this.state.isLoading ? <div><i class="icon-spinner icon-spin"></i> Please Wait </div> 
+                this.state.isLoading ? <div><i class="icon-spinner icon-spin"></i> Please Wait </div>
                 : <div><i className="fa fa-shopping-cart"></i> {this.state.lineItemId ? `Remove From Cart` : 'Add To Cart'} </div>
               }
             </button>
@@ -166,7 +166,7 @@ export default class ProductItem extends React.Component {
         </span>
         <p className="product-minimal-quantity">
         </p>
-      </div>        
+      </div>
       <div className="product-additional-info">
         <div className="social-sharing">
           <span>Share</span>
@@ -177,12 +177,12 @@ export default class ProductItem extends React.Component {
               <li className="pinterest"><a href="http://www.pinterest.com/pin/create/button/?media=http://demo.posthemes.com/pos_nevara/197/compete-track-tote.jpg&amp;url=http://demo.posthemes.com/pos_nevara/en/home/25-compete-track-tote.html" title="Pinterest" target="_blank">Pinterest</a></li>
           </ul>
         </div>
-      </div>        
-      <input className="product-refresh ps-hidden-by-js" name="refresh" type="submit" value="Refresh" style={{ display: 'none' }} />       
+      </div>
+      <input className="product-refresh ps-hidden-by-js" name="refresh" type="submit" value="Refresh" style={{ display: 'none' }} />
       </form>
-    </div>         
     </div>
-    </div> 
+    </div>
+    </div>
   )
 
   render() {
