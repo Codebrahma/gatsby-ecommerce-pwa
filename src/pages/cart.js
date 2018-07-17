@@ -25,6 +25,11 @@ export default class Cart extends React.Component {
     });
   }
 
+  saveCartUpdates = (updatedData) => {
+    updateCart(updatedData).then(this.fetchCartData)
+    .catch(err => console.log(err));
+  }
+
   render() {
     if (this.state.cartItems.length < 1) {
       return <div>Loading...</div>
@@ -35,7 +40,8 @@ export default class Cart extends React.Component {
           <div className="row">
             <div id="content-wrapper" className="col-xs-12">
               <CartContainer 
-                cart={this.state.cartItems}/>
+                cart={this.state.cartItems}
+                saveNewCart={this.saveCartUpdates}/>
             </div>
           </div>
         </div>
@@ -43,48 +49,3 @@ export default class Cart extends React.Component {
     )
   }
 }
-
-// const Cart = ({ data }) => {
-//   const filteredProducts = data.allShopifyProduct.edges.filter(data => data.node.productType === 'Men');
-//   const products = filteredProducts.map((data) => ({
-//     productName: data.node.title,
-//     price: data.node.priceRange.minVariantPrice.amount,
-//     productImage: data.node.images[0].originalSrc,
-//     productId: data.node.id
-//   }));
-
-//   return (
-
-//   );
-// }
-
-// export default Cart
-
-// export const query = graphql`
-//   query cartProductQuery {
-//     allShopifyProduct {
-//       edges {
-//         node {
-//           images {
-//             originalSrc
-//           }
-//           id
-//           title
-//           productType
-//           description
-//           priceRange {
-//             minVariantPrice{
-//               amount
-//             }
-//           }
-//           variants {
-//             selectedOptions {
-//               name
-//               value
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-// `;

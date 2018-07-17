@@ -8,14 +8,18 @@ export default class CartContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      
+      cartUpdated: false,
     }
   }
 
   componentDidMount() {
+    this.computeAndUpdateState(this.props.cart);
+  }
+
+  computeAndUpdateState(cart) {
     const itemQuantityMap = {}
     let totalQuantity = 0;
-    _.forEach(this.props.cart.lineItems, item => {
+    _.forEach(cart.lineItems, item => {
       totalQuantity = totalQuantity + item.quantity,
       itemQuantityMap[item.id] = {
         quantity: item.quantity,
@@ -28,10 +32,16 @@ export default class CartContainer extends React.Component {
       }
     });
     this.setState({
+      ...this.state,
+      cartUpdated: false,
       cartData: itemQuantityMap,
-      totalPrice: parseInt(this.props.cart.totalPrice, 10),
-      totalQuantity,
+      totalPrice: parseInt(cart.totalPrice, 10),
+      totalQuantity,    
     });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.computeAndUpdateState(nextProps.cart);
   }
 
   handleQuantitChange = (lineItemId, increment) => {
@@ -42,6 +52,7 @@ export default class CartContainer extends React.Component {
 
     this.setState({
       ...this.state,
+      cartUpdated: true,
       totalPrice: increment ? this.state.totalPrice + productPrice : this.state.totalPrice - productPrice,
       totalQuantity: increment ? this.state.totalQuantity + 1 : this.state.totalQuantity - 1,
       cartData: {
@@ -61,6 +72,7 @@ export default class CartContainer extends React.Component {
 
     this.setState({
       ...this.state,
+      cartUpdated: true,
       totalPrice: this.state.totalPrice - (currentCartItem.productPrice * currentCartItem.quantity),
       totalQuantity: this.state.totalQuantity - currentCartItem.quantity,
       cartData: {
@@ -72,6 +84,14 @@ export default class CartContainer extends React.Component {
         }
       }
     });
+  }
+
+  handleUpdateCart = () => {
+    const updatedCartData = _.map(this.state.cartData, cartItem => ({
+      id: cartItem.lineItemId,
+      quantity: cartItem.quantity,
+    }));
+    this.props.saveNewCart(updatedCartData)
   }
 
   render() {
@@ -86,6 +106,12 @@ export default class CartContainer extends React.Component {
               <div className="card-block">
                 <h1 className="h1">Shopping Cart</h1>
               </div>
+              {
+                this.state.cartUpdated && 
+                <div className="text-sm-center" onClick={this.handleUpdateCart}>
+                  <a className="btn btn-primary">Update Cart</a>
+                </div>
+              }
               <hr className="separator" />
               <div className="cart-overview js-cart">
               {
