@@ -22,17 +22,6 @@ const CartSummary = (props) => (
         </div>
       </div>
       <hr className="separator" />
-      <div className="card-block">
-        <div className="cart-summary-line cart-total">
-          <span className="label">Total (tax excl.)</span>
-          <span className="value">$160.60</span>
-        </div>
-        <div className="cart-summary-line">
-          <small className="label">Taxes</small>
-          <small className="value">$6.42</small>
-        </div>
-      </div>
-      <hr className="separator" />
     </div>
     <div className="checkout cart-detailed-actions card-block">
       <div className="text-sm-center">

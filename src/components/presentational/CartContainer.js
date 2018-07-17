@@ -36,7 +36,7 @@ export default class CartContainer extends React.Component {
       cartUpdated: false,
       cartData: itemQuantityMap,
       totalPrice: parseInt(cart.totalPrice, 10),
-      totalQuantity,    
+      totalQuantity,
     });
   }
 
@@ -103,21 +103,23 @@ export default class CartContainer extends React.Component {
         <div className="cart-grid row">
           <div className="cart-grid-body col-xs-12 col-lg-8">
             <div className="card cart-container">
-              <div className="card-block">
+            <div className="cart-header">
+              <div className="card-block cart-title">
                 <h1 className="h1">Shopping Cart</h1>
               </div>
               {
-                this.state.cartUpdated && 
-                <div className="text-sm-center" onClick={this.handleUpdateCart}>
+                this.state.cartUpdated &&
+                <div className="text-sm-center btn-cart-update" onClick={this.handleUpdateCart}>
                   <a className="btn btn-primary">Update Cart</a>
                 </div>
               }
+              </div>
               <hr className="separator" />
               <div className="cart-overview js-cart">
               {
                 this.props.cart.lineItems.length === 0
                   ? <span className="no-items">There are no more items in your cart</span>
-                  : <CartItems 
+                  : <CartItems
                         items={this.state.cartData}
                         handleQuantitChange={this.handleQuantitChange}
                         handleDeleteItem={this.handleDeleteItem}
