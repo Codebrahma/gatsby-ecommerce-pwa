@@ -13,10 +13,12 @@ class Layout extends React.Component {
     this.state = {
       isAppOnline: window.navigator.onLine,
     }
+    
+  }
+  componentDidMount() {
     window.addEventListener('online', this.cameOnline);    
     window.addEventListener('offline', this.cameOffline);    
   }
-  
   cameOnline = () => {
     this.setState({
       isAppOnline: true,
