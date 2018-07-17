@@ -1,4 +1,5 @@
 import React from 'react'
+import { Circle } from 'react-preloaders';
 import ProductList from '../components/presentational/products/ProductList'
 import CartContainer from '../components/presentational/CartContainer'
 import { getCart, removeFromCart, updateCart  } from '../utils/shopifyUtils';
@@ -32,14 +33,14 @@ export default class Cart extends React.Component {
 
   render() {
     if (this.state.cartItems.length < 1) {
-      return <div>Loading...</div>
+      return <Circle />
     }
     return (
       <section id="wrapper">
         <div className="container">
           <div className="row">
             <div id="content-wrapper" className="col-xs-12">
-              <CartContainer 
+              <CartContainer
                 cart={this.state.cartItems}
                 saveNewCart={this.saveCartUpdates}/>
             </div>
