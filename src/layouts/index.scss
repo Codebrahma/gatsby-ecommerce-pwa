@@ -660,7 +660,7 @@ pre tt:after {
   min-height: 60px !important;
   padding: 15px 10px !important;
   .expanded {
-    height: 200px;
+    height: 300px;
   }
   #navbar-inner {
     // height: 100px;
@@ -735,24 +735,7 @@ pre tt:after {
       &:nth-child(3),&:nth-child(4) {
         align-items: flex-end;
       }
-      &:nth-child(1) {
-        border-bottom: 2px solid #ccc;
-        border-right: 2px solid #ccc;
-      }
-      &:nth-child(2) {
-        border-bottom: 2px solid #ccc;
-        border-left: 2px solid #ccc;
-      }
-      &:nth-child(3) {
-        border-top: 2px solid #ccc;
-        border-right: 2px solid #ccc;
-      }
-      &:nth-child(4) {
-        border-top: 2px solid #ccc;
-        border-left: 2px solid #ccc;
-      }
 
-      // align-items: center;
       a {
         color: #fff;
         text-transform: uppercase;
