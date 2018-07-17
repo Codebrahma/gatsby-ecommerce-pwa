@@ -1,7 +1,7 @@
 import React from 'react'
 import ProductList from '../components/presentational/products/ProductList'
 import CartContainer from '../components/presentational/CartContainer'
-import { getCart, removeFromCart  } from '../utils/shopifyUtils';
+import { getCart, removeFromCart, updateCart  } from '../utils/shopifyUtils';
 import '../components/css/cartStyle.scss'
 
 export default class Cart extends React.Component {
@@ -25,13 +25,9 @@ export default class Cart extends React.Component {
     });
   }
 
-  handleDeleteItem = (lineItem) => {
-    console.log(lineItem.id);
-    removeFromCart(lineItem.id)
-      .then(this.fetchCartData)
-      .catch(err => {
-        console.log('Failed to remove item from cart')
-      });
+  saveCartUpdates = (updatedData) => {
+    updateCart(updatedData).then(this.fetchCartData)
+    .catch(err => console.log(err));
   }
 
   render() {
@@ -45,7 +41,7 @@ export default class Cart extends React.Component {
             <div id="content-wrapper" className="col-xs-12">
               <CartContainer 
                 cart={this.state.cartItems}
-                handleDeleteItem={this.handleDeleteItem}/>
+                saveNewCart={this.saveCartUpdates}/>
             </div>
           </div>
         </div>
@@ -53,48 +49,3 @@ export default class Cart extends React.Component {
     )
   }
 }
-
-// const Cart = ({ data }) => {
-//   const filteredProducts = data.allShopifyProduct.edges.filter(data => data.node.productType === 'Men');
-//   const products = filteredProducts.map((data) => ({
-//     productName: data.node.title,
-//     price: data.node.priceRange.minVariantPrice.amount,
-//     productImage: data.node.images[0].originalSrc,
-//     productId: data.node.id
-//   }));
-
-//   return (
-
-//   );
-// }
-
-// export default Cart
-
-// export const query = graphql`
-//   query cartProductQuery {
-//     allShopifyProduct {
-//       edges {
-//         node {
-//           images {
-//             originalSrc
-//           }
-//           id
-//           title
-//           productType
-//           description
-//           priceRange {
-//             minVariantPrice{
-//               amount
-//             }
-//           }
-//           variants {
-//             selectedOptions {
-//               name
-//               value
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-// `;
