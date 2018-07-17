@@ -60,7 +60,7 @@ class IndexPage extends React.Component {
 
   render() {
     return (
-      <div className="homepage-container">
+      <div className="homepage-container container">
         <div class="banner7-des">
           <div class="container">
             <div class="info desc1">

@@ -682,9 +682,13 @@ pre tt:after {
 }
 
   .info {
-      @media (max-width:768px) {
-        margin-top: 50px !important;
-      }
+    @media (max-width:768px) {
+      margin-top: 50px !important;
+    }
+    .title1,.title2,.title3,.readmore {
+      animation: none !important;
+
+    }
   }
   .btn-home {
     position: relative;
