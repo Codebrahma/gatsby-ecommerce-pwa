@@ -13,11 +13,11 @@ export default class Cart extends React.Component {
       isAppOnline: window.navigator.onLine,
       
     }
-    window.addEventListener('online', this.cameOnline);    
-    window.addEventListener('offline', this.cameOffline);    
   }
 
   componentDidMount() {
+    window.addEventListener('online', this.cameOnline);    
+    window.addEventListener('offline', this.cameOffline);   
     this.fetchCartData();
   }
   

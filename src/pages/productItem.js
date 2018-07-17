@@ -10,10 +10,12 @@ export default class ProductItem extends React.Component {
       isLoading: false,
       isAppOnline: window.navigator.onLine,
     }
+    
+  }
+  componentDidMount() {
     window.addEventListener('online', this.cameOnline);    
     window.addEventListener('offline', this.cameOffline);    
   }
-  
   cameOnline = () => {
     this.setState({
       isAppOnline: true,
