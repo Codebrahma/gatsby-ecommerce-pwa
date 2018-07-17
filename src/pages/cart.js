@@ -10,11 +10,27 @@ export default class Cart extends React.Component {
     super(props);
     this.state = {
       cartItems: [],
+      isAppOnline: window.navigator.onLine,
+      
     }
+    window.addEventListener('online', this.cameOnline);    
+    window.addEventListener('offline', this.cameOffline);    
   }
 
   componentDidMount() {
     this.fetchCartData();
+  }
+  
+  cameOnline = () => {
+    this.setState({
+      isAppOnline: true,
+    });
+  }
+  
+  cameOffline = () => {
+    this.setState({
+      isAppOnline: false,
+    })  
   }
 
   fetchCartData = () => {
@@ -37,12 +53,18 @@ export default class Cart extends React.Component {
         <div className="container">
           <div className="row">
             <div id="content-wrapper" className="col-xs-12">
-            {
+            {   
+                this.state.isAppOnline ? (
                 (this.state.cartItems.length<1)
                   ? <div className="load-center"><Spinner name="ball-clip-rotate" /></div>
                   : <CartContainer
                     cart={this.state.cartItems}
                     saveNewCart={this.saveCartUpdates}/>
+                ) : (
+                  <div className="load-center">
+                    Please connect to internet the page to see your cart.
+                  </div>
+                )
             }
 
             </div>

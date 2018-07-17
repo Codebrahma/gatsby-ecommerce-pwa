@@ -8,7 +8,22 @@ export default class ProductItem extends React.Component {
       quantityToAdded: 1,
       lineItemId: '',
       isLoading: false,
+      isAppOnline: window.navigator.onLine,
     }
+    window.addEventListener('online', this.cameOnline);    
+    window.addEventListener('offline', this.cameOffline);    
+  }
+  
+  cameOnline = () => {
+    this.setState({
+      isAppOnline: true,
+    });
+  }
+  
+  cameOffline = () => {
+    this.setState({
+      isAppOnline: false,
+    })  
   }
 
   handleQuantitChange = (increment) => {
@@ -99,7 +114,9 @@ export default class ProductItem extends React.Component {
     </Fragment>
   )
 
-  renderProductInfo = () => (
+  renderProductInfo = () => {
+    const buttonContent = this.state.lineItemId ? `Remove From Cart` : 'Add To Cart';
+    return (
       <div className="col-md-6 item-info">
         <h1 className="h1 namne_details" itemprop="name">{this.props.pathContext.productName}</h1>
         <p className="reference">Reference: demo_15</p>
@@ -154,12 +171,24 @@ export default class ProductItem extends React.Component {
               </div>
           </div>
           <div className="add">
-            <button disabled={this.state.isLoading} className="btn btn-primary add-to-cart" data-button-action="add-to-cart" onClick={this.handleAddToCart}>
+            {
+              !this.state.isAppOnline ? <div> Connect To internet to add to cart </div> : (
+              <button disabled={this.state.isLoading} className="btn btn-primary add-to-cart" data-button-action="add-to-cart" onClick={this.handleAddToCart}>
               {
-                this.state.isLoading ? <div><i class="icon-spinner icon-spin"></i> Please Wait </div>
-                : <div><i className="fa fa-shopping-cart"></i> {this.state.lineItemId ? `Remove From Cart` : 'Add To Cart'} </div>
+                  this.state.isLoading ? (
+                    <div>
+                      <i class="icon-spinner icon-spin"></i> Please Wait 
+                    </div>
+                   ) : (
+                    <div>
+                      <i className="fa fa-shopping-cart"></i> 
+                      {buttonContent} 
+                    </div>
+                   )
               }
-            </button>
+              </button>
+              )
+            }
           </div>
         </div>
         <span id="product-availability">
@@ -184,6 +213,7 @@ export default class ProductItem extends React.Component {
     </div>
     </div>
   )
+  }
 
   render() {
     return (
