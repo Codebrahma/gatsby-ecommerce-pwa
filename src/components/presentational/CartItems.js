@@ -3,25 +3,57 @@ import map from 'lodash'
 import PropTypes from 'prop-types'
 
 export default class CartItems extends React.Component {
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+      
+  //   }
+  // }
+
+  // componentDidMount() {
+  //   const itemQuantityMap = {}
+  //   _.forEach(this.props.items, item => {
+  //     itemQuantityMap[item.id] = {
+  //       quantity: item.quantity,
+  //       variantId: item.variant.id,
+  //     }
+  //   });
+  //   this.setState({
+  //     cartData: itemQuantityMap
+  //   });
+  // }
+
+  // handleQuantitChange = (lineItemId, increment) => {
+  //   const currentQuantity = this.state.cartData[lineItemId].quantity;
+  //   this.setState({
+  //     cartData: {
+  //       ...this.state.cartData,
+  //       [lineItemId]: {
+  //         quantity: increment ? currentQuantity + 1 : currentQuantity - 1,
+  //       }
+  //     }
+  //   });
+  // }
+
   render() {
     return (
       <ul className="cart-items">
       {
         _.map(this.props.items, item => (
-          <li className="cart-item" key={item.productName}>
+          <li className="cart-item" key={item.productTitle}>
           <div className="product-line-grid">
             <div className="product-line-grid-left col-md-3 col-xs-4">
               <span className="product-image media-middle">
-                <img src={item.variant.image.src} alt={item.variant.image.alt} />
+                <img src={item.productImage.src} alt={item.productImage.alt} />
               </span>
             </div>
             <div className="product-line-grid-body col-md-4 col-xs-8">
               <div className="product-line-info">
-                <a href="#" className="label" data-id_customization="0">{item.title}</a>
+                <a href="#" className="label" data-id_customization="0">{item.productTitle}</a>
               </div>
               <div className="product-line-info product-price h5 ">
                 <div className="current-price">
-                  <span className="price">Rs.{item.variant.price}</span>
+                  <span className="price">Rs.{item.productPrice}</span>
                 </div>
               </div>
               <br />
@@ -37,10 +69,10 @@ export default class CartItems extends React.Component {
                           <input className="js-cart-line-product-quantity form-control"   type="text" defaultValue="1" value={item.quantity} name="product-quantity-spin" min="1"  />
                           <span className="input-group-addon bootstrap-touchspin-postfix" style={{display: "none"}}></span>
                           <span className="input-group-btn-vertical">
-                            <button className="btn btn-touchspin js-touchspin js-increase-product-quantity bootstrap-touchspin-up" type="button">
+                            <button onClick={() => this.props.handleQuantitChange(item.lineItemId, true)} className="btn btn-touchspin js-touchspin js-increase-product-quantity bootstrap-touchspin-up" type="button">
                               <i className="material-icons touchspin-up"></i>
                             </button>
-                            <button className="btn btn-touchspin js-touchspin js-decrease-product-quantity bootstrap-touchspin-down" type="button">
+                            <button disabled={item.quantity < 2 } onClick={() => this.props.handleQuantitChange(item.lineItemId, false)} className="btn btn-touchspin js-touchspin js-decrease-product-quantity bootstrap-touchspin-down" type="button">
                               <i className="material-icons touchspin-down"></i>
                             </button>
                           </span>
@@ -49,7 +81,7 @@ export default class CartItems extends React.Component {
                       <div className="col-md-6 col-xs-2 price">
                         <span className="product-price">
                           <strong>
-                            {`Rs.${item.variant.price * item.quantity}`}
+                            {`Rs.${item.productTotalPrice}`}
                           </strong>
                         </span>
                       </div>
