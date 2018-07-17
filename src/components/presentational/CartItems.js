@@ -1,6 +1,7 @@
 import React from 'react'
 import map from 'lodash'
 import PropTypes from 'prop-types'
+import Spinner from 'react-spinkit'
 
 export default class CartItems extends React.Component {
   render() {
@@ -67,7 +68,7 @@ export default class CartItems extends React.Component {
               <div className="clearfix"></div>
             </div>
           </li>
-        ): null)
+        ): <div style={{textAlign:'center'}}><Spinner name="ball-clip-rotate" /></div>)
       }
       </ul>
     )

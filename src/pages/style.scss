@@ -98,3 +98,32 @@
     }
   }
 }
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 20px;
+}
+
+.load-center {
+  text-align: center;
+  position: relative;
+  top: 50%;
+  height: 80vh;
+}
+.btn-cart-update {
+  a {
+    font-size: 18px;
+    display: inline-block;
+    border: 1px solid #252531;
+    color: #1a1a1a !important;
+    background: #FFF;
+    font-weight: 500;
+    text-transform: capitalize;
+    letter-spacing: .05em;
+    &:hover {
+      color: #fff !important;
+      background: #1a1a1a;
+    }
+  }
+}
