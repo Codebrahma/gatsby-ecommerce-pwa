@@ -654,3 +654,111 @@ pre tt:after {
     border-bottom: 2px solid #777;
   }
 }
+
+.navbar {
+  background: #031b2f !important;
+  min-height: 60px !important;
+  padding: 15px 10px !important;
+  .expanded {
+    height: 200px;
+  }
+  #navbar-inner {
+    // height: 100px;
+    display: inline-block;
+    width: 100% !important;
+    .left-item {
+      float: left;
+    }
+    .right-item {
+      float: right;
+    }
+  }
+  .navbar-inner.navbar-inactive .btn-cart:after {
+    content: "\f217";
+  }
+  .navbar-inner.navbar-active .btn-cart:after {
+    content: "\217";
+  }
+}
+
+  .info {
+      @media (max-width:768px) {
+        margin-top: 50px !important;
+      }
+  }
+  .btn-home {
+    position: relative;
+    &:after {
+      content: '\f015';
+      color: white;
+      display: block;
+      font-family: "FontAwesome";
+      font-size: 30px !important;
+    }
+  }
+  .btn-cart {
+    position: relative;
+    margin-right: 25px;
+    &:after {
+      content: '\f217';
+      color: white;
+      display: block;
+      font-family: "FontAwesome";
+      font-size: 30px !important;
+    }
+  }
+  .btn-toggle {
+    position: relative;
+    &:after {
+      content: '\f03a';
+      color: white;
+      display: block;
+      font-family: "FontAwesome";
+      font-size: 30px !important;
+    }
+  }
+  .navdropdown {
+    margin: 40px  0 0;
+    .navitem {
+      font-size: 30px;
+      height: 50px;
+      padding:0;
+      display: flex;
+      justify-content: center;
+      &:nth-child(1),&:nth-child(2) {
+        align-items: flex-start;
+      }
+      &:nth-child(3),&:nth-child(4) {
+        align-items: flex-end;
+      }
+      &:nth-child(1) {
+        border-bottom: 2px solid #ccc;
+        border-right: 2px solid #ccc;
+      }
+      &:nth-child(2) {
+        border-bottom: 2px solid #ccc;
+        border-left: 2px solid #ccc;
+      }
+      &:nth-child(3) {
+        border-top: 2px solid #ccc;
+        border-right: 2px solid #ccc;
+      }
+      &:nth-child(4) {
+        border-top: 2px solid #ccc;
+        border-left: 2px solid #ccc;
+      }
+
+      // align-items: center;
+      a {
+        color: #fff;
+        text-transform: uppercase;
+      }
+      &.nav-clicked {
+        a {
+          font-weight: bold;
+          font-style: italic;
+          font-size: 35px;
+        }
+      }
+    }
+  }

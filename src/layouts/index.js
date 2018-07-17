@@ -6,10 +6,10 @@ import './index.scss'
 import '../components/css/custom.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const Layout = ({ children }) => (
+const Layout = ({ children, location }) => (
   <div>
     <Helmet defaultTitle="Progressive Web app" />
-    <Header />
+    <Header headPath = {location.pathname}/>
     {children()}
   </div>
 )
