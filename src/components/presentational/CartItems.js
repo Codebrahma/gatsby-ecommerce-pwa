@@ -3,43 +3,11 @@ import map from 'lodash'
 import PropTypes from 'prop-types'
 
 export default class CartItems extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-      
-  //   }
-  // }
-
-  // componentDidMount() {
-  //   const itemQuantityMap = {}
-  //   _.forEach(this.props.items, item => {
-  //     itemQuantityMap[item.id] = {
-  //       quantity: item.quantity,
-  //       variantId: item.variant.id,
-  //     }
-  //   });
-  //   this.setState({
-  //     cartData: itemQuantityMap
-  //   });
-  // }
-
-  // handleQuantitChange = (lineItemId, increment) => {
-  //   const currentQuantity = this.state.cartData[lineItemId].quantity;
-  //   this.setState({
-  //     cartData: {
-  //       ...this.state.cartData,
-  //       [lineItemId]: {
-  //         quantity: increment ? currentQuantity + 1 : currentQuantity - 1,
-  //       }
-  //     }
-  //   });
-  // }
-
   render() {
     return (
       <ul className="cart-items">
       {
-        _.map(this.props.items, item => (
+        _.map(this.props.items, item => item.quantity > 0 ? (
           <li className="cart-item" key={item.productTitle}>
           <div className="product-line-grid">
             <div className="product-line-grid-left col-md-3 col-xs-4">
@@ -89,7 +57,7 @@ export default class CartItems extends React.Component {
                   </div>
                   <div className="col-md-2 col-xs-2 text-xs-right">
                     <div className="cart-line-product-actions">
-                      <a onClick={() => this.props.handleDeleteItem(item)} className="remove-from-cart" rel="nofollow"  data-link-action="delete-from-cart" data-id-product="25" data-id-product-attribute="0" data-id-customization="">
+                      <a onClick={() => this.props.handleDeleteItem(item.lineItemId)} className="remove-from-cart" rel="nofollow"  data-link-action="delete-from-cart" data-id-product="25" data-id-product-attribute="0" data-id-customization="">
                         <i className="material-icons float-xs-left">delete</i>
                       </a>
                     </div>
@@ -99,7 +67,7 @@ export default class CartItems extends React.Component {
               <div className="clearfix"></div>
             </div>
           </li>
-        ))
+        ): null)
       }
       </ul>
     )

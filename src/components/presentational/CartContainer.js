@@ -35,9 +35,10 @@ export default class CartContainer extends React.Component {
   }
 
   handleQuantitChange = (lineItemId, increment) => {
-    const currentQuantity = this.state.cartData[lineItemId].quantity;
+    const currentCartItem = this.state.cartData[lineItemId];
+    const currentQuantity = currentCartItem.quantity;
     const newQuantity = increment ? currentQuantity + 1 : currentQuantity - 1
-    const productPrice = this.state.cartData[lineItemId].productPrice;
+    const productPrice = currentCartItem.productPrice;
 
     this.setState({
       ...this.state,
@@ -46,9 +47,28 @@ export default class CartContainer extends React.Component {
       cartData: {
         ...this.state.cartData,
         [lineItemId]: {
-          ...this.state.cartData[lineItemId],
+          ...currentCartItem,
           quantity: newQuantity,
-          productTotalPrice: newQuantity * this.state.cartData[lineItemId].productPrice,
+          productTotalPrice: newQuantity * currentCartItem.productPrice,
+        }
+      }
+    });
+  }
+
+  handleDeleteItem = (lineItemId) => {
+    const currentCartItem = this.state.cartData[lineItemId];
+    const productPrice = currentCartItem.productPrice;
+
+    this.setState({
+      ...this.state,
+      totalPrice: this.state.totalPrice - (currentCartItem.productPrice * currentCartItem.quantity),
+      totalQuantity: this.state.totalQuantity - currentCartItem.quantity,
+      cartData: {
+        ...this.state.cartData,
+        [lineItemId]: {
+          ...currentCartItem,
+          quantity: 0,
+          productTotalPrice: 0,
         }
       }
     });
@@ -74,6 +94,7 @@ export default class CartContainer extends React.Component {
                   : <CartItems 
                         items={this.state.cartData}
                         handleQuantitChange={this.handleQuantitChange}
+                        handleDeleteItem={this.handleDeleteItem}
                         {...this.props}/>
               }
               </div>
