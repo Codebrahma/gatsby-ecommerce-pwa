@@ -74,6 +74,7 @@ export default class CartContainer extends React.Component {
       ...this.state,
       totalPrice: this.state.totalPrice - (currentCartItem.productPrice * currentCartItem.quantity),
       totalQuantity: this.state.totalQuantity - currentCartItem.quantity,
+      cartUpdated: true,      
       cartData: {
         ...this.state.cartData,
         [lineItemId]: {
@@ -82,7 +83,7 @@ export default class CartContainer extends React.Component {
           productTotalPrice: 0,
         }
       }
-    }, this.handleUpdateCart);
+    });
   }
 
   handleUpdateCart = () => {
