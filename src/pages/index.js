@@ -78,17 +78,17 @@ class IndexPage extends React.Component {
             <span>Newly Added Watches</span>
             <h2>
               New products
-            </h2>	
+            </h2>
           </div>
           <ProductList products={newProducts} />
         </div>
-        
+
         <div className="home_page_content">
           <div class="pos_title">
             <span>Top sold Watches</span>
             <h2>
               Top Products
-            </h2>	
+            </h2>
           </div>
           <ProductList products={topProducts} />
         </div>
@@ -97,7 +97,7 @@ class IndexPage extends React.Component {
             <span>Latest Offers</span>
             <h2>
               Get latest offers on
-            </h2>	
+            </h2>
           </div>
         </div>
         <div className="">

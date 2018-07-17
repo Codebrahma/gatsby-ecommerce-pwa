@@ -93,5 +93,8 @@
   }
   .item-info {
     text-align: left;
+    @media (max-width: 577px) {
+      padding: 0 35px;
+    }
   }
 }

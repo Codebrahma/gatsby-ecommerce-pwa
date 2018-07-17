@@ -41,12 +41,12 @@ template {
 a {
   background-color: transparent;
   text-decoration: none;
+  margin: 0 2px;
   -webkit-text-decoration-skip: objects;
 }
 a:active,
 a:hover {
   outline-width: 0;
-  border-bottom: 2px solid #777;
   text-decoration: none !important;
 }
 abbr[title] {
@@ -645,6 +645,12 @@ pre tt:after {
   }
 }
 
-.active {
-  border-bottom: 2px solid #777;
+.parentMenu {
+  a:active,
+  a:hover {
+    background: #ededed !important;
+  }
+  .active {
+    border-bottom: 2px solid #777;
+  }
 }
