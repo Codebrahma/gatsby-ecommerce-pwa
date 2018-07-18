@@ -8,7 +8,7 @@ const ProductCard = props => (
     <Link to={`product/${props.productId}`}>
     <article className="product-miniature js-product-miniature card-content">
       <div className="img_block">
-        <img src={props.productImage} alt={props.productName} className="product-img"/>
+        <img src={props.productImage} alt="" className="product-img" />
       </div>
       <div className="product_desc">
         <h1 itemProp="name">

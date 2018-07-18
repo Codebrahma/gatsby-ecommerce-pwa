@@ -19,23 +19,27 @@ export default class CartContainer extends React.Component {
   computeAndUpdateState(cart) {
     const itemQuantityMap = {}
     let totalQuantity = 0;
-    _.forEach(cart.lineItems, item => {
-      totalQuantity = totalQuantity + item.quantity,
-      itemQuantityMap[item.id] = {
-        quantity: item.quantity,
-        variantId: item.variant.id,
-        lineItemId: item.id,
-        productPrice: parseInt(item.variant.price, 10),
-        productImage: item.variant.image,
-        productTitle: item.title,
-        productTotalPrice: item.quantity * item.variant.price,
+    let totalPrice = 0;
+    _.forEach(cart, item => {
+      const {
+        productDetails
+      } = item;
+      totalQuantity = totalQuantity + item.quantityToAdded;
+      totalPrice = totalPrice + (item.quantityToAdded * parseInt(productDetails.productPrice, 10));
+      itemQuantityMap[item.productId] = {
+        productPrice: parseInt(productDetails.productPrice, 10),
+        productImage: productDetails.images[0] ? productDetails.images[0].originalSrc : '',
+        productTitle: productDetails.name,
+        productTotalPrice: item.quantityToAdded * parseInt(productDetails.productPrice, 10),
+        ...productDetails,
       }
     });
+    console.log('setting state ');
     this.setState({
       ...this.state,
       cartUpdated: false,
       cartData: itemQuantityMap,
-      totalPrice: parseInt(cart.totalPrice, 10),
+      totalPrice,
       totalQuantity,
     });
   }
@@ -56,12 +60,12 @@ export default class CartContainer extends React.Component {
       totalPrice: increment ? this.state.totalPrice + productPrice : this.state.totalPrice - productPrice,
       totalQuantity: increment ? this.state.totalQuantity + 1 : this.state.totalQuantity - 1,
       cartData: {
-        ...this.state.cartData,
-        [lineItemId]: {
-          ...currentCartItem,
-          quantity: newQuantity,
-          productTotalPrice: newQuantity * currentCartItem.productPrice,
-        }
+          ...this.state.cartData,
+          [lineItemId]: {
+            ...currentCartItem,
+            quantity: newQuantity,
+            productTotalPrice: newQuantity * currentCartItem.productPrice,
+          }
       }
     });
   }
@@ -95,9 +99,7 @@ export default class CartContainer extends React.Component {
   }
 
   render() {
-    if (!this.state.cartData) {
-      return <div></div>
-    }
+
     return (
       <section id="main">
         <div className="cart-grid row">
@@ -108,22 +110,24 @@ export default class CartContainer extends React.Component {
                 <h1 className="h1">Shopping Cart</h1>
               </div>
               {
+                /*
                 this.state.cartUpdated &&
                 <div className="text-sm-center btn-cart-update" onClick={this.handleUpdateCart}>
                   <a className="btn btn-primary">Update Cart</a>
                 </div>
+                */
               }
               </div>
               <hr className="separator" />
               <div className="cart-overview js-cart">
               {
-                this.props.cart.lineItems.length === 0
-                  ? <span className="no-items">There are no more items in your cart</span>
-                  : <CartItems
-                        items={this.state.cartData}
-                        handleQuantitChange={this.handleQuantitChange}
-                        handleDeleteItem={this.handleDeleteItem}
-                        {...this.props}/>
+                <CartItems
+                  items={this.state.cartData}
+                  handleQuantitChange={this.handleQuantitChange}
+                  handleDeleteItem={this.handleDeleteItem}
+                  {...this.props}
+                />
+                
               }
               </div>
             </div>
@@ -133,10 +137,14 @@ export default class CartContainer extends React.Component {
             </Link>
           </div>
           <div className="cart-grid-right col-xs-12 col-lg-4">
-            <CartSummary
-                totalItems={this.state.totalQuantity}
-                price={this.state.totalPrice}
-            />
+            {
+              /*
+              <CartSummary
+                  totalItems={this.state.totalQuantity}
+                  price={this.state.totalPrice}
+              />
+              */ 
+            }
           </div>
         </div>
       </section>

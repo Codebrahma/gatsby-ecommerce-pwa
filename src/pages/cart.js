@@ -36,17 +36,14 @@ export default class Cart extends React.Component {
   }
 
   fetchCartData = () => {
-    getCart().then(data => {
-      console.log(data);
-      this.setState({
-        cartItems: data,
-      })
+    const cartItems = JSON.parse(localStorage.getItem('cart'));
+    this.setState({
+      cartItems
     });
   }
 
-  saveCartUpdates = (updatedData) => {
-    updateCart(updatedData).then(this.fetchCartData)
-    .catch(err => console.log(err));
+  saveCartUpdates = (cartData) => {
+    console.log('cart data ', cartData);
   }
 
   render() {
@@ -56,10 +53,8 @@ export default class Cart extends React.Component {
           <div className="row">
             <div id="content-wrapper" className="col-xs-12">
             {   
-                this.state.isAppOnline ? (
-                (this.state.cartItems.length<1)
-                  ? <div className="load-center"><Spinner name="ball-clip-rotate" /></div>
-                  : <CartContainer
+                true ? (
+                  <CartContainer
                     cart={this.state.cartItems}
                     saveNewCart={this.saveCartUpdates}/>
                 ) : (

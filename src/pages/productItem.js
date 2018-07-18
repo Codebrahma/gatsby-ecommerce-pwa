@@ -44,24 +44,33 @@ export default class ProductItem extends React.Component {
       isLoading: true
     });
     if (!this.state.lineItemId) {
+      
       const productId = this.props.pathContext.variants[0].id.split('__')[2];
-      addToCart(productId, this.state.quantityToAdded)
-          .then((lineItemId) => {
-            this.setState({
-              lineItemId,
-              isLoading: false,
-            })
-          })
-          .catch(err => console.log(err));
-    } else {
-      removeFromCart(this.state.lineItemId)
-          .then((checkout) => {
-            this.setState({
-              lineItemId: '',
-              isLoading: false,
-          })})
-          .catch(err => console.log(err));
-    }
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      
+      cart.push({
+        productId,
+        productDetails: this.props.pathContext,
+        quantityToAdded: this.state.quantityToAdded
+      })
+      localStorage.setItem('cart', JSON.stringify(cart));
+      // addToCart(productId, this.state.quantityToAdded)
+      //   .then((lineItemId) => {
+      //     this.setState({
+      //       lineItemId,
+      //       isLoading: false,
+      //     })
+      //   })
+      //   .catch(err => console.log(err));
+      // } else {
+      //   removeFromCart(this.state.lineItemId)
+      //       .then((checkout) => {
+      //         this.setState({
+      //           lineItemId: '',
+      //           isLoading: false,
+      //       })})
+      //       .catch(err => console.log(err));
+      }
   }
 
   handleThumbClick = (clickedImgSrc) => {
@@ -175,24 +184,15 @@ export default class ProductItem extends React.Component {
               </div>
           </div>
           <div className="add">
-            {
-              !this.state.isAppOnline ? <div> Connect To internet to add to cart </div> : (
-              <button disabled={this.state.isLoading} className="btn btn-primary add-to-cart" data-button-action="add-to-cart" onClick={this.handleAddToCart}>
-              {
-                  this.state.isLoading ? (
-                    <div>
-                      <i class="icon-spinner icon-spin"></i> Please Wait 
-                    </div>
-                   ) : (
-                    <div>
-                      <i className="fa fa-shopping-cart"></i> 
-                      {buttonContent} 
-                    </div>
-                   )
-              }
-              </button>
-              )
-            }
+            <button 
+              disabled={this.state.isLoading}
+              className="btn btn-primary add-to-cart"
+              data-button-action="add-to-cart" 
+              onClick={this.handleAddToCart}
+            >
+              <i className="fa fa-shopping-cart"></i> 
+              {buttonContent}
+            </button>
           </div>
         </div>
         <span id="product-availability">

@@ -8,17 +8,17 @@ export default class CartItems extends React.Component {
     return (
       <ul className="cart-items">
       {
-        _.map(this.props.items, item => item.quantity > 0 ? (
+        _.map(this.props.items, item => (
           <li className="cart-item" key={item.productTitle}>
           <div className="product-line-grid">
             <div className="product-line-grid-left col-md-3 col-xs-4">
               <span className="product-image media-middle">
-                <img src={item.productImage.src} alt={item.productImage.alt} />
+                <img src={item.productImage} alt="product-img" />
               </span>
             </div>
             <div className="product-line-grid-body col-md-4 col-xs-8">
               <div className="product-line-info">
-                <a href="#" className="label" data-id_customization="0">{item.productTitle}</a>
+                <a href="#" className="label" data-id_customization="0">{item.productName}</a>
               </div>
               <div className="product-line-info product-price h5 ">
                 <div className="current-price">
