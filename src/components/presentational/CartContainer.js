@@ -8,94 +8,27 @@ export default class CartContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      cartData: JSON.parse(localStorage.getItem('cart')),
       cartUpdated: false,
     }
   }
 
-  componentDidMount() {
-    this.computeAndUpdateState(this.props.cart);
-  }
-
-  computeAndUpdateState(cart) {
-    const itemQuantityMap = {}
-    let totalQuantity = 0;
-    let totalPrice = 0;
-    _.forEach(cart, item => {
-      const {
-        productDetails
-      } = item;
-      totalQuantity = totalQuantity + item.quantityToAdded;
-      totalPrice = totalPrice + (item.quantityToAdded * parseInt(productDetails.productPrice, 10));
-      itemQuantityMap[item.productId] = {
-        productPrice: parseInt(productDetails.productPrice, 10),
-        productImage: productDetails.images[0] ? productDetails.images[0].originalSrc : '',
-        productTitle: productDetails.name,
-        productTotalPrice: item.quantityToAdded * parseInt(productDetails.productPrice, 10),
-        ...productDetails,
-      }
-    });
-    console.log('setting state ');
+  handleQuantityChange = (productId, increment) => {
+    const currentIndex = _.findIndex(this.state.cartData, (data) => productId === data.productId);
+    const currentCartData = this.state.cartData;
+    currentCartData[currentIndex].quantityToAdded = currentCartData[currentIndex].quantityToAdded + (increment ? 1 : -1);
+    
     this.setState({
-      ...this.state,
-      cartUpdated: false,
-      cartData: itemQuantityMap,
-      totalPrice,
-      totalQuantity,
-    });
+      cartData: currentCartData,
+    })
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.computeAndUpdateState(nextProps.cart);
-  }
-
-  handleQuantitChange = (lineItemId, increment) => {
-    const currentCartItem = this.state.cartData[lineItemId];
-    const currentQuantity = currentCartItem.quantity;
-    const newQuantity = increment ? currentQuantity + 1 : currentQuantity - 1
-    const productPrice = currentCartItem.productPrice;
-
-    this.setState({
-      ...this.state,
-      cartUpdated: true,
-      totalPrice: increment ? this.state.totalPrice + productPrice : this.state.totalPrice - productPrice,
-      totalQuantity: increment ? this.state.totalQuantity + 1 : this.state.totalQuantity - 1,
-      cartData: {
-          ...this.state.cartData,
-          [lineItemId]: {
-            ...currentCartItem,
-            quantity: newQuantity,
-            productTotalPrice: newQuantity * currentCartItem.productPrice,
-          }
-      }
-    });
-  }
-
-  handleDeleteItem = (lineItemId) => {
-    const currentCartItem = this.state.cartData[lineItemId];
-    const productPrice = currentCartItem.productPrice;
-
-    this.setState({
-      ...this.state,
-      totalPrice: this.state.totalPrice - (currentCartItem.productPrice * currentCartItem.quantity),
-      totalQuantity: this.state.totalQuantity - currentCartItem.quantity,
-      cartUpdated: true,      
-      cartData: {
-        ...this.state.cartData,
-        [lineItemId]: {
-          ...currentCartItem,
-          quantity: 0,
-          productTotalPrice: 0,
-        }
-      }
-    });
+  handleDeleteItem = (productId) => {
+    console.log('product Id ', productId);
   }
 
   handleUpdateCart = () => {
-    const updatedCartData = _.map(this.state.cartData, cartItem => ({
-      id: cartItem.lineItemId,
-      quantity: cartItem.quantity,
-    }));
-    this.props.saveNewCart(updatedCartData)
+
   }
 
   render() {
@@ -123,7 +56,7 @@ export default class CartContainer extends React.Component {
               {
                 <CartItems
                   items={this.state.cartData}
-                  handleQuantitChange={this.handleQuantitChange}
+                  handleQuantityChange={this.handleQuantityChange}
                   handleDeleteItem={this.handleDeleteItem}
                   {...this.props}
                 />

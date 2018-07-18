@@ -8,10 +8,7 @@ import '../components/css/cartStyle.scss'
 export default class Cart extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      cartItems: [],
-      
-    }
+
   }
 
   componentDidMount() {
@@ -20,7 +17,6 @@ export default class Cart extends React.Component {
     })
     window.addEventListener('online', this.cameOnline);    
     window.addEventListener('offline', this.cameOffline);   
-    this.fetchCartData();
   }
   
   cameOnline = () => {
@@ -35,17 +31,6 @@ export default class Cart extends React.Component {
     })  
   }
 
-  fetchCartData = () => {
-    const cartItems = JSON.parse(localStorage.getItem('cart'));
-    this.setState({
-      cartItems
-    });
-  }
-
-  saveCartUpdates = (cartData) => {
-    console.log('cart data ', cartData);
-  }
-
   render() {
     return (
       <section id="wrapper">
@@ -54,9 +39,7 @@ export default class Cart extends React.Component {
             <div id="content-wrapper" className="col-xs-12">
             {   
                 true ? (
-                  <CartContainer
-                    cart={this.state.cartItems}
-                    saveNewCart={this.saveCartUpdates}/>
+                  <CartContainer />
                 ) : (
                   <div className="load-center">
                     Please connect to internet the page to see your cart.

@@ -46,7 +46,7 @@ export default class ProductItem extends React.Component {
     if (!this.state.lineItemId) {
       
       const productId = this.props.pathContext.variants[0].id.split('__')[2];
-      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      let cart = JSON.parse(localStorage.getItem('cart')) || {};
       
       cart.push({
         productId,
@@ -54,22 +54,6 @@ export default class ProductItem extends React.Component {
         quantityToAdded: this.state.quantityToAdded
       })
       localStorage.setItem('cart', JSON.stringify(cart));
-      // addToCart(productId, this.state.quantityToAdded)
-      //   .then((lineItemId) => {
-      //     this.setState({
-      //       lineItemId,
-      //       isLoading: false,
-      //     })
-      //   })
-      //   .catch(err => console.log(err));
-      // } else {
-      //   removeFromCart(this.state.lineItemId)
-      //       .then((checkout) => {
-      //         this.setState({
-      //           lineItemId: '',
-      //           isLoading: false,
-      //       })})
-      //       .catch(err => console.log(err));
       }
   }
 
