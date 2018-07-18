@@ -12,17 +12,12 @@ export default class CartContainer extends React.Component {
       cartUpdated: false,
     }
   }
-  componentDidUpdate(prevProps, prevState) {
-    if (!_.isEqual(this.state.cartData, prevState.cartData)) {
-      localStorage.setItem('cart', JSON.stringify(this.state.cartData));
-    }
-  }
 
   handleQuantityChange = (productId, increment) => {
     const currentIndex = _.findIndex(this.state.cartData, (data) => productId === data.productId);
     const currentCartData = Object.assign([], this.state.cartData);
     currentCartData[currentIndex].quantityToAdded = currentCartData[currentIndex].quantityToAdded + (increment ? 1 : -1);
-
+    localStorage.setItem('cart', JSON.stringify(currentCartData));
     this.setState({
       cartData: currentCartData,
     })
@@ -30,7 +25,8 @@ export default class CartContainer extends React.Component {
 
   handleDeleteItem = (productId) => {
     const currentIndex = _.findIndex(this.state.cartData, (data) => productId === data.productId);
-    const newCardData = _.concat(_.slice(this.state.cartData, 0, currentIndex - 1), _.slice(this.state.cartData, currentIndex + 1, this.state.cartData.length))
+    const newCardData = _.concat(_.slice(this.state.cartData, 0, currentIndex), _.slice(this.state.cartData, currentIndex + 1, this.state.cartData.length))
+    localStorage.setItem('cart', JSON.stringify(newCardData));
     this.setState({
       cartData: newCardData,
     })

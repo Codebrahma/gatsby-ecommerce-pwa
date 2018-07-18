@@ -4,11 +4,14 @@ import { createCart, addToCart, removeFromCart } from '../utils/shopifyUtils';
 export default class ProductItem extends React.Component {
   constructor(props) {
     super(props);
+    const cart = JSON.parse(localStorage.getItem('cart'));
+    const productId = this.props.pathContext.variants[0].id;
+    const currentIndex = _.findIndex(cart, (data) => productId === data.productId);
+
     this.state = {
-      quantityToAdded: 1,
-      lineItemId: '',
-      isLoading: false,
+      quantityToAdded: currentIndex !== -1 ? cart[currentIndex].quantityToAdded : 1,
       cartData: JSON.parse(localStorage.getItem('cart')) || [],
+      availableItem: currentIndex !== -1,
     }
     
   }
@@ -40,11 +43,13 @@ export default class ProductItem extends React.Component {
       currentCartData[currentIndex].quantityToAdded = currentCartData[currentIndex].quantityToAdded + (increment ? 1 : -1);
       this.setState({
         cartData: currentCartData,
+        quantityToAdded: this.state.quantityToAdded + (increment ? 1 : -1),
+        availableItem: true,
       })
       localStorage.setItem('cart', JSON.stringify(currentCartData));
     } else {
       this.setState({
-        quantityToAdded: this.state.quantityToAdded + 1,
+        quantityToAdded: this.state.quantityToAdded + (increment ? 1 : -1),
       });
     }
   }
@@ -60,19 +65,21 @@ export default class ProductItem extends React.Component {
       cart.push({
         productId,
         productDetails: this.props.pathContext,
-        quantityToAdded: this.state.quantityToAdded
+        quantityToAdded: this.state.quantityToAdded,
+        
       })
     } else {
       
       cart[currentIndex] = {
         productId,
         productDetails: this.props.pathContext,
-        quantityToAdded: cart[currentIndex].quantityToAdded + this.state.quantityToAdded
+        quantityToAdded: cart[currentIndex].quantityToAdded,
       };
     }
     localStorage.setItem('cart', JSON.stringify(cart));
     this.setState({
       cartData: cart,
+      availableItem: true,
     })
     
   }
@@ -132,7 +139,7 @@ export default class ProductItem extends React.Component {
   )
 
   renderProductInfo = () => {
-    const buttonContent = true ? 'Add To Cart' : 'Already in cart';
+    const buttonContent = !this.state.availableItem ? 'Add To Cart' : 'Already in cart';
     return (
       <div className="col-md-6 item-info">
         <h1 className="h1 namne_details" itemprop="name">{this.props.pathContext.productName}</h1>
@@ -177,7 +184,15 @@ export default class ProductItem extends React.Component {
               <div className="input-group bootstrap-touchspin">
                 <span className="input-group-addon bootstrap-touchspin-prefix" style={{ display: 'none' }}>
                 </span>
-                <input type="text" name="qty" id="quantity_wanted" value={this.state.quantityToAdded} className="input-group form-control" min="1" aria-label="Quantity" />
+                <input 
+                  type="text" 
+                  name="qty" 
+                  id="quantity_wanted" 
+                  value={this.state.quantityToAdded } 
+                  className="input-group form-control" 
+                  min="1" 
+                  aria-label="Quantity" 
+                />
                 <span className="input-group-addon bootstrap-touchspin-postfix" style={{ display: 'none' }}>
                 </span>
                 <span className="input-group-btn-vertical">
@@ -202,6 +217,7 @@ export default class ProductItem extends React.Component {
               className="btn btn-primary add-to-cart"
               data-button-action="add-to-cart" 
               onClick={this.handleAddToCart}
+              disabled={this.state.availableItem}
             >
               <i className="fa fa-shopping-cart"></i> 
               {buttonContent}

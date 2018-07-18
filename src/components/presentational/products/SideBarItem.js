@@ -3,7 +3,7 @@ import React from 'react'
 const SideBarItem = ({ title, type, onClickFilter }) => (
   <li>
     <label className="facet-label" htmlFor="facet_input_16268_0">
-      <label>
+      <label style={{ textAlign: 'none' }}>
         <input
           type="checkbox"
           class="option-input checkbox"
