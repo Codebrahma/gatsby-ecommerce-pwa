@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Link from 'gatsby-link'
 
 const CartSummary = (props) => (
   <div className="card cart-summary">
@@ -23,24 +24,28 @@ const CartSummary = (props) => (
       </div>
       <hr className="separator" />
     </div>
-    <div className="checkout cart-detailed-actions card-block">
-      <div className="text-sm-center">
-        <a href="#" className="btn btn-primary">Proceed to checkout</a>
-      </div>
-    </div>
+    {
+      props.displayInCart && (
+        <div className="checkout cart-detailed-actions card-block">
+          <div className="text-sm-center">
+            <Link to="/order" className="btn btn-primary">Proceed to checkout</Link>
+          </div>
+        </div>
+      )
+    }
   </div>
 )
 
 CartSummary.propTypes = {
   totalItems: PropTypes.number.isRequired,
-  productName: PropTypes.string.isRequired,
-  price: PropTypes.string.isRequired,
+  displayInCart: PropTypes.bool.isRequired,
+  price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }
 
 CartSummary.defaultProps = {
   totalItems: 0,
-  productName: 'I am default',
-  price: "10",
+  displayInCart: true,
+  price: "0",
 }
 
 export default CartSummary
