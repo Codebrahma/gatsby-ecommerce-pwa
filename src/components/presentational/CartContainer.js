@@ -12,55 +12,59 @@ export default class CartContainer extends React.Component {
       cartUpdated: false,
     }
   }
+  componentDidUpdate(prevProps, prevState) {
+    if (!_.isEqual(this.state.cartData, prevState.cartData)) {
+      localStorage.setItem('cart', JSON.stringify(this.state.cartData));
+    }
+  }
 
   handleQuantityChange = (productId, increment) => {
     const currentIndex = _.findIndex(this.state.cartData, (data) => productId === data.productId);
-    const currentCartData = this.state.cartData;
+    const currentCartData = Object.assign([], this.state.cartData);
     currentCartData[currentIndex].quantityToAdded = currentCartData[currentIndex].quantityToAdded + (increment ? 1 : -1);
-    
+
     this.setState({
       cartData: currentCartData,
     })
   }
 
   handleDeleteItem = (productId) => {
-    console.log('product Id ', productId);
+    const currentIndex = _.findIndex(this.state.cartData, (data) => productId === data.productId);
+    const newCardData = _.concat(_.slice(this.state.cartData, 0, currentIndex - 1), _.slice(this.state.cartData, currentIndex + 1, this.state.cartData.length))
+    this.setState({
+      cartData: newCardData,
+    })
   }
-
-  handleUpdateCart = () => {
-
-  }
-
+  
   render() {
 
+    const price = _.reduce(this.state.cartData, (accumulator, cartData) => (accumulator + cartData.quantityToAdded * parseInt(cartData.productDetails.productPrice, 10)), 0);
+    const totalItems = _.reduce(this.state.cartData, (accumulator, cartData) => (accumulator + cartData.quantityToAdded), 0);
     return (
       <section id="main">
         <div className="cart-grid row">
           <div className="cart-grid-body col-xs-12 col-lg-8">
             <div className="card cart-container">
-            <div className="cart-header">
-              <div className="card-block cart-title">
-                <h1 className="h1">Shopping Cart</h1>
-              </div>
-              {
-                /*
-                this.state.cartUpdated &&
-                <div className="text-sm-center btn-cart-update" onClick={this.handleUpdateCart}>
-                  <a className="btn btn-primary">Update Cart</a>
-                </div>
-                */
-              }
+              <div className="cart-header">
+                <div className="card-block cart-title">
+                  <h1 className="h1">Shopping Cart</h1>
+                </div>  
               </div>
               <hr className="separator" />
               <div className="cart-overview js-cart">
-              {
-                <CartItems
-                  items={this.state.cartData}
-                  handleQuantityChange={this.handleQuantityChange}
-                  handleDeleteItem={this.handleDeleteItem}
-                  {...this.props}
-                />
-                
+              { 
+                (this.state.cartData && this.state.cartData.length > 0) ? (
+                  <CartItems
+                    items={this.state.cartData}
+                    handleQuantityChange={this.handleQuantityChange}
+                    handleDeleteItem={this.handleDeleteItem}
+                    {...this.props}
+                  />
+                ) : (
+                  <div>
+                    No item in the cart.
+                  </div>
+                )
               }
               </div>
             </div>
@@ -71,12 +75,10 @@ export default class CartContainer extends React.Component {
           </div>
           <div className="cart-grid-right col-xs-12 col-lg-4">
             {
-              /*
               <CartSummary
-                  totalItems={this.state.totalQuantity}
-                  price={this.state.totalPrice}
+                totalItems={totalItems}
+                price={price}
               />
-              */ 
             }
           </div>
         </div>

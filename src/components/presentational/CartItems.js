@@ -3,6 +3,8 @@ import map from 'lodash'
 import PropTypes from 'prop-types'
 import Spinner from 'react-spinkit'
 
+import './styles.scss';
+
 export default class CartItems extends React.Component {
   render() {
     return (

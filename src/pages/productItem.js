@@ -46,7 +46,7 @@ export default class ProductItem extends React.Component {
     if (!this.state.lineItemId) {
       
       const productId = this.props.pathContext.variants[0].id.split('__')[2];
-      let cart = JSON.parse(localStorage.getItem('cart')) || {};
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
       
       cart.push({
         productId,
