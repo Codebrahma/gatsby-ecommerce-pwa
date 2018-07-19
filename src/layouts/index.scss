@@ -700,9 +700,18 @@ pre tt:after {
       font-size: 30px !important;
     }
   }
+  .cart-count {
+    float: right;
+    color: white;
+    height: 40px;
+    line-height: 40px;
+    font-weight: bold;
+    margin-left: 5px;
+    margin-right: 25px;
+    font-size: 25px
+  }  
   .btn-cart {
     position: relative;
-    margin-right: 25px;
     &:after {
       content: '\f217';
       color: white;

@@ -24,9 +24,14 @@ class NavbarMobile extends Component {
                 <span className="btn-home left-item"></span>
               </Link>
                 <span className="btn-toggle right-item" onClick={this.mainMenuClick}></span>
+
               <Link to="/cart">
+                <span className="cart-count">
+                  ({this.props.cartLength || 0})
+                </span>
                 <span className="btn-cart right-item"></span>
               </Link>
+
               {displaySubMenu && <Menu headPath={this.props.headPath}/>}
             </div>
           </div>

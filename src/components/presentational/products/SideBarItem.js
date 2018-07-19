@@ -2,8 +2,8 @@ import React from 'react'
 
 const SideBarItem = ({ title, type, onClickFilter }) => (
   <li>
-    <label className="facet-label" htmlFor="facet_input_16268_0">
-      <label style={{ textAlign: 'none' }}>
+    <label className="facet-label" htmlFor="facet_input_16268_0" style={{ textAlign: 'left' }}>
+      <label>
         <input
           type="checkbox"
           class="option-input checkbox"
@@ -11,7 +11,7 @@ const SideBarItem = ({ title, type, onClickFilter }) => (
         />
       </label>
       <a className="_gray-darker search-link js-search-link" rel="nofollow">
-        {title}
+        {title === 'greater than 300$' ? '> 300$' : title} 
         <span className="magnitude" />
       </a>
     </label>

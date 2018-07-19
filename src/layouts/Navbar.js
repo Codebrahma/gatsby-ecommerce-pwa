@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'gatsby-link'
 
-const Navbar = () => (
+const Navbar = (props) => (
   <div className="nav-container">
     <div className="nav-inner">
       <div id="pt_custommenu" className="pt_custommenu">
@@ -44,7 +44,11 @@ const Navbar = () => (
           <div className="parentMenu">
             <span className="fontcustom2">
               <Link to="/cart" activeClassName="active">
-                Cart
+                Cart(
+                  {
+                    props.cartLength || 0
+                  }
+                )
               </Link>
             </span>
           </div>

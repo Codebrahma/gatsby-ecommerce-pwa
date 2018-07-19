@@ -6,6 +6,7 @@ import './index.scss'
 import '../components/css/custom.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+
 class Layout extends React.Component {
   constructor(props) {
     super(props);
@@ -16,10 +17,18 @@ class Layout extends React.Component {
   componentDidMount() {
     this.setState({
       isAppOnline: window.navigator.onLine,
+      cartLength: JSON.parse(localStorage.getItem('cart')).length
     })
     window.addEventListener('online', this.cameOnline);    
-    window.addEventListener('offline', this.cameOffline);    
+    window.addEventListener('offline', this.cameOffline);
+  
   }
+  eventedLocalStorage = () => {
+    this.setState({
+      cartLength: JSON.parse(localStorage.getItem('cart')).length
+    })
+  }
+
   cameOnline = () => {
     this.setState({
       isAppOnline: true,
@@ -41,8 +50,11 @@ class Layout extends React.Component {
     return (
       <div>
         <Helmet defaultTitle="Progressive Web app" />
-        <Header headPath = {location.pathname}/>
-        {children({ ...this.props, isOnline: this.state.isOnline })}
+        <Header 
+          headPath = {location.pathname}
+          cartLength = {this.state.cartLength}
+        />
+        {children({ ...this.props, eventedLocalStorage: this.eventedLocalStorage })}
       </div>
     );
   }
