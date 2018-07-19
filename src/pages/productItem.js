@@ -144,12 +144,12 @@ export default class ProductItem extends React.Component {
   )
 
   renderProductInfo = () => {
-    const buttonContent = !this.state.availableItem ? 'Add To Cart' : 'Already in cart';
+    const buttonContent = !this.state.availableItem ? 'Add To Cart' : 'In Cart';
     return (
       <div className="col-md-6 item-info">
         <h1 className="h1 namne_details" itemprop="name">{this.props.pathContext.productName}</h1>
         <p className="reference">Catgories: Watches</p>
-        
+
         <div className="product-prices">
           <div className="product-price h5 " itemprop="offers" itemscope="" itemtype="https://schema.org/Offer">
             <link itemprop="availability" />

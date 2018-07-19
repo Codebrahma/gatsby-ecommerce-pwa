@@ -62,6 +62,10 @@
     .text {
       padding-top: 20px;
       padding-left: 60px;
+      @media (max-width: 574px) {
+        padding-left: 30px;
+        text-align: center;
+      }
       h2 {
         span {
           font-size: 28px;
