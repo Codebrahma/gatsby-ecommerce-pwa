@@ -15,24 +15,23 @@ const FormInputField = (props) => {
     </select>
   )
 
-  const renderRadioButton = (type, value) => (
-    <div className="col-md-6 form-control-valign">
-      <label className="radio-inline">
+  const renderRadioButton = (type) => {
+    const radioTitle = (title,checked) => (
+      <label className="radio-inline cursor-pointer col-md-6 col-sm-6">
         <span className="custom-radio">
-          <input name="id_gender" type={type} value="1" checked/>
+          <input name="id_gender" type={type} value="1" checked={checked}/>
           <span></span>
         </span>
-        Mr.
+        {title}
       </label>
-      <label className="radio-inline">
-        <span className="custom-radio">
-          <input name="id_gender" type={type} value="2" />
-          <span></span>
-        </span>
-        Mrs.
-      </label>
-    </div>
-  )
+    )
+    return (
+      <div className=" form-control-valign">
+        { radioTitle("Mr.",true) }
+        { radioTitle("Mrs.") }
+      </div>
+    )
+  }
 
 
   const renderInputElement = (type, name, value) => {

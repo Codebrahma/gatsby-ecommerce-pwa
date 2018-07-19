@@ -60,21 +60,22 @@ class IndexPage extends React.Component {
 
   render() {
     return (
-      <div className="homepage-container container">
-        <div class="banner7-des">
-          <div class="container">
-            <div class="info desc1">
-              <div class="container">
-                <p class="title1">Shop your Favourite watches</p>
-                <p class="title2">in a single place</p>
-                <p class="title3">We'll give you a FREE delivery!</p>
-                <p class="readmore"><Link to="/men"><span>Shop Now</span></Link></p>
+      <div className="container">
+      <div className="homepage-container">
+        <div className="banner7-des">
+          <div className="container">
+            <div className="info desc1">
+              <div className="container">
+                <p className="title1">Shop your Favourite watches</p>
+                <p className="title2">in a single place</p>
+                <p className="title3">We'll give you a FREE delivery!</p>
+                <p className="readmore"><Link to="/men"><span>Shop Now</span></Link></p>
               </div>
             </div>
           </div>
         </div>
         <div className="home_page_content">
-          <div class="pos_title">
+          <div className="pos_title">
             <span>Newly Added Watches</span>
             <h2>
               New products
@@ -84,7 +85,7 @@ class IndexPage extends React.Component {
         </div>
 
         <div className="home_page_content">
-          <div class="pos_title">
+          <div className="pos_title">
             <span>Top sold Watches</span>
             <h2>
               Top Products
@@ -93,7 +94,7 @@ class IndexPage extends React.Component {
           <ProductList products={topProducts} />
         </div>
         <div className="home_page_content">
-          <div class="pos_title">
+          <div className="pos_title">
             <span>Latest Offers</span>
             <h2>
               Get latest offers on
@@ -160,7 +161,7 @@ class IndexPage extends React.Component {
           </div>
         </div>
       </div>
-
+      </div>
 
     )
   }

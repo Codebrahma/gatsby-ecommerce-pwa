@@ -28,7 +28,7 @@ const CartSummary = (props) => (
       props.displayInCart && (
         <div className="checkout cart-detailed-actions card-block">
           <div className="text-sm-center">
-            <Link to="/order" className="btn btn-primary">Proceed to checkout</Link>
+            <Link to="/order" className="btn btn-primary btn-continue">Proceed to checkout</Link>
           </div>
         </div>
       )
