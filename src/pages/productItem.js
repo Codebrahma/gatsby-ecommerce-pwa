@@ -4,20 +4,23 @@ import { createCart, addToCart, removeFromCart } from '../utils/shopifyUtils';
 export default class ProductItem extends React.Component {
   constructor(props) {
     super(props);
-    const cart = JSON.parse(localStorage.getItem('cart'));
-    const productId = this.props.pathContext.variants[0].id;
-    const currentIndex = _.findIndex(cart, (data) => productId === data.productId);
-
     this.state = {
-      quantityToAdded: currentIndex !== -1 ? cart[currentIndex].quantityToAdded : 1,
-      cartData: JSON.parse(localStorage.getItem('cart')) || [],
-      availableItem: currentIndex !== -1,
+      cartData: [],
+      quantityToAdded: 1,
+      availableItem: false,
     }
     
   }
   componentDidMount() {
+    const cart = JSON.parse(localStorage.getItem('cart'));
+    const productId = this.props.pathContext.variants[0].id;
+    const currentIndex = _.findIndex(cart, (data) => productId === data.productId);
+
     this.setState({
       isAppOnline: window.navigator.onLine,
+      cartData: JSON.parse(localStorage.getItem('cart')) || [],
+      quantityToAdded: currentIndex !== -1 ? cart[currentIndex].quantityToAdded : 1,
+      availableItem: currentIndex !== -1,
     })
     window.addEventListener('online', this.cameOnline);    
     window.addEventListener('offline', this.cameOffline);    

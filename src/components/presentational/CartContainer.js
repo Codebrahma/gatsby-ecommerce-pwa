@@ -8,11 +8,17 @@ export default class CartContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cartData: JSON.parse(localStorage.getItem('cart')),
+      cartData: [],
       cartUpdated: false,
     }
   }
 
+  componentDidMount() {
+    this.setState({
+      cartData: JSON.parse(localStorage.getItem('cart')),
+    })
+    
+  }
   handleQuantityChange = (productId, increment) => {
     const currentIndex = _.findIndex(this.state.cartData, (data) => productId === data.productId);
     const currentCartData = Object.assign([], this.state.cartData);
