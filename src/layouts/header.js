@@ -12,8 +12,13 @@ const Header = (props) => {
           <div className="row">
             <div className="col-center col col-xs-12 col-lg-12 col-md-12">
               <div className="header-menu">
-                <Navbar />
-                <NavbarMobile headPath={props.headPath}/>
+                <Navbar 
+                  cartLength={props.cartLength}
+                />
+                <NavbarMobile 
+                  headPath={props.headPath}
+                  cartLength={props.cartLength}
+                />
               </div>
             </div>
           </div>

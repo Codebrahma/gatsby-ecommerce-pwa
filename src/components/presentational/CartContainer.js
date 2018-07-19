@@ -27,6 +27,7 @@ export default class CartContainer extends React.Component {
     this.setState({
       cartData: currentCartData,
     })
+    this.props.eventedLocalStorage();
   }
 
   handleDeleteItem = (productId) => {
@@ -36,6 +37,7 @@ export default class CartContainer extends React.Component {
     this.setState({
       cartData: newCardData,
     })
+    this.props.eventedLocalStorage();
   }
   
   render() {
@@ -63,7 +65,7 @@ export default class CartContainer extends React.Component {
                     {...this.props}
                   />
                 ) : (
-                  <div>
+                  <div className="no-item">
                     No item in the cart.
                   </div>
                 )

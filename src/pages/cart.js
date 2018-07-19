@@ -39,14 +39,15 @@ export default class Cart extends React.Component {
             <div id="content-wrapper" className="col-xs-12">
             {   
                 true ? (
-                  <CartContainer />
+                  <CartContainer 
+                    eventedLocalStorage={this.props.eventedLocalStorage}
+                  />
                 ) : (
                   <div className="load-center">
                     Please connect to internet the page to see your cart.
                   </div>
                 )
             }
-
             </div>
           </div>
         </div>

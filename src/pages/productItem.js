@@ -55,6 +55,7 @@ export default class ProductItem extends React.Component {
         quantityToAdded: this.state.quantityToAdded + (increment ? 1 : -1),
       });
     }
+    this.props.eventedLocalStorage();
   }
 
   handleAddToCart = (event) => {
@@ -84,7 +85,7 @@ export default class ProductItem extends React.Component {
       cartData: cart,
       availableItem: true,
     })
-    
+    this.props.eventedLocalStorage();
   }
 
   handleThumbClick = (clickedImgSrc) => {
