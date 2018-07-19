@@ -18,19 +18,38 @@ export default class TakeMoney extends React.Component {
     fetch('/save-stripe-token', {
       method: 'POST',
       body: JSON.stringify(token),
+    }).then(() => {
+      localStorage.setItem('cart', JSON.stringify([]));
+      this.props.eventedLocalStorage();
+      this.setState((prevState) => ({
+        isPaymentSuccess: true,
+      }))
     })
   }
 
   onClosed = () => {
-    localStorage.setItem('cart', JSON.stringify([]));
-    this.props.eventedLocalStorage();
-    this.setState((prevState) => ({
-      isPaymentSuccess: true,
-    }))
+    
   }
 
   render() {
     const { isPaymentSuccess } = this.state
+    const { isOnline } = this.props;
+    const paymentContent = isOnline ? (
+      <StripeCheckout
+        token={this.onToken}
+        stripeKey="pk_test_rM2enW1rNROwx4ukBXGaIzhr"
+        closed={this.onClosed}
+      >   
+        <button
+          type="submit"
+          className="btn btn-primary btn-continue center-block"
+        >
+          Proceed to Pay
+        </button>
+      </StripeCheckout>
+    ) : (
+      <p>Please connect Internet to proceed for payment</p>
+    );
     return (
       <div className="payment-active">
         {
@@ -40,20 +59,9 @@ export default class TakeMoney extends React.Component {
                   <Link to='/' className="btn btn-primary btn-continue">Continue Shopping</Link>
                 </div>
               )
-            : (
-                <StripeCheckout
-                  token={this.onToken}
-                  stripeKey="pk_test_rM2enW1rNROwx4ukBXGaIzhr"
-                  closed={this.onClosed}
-                >
-                    <button type="submit" disabled={!this.props.isOnline} className="btn btn-primary btn-continue center-block">
-                      Proceed to Pay
-                    </button>
-                    {!this.props.isOnline && <p>Please connect Internet to proceed for payment</p>}
-                </StripeCheckout>
-              )
-        }
+            : paymentContent               
+        }  
       </div>
     )
-  }
+    }
 }

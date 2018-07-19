@@ -10,13 +10,13 @@ const CartSummary = (props) => (
           <span className="label js-subtotal">
             {props.totalItems} items
           </span>
-          <span className="value">Rs.{props.price}</span>
+          <span className="value">USD {props.price}</span>
         </div>
         <div className="cart-summary-line" id="cart-subtotal-shipping">
           <span className="label">
             Shipping
           </span>
-          <span className="value">$0.00</span>
+          <span className="value">USD 0.00</span>
           <div>
             <small className="value"></small>
           </div>
