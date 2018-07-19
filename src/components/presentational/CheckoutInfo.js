@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import ReactDOM from 'react-dom';
 import CartSummary from './CartSummary'
 import FormInputField from './FormInputField'
 import TakeMoney from '../TakeMoney'
@@ -26,10 +25,7 @@ class CheckoutInfo extends Component {
     })
     window.addEventListener('online', this.cameOnline);
     window.addEventListener('offline', this.cameOffline);
-    const tesNode = ReactDOM.findDOMNode(this.refs.payment).getBoundingClientRect();
-    setTimeout(() => {
-      window.scrollTo(0, tesNode.y);
-    }, 1000);
+
     
   }
 
