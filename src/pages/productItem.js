@@ -147,16 +147,8 @@ export default class ProductItem extends React.Component {
     return (
       <div className="col-md-6 item-info">
         <h1 className="h1 namne_details" itemprop="name">{this.props.pathContext.productName}</h1>
-        <p className="reference">Reference: demo_15</p>
-        <div id="product_comments_block_extra" className="no-print" itemprop="aggregateRating" itemscope="" itemtype="https://schema.org/AggregateRating">
-          <ul className="comments_advices">
-            <li>
-              <a className="open-comment-form">
-                Write a review
-              </a>
-            </li>
-          </ul>
-        </div>
+        <p className="reference">Catgories: Watches</p>
+        
         <div className="product-prices">
           <div className="product-price h5 " itemprop="offers" itemscope="" itemtype="https://schema.org/Offer">
             <link itemprop="availability" />
