@@ -20,7 +20,6 @@ module.exports = {
         precision: 8,
       },
     },
-    'gatsby-plugin-offline',
     'gatsby-plugin-sharp',
     {
       resolve: "gatsby-plugin-manifest",
@@ -41,5 +40,6 @@ module.exports = {
         ]
       }
     },
+    'gatsby-plugin-offline',
   ],
 }
