@@ -113,7 +113,6 @@ class CheckoutInfo extends Component {
                       />
                     ))
                   }
-                  <ContinueButton />
                 </section>
               </div>
             </div>
@@ -134,45 +133,6 @@ class CheckoutInfo extends Component {
       return (
         <div>
           <div className="payment-options">
-            <div>
-              <div id="payment-option-1-container" className="payment-option clearfix">
-                <span className="custom-radio float-xs-left">
-                  <input className="ps-shown-by-js " id="payment-option-1" data-module-name="ps_checkpayment" name="payment-option" type="radio" required checked />
-                  <span></span>
-                </span>
-                <label htmlFor="payment-option-1">
-                  <span>Pay Now Online</span>
-                </label>
-              </div>
-            </div>
-            <div>
-              <div id="payment-option-1-container" className="payment-option clearfix">
-                <span className="custom-radio float-xs-left">
-                  <input className="ps-shown-by-js " id="payment-option-2" data-module-name="ps_checkpayment" name="payment-option" type="radio"  />
-                  <span></span>
-                </span>
-                <label htmlFor="payment-option-2">
-                  <span>Cash On Delivery</span>
-                </label>
-              </div>
-            </div>
-            <form id="conditions-to-approve" method="GET">
-              <ul>
-                <li>
-                  <div className="float-xs-left">
-                    <span className="custom-checkbox">
-                      <input id="conditions_to_approve[terms-and-conditions]" name="conditions_to_approve[terms-and-conditions]" required="" type="checkbox" value="1" className="ps-shown-by-js" />
-                        <span><i className="material-icons rtl-no-flip checkbox-checked"></i></span>
-                    </span>
-                  </div>
-                  <div className="condition-label">
-                    <label className="js-terms cursor-pointer" htmlFor="conditions_to_approve[terms-and-conditions]">
-                      I agree to the <a href="#" id="cta-terms-and-conditions-0">terms of service</a>.
-                    </label>
-                  </div>
-                </li>
-              </ul>
-            </form>
             <div id="payment-confirmation">
               { renderPayButton(this.state.isAppOnline) }
             </div>
@@ -201,6 +161,10 @@ class CheckoutInfo extends Component {
   )
 
   render() {
+    const finalCartData = JSON.parse(localStorage.getItem('cart'));
+    console.log(finalCartData)
+    const price = _.reduce(finalCartData, (accumulator, cartData) => (accumulator + cartData.quantityToAdded * parseInt(cartData.productDetails.productPrice, 10)), 0);
+    const totalItems = _.reduce(finalCartData, (accumulator, cartData) => (accumulator + cartData.quantityToAdded), 0);
     return(
       <div className="container">
         <section id="content" className="checkout-content">
@@ -213,7 +177,7 @@ class CheckoutInfo extends Component {
               </div>
             </div>
             <div className="col-md-12 col-lg-4">
-              <CartSummary price="10" displayInCart={false} />
+              <CartSummary price={price} displayInCart={false} />
             </div>
           </div>
         </section>
