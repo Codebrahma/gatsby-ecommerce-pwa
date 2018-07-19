@@ -4,7 +4,7 @@ import FormInputField from './FormInputField'
 
 const ContinueButton = () => (
   <footer className="form-footer clearfix">
-    <button className="continue btn btn-primary float-xs-right" name="continue" data-link-action="register-new-customer" type="submit" value="1">
+    <button className="continue btn btn-primary btn-continue float-xs-right" name="continue" data-link-action="register-new-customer" type="submit" value="1">
       Continue
     </button>
   </footer>
@@ -12,9 +12,35 @@ const ContinueButton = () => (
 
 class CheckoutInfo extends Component {
   state = {
-    displayId1: false,
+    displayId1: true,
+    displayId2: true,
+    displayId3: true,
   }
 
+  componentDidMount() {
+    this.setState({
+      isAppOnline: window.navigator.onLine,
+    })
+    window.addEventListener('online', this.cameOnline);
+    window.addEventListener('offline', this.cameOffline);
+    // this.scrollToBottom
+  }
+
+  cameOnline = () => {
+    this.setState({
+      isAppOnline: true,
+    });
+  }
+
+  cameOffline = () => {
+    this.setState({
+      isAppOnline: false,
+    })
+  }
+
+  // scrollToBottom = () => {
+  //   window.scrollTo(0,document.body.scrollHeight)
+  // }
 
   renderPersonalInfo = (displayId) => {
     const formFields = [
@@ -33,6 +59,8 @@ class CheckoutInfo extends Component {
                   _.map(formFields,field => (
                     <FormInputField
                         key={field.id}
+                        label={field.label}
+                        label={field.label}
                         label={field.label}
                         type={field.type}
                         optional={field.Optional}
@@ -95,59 +123,18 @@ class CheckoutInfo extends Component {
     }
   }
 
-  renderShippingInfo = (displayId) => {
-    if(displayId) {
-      return (
-        <div className="delivery-options-list">
-          <form className="clearfix" id ="js-delivery">
-            <div className="form-fields">
-              <div className="delivery-options">
-                <div className="row delivery-option">
-                  <div className="col-sm-1">
-                    <span className="custom-radio float-xs-left">
-                      <input type="radio" name="delivery_option[18]" id="delivery_option_2" value="2," checked />
-                      <span></span>
-                    </span>
-                  </div>
-                  <label htmlFor="delivery_option_2" className="col-sm-11 delivery-option-2">
-                    <div className="row">
-                      <div className="col-sm-5 col-xs-12">
-                        <div className="row">
-                          <div className="col-xs-3">
-                            <img src="" alt="X" />
-                          </div>
-                          <div className="col-xs-9">
-                            <span className="h6 carrier-name">My carrier</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-sm-4 col-xs-12">
-                        <span className="carrier-delay">Delivery next day!</span>
-                      </div>
-                      <div className="col-sm-3 col-xs-12">
-                        <span className="carrier-price">$0.00 tax excl.</span>
-                      </div>
-                    </div>
-                  </label>
-                  <div className="order-options">
-                    <div id="delivery" className="ship-comment">
-                      <label htmlFor="delivery_message">
-                        If you would like to add a comment about your order, please write it in the field below.
-                      </label>
-                      <textarea rows="2" cols="120" id="delivery_message" name="delivery_message"></textarea>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </form>
-          <ContinueButton />
-        </div>
-      )
-    }
-  }
 
   renderPaymentInfo = (displayId) => {
+    const renderPayButton = (isOnline) => (
+      <div className="ps-shown-by-js">
+        <div className="payment-active">
+          <button type="submit" disabled={!isOnline} className="btn btn-primary btn-continue center-block">
+            Proceed to Pay
+          </button>
+          {!isOnline && <p>Please connect Internet to proceed for payment</p>}
+        </div>
+      </div>
+    )
     if(displayId) {
       return (
         <div>
@@ -179,24 +166,20 @@ class CheckoutInfo extends Component {
                 <li>
                   <div className="float-xs-left">
                     <span className="custom-checkbox">
-                      <input id="conditions_to_approve[terms-and-conditions]" name="conditions_to_approve[terms-and-conditions]" required="" type="checkbox" value="1" className="ps-shown-by-js" checked/>
+                      <input id="conditions_to_approve[terms-and-conditions]" name="conditions_to_approve[terms-and-conditions]" required="" type="checkbox" value="1" className="ps-shown-by-js" />
                         <span><i className="material-icons rtl-no-flip checkbox-checked"></i></span>
                     </span>
                   </div>
                   <div className="condition-label">
-                    <label className="js-terms" htmlFor="conditions_to_approve[terms-and-conditions]">
-                      I agree to the <a href="#" id="cta-terms-and-conditions-0">terms of service</a> and will adhere to them unconditionally.
+                    <label className="js-terms cursor-pointer" htmlFor="conditions_to_approve[terms-and-conditions]">
+                      I agree to the <a href="#" id="cta-terms-and-conditions-0">terms of service</a>.
                     </label>
                   </div>
                 </li>
               </ul>
             </form>
             <div id="payment-confirmation">
-              <div className="ps-shown-by-js">
-                <button type="submit" disabled="" className="btn btn-primary center-block">
-                  Proceed to Pay
-                </button>
-              </div>
+              { renderPayButton(this.state.isAppOnline) }
             </div>
           </div>
         </div>
@@ -211,15 +194,14 @@ class CheckoutInfo extends Component {
   }
 
   renderCheckoutInfo = (id,title,renderWhatInfo) => (
-    <section className="checkout-step" id="checkout-personal-information-step" >
-    <h1 className="step-title h3" onClick={()=>this.handleDisplay(id)}>
-    <span className="step-number">{id}</span>
-      {title}
-    </h1>
-    <div className="content">
-      {renderWhatInfo}
-    </div>
-    <hr />
+    <section className="checkout-step" >
+      <div className="content">
+        <h1 className="step-title h3 cursor-pointer" onClick={()=>this.handleDisplay(id)}>
+          {title}
+        </h1>
+        {renderWhatInfo}
+      </div>
+      <hr />
     </section>
   )
 
@@ -228,13 +210,14 @@ class CheckoutInfo extends Component {
       <div className="container">
         <section id="content" className="checkout-content">
           <div className="row">
-            <div className="col-md-8 checkout-info-container">
-              {this.renderCheckoutInfo(1, "Personal Information",this.renderPersonalInfo(this.state.displayId1))}
-              {this.renderCheckoutInfo(2, "Addresses",this.renderAddressInfo(this.state.displayId2))}
-              {this.renderCheckoutInfo(3, "Shipping Method",this.renderShippingInfo(this.state.displayId3))}
-              {this.renderCheckoutInfo(4, "Payment",this.renderPaymentInfo(this.state.displayId4))}
+            <div className="col-md-12 col-lg-8">
+              <div className="checkout-info-container">
+                {this.renderCheckoutInfo(1, "Personal Information",this.renderPersonalInfo(this.state.displayId1))}
+                {this.renderCheckoutInfo(2, "Addresses",this.renderAddressInfo(this.state.displayId2))}
+                {this.renderCheckoutInfo(3, "Payment",this.renderPaymentInfo(this.state.displayId3))}
+              </div>
             </div>
-            <div className="col-md-4">
+            <div className="col-md-12 col-lg-4">
               <CartSummary price="10" displayInCart={false} />
             </div>
           </div>
