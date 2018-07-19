@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import CartSummary from './CartSummary'
 import FormInputField from './FormInputField'
 import TakeMoney from '../TakeMoney'
-
+import _ from 'lodash';
 
 const ContinueButton = () => (
   <footer className="form-footer clearfix">

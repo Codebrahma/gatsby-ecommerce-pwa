@@ -3,6 +3,7 @@ import Link from 'gatsby-link'
 import PropTypes from 'prop-types'
 import CartItems from './CartItems'
 import CartSummary from './CartSummary'
+import _ from 'lodash';;
 
 export default class CartContainer extends React.Component {
   constructor(props) {

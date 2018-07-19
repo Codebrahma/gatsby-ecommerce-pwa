@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import _ from 'lodash';
 import { createCart, addToCart, removeFromCart } from '../utils/shopifyUtils';
 
 export default class ProductItem extends React.Component {
