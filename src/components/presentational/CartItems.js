@@ -24,47 +24,46 @@ export default class CartItems extends React.Component {
               </div>
               <div className="product-line-info product-price h5 ">
                 <div className="current-price">
-                  <span className="price">Rs.{item.productDetails.productPrice}</span>
+                  <span className="price">USD.{item.productDetails.productPrice}</span>
                 </div>
               </div>
               <br />
             </div>
             <div className="product-line-grid-right product-line-actions col-md-5 col-xs-12">
               <div className="row">
-                <div className="col-xs-4 hidden-md-up"></div>
-                  <div className="col-md-10 col-xs-6">
-                    <div className="row">
-                      <div className="col-md-6 col-xs-6 qty">
-                        <div className="input-group bootstrap-touchspin">
-                          <span className="input-group-addon bootstrap-touchspin-prefix" style={{display: "none"}}></span>
-                          <input className="js-cart-line-product-quantity form-control"   type="text" defaultValue="1" value={item.quantityToAdded} name="product-quantity-spin" min="1"  />
-                          <span className="input-group-addon bootstrap-touchspin-postfix" style={{display: "none"}}></span>
-                          <span className="input-group-btn-vertical">
-                            <button onClick={() => this.props.handleQuantityChange(item.productId, true)} className="btn btn-touchspin js-touchspin js-increase-product-quantity bootstrap-touchspin-up" type="button">
-                              <i className="material-icons touchspin-up"></i>
-                            </button>
-                            <button disabled={item.quantityToAdded < 2 } onClick={() => this.props.handleQuantityChange(item.productId, false)} className="btn btn-touchspin js-touchspin js-decrease-product-quantity bootstrap-touchspin-down" type="button">
-                              <i className="material-icons touchspin-down"></i>
-                            </button>
-                          </span>
-                        </div>
-                      </div>
-                      <div className="col-md-6 col-xs-2 price">
-                        <span className="product-price">
-                          <strong>
-                            {`Rs.${item.quantityToAdded * parseInt(item.productDetails.productPrice, 10)}`}
-                          </strong>
-                        </span>
+                <div className="col-sm-3 col-md-6 col-lg-6 col-cus-xs-4 ">
+                  <div className=" bootstrap-touchspin">
+                    <span className="input-group-addon bootstrap-touchspin-prefix" style={{display: "none"}}></span>
+                      <input className="js-cart-line-product-quantity form-control"   type="text" defaultValue="1" value={item.quantityToAdded} name="product-quantity-spin" min="1"  />
+                      <span className="input-group-addon bootstrap-touchspin-postfix" style={{display: "none"}}></span>
+                      <span className="input-group-btn-vertical">
+                        <button onClick={() => this.props.handleQuantityChange(item.productId, true)} className="btn btn-touchspin js-touchspin js-increase-product-quantity bootstrap-touchspin-up" type="button">
+                          <i className="material-icons touchspin-up"></i>
+                        </button>
+                        <button disabled={item.quantityToAdded < 2 } onClick={() => this.props.handleQuantityChange(item.productId, false)} className="btn btn-touchspin js-touchspin js-decrease-product-quantity bootstrap-touchspin-down" type="button">
+                          <i className="material-icons touchspin-down"></i>
+                        </button>
+                    </span>
+                  </div>
+                </div>
+                <div className="col-sm-6 col-md-6 col-lg-6 col-cus-xs-6">
+                  <div className="row">
+                    <div className="col-sm-3 col-md-6 col-lg-6 col-cus-xs-6">
+                      <span className="product-price">
+                        <strong>
+                          {`USD.${item.quantityToAdded * parseInt(item.productDetails.productPrice, 10)}`}
+                        </strong>
+                      </span>
+                    </div>
+                    <div className="col-sm-3 col-md-6 col-lg-6 col-cus-xs-6">
+                      <div className="cart-line-product-actions">
+                        <a onClick={() => this.props.handleDeleteItem(item.productId)} className="remove-from-cart" rel="nofollow"  data-link-action="delete-from-cart" data-id-product="25" data-id-product-attribute="0" data-id-customization="">
+                          <i className="material-icons float-xs-left">delete</i>
+                        </a>
                       </div>
                     </div>
                   </div>
-                  <div className="col-md-2 col-xs-2 text-xs-right">
-                    <div className="cart-line-product-actions">
-                      <a onClick={() => this.props.handleDeleteItem(item.productId)} className="remove-from-cart" rel="nofollow"  data-link-action="delete-from-cart" data-id-product="25" data-id-product-attribute="0" data-id-customization="">
-                        <i className="material-icons float-xs-left">delete</i>
-                      </a>
-                    </div>
-                  </div>
+                </div>
                 </div>
               </div>
               <div className="clearfix"></div>
