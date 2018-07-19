@@ -20,8 +20,10 @@ class CheckoutInfo extends Component {
   }
 
   componentDidMount() {
+    
     this.setState({
       isAppOnline: window.navigator.onLine,
+      finalCartData: JSON.parse(localStorage.getItem('cart')),
     })
     window.addEventListener('online', this.cameOnline);
     window.addEventListener('offline', this.cameOffline);
@@ -161,8 +163,10 @@ class CheckoutInfo extends Component {
   )
 
   render() {
-    const finalCartData = JSON.parse(localStorage.getItem('cart'));
-    console.log(finalCartData)
+    
+    const {
+      finalCartData
+    } = this.state;
     const price = _.reduce(finalCartData, (accumulator, cartData) => (accumulator + cartData.quantityToAdded * parseInt(cartData.productDetails.productPrice, 10)), 0);
     const totalItems = _.reduce(finalCartData, (accumulator, cartData) => (accumulator + cartData.quantityToAdded), 0);
     return(
