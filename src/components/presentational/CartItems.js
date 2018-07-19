@@ -2,6 +2,7 @@ import React from 'react'
 import map from 'lodash'
 import PropTypes from 'prop-types'
 import Spinner from 'react-spinkit'
+import _ from 'lodash';
 
 import './styles.scss';
 

@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import CustomCheckbox from './CustomCheckbox'
-import map from 'lodash'
+import _ from 'lodash'
+
 import './filter.scss'
 
 class FilterBy extends Component {

@@ -192,6 +192,17 @@
     flex-direction: column;
   }
 }
+.after-payment {
+  .payment-success {
+    margin-right: 30px;
+    color: green;
+    &:before {
+      content: '\f14a';
+      font-family: fontawesome;
+      padding-right: 10px;
+    }
+  }
+}
 
 .cursor-pointer {
   cursor: pointer;

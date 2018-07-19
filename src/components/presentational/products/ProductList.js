@@ -1,6 +1,6 @@
 import React from 'react'
 import ProductCard from './productCard'
-import map from 'lodash'
+import _ from 'lodash'
 
 const ProductList = ({ products }) => (
   <section id="product-list">
