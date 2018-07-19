@@ -8,7 +8,7 @@ import Sidebar from '../components/presentational/products/Sidebar'
 
 const isPriceInRange = (state, price) => {
   const originalPrice = Number(price.amount);
-  
+
   return (originalPrice < 100 && state['0$ - 100$'])
     || (originalPrice >= 100 && originalPrice < 200 && state['100$ - 200$'])
     || (originalPrice >= 200 && originalPrice < 300 && state['200$ - 300$'])

@@ -6,12 +6,12 @@ const SideBarItem = ({ title, type, onClickFilter }) => (
       <label>
         <input
           type="checkbox"
-          class="option-input checkbox"
+          className="option-input checkbox"
           onChange={() => onClickFilter(type, title)}
         />
       </label>
       <a className="_gray-darker search-link js-search-link" rel="nofollow">
-        {title === 'greater than 300$' ? '> 300$' : title} 
+        {title === 'greater than 300$' ? '> 300$' : title}
         <span className="magnitude" />
       </a>
     </label>
