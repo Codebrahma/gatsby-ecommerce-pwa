@@ -26,14 +26,11 @@ class CheckoutInfo extends Component {
     })
     window.addEventListener('online', this.cameOnline);
     window.addEventListener('offline', this.cameOffline);
-<<<<<<< HEAD
     const tesNode = ReactDOM.findDOMNode(this.refs.payment).getBoundingClientRect();
     setTimeout(() => {
       window.scrollTo(0, tesNode.y);
     }, 1000);
     
-=======
->>>>>>> Stripe payment implementation
   }
 
   cameOnline = () => {
