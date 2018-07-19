@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom';
 import CartSummary from './CartSummary'
 import FormInputField from './FormInputField'
+import TakeMoney from '../TakeMoney'
+
 
 const ContinueButton = () => (
   <footer className="form-footer clearfix">
@@ -24,11 +26,14 @@ class CheckoutInfo extends Component {
     })
     window.addEventListener('online', this.cameOnline);
     window.addEventListener('offline', this.cameOffline);
+<<<<<<< HEAD
     const tesNode = ReactDOM.findDOMNode(this.refs.payment).getBoundingClientRect();
     setTimeout(() => {
       window.scrollTo(0, tesNode.y);
     }, 1000);
     
+=======
+>>>>>>> Stripe payment implementation
   }
 
   cameOnline = () => {
@@ -43,9 +48,6 @@ class CheckoutInfo extends Component {
     })
   }
 
-  // scrollToBottom = () => {
-  //   window.scrollTo(0,document.body.scrollHeight)
-  // }
 
   renderPersonalInfo = (displayId) => {
     const formFields = [
@@ -131,14 +133,9 @@ class CheckoutInfo extends Component {
 
   renderPaymentInfo = (displayId) => {
     const renderPayButton = (isOnline) => (
-      <div className="ps-shown-by-js">
-        <div className="payment-active">
-          <button ref="payment" type="submit" disabled={!isOnline} className="btn btn-primary btn-continue center-block">
-            Proceed to Pay
-          </button>
-          {!isOnline && <p>Please connect Internet to proceed for payment</p>}
+        <div className="ps-shown-by-js">
+          <TakeMoney isOnline={isOnline} />
         </div>
-      </div>
     )
     if(displayId) {
       return (
