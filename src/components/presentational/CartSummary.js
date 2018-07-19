@@ -28,7 +28,11 @@ const CartSummary = (props) => (
       props.displayInCart && (
         <div className="checkout cart-detailed-actions card-block">
           <div className="text-sm-center">
-            <Link to="/order" className="btn btn-primary btn-continue">Proceed to checkout</Link>
+            <Link to="/order" >
+              <button className="btn btn-primary btn-continue" disabled={!props.canProceed} >
+                Proceed to checkout
+              </button>
+            </Link>
           </div>
         </div>
       )
@@ -40,12 +44,14 @@ CartSummary.propTypes = {
   totalItems: PropTypes.number.isRequired,
   displayInCart: PropTypes.bool.isRequired,
   price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  canProceed: PropTypes.bool.isRequired,
 }
 
 CartSummary.defaultProps = {
   totalItems: 0,
   displayInCart: true,
   price: "0",
+  canProceed: true,
 }
 
 export default CartSummary

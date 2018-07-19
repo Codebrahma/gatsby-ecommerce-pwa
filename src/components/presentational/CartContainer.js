@@ -18,7 +18,6 @@ export default class CartContainer extends React.Component {
     this.setState({
       cartData: JSON.parse(localStorage.getItem('cart')) || [],
     })
-    
   }
   handleQuantityChange = (productId, increment) => {
     const currentIndex = _.findIndex(this.state.cartData, (data) => productId === data.productId);
@@ -83,6 +82,7 @@ export default class CartContainer extends React.Component {
               <CartSummary
                 totalItems={totalItems}
                 price={price}
+                canProceed={(this.state.cartData && this.state.cartData.length>0)}
               />
             }
           </div>

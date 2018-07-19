@@ -35,7 +35,7 @@ export default class CartItems extends React.Component {
                 <div className="col-sm-3 col-md-6 col-lg-6 col-cus-xs-4 ">
                   <div className=" bootstrap-touchspin">
                     <span className="input-group-addon bootstrap-touchspin-prefix" style={{display: "none"}}></span>
-                      <input className="js-cart-line-product-quantity form-control"   type="text" defaultValue="1" value={item.quantityToAdded} name="product-quantity-spin" min="1"  />
+                      <input className="js-cart-line-product-quantity form-control"   type="text" value={item.quantityToAdded} name="product-quantity-spin" min="1"  readOnly />
                       <span className="input-group-addon bootstrap-touchspin-postfix" style={{display: "none"}}></span>
                       <span className="input-group-btn-vertical">
                         <button onClick={() => this.props.handleQuantityChange(item.productId, true)} className="btn btn-touchspin js-touchspin js-increase-product-quantity bootstrap-touchspin-up" type="button">

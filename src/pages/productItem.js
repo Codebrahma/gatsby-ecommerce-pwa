@@ -110,13 +110,14 @@ export default class ProductItem extends React.Component {
                           this.props.pathContext.images && this.props.pathContext.images.map((img) => (
                             <img
                               onClick={() => this.handleThumbClick(img.originalSrc)}
+                              key={img.originalSrc}
                               className="thumb js-thumb  selected product-image"
                               data-image-medium-src="http://demo.posthemes.com/pos_nevara/197-medium_default/compete-track-tote.jpg" data-image-large-src="http://demo.posthemes.com/pos_nevara/197-large_default/compete-track-tote.jpg"
                               src={img.originalSrc}
                               alt=""
                               title=""
                               width="100"
-                              itemprop="image"
+                              itemProp="image"
                             />
                           ))
                         }
@@ -136,7 +137,7 @@ export default class ProductItem extends React.Component {
           alt=""
           title=""
           width="200"
-          itemprop="image"
+          itemProp="image"
           style={{ width: "100%" }}
         />
       </div>
@@ -144,25 +145,25 @@ export default class ProductItem extends React.Component {
   )
 
   renderProductInfo = () => {
-    const buttonContent = !this.state.availableItem ? 'Add To Cart' : 'Already in cart';
+    const buttonContent = !this.state.availableItem ? 'Add To Cart' : 'In Cart';
     return (
       <div className="col-md-6 item-info">
-        <h1 className="h1 namne_details" itemprop="name">{this.props.pathContext.productName}</h1>
+        <h1 className="h1 namne_details" itemProp="name">{this.props.pathContext.productName}</h1>
         <p className="reference">Catgories: Watches</p>
-        
+
         <div className="product-prices">
-          <div className="product-price h5 " itemprop="offers" itemscope="" itemtype="https://schema.org/Offer">
-            <link itemprop="availability" />
-              <meta itemprop="priceCurrency" content="USD" />
+          <div className="product-price h5 " itemProp="offers" itemScope="" itemType="https://schema.org/Offer">
+            <link itemProp="availability" />
+              <meta itemProp="priceCurrency" content="USD" />
               <div className="current-price">
-                <span itemprop="price" content="76.8">${this.props.pathContext.productPrice}</span>
+                <span itemProp="price" content="76.8">${this.props.pathContext.productPrice}</span>
               </div>
           </div>
           <div className="tax-shipping-delivery-label">
           </div>
         </div>
         <div className="product-information">
-          <div id="product-description-short-25" className="product-desc" itemprop="description">
+          <div id="product-description-short-25" className="product-desc" itemProp="description">
             <p><span >{this.props.productDescription}</span></p>
           </div>
           <div className="product-actions">
@@ -181,28 +182,29 @@ export default class ProductItem extends React.Component {
               <div className="input-group bootstrap-touchspin">
                 <span className="input-group-addon bootstrap-touchspin-prefix" style={{ display: 'none' }}>
                 </span>
-                <input 
-                  type="text" 
-                  name="qty" 
-                  id="quantity_wanted" 
-                  value={this.state.quantityToAdded } 
-                  className="input-group form-control" 
-                  min="1" 
-                  aria-label="Quantity" 
+                <input
+                  type="text"
+                  name="qty"
+                  id="quantity_wanted"
+                  value={this.state.quantityToAdded }
+                  className="input-group form-control"
+                  min="1"
+                  aria-label="Quantity"
+                  readOnly
                 />
                 <span className="input-group-addon bootstrap-touchspin-postfix" style={{ display: 'none' }}>
                 </span>
                 <span className="input-group-btn-vertical">
                 <button
-                  className="btn btn-touchspin js-touchspin bootstrap-touchspin-up" 
+                  className="btn btn-touchspin js-touchspin bootstrap-touchspin-up"
                   type="button"
                   onClick={() => {this.handleQuantityChange(true)}}
                 >
                   <i className="material-icons touchspin-up"></i>
                 </button>
-                <button 
-                  disabled={this.state.quantityToAdded <= 1} 
-                  className="btn btn-touchspin js-touchspin bootstrap-touchspin-down" 
+                <button
+                  disabled={this.state.quantityToAdded <= 1}
+                  className="btn btn-touchspin js-touchspin bootstrap-touchspin-down"
                   type="button"
                   onClick={() => {this.handleQuantityChange(false)}}
                 >
@@ -210,13 +212,13 @@ export default class ProductItem extends React.Component {
               </div>
           </div>
           <div className="add">
-            <button 
+            <button
               className="btn btn-primary add-to-cart"
-              data-button-action="add-to-cart" 
+              data-button-action="add-to-cart"
               onClick={this.handleAddToCart}
               disabled={this.state.availableItem}
             >
-              <i className="fa fa-shopping-cart"></i> 
+              <i className="fa fa-shopping-cart"></i>
               {buttonContent}
             </button>
           </div>

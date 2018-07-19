@@ -8,7 +8,7 @@ import Sidebar from '../components/presentational/products/Sidebar'
 
 const isPriceInRange = (state, price) => {
   const originalPrice = Number(price.amount);
-  
+
   return (originalPrice < 100 && state['0$ - 100$'])
     || (originalPrice >= 100 && originalPrice < 200 && state['100$ - 200$'])
     || (originalPrice >= 200 && originalPrice < 300 && state['200$ - 300$'])
@@ -16,7 +16,7 @@ const isPriceInRange = (state, price) => {
 }
 
 const isColorMatching = (state, colors) => {
-  
+
   return (state['Red'] && indexOf(colors, 'red') !== -1)
    || (state['Green'] && indexOf(colors, 'green') !== -1)
    || (state['Blue'] && indexOf(colors, 'blue') !== -1);
@@ -51,30 +51,29 @@ class MenCategory extends React.Component {
     const {
       data
     } = this.props;
-    console.log(data);
     let filteredProducts = data.allShopifyProduct.edges.filter(data => data.node.productType === 'Women');
     if (indexOf(values(this.state), true) !== -1) {
       filteredProducts = filteredProducts.filter((data) => {
         const price = data.node.priceRange.minVariantPrice;
         const colors = data.node.variants.map((variant) => variant.selectedOptions[0].value);
-        const isFiltered = isColorMatching(this.state, colors) || 
+        const isFiltered = isColorMatching(this.state, colors) ||
         isPriceInRange(this.state, price);
         return isFiltered;
       })
     }
-    
+
     const products = filteredProducts.map((data) => ({
       productName: data.node.title,
       price: data.node.priceRange.minVariantPrice.amount,
       productImage: data.node.images[0].originalSrc,
       productId: data.node.id
     }));
-  
+
     return (
       <section id="wrapper">
         <div className="container">
           <div className="row">
-            <Sidebar 
+            <Sidebar
               onClickFilter={this.onClickFilter}
             />
             <div
