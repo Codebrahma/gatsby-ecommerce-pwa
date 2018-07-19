@@ -28,18 +28,26 @@ module.exports = {
         short_name: "CB PWA",
         description: "Ecommerce App",
         start_url: "/",
-        background_color: "#FFFF00",
-        theme_color: "#000080",
         display: "standalone",
-        icons: [
+        "icons": [
           {
-            src: "/logo/cb.png",
-            sizes: "136x68",
-            type: "72x72 96x96 128x128 256x256"
+            "src": "\/android-chrome-192x192.png?v=yyxgnp97qG",
+            "sizes": "192x192",
+            "type": "image\/png"
           },
-        ]
+          {
+            "src": "\/android-chrome-384x384.png?v=yyxgnp97qG",
+            "sizes": "384x384",
+            "type": "image\/png"
+          }
+        ],
+        "theme_color": "#ffffff",
+        "background_color": "#57A3E8",
+        "display": "browser"
       }
     },
+    
     'gatsby-plugin-offline',
+    'gatsby-plugin-netlify'
   ],
 }
