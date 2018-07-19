@@ -5,7 +5,9 @@ class Checkout extends Component {
   render() {
     return (
       <section id="wrapper">
-        <CheckoutInfo />
+        <CheckoutInfo 
+          eventedLocalStorage={this.props.eventedLocalStorage}
+        />
       </section>
     )
   }

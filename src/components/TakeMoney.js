@@ -14,6 +14,8 @@ export default class TakeMoney extends React.Component {
   }
 
   onClosed = () => {
+    localStorage.setItem('cart', JSON.stringify([]));
+    this.props.eventedLocalStorage();
     this.setState((prevState) => ({
       isPaymentSuccess: true,
     }))

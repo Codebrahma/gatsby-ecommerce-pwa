@@ -134,7 +134,7 @@ class CheckoutInfo extends Component {
   renderPaymentInfo = (displayId) => {
     const renderPayButton = (isOnline) => (
         <div className="ps-shown-by-js">
-          <TakeMoney isOnline={isOnline} />
+          <TakeMoney isOnline={isOnline} eventedLocalStorage={this.props.eventedLocalStorage}/>
         </div>
     )
     if(displayId) {

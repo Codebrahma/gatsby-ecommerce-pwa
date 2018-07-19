@@ -15,7 +15,7 @@ export default class CartContainer extends React.Component {
 
   componentDidMount() {
     this.setState({
-      cartData: JSON.parse(localStorage.getItem('cart')),
+      cartData: JSON.parse(localStorage.getItem('cart')) || [],
     })
     
   }
