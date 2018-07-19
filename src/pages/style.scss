@@ -132,3 +132,23 @@
     }
   }
 }
+
+.checkout-content {
+  margin:2px;
+  .checkout-info-container {
+    box-shadow: 1px 1px 10px #ccc;
+    padding: 20px;
+    margin-bottom: 10px;
+  }
+  .content {
+    padding: 0 2.313rem;
+    label {
+      text-align: left !important;
+    }
+    .ship-comment {
+      textarea {
+        max-width: 600px;
+      }
+    }
+  }
+}
