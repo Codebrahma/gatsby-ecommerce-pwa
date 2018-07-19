@@ -5,19 +5,27 @@ export default class ProductItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      cartData: [],
       quantityToAdded: 1,
-      lineItemId: '',
-      isLoading: false,
+      availableItem: false,
     }
     
   }
   componentDidMount() {
+    const cart = JSON.parse(localStorage.getItem('cart'));
+    const productId = this.props.pathContext.variants[0].id;
+    const currentIndex = _.findIndex(cart, (data) => productId === data.productId);
+
     this.setState({
       isAppOnline: window.navigator.onLine,
+      cartData: JSON.parse(localStorage.getItem('cart')) || [],
+      quantityToAdded: currentIndex !== -1 ? cart[currentIndex].quantityToAdded : 1,
+      availableItem: currentIndex !== -1,
     })
     window.addEventListener('online', this.cameOnline);    
     window.addEventListener('offline', this.cameOffline);    
   }
+  
   cameOnline = () => {
     this.setState({
       isAppOnline: true,
@@ -30,38 +38,53 @@ export default class ProductItem extends React.Component {
     })  
   }
 
-  handleQuantitChange = (increment) => {
-    const currentQuantity = this.state.quantityToAdded;
-
-    this.setState({
-      quantityToAdded: increment ? currentQuantity + 1 : currentQuantity - 1,
-    });
+  handleQuantityChange = (increment) => {
+    const productId = this.props.pathContext.variants[0].id;
+    const currentIndex = _.findIndex(this.state.cartData, (data) => productId === data.productId);
+    const currentCartData = Object.assign([], this.state.cartData);
+    if (currentIndex !== -1) {
+      currentCartData[currentIndex].quantityToAdded = currentCartData[currentIndex].quantityToAdded + (increment ? 1 : -1);
+      this.setState({
+        cartData: currentCartData,
+        quantityToAdded: this.state.quantityToAdded + (increment ? 1 : -1),
+        availableItem: true,
+      })
+      localStorage.setItem('cart', JSON.stringify(currentCartData));
+    } else {
+      this.setState({
+        quantityToAdded: this.state.quantityToAdded + (increment ? 1 : -1),
+      });
+    }
   }
 
   handleAddToCart = (event) => {
     event.preventDefault();
-    this.setState({
-      isLoading: true
-    });
-    if (!this.state.lineItemId) {
-      const productId = this.props.pathContext.variants[0].id.split('__')[2];
-      addToCart(productId, this.state.quantityToAdded)
-          .then((lineItemId) => {
-            this.setState({
-              lineItemId,
-              isLoading: false,
-            })
-          })
-          .catch(err => console.log(err));
+  
+    const productId = this.props.pathContext.variants[0].id;
+    const currentIndex = _.findIndex(this.state.cartData, (data) => productId === data.productId);
+    let cart = this.state.cartData;
+    if (currentIndex === -1) {
+      
+      cart.push({
+        productId,
+        productDetails: this.props.pathContext,
+        quantityToAdded: this.state.quantityToAdded,
+        
+      })
     } else {
-      removeFromCart(this.state.lineItemId)
-          .then((checkout) => {
-            this.setState({
-              lineItemId: '',
-              isLoading: false,
-          })})
-          .catch(err => console.log(err));
+      
+      cart[currentIndex] = {
+        productId,
+        productDetails: this.props.pathContext,
+        quantityToAdded: cart[currentIndex].quantityToAdded,
+      };
     }
+    localStorage.setItem('cart', JSON.stringify(cart));
+    this.setState({
+      cartData: cart,
+      availableItem: true,
+    })
+    
   }
 
   handleThumbClick = (clickedImgSrc) => {
@@ -119,7 +142,7 @@ export default class ProductItem extends React.Component {
   )
 
   renderProductInfo = () => {
-    const buttonContent = this.state.lineItemId ? `Remove From Cart` : 'Add To Cart';
+    const buttonContent = !this.state.availableItem ? 'Add To Cart' : 'Already in cart';
     return (
       <div className="col-md-6 item-info">
         <h1 className="h1 namne_details" itemprop="name">{this.props.pathContext.productName}</h1>
@@ -164,35 +187,44 @@ export default class ProductItem extends React.Component {
               <div className="input-group bootstrap-touchspin">
                 <span className="input-group-addon bootstrap-touchspin-prefix" style={{ display: 'none' }}>
                 </span>
-                <input type="text" name="qty" id="quantity_wanted" value={this.state.quantityToAdded} className="input-group form-control" min="1" aria-label="Quantity" />
+                <input 
+                  type="text" 
+                  name="qty" 
+                  id="quantity_wanted" 
+                  value={this.state.quantityToAdded } 
+                  className="input-group form-control" 
+                  min="1" 
+                  aria-label="Quantity" 
+                />
                 <span className="input-group-addon bootstrap-touchspin-postfix" style={{ display: 'none' }}>
                 </span>
                 <span className="input-group-btn-vertical">
-                <button disabled={this.state.lineItemId !== ''} className="btn btn-touchspin js-touchspin bootstrap-touchspin-up" type="button" onClick={() => this.handleQuantitChange(true)}>
-                <i className="material-icons touchspin-up"></i></button>
-                <button disabled={this.state.quantityToAdded < 2 || this.state.lineItemId !== ''} className="btn btn-touchspin js-touchspin bootstrap-touchspin-down" type="button" onClick={() => this.handleQuantitChange(false)}>
+                <button
+                  className="btn btn-touchspin js-touchspin bootstrap-touchspin-up" 
+                  type="button"
+                  onClick={() => {this.handleQuantityChange(true)}}
+                >
+                  <i className="material-icons touchspin-up"></i>
+                </button>
+                <button 
+                  disabled={this.state.quantityToAdded <= 1} 
+                  className="btn btn-touchspin js-touchspin bootstrap-touchspin-down" 
+                  type="button"
+                  onClick={() => {this.handleQuantityChange(false)}}
+                >
                 <i className="material-icons touchspin-down"></i></button></span>
               </div>
           </div>
           <div className="add">
-            {
-              !this.state.isAppOnline ? <div> Connect To internet to add to cart </div> : (
-              <button disabled={this.state.isLoading} className="btn btn-primary add-to-cart" data-button-action="add-to-cart" onClick={this.handleAddToCart}>
-              {
-                  this.state.isLoading ? (
-                    <div>
-                      <i class="icon-spinner icon-spin"></i> Please Wait 
-                    </div>
-                   ) : (
-                    <div>
-                      <i className="fa fa-shopping-cart"></i> 
-                      {buttonContent} 
-                    </div>
-                   )
-              }
-              </button>
-              )
-            }
+            <button 
+              className="btn btn-primary add-to-cart"
+              data-button-action="add-to-cart" 
+              onClick={this.handleAddToCart}
+              disabled={this.state.availableItem}
+            >
+              <i className="fa fa-shopping-cart"></i> 
+              {buttonContent}
+            </button>
           </div>
         </div>
         <span id="product-availability">

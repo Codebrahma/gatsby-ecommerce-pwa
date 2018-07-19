@@ -8,122 +8,65 @@ export default class CartContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      cartData: [],
       cartUpdated: false,
     }
   }
 
   componentDidMount() {
-    this.computeAndUpdateState(this.props.cart);
-  }
-
-  computeAndUpdateState(cart) {
-    const itemQuantityMap = {}
-    let totalQuantity = 0;
-    _.forEach(cart.lineItems, item => {
-      totalQuantity = totalQuantity + item.quantity,
-      itemQuantityMap[item.id] = {
-        quantity: item.quantity,
-        variantId: item.variant.id,
-        lineItemId: item.id,
-        productPrice: parseInt(item.variant.price, 10),
-        productImage: item.variant.image,
-        productTitle: item.title,
-        productTotalPrice: item.quantity * item.variant.price,
-      }
-    });
     this.setState({
-      ...this.state,
-      cartUpdated: false,
-      cartData: itemQuantityMap,
-      totalPrice: parseInt(cart.totalPrice, 10),
-      totalQuantity,
-    });
+      cartData: JSON.parse(localStorage.getItem('cart')),
+    })
+    
   }
-
-  componentWillReceiveProps(nextProps) {
-    this.computeAndUpdateState(nextProps.cart);
-  }
-
-  handleQuantitChange = (lineItemId, increment) => {
-    const currentCartItem = this.state.cartData[lineItemId];
-    const currentQuantity = currentCartItem.quantity;
-    const newQuantity = increment ? currentQuantity + 1 : currentQuantity - 1
-    const productPrice = currentCartItem.productPrice;
-
+  handleQuantityChange = (productId, increment) => {
+    const currentIndex = _.findIndex(this.state.cartData, (data) => productId === data.productId);
+    const currentCartData = Object.assign([], this.state.cartData);
+    currentCartData[currentIndex].quantityToAdded = currentCartData[currentIndex].quantityToAdded + (increment ? 1 : -1);
+    localStorage.setItem('cart', JSON.stringify(currentCartData));
     this.setState({
-      ...this.state,
-      cartUpdated: true,
-      totalPrice: increment ? this.state.totalPrice + productPrice : this.state.totalPrice - productPrice,
-      totalQuantity: increment ? this.state.totalQuantity + 1 : this.state.totalQuantity - 1,
-      cartData: {
-        ...this.state.cartData,
-        [lineItemId]: {
-          ...currentCartItem,
-          quantity: newQuantity,
-          productTotalPrice: newQuantity * currentCartItem.productPrice,
-        }
-      }
-    });
+      cartData: currentCartData,
+    })
   }
 
-  handleDeleteItem = (lineItemId) => {
-    const currentCartItem = this.state.cartData[lineItemId];
-    const productPrice = currentCartItem.productPrice;
-
+  handleDeleteItem = (productId) => {
+    const currentIndex = _.findIndex(this.state.cartData, (data) => productId === data.productId);
+    const newCardData = _.concat(_.slice(this.state.cartData, 0, currentIndex), _.slice(this.state.cartData, currentIndex + 1, this.state.cartData.length))
+    localStorage.setItem('cart', JSON.stringify(newCardData));
     this.setState({
-      ...this.state,
-      totalPrice: this.state.totalPrice - (currentCartItem.productPrice * currentCartItem.quantity),
-      totalQuantity: this.state.totalQuantity - currentCartItem.quantity,
-      cartUpdated: true,      
-      cartData: {
-        ...this.state.cartData,
-        [lineItemId]: {
-          ...currentCartItem,
-          quantity: 0,
-          productTotalPrice: 0,
-        }
-      }
-    });
+      cartData: newCardData,
+    })
   }
-
-  handleUpdateCart = () => {
-    const updatedCartData = _.map(this.state.cartData, cartItem => ({
-      id: cartItem.lineItemId,
-      quantity: cartItem.quantity,
-    }));
-    this.props.saveNewCart(updatedCartData)
-  }
-
+  
   render() {
-    if (!this.state.cartData) {
-      return <div></div>
-    }
+
+    const price = _.reduce(this.state.cartData, (accumulator, cartData) => (accumulator + cartData.quantityToAdded * parseInt(cartData.productDetails.productPrice, 10)), 0);
+    const totalItems = _.reduce(this.state.cartData, (accumulator, cartData) => (accumulator + cartData.quantityToAdded), 0);
     return (
       <section id="main">
         <div className="cart-grid row">
           <div className="cart-grid-body col-xs-12 col-lg-8">
             <div className="card cart-container">
-            <div className="cart-header">
-              <div className="card-block cart-title">
-                <h1 className="h1">Shopping Cart</h1>
-              </div>
-              {
-                this.state.cartUpdated &&
-                <div className="text-sm-center btn-cart-update" onClick={this.handleUpdateCart}>
-                  <a className="btn btn-primary">Update Cart</a>
-                </div>
-              }
+              <div className="cart-header">
+                <div className="card-block cart-title">
+                  <h1 className="h1">Shopping Cart</h1>
+                </div>  
               </div>
               <hr className="separator" />
               <div className="cart-overview js-cart">
-              {
-                this.props.cart.lineItems.length === 0
-                  ? <span className="no-items">There are no more items in your cart</span>
-                  : <CartItems
-                        items={this.state.cartData}
-                        handleQuantitChange={this.handleQuantitChange}
-                        handleDeleteItem={this.handleDeleteItem}
-                        {...this.props}/>
+              { 
+                (this.state.cartData && this.state.cartData.length > 0) ? (
+                  <CartItems
+                    items={this.state.cartData}
+                    handleQuantityChange={this.handleQuantityChange}
+                    handleDeleteItem={this.handleDeleteItem}
+                    {...this.props}
+                  />
+                ) : (
+                  <div>
+                    No item in the cart.
+                  </div>
+                )
               }
               </div>
             </div>
@@ -133,10 +76,12 @@ export default class CartContainer extends React.Component {
             </Link>
           </div>
           <div className="cart-grid-right col-xs-12 col-lg-4">
-            <CartSummary
-                totalItems={this.state.totalQuantity}
-                price={this.state.totalPrice}
-            />
+            {
+              <CartSummary
+                totalItems={totalItems}
+                price={price}
+              />
+            }
           </div>
         </div>
       </section>
