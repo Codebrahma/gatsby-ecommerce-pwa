@@ -28,14 +28,14 @@
     text-align: center;
     margin-bottom: 20px;
     .selected {
-      max-width: 70%;
+      max-width: 93%;
       max-height: 400px;
       padding: 5px;
       @media (max-width: 991px) {
         max-width: 80%;
       }
       @media (max-width: 767px) {
-        max-width: 40%;
+        max-width: 97%;
       }
     }
   }
