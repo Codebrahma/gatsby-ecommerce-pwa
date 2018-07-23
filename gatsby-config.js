@@ -9,8 +9,8 @@ module.exports = {
     {
       resolve: 'gatsby-source-shopify',
       options: {
-        shopName: 'ecommerce-codebrahma',
-        accessToken: 'c9e65f71dc1b5c80fad0dacacc7485f2',
+        shopName: 'PWA-ecommerce',
+        accessToken: '0975a46c7772d5b0602e9452ecdad35c',
         verbose: true,
       },
     },

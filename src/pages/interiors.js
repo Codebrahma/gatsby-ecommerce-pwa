@@ -52,7 +52,7 @@ class MenCategory extends React.Component {
       data
     } = this.props;
 
-    let filteredProducts = data.allShopifyProduct.edges.filter(data => data.node.productType === 'Men');
+    let filteredProducts = data.allShopifyProduct.edges.filter(data => data.node.productType === 'interior');
     if (indexOf(values(this.state), true) !== -1) {
       filteredProducts = filteredProducts.filter((data) => {
         const price = data.node.priceRange.minVariantPrice;
@@ -97,7 +97,7 @@ class MenCategory extends React.Component {
 export default MenCategory;
 
 export const query = graphql`
-  query menProductQuery {
+  query interiorProductQuery {
     allShopifyProduct {
       edges {
         node {
@@ -106,7 +106,6 @@ export const query = graphql`
           }
           id
           title
-          tags
           productType
           description
           priceRange {

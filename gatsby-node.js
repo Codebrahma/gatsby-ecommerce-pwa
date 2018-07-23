@@ -20,7 +20,6 @@
               originalSrc
             }
             id
-            tags
             productType
             productType
             description
@@ -44,6 +43,7 @@
     }
     `).then(result => {
      result.data.allShopifyProduct.edges.forEach(({ node }) => {
+       console.log(node)
        createPage({
          path: `product/${node.id}`,
          component: path.resolve(`./src/pages/productItem.js`),
