@@ -26,6 +26,13 @@ const Navbar = (props) => (
             </span>
           </div>
         </div>
+        <div id="pt_menu10" className="pt_menu nav-1 nav-left-items">
+          <div className="parentMenu">
+            <span className="fontcustom2">
+              <Link to="/lighting" activeClassName="active">Lighting</Link>
+            </span>
+          </div>
+        </div>
         <div id="pt_menu12" className="pt_menu nav-3 nav-right-items">
           <div className="parentMenu">
             <span className="fontcustom2">

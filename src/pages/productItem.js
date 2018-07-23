@@ -228,17 +228,6 @@ export default class ProductItem extends React.Component {
         <p className="product-minimal-quantity">
         </p>
       </div>
-      <div className="product-additional-info">
-        <div className="social-sharing">
-          <span>Share</span>
-            <ul>
-              <li className="facebook"><a href="http://www.facebook.com/sharer.php?u=http://demo.posthemes.com/pos_nevara/en/home/25-compete-track-tote.html" title="Share" target="_blank">Share</a></li>
-              <li className="twitter"><a href="https://twitter.com/intent/tweet?text=Compete Track Tote http://demo.posthemes.com/pos_nevara/en/home/25-compete-track-tote.html" title="Tweet" target="_blank">Tweet</a></li>
-              <li className="googleplus"><a href="https://plus.google.com/share?url=http://demo.posthemes.com/pos_nevara/en/home/25-compete-track-tote.html" title="Google+" target="_blank">Google+</a></li>
-              <li className="pinterest"><a href="http://www.pinterest.com/pin/create/button/?media=http://demo.posthemes.com/pos_nevara/197/compete-track-tote.jpg&amp;url=http://demo.posthemes.com/pos_nevara/en/home/25-compete-track-tote.html" title="Pinterest" target="_blank">Pinterest</a></li>
-          </ul>
-        </div>
-      </div>
       <input className="product-refresh ps-hidden-by-js" name="refresh" type="submit" value="Refresh" style={{ display: 'none' }} />
       </form>
     </div>

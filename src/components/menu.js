@@ -12,17 +12,14 @@ const Menu = (props) => {
         id="pt_custommenu_itemmobile"
         className="smallmenu row"
       >
-        <div className={`col-md-12 col-sm-12 col-xs-12 navitem ${activePath("men")}`}>
-          <Link to="/men">Men</Link>
+        <div className={`col-md-12 col-sm-12 col-xs-12 navitem ${activePath("interiors")}`}>
+          <Link to="/interiors">Interiors</Link>
         </div>
-        <div className={`col-md-12 col-sm-12 col-xs-12 navitem ${activePath("women")}`}>
-          <Link to="/women">Women</Link>
+        <div className={`col-md-12 col-sm-12 col-xs-12 navitem ${activePath("furnitures")}`}>
+          <Link to="/furnitures">Furnitures</Link>
         </div>
-        <div className={`col-md-12 col-sm-12 col-xs-12 navitem ${activePath("boys")}`}>
-          <Link to="/boys">boys</Link>
-        </div>
-        <div className={`col-md-12 col-sm-12 col-xs-12 navitem ${activePath("girls")}`}>
-          <Link to="/girls">girls</Link>
+        <div className={`col-md-12 col-sm-12 col-xs-12 navitem ${activePath("lighting")}`}>
+          <Link to="/lighting">Lighting</Link>
         </div>
       </div>
     </div>
