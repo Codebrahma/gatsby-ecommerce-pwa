@@ -8,44 +8,44 @@ import { createCart } from '../utils/shopifyUtils';
 
 const newProducts = [
   {
-    productName: "Men's watch Model 1",
-    productImage: "https://cdn.shopify.com/s/files/1/0067/7986/3099/products/1.jpeg?v=1531631131",
-    price: "400",
-    productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzEzOTQyNzc0ODI1NTU=",
+    productName: "Ceramic Table lamp",
+    productImage: "https://cdn.shopify.com/s/files/1/0015/0113/4915/products/Ceramic_Table_Lamp.jpg?v=1532332977",
+    price: "270",
+    productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzEzMjQ3OTgwNTAzNzE=",
   },
   {
-    productName: "Men's watch Model 6",
-    productImage: "https://cdn.shopify.com/s/files/1/0067/7986/3099/products/1_5fbccc5a-7fe3-4070-9a9c-77c8f4a457a8.jpeg?v=1531647682",
-    price: "250",
-    productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzEzOTQ1MTQ0NjA3MzE=",
+    productName: "Decorated clock",
+    productImage: "https://cdn.shopify.com/s/files/1/0015/0113/4915/products/Rival_Clock.jpg?v=1532336319",
+    price: "190",
+    productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzEzMjQ4MDgxNzU2ODM=",
   },
   {
-    productName: "Men's watch Model 2",
-    productImage: "https://cdn.shopify.com/s/files/1/0067/7986/3099/products/1_28ab3d5a-d53c-421f-a0d1-13a9ee5af45d.jpeg?v=1531646859",
-    price: "500",
-    productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzEzOTQ1MTE1MTE2MTE=",
-  },
+    productName: "Ceramic Storage",
+    productImage: "https://cdn.shopify.com/s/files/1/0015/0113/4915/products/Meshed_cloth_collector.jpg?v=1532334032",
+    price: "170",
+    productId: "product/Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzEzMjQ4MDE1NTY1NDc=",
+  }
 ];
 
 const topProducts = [
   {
-    productName: "Men's watch Model 1",
-    productImage: "https://cdn.shopify.com/s/files/1/0067/7986/3099/products/1_28ab3d5a-d53c-421f-a0d1-13a9ee5af45d.jpeg?v=1531646859",
-    price: "500",
-    productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzEzOTQ1MDk0NDcyMjc=",
+    productName: "Interior Decorator",
+    productImage: "https://cdn.shopify.com/s/files/1/0015/0113/4915/products/Interior_decorator_clock.jpg?v=1532333331",
+    price: "140",
+    productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzEzMjQ3OTkyOTU1NTU=",
   },
   {
-    productName: "Men's watch Model 6",
-    productImage: "https://cdn.shopify.com/s/files/1/0067/7986/3099/products/1_8b98eeb3-8c13-458c-9117-ea5a88879b54.jpeg?v=1531647043",
-    price: "210",
-    productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzEzOTQ1MTA5MjE3ODc=",
+    productName: "Table Lamp",
+    productImage: "https://cdn.shopify.com/s/files/1/0015/0113/4915/products/lamp.jpg?v=1532333593",
+    price: "245",
+    productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzEzMjQ3OTk3MjE1Mzk",
   },
   {
-    productName: "Men's watch Model 2",
-    productImage: "https://cdn.shopify.com/s/files/1/0067/7986/3099/products/1_1d25fa84-273a-4298-918e-6db39f4e630f.jpeg?v=1531647902",
-    price: "400",
-    productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzEzOTQ1MjY2ODMxOTU=",
-  },
+    productName: "Ceramic Table lamp",
+    productImage: "https://cdn.shopify.com/s/files/1/0015/0113/4915/products/Ceramic_Table_Lamp.jpg?v=1532332977",
+    price: "270",
+    productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzEzMjQ3OTgwNTAzNzE=",
+  }
 ];
 
 class IndexPage extends React.Component {
@@ -66,17 +66,17 @@ class IndexPage extends React.Component {
           <div className="container">
             <div className="info desc1">
               <div className="container">
-                <p className="title1">Shop your Favourite watches</p>
+                <p className="title1">Best collection of house decors</p>
                 <p className="title2">in a single place</p>
                 <p className="title3">We'll give you a FREE delivery!</p>
-                <p className="readmore"><Link to="/men"><span>Shop Now</span></Link></p>
+                <p className="readmore"><Link to="/furnitures"><span>Shop Now</span></Link></p>
               </div>
             </div>
           </div>
         </div>
         <div className="home_page_content">
           <div className="pos_title">
-            <span>Newly Added Watches</span>
+            <span>Newly Added products</span>
             <h2>
               New products
             </h2>
@@ -93,75 +93,8 @@ class IndexPage extends React.Component {
           </div>
           <ProductList products={topProducts} />
         </div>
-        <div className="home_page_content">
-          <div className="pos_title">
-            <span>Latest Offers</span>
-            <h2>
-              Get latest offers on
-            </h2>
-          </div>
-        </div>
-        <div className="">
-          <div className="static1_home3">
-            <div className="top">
-              <div className="advantage row">
-                <div className="box2 col col-lg-6 col-md-12 col-xs-12 offered-img">
-                  <div className="img1"><a className="shop" href="#">
-                    <div className="item-product col-xs-12 col-sm-6 col-md-6 col-lg-12">
-                    <article className="product-miniature js-product-miniature card-content">
-                      <div className="img_block">
-                        <img src="https://cdn.shopify.com/s/files/1/0067/7986/3099/products/1_28ab3d5a-d53c-421f-a0d1-13a9ee5af45d.jpeg?v=1531646859"
-                          className="product-img img-responsive"
-                          alt=""
-                        />
-                      </div>
-                    </article>
-                  </div>
-                    </a>
-                  </div>
-                </div>
-                <div className="box2 col col-lg-6 col-md-12 col-xs-12 text">
-                  <div className="text">
-                  <h2><span>Top Quality Men's Watches</span></h2>
-                  <h3>Get it now to avail the offer!!!</h3>
-                  <a className="shop" href="#">shop now</a></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="">
-          <div className="static1_home3">
-            <div className="top">
-              <div className="advantage row">
-                <div className="box2 col col-lg-6 col-md-12 col-xs-12 text">
-                  <div className="text">
-                  <h2><span>Top Quality Men's Watches</span></h2>
-                  <h3>Get it now to avail the offer!!!</h3>
-                  <a className="shop" href="#">shop now</a></div>
-                </div>
-                <div className="box2 col col-lg-6 col-md-12 col-xs-12 offered-img">
-                  <div className="img1"><a className="shop" href="#">
-                  <div className="item-product col-xs-12 col-sm-6 col-md-6 col-lg-12">
-                  <article className="product-miniature js-product-miniature card-content">
-                    <div className="img_block">
-                      <img src="https://cdn.shopify.com/s/files/1/0067/7986/3099/products/1_28ab3d5a-d53c-421f-a0d1-13a9ee5af45d.jpeg?v=1531646859"
-                        className="product-img img-responsive"
-                        alt=""
-                      />
-                    </div>
-                  </article>
-                </div>
-
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
-      </div>
+    </div>
 
     )
   }

@@ -10,7 +10,7 @@ const SideBar = ({ onClickFilter }) => (
       <div id="search_filters">
         <div className="facet-content">
           <section className="facet clearfix">
-            <SideBarHeader title="Categories" />
+            <SideBarHeader title="Color" />
             <ul id="facet_20275" className="collapse in">
               <SideBarItem 
                 onClickFilter={onClickFilter}
@@ -30,7 +30,7 @@ const SideBar = ({ onClickFilter }) => (
             </ul>
           </section>
           <section className="facet clearfix">
-            <SideBarHeader title="Price Range" />
+            <SideBarHeader title="Price" />
             <ul id="facet_20275" className="collapse in">
               <SideBarItem
                 onClickFilter={onClickFilter}

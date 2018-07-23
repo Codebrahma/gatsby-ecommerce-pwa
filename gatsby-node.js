@@ -20,7 +20,6 @@
               originalSrc
             }
             id
-            tags
             productType
             productType
             description
