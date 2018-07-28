@@ -15,39 +15,38 @@ export default class Cart extends React.Component {
     this.setState({
       isAppOnline: window.navigator.onLine,
     })
-    window.addEventListener('online', this.cameOnline);    
-    window.addEventListener('offline', this.cameOffline);   
+    window.addEventListener('online', this.cameOnline);
+    window.addEventListener('offline', this.cameOffline);
   }
-  
+
   cameOnline = () => {
     this.setState({
       isAppOnline: true,
     });
   }
-  
+
   cameOffline = () => {
     this.setState({
       isAppOnline: false,
-    })  
+    })
   }
 
+  componentWillUnmount() {
+    this.setState({
+      isAppOnline: window.navigator.onLine,
+    })
+    window.removeEventListener('online',this.cameOnline);
+    window.removeEventListener('offline',this.cameOffline);
+  }
   render() {
     return (
       <section id="wrapper">
         <div className="container">
           <div className="row">
             <div id="content-wrapper" className="col-xs-12">
-            {   
-                true ? (
-                  <CartContainer 
-                    eventedLocalStorage={this.props.eventedLocalStorage}
-                  />
-                ) : (
-                  <div className="load-center">
-                    Please connect to internet the page to see your cart.
-                  </div>
-                )
-            }
+              <CartContainer
+                eventedLocalStorage={this.props.eventedLocalStorage}
+              />
             </div>
           </div>
         </div>

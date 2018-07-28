@@ -23,7 +23,7 @@ const newProducts = [
     productName: "Ceramic Storage",
     productImage: "https://cdn.shopify.com/s/files/1/0015/0113/4915/products/Meshed_cloth_collector.jpg?v=1532334032",
     price: "170",
-    productId: "product/Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzEzMjQ4MDE1NTY1NDc=",
+    productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzEzMjQ4MDE1NTY1NDc=",
   }
 ];
 
@@ -38,7 +38,7 @@ const topProducts = [
     productName: "Table Lamp",
     productImage: "https://cdn.shopify.com/s/files/1/0015/0113/4915/products/lamp.jpg?v=1532333593",
     price: "245",
-    productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzEzMjQ3OTk3MjE1Mzk",
+    productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzEzMjQ3OTk3MjE1Mzk=",
   },
   {
     productName: "Ceramic Table lamp",

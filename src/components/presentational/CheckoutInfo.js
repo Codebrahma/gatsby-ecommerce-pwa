@@ -43,6 +43,14 @@ class CheckoutInfo extends Component {
     })
   }
 
+  componentWillUnmount() {
+    this.setState({
+      isAppOnline: window.navigator.onLine,
+    })
+    window.removeEventListener('online', this.cameOnline);
+    window.removeEventListener('offline', this.cameOffline);
+  }
+
 
   renderPersonalInfo = (displayId) => {
     const formFields = [
@@ -181,7 +189,7 @@ class CheckoutInfo extends Component {
               </div>
             </div>
             <div className="col-md-12 col-lg-4">
-              <CartSummary price={price} displayInCart={false} />
+              <CartSummary price={price} totalItems={totalItems} displayInCart={false} />
             </div>
           </div>
         </section>

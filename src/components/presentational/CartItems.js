@@ -11,8 +11,8 @@ export default class CartItems extends React.Component {
     return (
       <ul className="cart-items">
       {
-        _.map(this.props.items, item => (
-          <li className="cart-item" key={item.productDetails.productName}>
+        _.map(this.props.items, (item,index) => (
+          <li className="cart-item" key={index}>
           <div className="product-line-grid">
             <div className="product-line-grid-left col-md-3 col-xs-4">
               <span className="product-image media-middle">

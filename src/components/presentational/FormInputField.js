@@ -19,7 +19,7 @@ const FormInputField = (props) => {
     const radioTitle = (title,checked) => (
       <label className="radio-inline cursor-pointer col-md-6 col-sm-6">
         <span className="custom-radio">
-          <input name="id_gender" type={type} value="1" checked={checked}/>
+          <input name="id_gender" type={type} value="1" defaultChecked={checked}/>
           <span></span>
         </span>
         {title}
@@ -74,7 +74,7 @@ FormInputField.propTypes = {
   label: PropTypes.string.isRequired,
   optional: PropTypes.string,
   name: PropTypes.string,
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.number,PropTypes.string]),
   placeholder: PropTypes.string,
 }
 
