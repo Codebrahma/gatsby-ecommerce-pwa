@@ -23,20 +23,29 @@ export default class ProductItem extends React.Component {
       quantityToAdded: currentIndex !== -1 ? cart[currentIndex].quantityToAdded : 1,
       availableItem: currentIndex !== -1,
     })
-    window.addEventListener('online', this.cameOnline);    
-    window.addEventListener('offline', this.cameOffline);    
+    window.addEventListener('online', this.cameOnline);
+    window.addEventListener('offline', this.cameOffline);
   }
-  
+
   cameOnline = () => {
     this.setState({
       isAppOnline: true,
     });
   }
-  
+
   cameOffline = () => {
     this.setState({
       isAppOnline: false,
-    })  
+    })
+  }
+
+  componentWillUnmount() {
+
+    this.setState({
+      isAppOnline: window.navigator.onLine,
+    })
+    window.removeEventListener('online', this.cameOnline);
+    window.removeEventListener('offline', this.cameOffline);
   }
 
   handleQuantityChange = (increment) => {
