@@ -5,7 +5,7 @@ Gatsby-Ecommerce-PWA
 Are you **offline**? No worries, You can still view your favourite products, Add them to cart and proceed till checkout.
 Pay when you are back **online**.
 
-#### View the [Live App](https://codebrahma-ecommercepwa-gatsby.netlify.com/ "Codebrahma Gatsby_Ecommerce-PWA")
+#### View the [Live App](https://codebrahma-ecommercepwa.netlify.com/ "Codebrahma Gatsby_Ecommerce-PWA")
 
 ## Install
 
