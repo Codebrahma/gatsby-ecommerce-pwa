@@ -25,7 +25,7 @@ gatsby develop
 
 Want to develop your own gatsby site? Visit [Gatsby Docs](https://www.gatsbyjs.org/docs/ "Gatsby Documentation") for helpful information.
 
-## App Walthrough
+## App Walkthrough
 
 ![gatsby](https://user-images.githubusercontent.com/22497932/43355292-9a77b724-9277-11e8-8108-e5f5201bf4c3.gif)
 
