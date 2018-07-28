@@ -1,6 +1,6 @@
 Gatsby-Ecommerce-PWA
 ====================
- A **Serverless**  ecommerce **Progressive Web App** built with [Gatsby JS](https://www.gatsbyjs.org/  "Gatsby Homepage") and [React JS](https://reactjs.org/  "React Homepage").
+ A Ecommerce commerce **Progressive Web App** built with [Gatsby JS](https://www.gatsbyjs.org/  "Gatsby Homepage") and [React JS](https://reactjs.org/  "React Homepage").
 
 Are you **offline**? No worries, You can still view your favourite products, Add them to cart and proceed till checkout.
 Pay when you are back **online**.
@@ -33,7 +33,8 @@ Want to develop your own gatsby site? Visit [Gatsby Docs](https://www.gatsbyjs.o
 
 #### 1. Here are the key benefits of  [Gatsby JS](https://www.gatsbyjs.org/  "Gatsby Homepage")
 - **Automatic routing** based on your directory structure. No need to include additional code for configuring the router
-- HTML code is **generated server-side**
+- HTML code is **generated 
+-side**
 - **Pre-configured** Webpack-based build system
 - **Easily extensible** by plugin ecosystem
 - **Optimized for speed**. Gatsby loads only critical parts so that your site loads as fast as possible. Once loaded, Gatsby prefetches
