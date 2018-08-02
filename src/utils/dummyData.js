@@ -3,8 +3,10 @@ export const products = [
         title: "THE LEAN MACHINE KETO PROGRAM: 7 DAY SUBSCRIPTION",
         image: require('./images/GrowFit_1.jpg'),
         price: "2310.00",
-        preferences: ["veg","non-veg"],
-        options: ["lunch only", "lunch and dinner", "dinner only", "lunch+dinner+smoothie"],
+        variants: {
+          preferences: ["veg", "non-veg"],
+          options: ["lunch only", "lunch and dinner", "dinner only", "lunch+dinner+smoothie"]
+        }, 
         tags: [
             "Keto/LCHF Friendly",
             "Increased Energy",
@@ -12,6 +14,9 @@ export const products = [
             "Reduce Fatty Liver",
             "Youthful Skin"
         ],
+        description: 
+          "The evolution of our food habits has caused a massive spike in lifestyle diseases. Obesity, diabetes, PCOS, fatty liver… each one can be traced to a single culprit -- excessive carbohydrate intake.By reducing carb intake and increasing healthy fats, the Lean Machine program trains the body to burn fats as its primary fuel source. This results in rapid, healthy weight loss, stabilisation of blood sugar levels, reversal of fatty liver, and improved energy. Not to mention glowing skin and lustrous hair! Lunch:          A 1-week subscription provides you with 7 lunches, complete with snacks and beverages, from Monday to Sunday, with a different gourmet menu each day. Dinner: A 1-week subscription provides you with 7 dinners, complete with snacks and beverages, from Monday to Sunday, with a different gourmet menu each day. Smoothies: The Power Smoothie is the perfect start to your day. Served with the previous day’s dinner, this breakfast replacement beverage is low-carb and high-fibre, to start your day right."
+        ,
         faqs: [
           {
             question: "How will I receive my meal?",
