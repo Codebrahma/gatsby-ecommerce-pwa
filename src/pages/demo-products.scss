@@ -1,6 +1,4 @@
 .demo-product-item {
-  // background: red;
-  // border: 1px solid blue;
   padding: 10px;
   #demo-product-title {
     font-size: 24px;
@@ -11,6 +9,7 @@
     text-transform: uppercase;
   }
   .demo-product-variants {
+    text-transform: capitalize;
     #variant-title {
       display: block;
       font-size: 16px;

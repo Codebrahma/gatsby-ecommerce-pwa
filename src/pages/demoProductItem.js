@@ -1,14 +1,13 @@
 import React, {Component} from "react";
+import PropTypes from 'prop-types';
 import { products } from "../utils/dummyData.js";
 import _ from "lodash"
 import Link from 'gatsby-link'
 import './demo-products.scss';
-import DemoVariantType from "../components/presentational/DemoVariantType";
-import DemoVariantItem from "../components/presentational/DemoVariantItem.js";
 import DemoProductFaqs from "../components/DemoProductFaqs.js";
 import DemoProductSubscription from "../components/DemoProductSubscription.js";
+import DemoProductVariants from "../components/DemoProductVariants.js";
 
-const tags = ["Keto/LCHF Friendly", "Increased Energy", "Better Sleep", "Reduce Fatty Liver", "Youthful Skin"]
 
 
 class DemoProductItem extends Component {
@@ -40,27 +39,11 @@ class DemoProductItem extends Component {
     console.log(JSON.parse(localStorage.getItem('demo-cart')))
   }
   
-  renderPreferences = () => (
-    <div className="demo-product-variants" >
-      <DemoVariantType variantType="Preferences" />
-      <ul>
-        <DemoVariantItem variantItem="veg" />
-        <DemoVariantItem variantItem="non-veg" />
-      </ul>
-    </div>
-  )
-
-  renderOptions = () => (
-    <div className="demo-product-variants" >
-      <DemoVariantType variantType="Options" />
-      <ul>
-        <DemoVariantItem variantItem="lunch only" />
-        <DemoVariantItem variantItem="lunch and dinner" />
-        <DemoVariantItem variantItem="dinner only" />
-        <DemoVariantItem variantItem="lunch+dinner+smoothie" />
-      </ul>
-    </div>
-  )
+  renderVariants = () => (
+       _.map(Object.keys(this.props.product.variants), (variant,index) => (
+        <DemoProductVariants key={index} variantType={variant} variantItems={this.props.product.variants[variant]} />
+      ))
+    )
 
   renderProductActions = () => (
     <div className="demo-product-actions">
@@ -100,7 +83,7 @@ class DemoProductItem extends Component {
     <div className="demo-product-tags">
       <ul>
         {
-          _.map(this.props.product.tags,(tag,index) => (
+          _.map(this.props.product.tags, (tag,index) => (
             <li key={index} >
               <Link to="/demoProductItem" activeClassName="active-item">{tag}</Link>  
             </li>
@@ -117,22 +100,7 @@ class DemoProductItem extends Component {
         <span>Description</span>
       </div>
       <div className="demo-product-details">
-        <p>
-          The evolution of our food habits has caused a massive spike in lifestyle diseases. Obesity, diabetes, PCOS, fatty liver… each one can be traced to a single culprit -- excessive carbohydrate intake.
-          By reducing carb intake and increasing healthy fats, the Lean Machine program trains the body to burn fats as its primary fuel source. This results in rapid, healthy weight loss, stabilisation of blood sugar levels, reversal of fatty liver, and improved energy. Not to mention glowing skin and lustrous hair!
-        </p>
-        <p>
-          <strong>Lunch:</strong>
-          A 1-week subscription provides you with 7 lunches, complete with snacks and beverages, from Monday to Sunday, with a different gourmet menu each day. 
-        </p>
-        <p>
-          <strong>Dinner:</strong>
-          A 1-week subscription provides you with 7 dinners, complete with snacks and beverages, from Monday to Sunday, with a different gourmet menu each day.
-        </p>
-        <p>
-          <strong>Smoothies:</strong>
-          The Power Smoothie is the perfect start to your day. Served with the previous day’s dinner, this breakfast replacement beverage is low-carb and high-fibre, to start your day right.
-        </p>
+        {this.props.product.description}
       </div>
     </div>
   )
@@ -146,8 +114,7 @@ class DemoProductItem extends Component {
           </div>
           <div className="demo-product-item-details col-md-6 col-sm-12" >
             <h1 id="demo-product-title">{this.props.product.title}</h1>
-            {this.renderPreferences()}
-            {this.renderOptions()}
+            {this.renderVariants()}
             {this.renderProductActions()}
             {this.renderSocialIcons()}
             <span id="behind-science">
@@ -164,15 +131,19 @@ class DemoProductItem extends Component {
           <DemoProductSubscription />
         </div>
         <div className="container">
-          <DemoProductFaqs />
+          <DemoProductFaqs faqs={this.props.product.faqs} />
         </div>
       </div>
     )
   }
 }
 
+DemoProductItem.propTypes = {
+  product: PropTypes.object.isRequired,
+}
+
 DemoProductItem.defaultProps = {
-  product : products[0]
+  product: products[0]
 }
 
 export default DemoProductItem

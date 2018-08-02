@@ -16,13 +16,13 @@ const DemoProductSubscription = () => (
       <table>
         <thead>
           <tr>
-        <th colSpan="7"></th>
-        <th>calories</th>
-        <th>carbs<span>&nbsp;(g)</span></th>
-        <th>protein<span>&nbsp;(g)</span></th>
-        <th>fat<span>&nbsp;(g)</span></th>
-        <th>fiber<span>&nbsp;(g)</span></th>
-        </tr>
+            <th colSpan="7"></th>
+            <th>calories</th>
+            <th>carbs<span>&nbsp;(g)</span></th>
+            <th>protein<span>&nbsp;(g)</span></th>
+            <th>fat<span>&nbsp;(g)</span></th>
+            <th>fiber<span>&nbsp;(g)</span></th>
+          </tr>
         </thead>
         <tbody>
         <tr>
