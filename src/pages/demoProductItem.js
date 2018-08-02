@@ -8,7 +8,6 @@ import DemoVariantItem from "../components/presentational/DemoVariantItem.js";
 import DemoProductFaqs from "../components/DemoProductFaqs.js";
 import DemoProductSubscription from "../components/DemoProductSubscription.js";
 
-const tags = ["Keto/LCHF Friendly", "Increased Energy", "Better Sleep", "Reduce Fatty Liver", "Youthful Skin"]
 
 class DemoProductItem extends Component {
   state={
@@ -19,8 +18,11 @@ class DemoProductItem extends Component {
     <div className="demo-product-variants" >
       <DemoVariantType variantType="Preferences" />
       <ul>
-        <DemoVariantItem variantItem="veg" />
-        <DemoVariantItem variantItem="non-veg" />
+        {
+          _.map(products[0].preferences, (preference,index) => (
+            <DemoVariantItem variantItem={preference} key={index} /> 
+          ))
+        }
       </ul>
     </div>
   )
@@ -29,10 +31,11 @@ class DemoProductItem extends Component {
     <div className="demo-product-variants" >
       <DemoVariantType variantType="Options" />
       <ul>
-        <DemoVariantItem variantItem="lunch only" />
-        <DemoVariantItem variantItem="lunch and dinner" />
-        <DemoVariantItem variantItem="dinner only" />
-        <DemoVariantItem variantItem="lunch+dinner+smoothie" />
+       {
+          _.map(products[0].options, (option,index) => (
+            <DemoVariantItem variantItem={option} key={index} /> 
+          ))
+        }
       </ul>
     </div>
   )
@@ -75,7 +78,7 @@ class DemoProductItem extends Component {
     <div className="demo-product-tags">
       <ul>
         {
-          _.map(tags,(tag,index) => (
+          _.map(products[0].tags, (tag,index) => (
             <li key={index} >
               <Link to="/demoProductItem" activeClassName="active-item">{tag}</Link>  
             </li>
@@ -139,7 +142,7 @@ class DemoProductItem extends Component {
           <DemoProductSubscription />
         </div>
         <div className="container">
-          <DemoProductFaqs />
+          <DemoProductFaqs faqs={products[0].faqs} />
         </div>
       </div>
     )

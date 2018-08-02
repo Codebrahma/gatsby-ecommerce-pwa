@@ -14,12 +14,17 @@ const DemoProductSubscription = () => (
     </select>
     <div className="demo-product-table">
       <table>
-        <th colSpan="7"></th>
-        <th>calories</th>
-        <th>carbs<span>&nbsp;(g)</span></th>
-        <th>protein<span>&nbsp;(g)</span></th>
-        <th>fat<span>&nbsp;(g)</span></th>
-        <th>fiber<span>&nbsp;(g)</span></th>
+        <thead>
+        <tr>
+          <th colSpan="7"></th>
+          <th>calories</th>
+          <th>carbs<span>&nbsp;(g)</span></th>
+          <th>protein<span>&nbsp;(g)</span></th>
+          <th>fat<span>&nbsp;(g)</span></th>
+          <th>fiber<span>&nbsp;(g)</span></th>
+        </tr>
+        </thead>
+        <tbody>
         <tr>
           <td rowSpan="4" id="food-type">
             <strong>Lunch</strong>
@@ -110,6 +115,7 @@ const DemoProductSubscription = () => (
           <td>35</td>
           <td>3</td>
         </tr>
+        </tbody>
       </table>
     </div>
   </div>
