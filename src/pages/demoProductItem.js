@@ -9,9 +9,34 @@ import DemoProductSubscription from "../components/DemoProductSubscription.js";
 import DemoProductVariants from "../components/DemoProductVariants.js";
 
 
+
 class DemoProductItem extends Component {
-  state={
-    active: false,
+  constructor(props) {
+    super(props);
+    this.state = {
+      active: false,
+      itemCount: 7
+    }
+  }
+
+  changeItemCount = (change) => {
+    if(!(this.state.itemCount === 0 && change < 0)) {
+      this.setState(prevState => ({
+        itemCount: prevState.itemCount + change
+      }))
+    }
+  }
+
+  addItemToCart = () => {
+    let currentCartItems = localStorage.getItem('demo-cart') ? JSON.parse(localStorage.getItem('demo-cart')) : {};
+    if(currentCartItems[this.props.product.id]) {
+      currentCartItems[this.props.product.id].purchaseQuantity += this.state.itemCount
+    } else {
+      currentCartItems[this.props.product.id] = this.props.product;
+      currentCartItems[this.props.product.id].purchaseQuantity = this.state.itemCount
+    }
+    localStorage.setItem('demo-cart',JSON.stringify(currentCartItems));
+    console.log(JSON.parse(localStorage.getItem('demo-cart')))
   }
   
   renderVariants = () => (
@@ -24,18 +49,18 @@ class DemoProductItem extends Component {
     <div className="demo-product-actions">
      <div id="action-input">
        <div id="quantity">
-         <button className="btn btn-light minus-btn">
+         <button onClick={() => this.changeItemCount(-7)} className="btn btn-light minus-btn">
            <i className="fas fa-minus"></i>
          </button>
-         <input type="number" step="7" min="0" />
-         <button className="btn btn-light plus-btn">
-           <i className="fas fa-plus"></i>
+         <input type="number" disabled min="0" value={this.state.itemCount}/>
+         <button onClick={() => this.changeItemCount(7)} className="btn btn-light plus-btn">
+           <i className="fas fa-plus" ></i>
          </button>
        </div>      
-       <span id="price">Rs. {this.props.product.price}</span>
+       <span id="price">Rs. {(this.props.product.price / 7.0) * ((this.state.itemCount === 0) ? 7 : this.state.itemCount)}</span>
       </div>
       <div id="action-button">
-        <button className="btn btn-dark">add to cart</button>
+        <button className="btn btn-dark" onClick={this.addItemToCart} disabled={!this.state.itemCount}>add to cart</button>
         <button className="btn btn-dark">buy now</button>
       </div>
     </div>

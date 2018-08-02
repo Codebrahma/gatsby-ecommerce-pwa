@@ -1,5 +1,6 @@
 export const products = [
     {
+        id: 0,
         title: "THE LEAN MACHINE KETO PROGRAM: 7 DAY SUBSCRIPTION",
         image: require('./images/GrowFit_1.jpg'),
         price: "2310.00",
@@ -39,5 +40,23 @@ export const products = [
             answer: "We believe in a Low Carb High Fat diet to enhance weight loss. Under this diet, your carb intake is limited to less than 40 grams of carbs in a day which we monitor precisely by using our own ingredients. Our meals are loaded with healthy fats and lean proteins, along with prebiotics and probiotics to boost digestion and metabolism."
           },
         ]
-    }
+    },
+    {
+        id: 1,
+        title: "THE STAY FIT PREMIUM PROGRAM: 7 DAY SUBSCRIPTION",
+        image: require('./images/GrowFit_2.jpg'),
+        price: "1960.00",
+        tags: [
+            "Fitness"
+        ]
+    },
+    {
+        id: 2,
+        title: "WHOLE GRAIN OFFICE LUNCH SUBSCRIPTION",
+        image: require('./images/GrowFit_3.jpg'),
+        price: "749.00",
+        tags: [
+            "Balanced Diet"
+        ]
+    },
 ]
