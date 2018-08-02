@@ -5,6 +5,8 @@ import Link from 'gatsby-link'
 import './demo-products.scss';
 import DemoVariantType from "../components/presentational/DemoVariantType";
 import DemoVariantItem from "../components/presentational/DemoVariantItem.js";
+import DemoProductFaqs from "../components/DemoProductFaqs.js";
+import DemoProductSubscription from "../components/DemoProductSubscription.js";
 
 const tags = ["Keto/LCHF Friendly", "Increased Energy", "Better Sleep", "Reduce Fatty Liver", "Youthful Skin"]
 
@@ -83,12 +85,13 @@ class DemoProductItem extends Component {
     </div>
   )
 
+  //Description will get replaced by props
   renderDescription = () => (
     <div className="demo-product-description"> 
-      <span id="title">
-        Description
-      </span>
-      <div>
+      <div className="title">
+        <span>Description</span>
+      </div>
+      <div className="demo-product-details">
         <p>
           The evolution of our food habits has caused a massive spike in lifestyle diseases. Obesity, diabetes, PCOS, fatty liver… each one can be traced to a single culprit -- excessive carbohydrate intake.
           By reducing carb intake and increasing healthy fats, the Lean Machine program trains the body to burn fats as its primary fuel source. This results in rapid, healthy weight loss, stabilisation of blood sugar levels, reversal of fatty liver, and improved energy. Not to mention glowing skin and lustrous hair!
@@ -129,8 +132,14 @@ class DemoProductItem extends Component {
             {this.renderTags()}
           </div>  
         </div>
-        <div className="demo-product-description row">
+        <div className="container">
           {this.renderDescription()}
+        </div>
+        <div className="container">
+          <DemoProductSubscription />
+        </div>
+        <div className="container">
+          <DemoProductFaqs />
         </div>
       </div>
     )
