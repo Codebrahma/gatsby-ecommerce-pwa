@@ -10,9 +10,34 @@ import DemoProductSubscription from "../components/DemoProductSubscription.js";
 
 const tags = ["Keto/LCHF Friendly", "Increased Energy", "Better Sleep", "Reduce Fatty Liver", "Youthful Skin"]
 
+
 class DemoProductItem extends Component {
-  state={
-    active: false,
+  constructor(props) {
+    super(props);
+    this.state = {
+      active: false,
+      itemCount: 7
+    }
+  }
+
+  changeItemCount = (change) => {
+    if(!(this.state.itemCount === 0 && change < 0)) {
+      this.setState(prevState => ({
+        itemCount: prevState.itemCount + change
+      }))
+    }
+  }
+
+  addItemToCart = () => {
+    let currentCartItems = localStorage.getItem('demo-cart') ? JSON.parse(localStorage.getItem('demo-cart')) : {};
+    if(currentCartItems[this.props.product.id]) {
+      currentCartItems[this.props.product.id].purchaseQuantity += this.state.itemCount
+    } else {
+      currentCartItems[this.props.product.id] = this.props.product;
+      currentCartItems[this.props.product.id].purchaseQuantity = this.state.itemCount
+    }
+    localStorage.setItem('demo-cart',JSON.stringify(currentCartItems));
+    console.log(JSON.parse(localStorage.getItem('demo-cart')))
   }
   
   renderPreferences = () => (
@@ -41,18 +66,18 @@ class DemoProductItem extends Component {
     <div className="demo-product-actions">
      <div id="action-input">
        <div id="quantity">
-         <button className="btn btn-light minus-btn">
+         <button onClick={() => this.changeItemCount(-7)} className="btn btn-light minus-btn">
            <i className="fas fa-minus"></i>
          </button>
-         <input type="number" step="7" min="0" />
-         <button className="btn btn-light plus-btn">
-           <i className="fas fa-plus"></i>
+         <input type="number" disabled min="0" value={this.state.itemCount}/>
+         <button onClick={() => this.changeItemCount(7)} className="btn btn-light plus-btn">
+           <i className="fas fa-plus" ></i>
          </button>
        </div>      
-       <span id="price">Rs. {products[0].price}</span>
+       <span id="price">Rs. {(this.props.product.price / 7.0) * ((this.state.itemCount === 0) ? 7 : this.state.itemCount)}</span>
       </div>
       <div id="action-button">
-        <button className="btn btn-dark">add to cart</button>
+        <button className="btn btn-dark" onClick={this.addItemToCart} disabled={!this.state.itemCount}>add to cart</button>
         <button className="btn btn-dark">buy now</button>
       </div>
     </div>
@@ -75,7 +100,7 @@ class DemoProductItem extends Component {
     <div className="demo-product-tags">
       <ul>
         {
-          _.map(tags,(tag,index) => (
+          _.map(this.props.product.tags,(tag,index) => (
             <li key={index} >
               <Link to="/demoProductItem" activeClassName="active-item">{tag}</Link>  
             </li>
@@ -117,10 +142,10 @@ class DemoProductItem extends Component {
       <div className="container">
         <div className="demo-product-item row">
           <div className="demo-product-item-image col-md-6 col-sm-12">
-            <img src={products[0].image} alt={products[0].title} />
+            <img src={this.props.product.image} alt={this.props.product.title} />
           </div>
           <div className="demo-product-item-details col-md-6 col-sm-12" >
-            <h1 id="demo-product-title">{products[0].title}</h1>
+            <h1 id="demo-product-title">{this.props.product.title}</h1>
             {this.renderPreferences()}
             {this.renderOptions()}
             {this.renderProductActions()}
@@ -144,6 +169,10 @@ class DemoProductItem extends Component {
       </div>
     )
   }
+}
+
+DemoProductItem.defaultProps = {
+  product : products[0]
 }
 
 export default DemoProductItem
