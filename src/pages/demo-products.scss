@@ -1,0 +1,154 @@
+.demo-product-item {
+  // background: red;
+  // border: 1px solid blue;
+  padding: 10px;
+  #demo-product-title {
+    font-size: 24px;
+    font-weight: 500;
+    color: #312e23;
+    line-height: 34px;
+    font-style: normal;
+    text-transform: uppercase;
+  }
+  .demo-product-variants {
+    #variant-title {
+      display: block;
+      font-size: 16px;
+      font-weight: 600;
+      margin: 10px 0 5px 0;
+    }
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 0;
+      li {
+        padding: 10px 10px 5px 0;
+        margin-bottom: 0;
+        button {
+          font-size: 14px;
+          font-weight: 400;
+          letter-spacing: 1px;
+          text-transform: capitalize;
+          padding: 10px 20px;
+          border-radius: 6px;
+          cursor: pointer;
+          &:hover {
+            background: #000;
+            color: #f5f5f5;
+          }
+        }
+      }
+    }
+  }
+  .demo-product-actions {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    #action-input {
+      margin: 10px 0;
+      #quantity {
+        display: inline-flex;
+        input {
+          border: 1px solid #000;
+          max-width: 50px;
+          padding: 3px;
+        }
+        button {
+          border: 1px solid #000;
+          border-radius: 0;
+          padding-top: 0;
+          padding-bottom: 0;
+        }
+        .minus-btn {
+          border-top-left-radius: 12px;
+          border-bottom-left-radius: 12px;
+        }
+        .plus-btn {
+          border-top-right-radius: 12px;
+          border-bottom-right-radius: 12px;
+        }
+      }
+      #price {
+        font-family: "proxima";
+        font-size: 24px;
+        line-height: 1.5;
+        margin: 0 10px 0 20px;
+      }
+    }
+    #action-button {
+      margin: 10px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      button {
+        margin: 0 10px;
+        text-transform: uppercase;
+        font-size: 16px;
+        font-weight: 600;
+        padding: 15px;
+        min-width: 45%;
+      }
+    }
+  }
+  #social-icons {
+    ul {
+      display: flex;
+      margin: 10px;
+      li {
+        padding: 10px;
+        a {
+          background: #000;
+          color: #fff;
+          padding: 15px;
+          border-radius: 50%;
+          font-size: 16px; 
+        }
+      }
+    }
+  }
+  .demo-product-tags {
+    @extend .demo-product-variants;
+   ul {
+     margin: 10px 0;
+     li {
+       margin: 5px 0;
+        a {
+          font-size: 14px;
+          font-weight: 400;
+          letter-spacing: 1px;
+          text-transform: capitalize;
+          padding: 10px 20px;
+          background: #fff;
+          border: 1px solid #000;
+          color: #000;
+          cursor: pointer;
+          &:hover {
+            background: #000;
+            color: #f5f5f5;
+          }
+        }
+      }
+    }
+  }
+
+  .active-item {
+    background: #000;
+    color: #f5f5f5;
+  }
+
+  #behind-science {
+    background: #32baaf;
+    color: #fff;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 6px 10px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    i {
+      margin: 0 5px;
+    }
+  }
+}
+i {
+  font-family: "FontAwesome";
+}
