@@ -44,14 +44,14 @@ exports.sourceNodes = async (
 
     console.time(msg)
     await Promise.all([
-      createNodes('articles', ARTICLES_QUERY, ArticleNode, args, async x => {
-        if (x.comments)
-          await forEach(x.comments.edges, async edge =>
-            createNode(await CommentNode(imageArgs)(edge.node)),
-          )
-      }),
-      createNodes('blogs', BLOGS_QUERY, BlogNode, args),
-      createNodes('collections', COLLECTIONS_QUERY, CollectionNode, args),
+      // createNodes('articles', ARTICLES_QUERY, ArticleNode, args, async x => {
+      //   if (x.comments)
+      //     await forEach(x.comments.edges, async edge =>
+      //       createNode(await CommentNode(imageArgs)(edge.node)),
+      //     )
+      // }),
+      // createNodes('blogs', BLOGS_QUERY, BlogNode, args),
+      // createNodes('collections', COLLECTIONS_QUERY, CollectionNode, args),
       createNodes('products', PRODUCTS_QUERY, ProductNode, args, async x => {
         if (x.variants)
           await forEach(x.variants.edges, async edge =>
@@ -63,7 +63,7 @@ exports.sourceNodes = async (
             createNode(await ProductOptionNode(imageArgs)(option)),
           )
       }),
-      createShopPolicies(args),
+      // createShopPolicies(args),
     ])
     console.timeEnd(msg)
   } catch (e) {
