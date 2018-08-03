@@ -7,6 +7,7 @@ import './demo-products.scss';
 import DemoProductFaqs from "../components/DemoProductFaqs.js";
 import DemoProductSubscription from "../components/DemoProductSubscription.js";
 import DemoProductVariants from "../components/DemoProductVariants.js";
+import DemoVariantType from "../components/DemoVariantType.js";
 
 
 
@@ -39,11 +40,24 @@ class DemoProductItem extends Component {
     console.log(JSON.parse(localStorage.getItem('demo-cart')))
   }
 
-  renderVariants = () => (
-    _.map(this.props.pathContext.variants, (variant, index) => (
-      <DemoProductVariants key={index} variantItems={variant.selectedOptions} />
-    ))
-  )
+  renderVariants = () => {
+    let options = {};
+    _.map(this.props.pathContext.variants, (variant) => {
+      _.map( variant.selectedOptions, (item) => {
+        if(options[item.name]) {
+          options[item.name].push(item.value)
+        } else {
+          options[item.name] = [];
+          options[item.name].push(item.value)
+        }
+      } )
+    })
+    return Object.keys(options).map(
+          (key) => <DemoProductVariants key={key} variantItems={_.uniq(options[key])} >
+                      <DemoVariantType variantType={key} />
+                    </DemoProductVariants>
+                )
+  }
 
   renderProductActions = () => (
     <div className="demo-product-actions">

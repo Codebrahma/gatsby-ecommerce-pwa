@@ -2,16 +2,17 @@ import React from 'react'
 import DemoVariantType from "./DemoVariantType";
 import DemoVariantItem from "./DemoVariantItem.js";
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 
-const DemoProductVariants = ({ variantItems }) => {
+const DemoProductVariants = ({ children, variantItems }) => {
   return (
     <div className="demo-product-variants" >
+      { children }
       <ul>
         {
-          _.map(variantItems, (item, index) => (
-              <div key={`${item.name}-${index}`}>
-                <DemoVariantType variantType={item.name} />
-                <DemoVariantItem variantItem={item.value} />
+          _.map(variantItems, (option, index) => (
+              <div key={`${option}-${index}`}>
+                <DemoVariantItem variantItem={option} />
               </div>
             ))
         }
@@ -21,7 +22,7 @@ const DemoProductVariants = ({ variantItems }) => {
 }
 
 DemoProductVariants.propTypes = {
-  variantItems: PropTypes.arrayOf(PropTypes.object).isRequired
+  variantItems: PropTypes.arrayOf(PropTypes.string).isRequired
 }
 
 export default DemoProductVariants
