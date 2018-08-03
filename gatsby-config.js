@@ -9,8 +9,8 @@ module.exports = {
     {
       resolve: 'gatsby-source-shopify',
       options: {
-        shopName: 'PWA-ecommerce',
-        accessToken: '0975a46c7772d5b0602e9452ecdad35c',
+        shopName: 'nutritownbygrow',
+        accessToken: '576dea267469e1099e4aa82ecd18c4e7',
         verbose: true,
       },
     },
