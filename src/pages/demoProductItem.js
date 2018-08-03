@@ -52,7 +52,7 @@ class DemoProductItem extends Component {
          <button onClick={() => this.changeItemCount(-7)} className="btn btn-light minus-btn">
            <i className="fas fa-minus"></i>
          </button>
-         <input type="number" disabled min="0" value={this.state.itemCount}/>
+         <input type="text" disabled min="0" value={this.state.itemCount}/>
          <button onClick={() => this.changeItemCount(7)} className="btn btn-light plus-btn">
            <i className="fas fa-plus" ></i>
          </button>
@@ -70,10 +70,14 @@ class DemoProductItem extends Component {
     <div id="social-icons">
       <ul>
         <li>
-          <Link to="/demoProductItem"><i className="fab fa-facebook-f"></i></Link>
+          <Link to="/demoProductItem">
+            <i className="fab fa-facebook-f"></i>
+          </Link>
         </li>
         <li>
-          <Link to="/demoProductItem"><i className="fab fa-twitter"></i></Link>
+          <Link to="/demoProductItem">
+            <i className="fab fa-twitter"></i>
+          </Link>
         </li>
       </ul>
     </div>
@@ -143,7 +147,7 @@ DemoProductItem.propTypes = {
 }
 
 DemoProductItem.defaultProps = {
-  product: products[0]
+  product: products[1]
 }
 
 export default DemoProductItem

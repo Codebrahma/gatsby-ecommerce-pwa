@@ -79,29 +79,30 @@
       margin: 10px 0;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
+      flex-wrap: wrap;
       button {
-        margin: 0 10px;
+        margin: 5px 10px;
         text-transform: uppercase;
         font-size: 16px;
         font-weight: 600;
-        padding: 15px;
-        min-width: 45%;
+        padding: 16px;
+        flex:1;
       }
     }
   }
   #social-icons {
     ul {
       display: flex;
-      margin: 10px;
+      margin: 15px 0;
       li {
-        padding: 10px;
+        padding: 5px;
         a {
+          padding: 14px 18px;
           background: #000;
-          color: #fff;
-          padding: 15px;
           border-radius: 50%;
           font-size: 16px;
+          color: #fff;
         }
       }
     }
