@@ -1,0 +1,21 @@
+{
+  "name": "gatsby-shopify-source",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "gatsby-node-helpers": "^0.3.0",
+    "gatsby-source-filesystem": "^1.5.39",
+    "graphql-request": "^1.8.0",
+    "lodash": "^4.17.10",
+    "p-iteration": "^1.1.7",
+    "prettyjson": "^1.2.1"
+  }
+}
