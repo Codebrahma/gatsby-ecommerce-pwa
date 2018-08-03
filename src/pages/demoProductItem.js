@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
-import { products } from "../utils/dummyData.js";
 import _ from "lodash"
 import Link from 'gatsby-link'
 import './demo-products.scss';
@@ -29,12 +28,13 @@ class DemoProductItem extends Component {
   }
 
   addItemToCart = () => {
+    const { productId } = this.props.pathContext;
     let currentCartItems = localStorage.getItem('demo-cart') ? JSON.parse(localStorage.getItem('demo-cart')) : {};
-    if (currentCartItems[this.props.pathContext.productId]) {
-      currentCartItems[this.props.pathContext.productId].purchaseQuantity += this.state.itemCount
+    if (currentCartItems[productId]) {
+      currentCartItems[productId].purchaseQuantity += this.state.itemCount
     } else {
-      currentCartItems[this.props.pathContext.productId] = this.props.product;
-      currentCartItems[this.props.pathContext.productId].purchaseQuantity = this.state.itemCount
+      currentCartItems[productId] = this.props.product;
+      currentCartItems[productId].purchaseQuantity = this.state.itemCount
     }
     localStorage.setItem('demo-cart', JSON.stringify(currentCartItems));
     console.log(JSON.parse(localStorage.getItem('demo-cart')))
@@ -43,17 +43,18 @@ class DemoProductItem extends Component {
   renderVariants = () => {
     let options = {};
     _.map(this.props.pathContext.variants, (variant) => {
-      _.map(variant.selectedOptions, (item) => {
-        if(options[item.name]) {
-          options[item.name].push(item.value)
+      _.map(variant.selectedOptions, item => {
+        let { name, value } = item;
+        if(options[name]) {
+          options[name].push(value)
         } else {
-          options[item.name] = [];
-          options[item.name].push(item.value)
+          options[name] = [];
+          options[name].push(value)
         }
       })
     })
     return Object.keys(options).map(
-      (key) => <DemoProductVariants key={key} variantItems={_.uniq(options[key])} >
+      key => <DemoProductVariants key={key} variantItems={_.uniq(options[key])} >
         <DemoVariantType variantType={key} />
       </DemoProductVariants>
     )
