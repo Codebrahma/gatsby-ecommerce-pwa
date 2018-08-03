@@ -7,14 +7,14 @@ import _ from 'lodash';
 const DemoProductVariants = ({ children, variantItems }) => {
   return (
     <div className="demo-product-variants" >
-      { children }
+      {children}
       <ul>
         {
           _.map(variantItems, (option, index) => (
-              <div key={`${option}-${index}`}>
-                <DemoVariantItem variantItem={option} />
-              </div>
-            ))
+            <div key={`${option}-${index}`}>
+              <DemoVariantItem variantItem={option} />
+            </div>
+          ))
         }
       </ul>
     </div>

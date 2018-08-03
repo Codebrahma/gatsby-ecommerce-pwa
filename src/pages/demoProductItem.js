@@ -43,20 +43,20 @@ class DemoProductItem extends Component {
   renderVariants = () => {
     let options = {};
     _.map(this.props.pathContext.variants, (variant) => {
-      _.map( variant.selectedOptions, (item) => {
+      _.map(variant.selectedOptions, (item) => {
         if(options[item.name]) {
           options[item.name].push(item.value)
         } else {
           options[item.name] = [];
           options[item.name].push(item.value)
         }
-      } )
+      })
     })
     return Object.keys(options).map(
-          (key) => <DemoProductVariants key={key} variantItems={_.uniq(options[key])} >
-                      <DemoVariantType variantType={key} />
-                    </DemoProductVariants>
-                )
+      (key) => <DemoProductVariants key={key} variantItems={_.uniq(options[key])} >
+        <DemoVariantType variantType={key} />
+      </DemoProductVariants>
+    )
   }
 
   renderProductActions = () => (
@@ -128,7 +128,10 @@ class DemoProductItem extends Component {
       <div className="container">
         <div className="demo-product-item row">
           <div className="demo-product-item-image col-md-6 col-sm-12">
-            <img src={this.props.pathContext.image} alt={this.props.pathContext.productName} />
+            <img 
+              src={ (this.props.pathContext.images.length !== 0 && this.props.pathContext.images[0].originalSrc) || ''} 
+              alt={this.props.pathContext.productName} 
+            />
           </div>
           <div className="demo-product-item-details col-md-6 col-sm-12" >
             <h1 id="demo-product-title">{this.props.pathContext.productName}</h1>
