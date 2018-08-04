@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import DemoProductList from "../components/DemoProductList";
-import '../components/demo-products-list.scss';
-import DemoProductListHeader from "../components/DemoProductListHeader";
 
-class WeightLoss extends Component {
+
+class Dinner extends Component {
 
   render() {
     const { data } = this.props;
-    let filteredProducts = data.allShopifyProduct.edges.filter(data => data.node.productType === 'Diet plan');
+    let filteredProducts = data.allShopifyProduct.edges.filter(data => data.node.productType === 'Dinner');
     const products = filteredProducts.map((data) => ({
       productName: data.node.title,
       price: data.node.priceRange.minVariantPrice.amount,
@@ -18,10 +17,9 @@ class WeightLoss extends Component {
       <div className="container">
         <div className="row">
           <div className="demo-product-collection">
-            <DemoProductListHeader 
-                productCategory="weight loss" 
-                categoryDescription="something" 
-            />
+            <div className="demo-product-collection-header">
+              <h3>Dinner</h3>
+            </div>
             <DemoProductList products={products} />
           </div>
         </div>
@@ -30,10 +28,10 @@ class WeightLoss extends Component {
   }
 }
 
-export default WeightLoss
+export default Dinner
 
 export const query = graphql`
-query weightLossProductQuery {
+query dinnerProductQuery {
   allShopifyProduct {
     edges {
       node {

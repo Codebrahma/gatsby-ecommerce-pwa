@@ -21,7 +21,6 @@
             }
             id
             productType
-            productType
             description
             title
             priceRange{
@@ -64,3 +63,54 @@
      reject()
    })
  };
+
+ exports.createPages = ({ graphql, boundActionCreators }) => {
+  const { createPage } = boundActionCreators
+  return new Promise((resolve, reject) => {
+    graphql(`
+    {
+     allShopifyProduct {
+       edges {
+         node {
+           images {
+             originalSrc
+           }
+           id
+           productType
+           description
+           title
+           priceRange{
+             minVariantPrice {
+               amount
+               currencyCode
+             }
+           }
+           variants {
+             id
+             selectedOptions {
+               name
+               value
+             }
+           }
+         }
+       }
+     }
+   }
+   `).then(result => {
+    result.data.allShopifyProduct.edges.forEach(({ node }) => {
+      createPage({
+        path: `category/${node.productType.toLowerCase().replace(' ','-')}`,
+        component: path.resolve(`./src/pages/DemoProductCategory.js`),
+        context: {
+          productId: node.id,
+          productType: node.productType
+        },
+      })
+    })
+    resolve()
+    })
+  }).catch(error => {
+    console.log(error)
+    reject()
+  })
+};
