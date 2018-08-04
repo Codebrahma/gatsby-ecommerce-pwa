@@ -14,7 +14,18 @@ const DemoNavbar = (props) => (
             <div id="pt_custommenu" className="pt_custommenu">
                 <div id="pt_menu10" className="pt_menu nav-1 nav-left-items">
                     <div className="parentMenu">
-                        <Link id="link-style" exact to="/interiors" activeClassName="menu-active">Interest</Link>
+                        <div id="interest-dropdown" >Interest
+                        <div className="dropdown-menu">
+                            <Link className="dropdown-item" to='/weightloss'>Weight Loss</Link>
+                            <Link className="dropdown-item" to="/breakfast">Breakfast</Link>
+                            <Link className="dropdown-item" to="/lunch">Lunch</Link>
+                            <Link className="dropdown-item" to="/dinner">Dinner</Link>
+                            <Link className="dropdown-item" to="/skinandhair">Skin and Hair</Link>
+                            <Link className="dropdown-item" to="/skincare">Skin Care</Link>
+                            <Link className="dropdown-item" to="/smoothies">Smoothies</Link>
+                            <Link className="dropdown-item" to="/other">Other</Link>
+                        </div>
+                        </div>
                     </div>
                 </div>
                 <div id="pt_menu10" className="pt_menu nav-1 nav-left-items">
