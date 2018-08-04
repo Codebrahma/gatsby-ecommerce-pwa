@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import DemoProductList from "../components/DemoProductList";
 import '../components/demo-products-list.scss';
+import DemoProductListHeader from "../components/DemoProductListHeader";
 
 class WeightLoss extends Component {
 
@@ -17,12 +18,10 @@ class WeightLoss extends Component {
       <div className="container">
         <div className="row">
           <div className="demo-product-collection">
-            <div className="demo-product-collection-header">
-              <h3>the weight loss collection</h3>
-              <p>
-                Unlock your optimal weight as well as new energy and vitality through Grow Fit's scientifically-developed programs. Choose from expert plans, health food essentials and daily health meals to tailor the plan that's right for you. Grow Fit has helped thousands of people discover their best selves. The secret lies in our focus on science and results, as endorsed by some of India's top medical professionals. Start now, and see a new you in just a few days.
-              </p>
-            </div>
+            <DemoProductListHeader 
+                productCategory="weight loss" 
+                categoryDescription="something" 
+            />
             <DemoProductList products={products} />
           </div>
         </div>
