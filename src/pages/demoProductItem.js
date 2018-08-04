@@ -1,12 +1,11 @@
-import React, {Component} from "react";
-import PropTypes from 'prop-types';
-import { products } from "../utils/dummyData.js";
+import React, { Component } from "react";
 import _ from "lodash"
 import Link from 'gatsby-link'
 import './demo-products.scss';
 import DemoProductFaqs from "../components/DemoProductFaqs.js";
 import DemoProductSubscription from "../components/DemoProductSubscription.js";
 import DemoProductVariants from "../components/DemoProductVariants.js";
+import DemoVariantType from "../components/DemoVariantType.js";
 
 
 
@@ -20,7 +19,7 @@ class DemoProductItem extends Component {
   }
 
   changeItemCount = (change) => {
-    if(!(this.state.itemCount === 0 && change < 0)) {
+    if (!(this.state.itemCount === 0 && change < 0)) {
       this.setState(prevState => ({
         itemCount: prevState.itemCount + change
       }))
@@ -28,36 +27,51 @@ class DemoProductItem extends Component {
   }
 
   addItemToCart = () => {
+    const { productId } = this.props.pathContext;
     let currentCartItems = localStorage.getItem('demo-cart') ? JSON.parse(localStorage.getItem('demo-cart')) : {};
-    if(currentCartItems[this.props.product.id]) {
-      currentCartItems[this.props.product.id].purchaseQuantity += this.state.itemCount
+    if (currentCartItems[productId]) {
+      currentCartItems[productId].purchaseQuantity += this.state.itemCount
     } else {
-      currentCartItems[this.props.product.id] = this.props.product;
-      currentCartItems[this.props.product.id].purchaseQuantity = this.state.itemCount
+      currentCartItems[productId] = this.props.product;
+      currentCartItems[productId].purchaseQuantity = this.state.itemCount
     }
-    localStorage.setItem('demo-cart',JSON.stringify(currentCartItems));
+    localStorage.setItem('demo-cart', JSON.stringify(currentCartItems));
     console.log(JSON.parse(localStorage.getItem('demo-cart')))
   }
-  
-  renderVariants = () => (
-       _.map(Object.keys(this.props.product.variants), (variant,index) => (
-        <DemoProductVariants key={index} variantType={variant} variantItems={this.props.product.variants[variant]} />
-      ))
+
+  renderVariants = () => {
+    let options = {};
+    _.map(this.props.pathContext.variants, (variant) => {
+      _.map(variant.selectedOptions, item => {
+        let { name, value } = item;
+        if(options[name]) {
+          options[name].push(value)
+        } else {
+          options[name] = [];
+          options[name].push(value)
+        }
+      })
+    })
+    return Object.keys(options).map(
+      key => <DemoProductVariants key={key} variantItems={_.uniq(options[key])} >
+        <DemoVariantType variantType={key} />
+      </DemoProductVariants>
     )
+  }
 
   renderProductActions = () => (
     <div className="demo-product-actions">
-     <div id="action-input">
-       <div id="quantity">
-         <button onClick={() => this.changeItemCount(-7)} className="btn btn-light minus-btn">
-           <i className="fas fa-minus"></i>
-         </button>
-         <input type="text" disabled min="0" value={this.state.itemCount}/>
-         <button onClick={() => this.changeItemCount(7)} className="btn btn-light plus-btn">
-           <i className="fas fa-plus" ></i>
-         </button>
-       </div>      
-       <span id="price">Rs. {(this.props.product.price / 7.0) * ((this.state.itemCount === 0) ? 7 : this.state.itemCount)}</span>
+      <div id="action-input">
+        <div id="quantity">
+          <button onClick={() => this.changeItemCount(-7)} className="btn btn-light minus-btn">
+            <i className="fas fa-minus"></i>
+          </button>
+          <input type="text" disabled min="0" value={this.state.itemCount} />
+          <button onClick={() => this.changeItemCount(7)} className="btn btn-light plus-btn">
+            <i className="fas fa-plus" ></i>
+          </button>
+        </div>
+        <span id="price">Rs. {(this.props.pathContext.productPrice / 7.0) * ((this.state.itemCount === 0) ? 7 : this.state.itemCount)}</span>
       </div>
       <div id="action-button">
         <button className="btn btn-dark" onClick={this.addItemToCart} disabled={!this.state.itemCount}>add to cart</button>
@@ -87,9 +101,9 @@ class DemoProductItem extends Component {
     <div className="demo-product-tags">
       <ul>
         {
-          _.map(this.props.product.tags, (tag,index) => (
+          _.map(this.props.pathContext.tags, (tag, index) => (
             <li key={index} >
-              <Link to="/demoProductItem" activeClassName="active-item">{tag}</Link>  
+              <Link to="/demoProductItem" activeClassName="active-item">{tag}</Link>
             </li>
           ))
         }
@@ -99,25 +113,28 @@ class DemoProductItem extends Component {
 
   //Description will get replaced by props
   renderDescription = () => (
-    <div className="demo-product-description"> 
+    <div className="demo-product-description">
       <div className="title">
         <span>Description</span>
       </div>
       <div className="demo-product-details">
-        {this.props.product.description}
+        {this.props.pathContext.description}
       </div>
     </div>
   )
-    
+
   render() {
     return (
       <div className="container">
         <div className="demo-product-item row">
           <div className="demo-product-item-image col-md-6 col-sm-12">
-            <img src={this.props.product.image} alt={this.props.product.title} />
+            <img 
+              src={ (this.props.pathContext.images && this.props.pathContext.images.length !== 0 && this.props.pathContext.images[0].originalSrc) || require('../utils/images/default.jpeg')} 
+              alt={this.props.pathContext.productName} 
+            />
           </div>
           <div className="demo-product-item-details col-md-6 col-sm-12" >
-            <h1 id="demo-product-title">{this.props.product.title}</h1>
+            <h1 id="demo-product-title">{this.props.pathContext.productName}</h1>
             {this.renderVariants()}
             {this.renderProductActions()}
             {this.renderSocialIcons()}
@@ -126,7 +143,7 @@ class DemoProductItem extends Component {
               Read the science behind the program
             </span>
             {this.renderTags()}
-          </div>  
+          </div>
         </div>
         <div className="container">
           {this.renderDescription()}
@@ -135,19 +152,11 @@ class DemoProductItem extends Component {
           <DemoProductSubscription />
         </div>
         <div className="container">
-          <DemoProductFaqs faqs={this.props.product.faqs} />
+          <DemoProductFaqs faqs={this.props.pathContext.faqs} />
         </div>
       </div>
     )
   }
-}
-
-DemoProductItem.propTypes = {
-  product: PropTypes.object.isRequired,
-}
-
-DemoProductItem.defaultProps = {
-  product: products[1]
 }
 
 export default DemoProductItem

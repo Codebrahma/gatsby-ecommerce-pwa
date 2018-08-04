@@ -45,14 +45,15 @@
      result.data.allShopifyProduct.edges.forEach(({ node }) => {
        createPage({
          path: `product/${node.id}`,
-         component: path.resolve(`./src/pages/productItem.js`),
+         component: path.resolve(`./src/pages/demoProductItem.js`),
          context: {
            productId: node.id,
            productName: node.title,
            images: node.images,
            tags: node.tags,
            productPrice: node.priceRange.minVariantPrice.amount,
-           variants: node.variants
+           variants: node.variants,
+           description: node.description
          },
        })
      })
