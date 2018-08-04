@@ -1,5 +1,6 @@
 const { pipe } = require('lodash/fp');
-const chalk = require('chalk');
+const chalklib = require('chalk');
+const chalk = chalklib.default;
 const { forEach } = require('p-iteration');
 const { createClient, printGraphQLError, queryAll, queryOnce } = require('./lib');
 const {
