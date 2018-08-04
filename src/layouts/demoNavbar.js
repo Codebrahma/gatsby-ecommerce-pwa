@@ -16,14 +16,14 @@ const DemoNavbar = (props) => (
                     <div className="parentMenu">
                         <div id="interest-dropdown" >Interest
                         <div className="dropdown-menu">
-                            <Link className="dropdown-item" to='/weightloss'>Weight Loss</Link>
-                            <Link className="dropdown-item" to="/breakfast">Breakfast</Link>
-                            <Link className="dropdown-item" to="/lunch">Lunch</Link>
-                            <Link className="dropdown-item" to="/dinner">Dinner</Link>
-                            <Link className="dropdown-item" to="/skinandhair">Skin and Hair</Link>
-                            <Link className="dropdown-item" to="/skincare">Skin Care</Link>
-                            <Link className="dropdown-item" to="/smoothies">Smoothies</Link>
-                            <Link className="dropdown-item" to="/other">Other</Link>
+                            <Link className="dropdown-item" to='/category/diet-plan'>Weight Loss</Link>
+                            <Link className="dropdown-item" to="/category/breakfast">Breakfast</Link>
+                            <Link className="dropdown-item" to="/category/lunch">Lunch</Link>
+                            <Link className="dropdown-item" to="/category/dinner">Dinner</Link>
+                            <Link className="dropdown-item" to="/category/skin-and-hair-plan">Skin and Hair</Link>
+                            <Link className="dropdown-item" to="/category/skin-care-plan">Skin Care</Link>
+                            <Link className="dropdown-item" to="/category/smoothie">Smoothies</Link>
+                            <Link className="dropdown-item" to="/category/others">Other</Link>
                         </div>
                         </div>
                     </div>
