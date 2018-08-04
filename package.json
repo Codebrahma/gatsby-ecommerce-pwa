@@ -26,7 +26,13 @@
     "react-spinkit": "^3.0.0",
     "react-stripe-checkout": "^2.6.3",
     "reactstrap": "^6.3.0",
-    "shopify-buy": "^1.6.0"
+    "shopify-buy": "^1.6.0",
+    "chalk": "^2.4.1",
+    "gatsby-node-helpers": "^0.3.0",
+    "gatsby-source-filesystem": "^1.5.39",
+    "graphql-request": "^1.8.0",
+    "p-iteration": "^1.1.7",
+    "prettyjson": "^1.2.1"
   },
   "keywords": [
     "gatsby"
