@@ -1,0 +1,92 @@
+#brand-logo {
+    margin: 0.5vh;
+    width: 17%;
+    float: left;
+}
+
+#link-style {
+    text-transform: uppercase;
+    font-size: 0.7em !important;
+    padding: 10;
+    margin-left: 0;
+    &:hover {
+        background-color: transparent !important;
+        color: rgb(245, 124, 0) !important;
+    }
+}
+
+#link-style-right {
+    text-transform: capitalize !important;
+    font-size: 0.9em !important;
+    padding-left: 2px;
+    padding-right: 2px;
+    #menu-icon {
+        font-size: 1em;
+        display: block;
+        &:before {
+            content: '\f009',
+        }
+    }
+    #search-icon {
+        font-size: 1em;
+        display: block;
+        &:before {
+            content: '\F002',
+        }
+    }
+    &:hover {
+        background-color: transparent !important;
+        color: rgb(245, 124, 0) !important;
+    }
+}
+
+.demo-container {
+    min-width: 100%;
+}
+
+.demo-header {
+    box-shadow: 0px 1px 5px 0 rgba(0, 0, 0, 0.2);
+    margin-bottom: 2vh;
+}
+
+#side-bar {
+    min-width: 30vw;
+    top: 0;
+    left: -40vw;
+    bottom: 0;
+    position: fixed;
+    transition: 0.5s ease-in;
+    z-index: 2000;
+    overflow: hidden;
+    div {
+        padding: 7% 5%;
+        text-transform: uppercase;
+        font-size: 0.8em;
+        cursor: default;
+        a {
+            cursor: pointer;
+            color: black;
+            white-space: nowrap;
+            &:hover {
+                color: rgb(245, 124, 0) !important;
+            }
+        }
+    }
+    .item-active {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+}
+
+.right-menu {
+    float: right;
+    margin: 0;
+}
+
+.icon-mobile {
+    font-size: 1.2em;
+    color: black !important;
+    margin: 0 5%;
+    &:hover {
+        color: rgb(245, 124, 0) !important;
+    }
+}

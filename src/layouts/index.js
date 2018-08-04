@@ -5,6 +5,7 @@ import Helmet from 'react-helmet';
 import './index.scss'
 import '../components/css/custom.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import DemoHeader from './demoHeader';
 
 
 class Layout extends React.Component {
@@ -50,7 +51,7 @@ class Layout extends React.Component {
     return (
       <div>
         <Helmet defaultTitle="Progressive Web app" />
-        <Header 
+        <DemoHeader 
           headPath = {location.pathname}
           cartLength = {this.state.cartLength}
         />
