@@ -2,7 +2,6 @@ import React from 'react'
 import Link from 'gatsby-link'
 import Navbar from './Navbar'
 import NavbarMobile from './NavbarMobile'
-import logo from '../components/img/nevara-responsive-prestashop-theme-logo-1525346533.jpg'
 
 const Header = (props) => {
   return (

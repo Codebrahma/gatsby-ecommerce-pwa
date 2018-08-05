@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Link from 'gatsby-link'
 import '../components/css/menuBarStyle.scss'
-import logo from '../components/img/nevara-responsive-prestashop-theme-logo-1525346533.jpg'
+import logo from '../components/img/logo-new.png'
 import DemoMenu from './demoMenu.js';
 
 class DemoNavbarMobile extends Component {
