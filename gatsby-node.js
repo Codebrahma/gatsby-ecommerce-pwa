@@ -6,6 +6,7 @@
 
 // You can delete this file if you're not using it
 const path = require('path');
+const _ = require('lodash');
 
 //  exports.sourceNodes = async ({ boundActionCreators }) => {....}
 exports.createPages = ({ graphql, boundActionCreators }) => {
@@ -42,7 +43,9 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
       }
     }
     `).then(result => {
-        result.data.allShopifyProduct.edges.forEach(({ node }) => {
+        let categoryToProductsMap = {};
+        result.data.allShopifyProduct.edges.forEach((edge) => {
+          const { node } = edge;
           createPage({
             path: `product/${node.id}`,
             component: path.resolve(`./src/pages/demoProductItem.js`),
@@ -57,15 +60,22 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             },
           })
           let type = node.productType === '' ? 'others' : node.productType;
+          const currentProducts = categoryToProductsMap[type] || []
+          categoryToProductsMap = {
+            ...categoryToProductsMap,
+            [type] : currentProducts.concat(edge),
+          }
+        });
+        _.forEach(categoryToProductsMap, (value, key) => {
           createPage({
-            path: `category/${type.toLowerCase().split(' ').join('-')}`,
+            path: `category/${key.toLowerCase().split(' ').join('-')}`,
             component: path.resolve(`./src/pages/demoCategories.js`),
             context: {
-              productType: type,
-              products: result.data.allShopifyProduct.edges.filter((edge) => edge.node.productType === node.productType)
+              productType: key,
+              products: value,
             },
           })
-        })
+        });
         resolve()
       })
   }).catch(error => {
