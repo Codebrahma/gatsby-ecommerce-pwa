@@ -30,6 +30,7 @@
         padding-top: 10%;
         padding-bottom: 10%;
         margin-top: -0.5em;
+        overflow-x: hidden;
         .dropdown-item {
             font-size: 0.84em !important;
             height: 2em;
@@ -39,10 +40,6 @@
         }
     }
     &:hover {
-        &>.dropdown-menu {
-            display: block;
-            transition: 2s ease-in;
-        }
         background-color: transparent !important;
         color: rgb(245, 124, 0) !important;
     }
