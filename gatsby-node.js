@@ -61,7 +61,8 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             path: `category/${type.toLowerCase().split(' ').join('-')}`,
             component: path.resolve(`./src/pages/demoCategories.js`),
             context: {
-              productType: node.productType
+              productType: type,
+              products: result.data.allShopifyProduct.edges.filter((edge) => edge.node.productType === node.productType)
             },
           })
         })
