@@ -35,7 +35,7 @@ class DemoNavbarMobile extends Component {
                   <i className="fa fa-shopping-cart icon-mobile"/>
                 </Link>
                 <i className="fa fa-bars icon-mobile" onClick={this.mainMenuClick} />
-                 <DemoMenu headPath={this.props.headPath} />
+                 <DemoMenu headPath={this.props.headPath} toggleSidebar={this.mainMenuClick}/>
               </div>
             </div>
           </div>

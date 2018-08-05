@@ -6,17 +6,15 @@ import _ from 'lodash';
 class DemoCategories extends Component {
 
     render() {
-        const { data, pathContext } = this.props;
-        const products = _.filter(data.allShopifyProduct.edges, ({ node }) => node.productType === pathContext.productType)
-        const type = pathContext.productType === '' ? 'Other' : pathContext.productType.split('-').join(' ');
+        const { pathContext } = this.props;
         return (
             <div className="container">
                 <div className="row">
                     <div className="demo-product-collection">
                         <div className="demo-product-collection-header">
-                            <h3>{`${type} collection`}</h3>
+                            <h3>{`${pathContext.productType} collection`}</h3>
                         </div>
-                        <DemoProductList products={products} />
+                        <DemoProductList products={this.props.pathContext.products} />
                     </div>
                 </div>
             </div>
@@ -25,35 +23,3 @@ class DemoCategories extends Component {
 }
 
 export default DemoCategories
-
-export const query = graphql`
-query categoriesQuery {
-  allShopifyProduct {
-    edges {
-      node {
-        images {
-          originalSrc
-        }
-        id
-        productType
-        productType
-        description
-        title
-        priceRange{
-          minVariantPrice {
-            amount
-            currencyCode
-          }
-        }
-        variants {
-          id
-          selectedOptions {
-            name
-            value
-          }
-        }
-      }
-    }
-  }
-}
-`

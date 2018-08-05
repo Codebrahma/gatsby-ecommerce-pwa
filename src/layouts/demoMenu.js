@@ -15,14 +15,14 @@ const DemoMenu = (props) => {
         <span onClick={toggleInterestsDropdown} className="navbar-toggle-link" to="/interiors">Interest</span>
       </div>
       <div id="interests-dropdown">
-        <Link className="dropdown-item" to='/category/diet-plan'>Weight Loss</Link>
-        <Link className="dropdown-item" to="/category/breakfast">Breakfast</Link>
-        <Link className="dropdown-item" to="/category/lunch">Lunch</Link>
-        <Link className="dropdown-item" to="/category/dinner">Dinner</Link>
-        <Link className="dropdown-item" to="/category/skin-and-hair-plan">Skin and Hair</Link>
-        <Link className="dropdown-item" to="/category/skin-care-plan">Skin Care</Link>
-        <Link className="dropdown-item" to="/category/smoothie">Smoothies</Link>
-        <Link className="dropdown-item" to="/category/others">Other</Link>
+        <Link onClick={props.toggleSidebar} className="dropdown-item" to='/category/diet-plan'>Weight Loss</Link>
+        <Link onClick={props.toggleSidebar} className="dropdown-item" to="/category/breakfast">Breakfast</Link>
+        <Link onClick={props.toggleSidebar} className="dropdown-item" to="/category/lunch">Lunch</Link>
+        <Link onClick={props.toggleSidebar} className="dropdown-item" to="/category/dinner">Dinner</Link>
+        <Link onClick={props.toggleSidebar} className="dropdown-item" to="/category/skin-and-hair-plan">Skin and Hair</Link>
+        <Link onClick={props.toggleSidebar} className="dropdown-item" to="/category/skin-care-plan">Skin Care</Link>
+        <Link onClick={props.toggleSidebar} className="dropdown-item" to="/category/smoothie">Smoothies</Link>
+        <Link onClick={props.toggleSidebar} className="dropdown-item" to="/category/others">Other</Link>
       </div>
       <div className={`col-12 ${activePath("furnitures")}`}>
         <Link to="/furnitures">Collections</Link>
