@@ -7,7 +7,6 @@ class DemoCategories extends Component {
 
     render() {
         const { pathContext } = this.props;
-        console.log(this.props.pathContext.products)
         return (
             <div className="container">
                 <div className="row">
