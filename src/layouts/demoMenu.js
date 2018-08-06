@@ -5,39 +5,32 @@ const DemoMenu = (props) => {
   const activePath = (path) => {
     return (props.headPath === `/${path}`) ? "item-active" : ""
   }
-  function toggleInterestsDropdown() {
-    const displayStatus = document.getElementById('interests-dropdown').style.height;
-    document.getElementById('interests-dropdown').style.height = displayStatus === 'fit-content' ? '0px' : 'fit-content';
-  }
+  
   return (
     <div id="side-bar" className="bg-white">
-      <div className={`col-12 ${activePath("interiors")}`}>
-        <span onClick={toggleInterestsDropdown} className="navbar-toggle-link" to="/interiors">Interest</span>
-      </div>
-      <div id="interests-dropdown">
-        <Link onClick={props.toggleSidebar} className="dropdown-item" to='/category/diet-plan'>Weight Loss</Link>
-        <Link onClick={props.toggleSidebar} className="dropdown-item" to="/category/breakfast">Breakfast</Link>
-        <Link onClick={props.toggleSidebar} className="dropdown-item" to="/category/lunch">Lunch</Link>
-        <Link onClick={props.toggleSidebar} className="dropdown-item" to="/category/dinner">Dinner</Link>
-        <Link onClick={props.toggleSidebar} className="dropdown-item" to="/category/skin-and-hair-plan">Skin and Hair</Link>
-        <Link onClick={props.toggleSidebar} className="dropdown-item" to="/category/skin-care-plan">Skin Care</Link>
-        <Link onClick={props.toggleSidebar} className="dropdown-item" to="/category/smoothie">Smoothies</Link>
-        <Link onClick={props.toggleSidebar} className="dropdown-item" to="/category/others">Other</Link>
-      </div>
       <div className={`col-12 ${activePath("furnitures")}`}>
-        <Link to="/furnitures">Collections</Link>
+        <Link onClick={props.toggleSidebar} to='/category/diet-plan'>Weight Loss</Link>
       </div>
       <div className={`col-12 ${activePath("lighting")}`}>
-        <Link to="/lighting">Meal Programs</Link>
+        <Link onClick={props.toggleSidebar} to="/category/breakfast">Breakfast</Link>
       </div>
       <div className={`col-12 ${activePath("products")}`}>
-        <Link to="/products">Keto products</Link>
+        <Link onClick={props.toggleSidebar} to="/category/lunch">Lunch</Link>
       </div>
       <div className={`col-12 ${activePath("blog")}`}>
-        <Link to="/blog">blog</Link>
+        <Link onClick={props.toggleSidebar} to="/category/dinner">Dinner</Link>
       </div>
       <div className={`col-12 ${activePath("growtv")}`}>
-        <Link to="/growtv">grow tv</Link>
+        <Link onClick={props.toggleSidebar} to="/category/skin-and-hair-plan">Skin and Hair</Link>
+      </div>
+      <div className={`col-12 ${activePath("furnitures")}`}>
+        <Link onClick={props.toggleSidebar} to="/category/skin-care-plan">Skin Care</Link>
+      </div>
+      <div className={`col-12 ${activePath("furnitures")}`}>
+        <Link onClick={props.toggleSidebar} to="/category/smoothie">Smoothies</Link>
+      </div>
+      <div className={`col-12 ${activePath("furnitures")}`}>
+        <Link onClick={props.toggleSidebar} to="/category/others">Other</Link>
       </div>
     </div>
   )

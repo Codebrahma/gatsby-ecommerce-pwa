@@ -24,43 +24,39 @@ const DemoNavbar = (props) => {
                 <div id="pt_custommenu" className="pt_custommenu">
                     <div id="pt_menu10" className="pt_menu nav-1 nav-left-items">
                         <div className="parentMenu">
-                            <div id="interest-dropdown" onMouseEnter={showDropdown} onMouseLeave={toggleDropdown}>Interest
+                            <Link id="link-style" exact to="/category/diet-plan" activeClassName="menu-active">Weight Loss</Link>
+                        </div>
+                    </div>
+                    <div id="pt_menu10" className="pt_menu nav-1 nav-left-items">
+                        <div className="parentMenu">
+                            <Link id="link-style" activeClassName="menu-active" exact to="/category/breakfast">Breakfast</Link>
+                        </div>
+                    </div>
+                    <div id="pt_menu10" className="pt_menu nav-1 nav-left-items">
+                        <div className="parentMenu">
+                            <Link id="link-style" activeClassName="menu-active" exact to="/category/lunch">Lunch</Link>
+                        </div>
+                    </div>
+                    <div id="pt_menu10" className="pt_menu nav-1 nav-left-items">
+                        <div className="parentMenu">
+                            <Link id="link-style" activeClassName="menu-active" exact to="/category/dinner">Dinner</Link>
+                        </div>
+                    </div>
+                    <div id="pt_menu10" className="pt_menu nav-1 nav-left-items">
+                        <div className="parentMenu">
+                            <Link id="link-style" activeClassName="menu-active" exact to="/category/skin-and-hair-plan">Skin and Hair</Link>
+                        </div>
+                    </div>
+                    <div id="pt_menu10" className="pt_menu nav-1 nav-left-items">
+                        <div className="parentMenu">
+                            <div id="interest-dropdown" onMouseEnter={showDropdown} onMouseLeave={toggleDropdown}>more
+                            <i className="fa fa-angle-double-down"></i>
                                 <div className="dropdown-menu">
-                                    <Link onClick={toggleDropdown} className="dropdown-item" to='/category/diet-plan'>Weight Loss</Link>
-                                    <Link onClick={toggleDropdown} className="dropdown-item" to="/category/breakfast">Breakfast</Link>
-                                    <Link onClick={toggleDropdown} className="dropdown-item" to="/category/lunch">Lunch</Link>
-                                    <Link onClick={toggleDropdown} className="dropdown-item" to="/category/dinner">Dinner</Link>
-                                    <Link onClick={toggleDropdown} className="dropdown-item" to="/category/skin-and-hair-plan">Skin and Hair</Link>
                                     <Link onClick={toggleDropdown} className="dropdown-item" to="/category/skin-care-plan">Skin Care</Link>
                                     <Link onClick={toggleDropdown} className="dropdown-item" to="/category/smoothie">Smoothies</Link>
                                     <Link onClick={toggleDropdown} className="dropdown-item" to="/category/others">Other</Link>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div id="pt_menu10" className="pt_menu nav-1 nav-left-items">
-                        <div className="parentMenu">
-                            <Link id="link-style" exact to="/furnitures" activeClassName="menu-active">Collections</Link>
-                        </div>
-                    </div>
-                    <div id="pt_menu10" className="pt_menu nav-1 nav-left-items">
-                        <div className="parentMenu">
-                            <Link id="link-style" exact to="/lighting" activeClassName="menu-active">Meal Programs</Link>
-                        </div>
-                    </div>
-                    <div id="pt_menu10" className="pt_menu nav-1 nav-left-items">
-                        <div className="parentMenu">
-                            <Link id="link-style" exact to="/products" activeClassName="menu-active">Keto products</Link>
-                        </div>
-                    </div>
-                    <div id="pt_menu10" className="pt_menu nav-1 nav-left-items">
-                        <div className="parentMenu">
-                            <Link id="link-style" exact to="/blog" activeClassName="menu-active">blog</Link>
-                        </div>
-                    </div>
-                    <div id="pt_menu10" className="pt_menu nav-1 nav-left-items">
-                        <div className="parentMenu">
-                            <Link id="link-style" exact to="/growtv" activeClassName="menu-active">grow tv</Link>
                         </div>
                     </div>
                     <div style={{ display: 'inline-block' }} >
