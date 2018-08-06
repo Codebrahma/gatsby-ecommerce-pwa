@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Link from 'gatsby-link'
 import '../components/css/menuBarStyle.scss'
-import logo from '../components/img/nevara-responsive-prestashop-theme-logo-1525346533.jpg'
+import logo from '../components/img/logo-new.png'
 import DemoMenu from './demoMenu.js';
 
 class DemoNavbarMobile extends Component {
@@ -35,7 +35,7 @@ class DemoNavbarMobile extends Component {
                   <i className="fa fa-shopping-cart icon-mobile"/>
                 </Link>
                 <i className="fa fa-bars icon-mobile" onClick={this.mainMenuClick} />
-                 <DemoMenu headPath={this.props.headPath} />
+                 <DemoMenu headPath={this.props.headPath} toggleSidebar={this.mainMenuClick}/>
               </div>
             </div>
           </div>
