@@ -10,7 +10,7 @@ const NavLink = (props) => (
 
 const DemoMenu = (props) => (
     <div id="side-bar" className="bg-white">
-        <NavLink linkTo="diet-plan" title="weight loss" {...props}/>
+        <NavLink linkTo="diet-plan" title="diet plan" {...props}/>
         <NavLink linkTo="lunch" title="lunch" {...props}/>
         <NavLink linkTo="dinner" title="dinner" {...props}/>
         <NavLink linkTo="skin-and-hair-plan" title="skin and hair" {...props}/>

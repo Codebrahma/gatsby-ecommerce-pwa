@@ -1,158 +1,158 @@
 #brand-logo {
-    margin: 0.5vh;
-    min-width: 11em;
-    width: auto;
-    float: left;
+  margin: 0.5vh;
+  min-width: 11em;
+  width: auto;
+  float: left;
 }
 
 #link-style {
-    text-transform: uppercase;
-    font-size: 0.7em !important;
-    padding: 10;
-    margin-left: 0;
-    &:hover {
-        background-color: transparent !important;
-        color: rgb(245, 124, 0) !important;
-    }
+  text-transform: uppercase;
+  font-size: 0.7em !important;
+  padding: 10;
+  margin-left: 0;
+  &:hover {
+    background-color: transparent !important;
+    color: rgb(245, 124, 0) !important;
+  }
 }
 
 #interest-dropdown {
-    text-transform: uppercase !important;
-    font-size: 0.7em !important;
-    margin-left: 0;
-    display: block;
-    line-height: 50px;
-    padding: 0px 25px;
-    font-weight: 400;
-    position: relative;
-    letter-spacing: 0.05em;
-    cursor: pointer;
-    i {
-        margin-left: 0.5em;
-        color: rgba(0, 0, 0, 0.7);
-    }
-    .dropdown-menu {
-        padding-top: 10%;
-        padding-bottom: 10%;
-        margin-top: -0.2em;
-        overflow-x: hidden;
-        border-radius: 0;
-        .dropdown-item {
-            font-size: 0.7em !important;
-            height: 2em;
-            padding-top: 2%;
-            padding-bottom: 2%;
-            line-height: initial;
-            text-transform: uppercase;
-            &:hover {
-                background-color: transparent !important;
-                color: rgb(245, 124, 0) !important;
-            }
-        }
-    }
-    &:hover {
-        i {
-            color: rgb(245, 124, 0) !important;    
-        }
+  text-transform: uppercase !important;
+  font-size: 0.7em !important;
+  margin-left: 0;
+  display: block;
+  line-height: 50px;
+  padding: 0px 25px;
+  font-weight: 400;
+  position: relative;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  i {
+    margin-left: 0.5em;
+    color: rgba(0, 0, 0, 0.7);
+  }
+  .dropdown-menu {
+    padding-top: 10%;
+    padding-bottom: 10%;
+    margin-top: -0.2em;
+    overflow-x: hidden;
+    border-radius: 0;
+    .dropdown-item {
+      font-size: 0.7em !important;
+      height: 2em;
+      padding-top: 2%;
+      padding-bottom: 2%;
+      line-height: initial;
+      text-transform: uppercase;
+      &:hover {
         background-color: transparent !important;
         color: rgb(245, 124, 0) !important;
+      }
     }
+  }
+  &:hover {
+    i {
+      color: rgb(245, 124, 0) !important;
+    }
+    background-color: transparent !important;
+    color: rgb(245, 124, 0) !important;
+  }
 }
 
 #link-style-right {
-    text-transform: capitalize !important;
-    font-size: 0.9em !important;
-    padding-left: 2px;
-    padding-right: 2px;
-    #menu-icon {
-        font-size: 1em;
-        display: block;
-        &:before {
-            content: '\f009',
-        }
+  text-transform: capitalize !important;
+  font-size: 0.9em !important;
+  padding-left: 2px;
+  padding-right: 2px;
+  #menu-icon {
+    font-size: 1em;
+    display: block;
+    &:before {
+      content: '\f009',
     }
-    #search-icon {
-        font-size: 1em;
-        display: block;
-        &:before {
-            content: '\F002',
-        }
+  }
+  #search-icon {
+    font-size: 1em;
+    display: block;
+    &:before {
+      content: '\F002',
     }
-    &:hover {
-        background-color: transparent !important;
-        color: rgb(245, 124, 0) !important;
-    }
+  }
+  &:hover {
+    background-color: transparent !important;
+    color: rgb(245, 124, 0) !important;
+  }
 }
 
 .demo-container {
-    min-width: 100%;
+  min-width: 75%;
 }
 
 .demo-header {
-    box-shadow: 0px 1px 5px 0 rgba(0, 0, 0, 0.2);
-    margin-bottom: 2vh;
+  box-shadow: 0px 1px 5px 0 rgba(0, 0, 0, 0.2);
+  margin-bottom: 2vh;
 }
 
 #side-bar {
-    min-width: 30vw;
-    top: 0;
-    left: -40vw;
-    bottom: 0;
-    position: fixed;
-    transition: 0.5s ease-in;
-    z-index: 2000;
+  min-width: 30vw;
+  top: 0;
+  left: -40vw;
+  bottom: 0;
+  position: fixed;
+  transition: 0.5s ease-in;
+  z-index: 2000;
+  overflow: hidden;
+  #interests-dropdown {
+    background-color: rgba(0, 0, 0, 0.05);
+    height: 0px;
     overflow: hidden;
-    #interests-dropdown {
-        background-color: rgba(0, 0, 0, 0.05);
-        height: 0px;
-        overflow: hidden;
-        padding: 0;
-        a {
-            &:first-child {
-                margin-top: 5%
-            }
-            &:last-child {
-                margin-bottom: 5%
-            }
-        }
+    padding: 0;
+    a {
+      &:first-child {
+        margin-top: 5%
+      }
+      &:last-child {
+        margin-bottom: 5%
+      }
     }
-    div {
-        padding: 7% 5%;
-        text-transform: uppercase;
-        font-size: 0.8em;
-        cursor: default;
-        .navbar-toggle-link {
-            cursor: pointer;
-            color: black;
-            white-space: nowrap;
-            &:hover {
-                color: rgb(245, 124, 0) !important;
-            }
-        }
-        a {
-            cursor: pointer;
-            color: black;
-            white-space: nowrap;
-            &:hover {
-                color: rgb(245, 124, 0) !important;
-            }
-        }
+  }
+  div {
+    padding: 7% 5%;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    cursor: default;
+    .navbar-toggle-link {
+      cursor: pointer;
+      color: black;
+      white-space: nowrap;
+      &:hover {
+        color: rgb(245, 124, 0) !important;
+      }
     }
-    .item-active {
-        background-color: rgba(0, 0, 0, 0.05);
+    a {
+      cursor: pointer;
+      color: black;
+      white-space: nowrap;
+      &:hover {
+        color: rgb(245, 124, 0) !important;
+      }
     }
+  }
+  .item-active {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
 }
 
 .right-menu {
-    float: right;
-    margin: 0;
+  float: right;
+  margin: 0;
 }
 
 .icon-mobile {
-    font-size: 1.2em;
-    color: black !important;
-    margin: 0 5%;
-    &:hover {
-        color: rgb(245, 124, 0) !important;
-    }
+  font-size: 1.2em;
+  color: black !important;
+  margin: 0 5%;
+  &:hover {
+    color: rgb(245, 124, 0) !important;
+  }
 }
