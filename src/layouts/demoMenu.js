@@ -12,7 +12,7 @@ const DemoMenu = (props) => {
   return (
     <div id="side-bar" className="bg-white">
       <div className={`col-12 ${activePath("interiors")}`}>
-        <span onClick={toggleInterestsDropdown} className="navbar-toggle-link" to="/interiors">Interest</span>
+        <span onClick={toggleInterestsDropdown} className="navbar-toggle-link">Interest</span>
       </div>
       <div id="interests-dropdown">
         <Link onClick={props.toggleSidebar} className="dropdown-item" to='/category/diet-plan'>Weight Loss</Link>

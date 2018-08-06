@@ -1,0 +1,25 @@
+.demo-steps {
+  padding: 40px 0;
+  .demo-each-step {
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: pointer;
+    img {
+      height: 70px;
+      width: 70px;
+      margin: 10px 0 20px 0;
+    }
+    span {
+      text-transform: uppercase;
+      color: #222;
+      margin-bottom: 15px;
+    }
+    p {
+      color: #444;
+      text-align: justify;
+    }
+  }
+}

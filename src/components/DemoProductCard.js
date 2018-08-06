@@ -9,7 +9,7 @@ const DemoProductCard = props => (
         <img src={props.productImage} alt={props.productName} />
         <div className="demo-product-card-details">
           <p id="demo-product-title">{props.productName}</p>
-          <p>couple of lines description</p>
+          <p>{props.description.slice(0,25)}</p>
         </div>
       </Link>
       <div className="demo-product-card-footer">
