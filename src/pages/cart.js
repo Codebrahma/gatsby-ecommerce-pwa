@@ -2,7 +2,7 @@ import React from 'react'
 import Spinner from 'react-spinkit';
 import ProductList from '../components/presentational/products/ProductList'
 import CartContainer from '../components/presentational/CartContainer'
-import { getCart, removeFromCart, updateCart  } from '../utils/shopifyUtils';
+import { getCart, removeFromCart, updateCart  } from '../assets/shopifyUtils';
 import '../components/css/cartStyle.scss'
 
 export default class Cart extends React.Component {

@@ -68,37 +68,37 @@ const featuredProducts = [
 
 const corouselItems = [
   {
-    image: require('../utils/images/banner-1.jpg'),
+    image: require('../assets/images/banner-1.jpg'),
     productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzg2NTU2MDk2NzM=" 
   },
   {
-    image: require('../utils/images/banner-2.jpg'),
+    image: require('../assets/images/banner-2.jpg'),
     productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzkyNTg4NzE3NTM=" 
   },
   {
-    image: require('../utils/images/banner-3.jpg'),
+    image: require('../assets/images/banner-3.jpg'),
     productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzg4MjY3MjAyMDE=" 
   }
 ]
 
 const planSteps = [
   {
-    image: require('../utils/images/goals_1.png'),
+    image: require('../assets/images/goals_1.png'),
     stepTitle: "set your goals",
     stepDescription: "Want to lose weight? Build Lean Muscle? Light the room up?"
   },
   {
-    image: require('../utils/images/plan_choose_2.png'),
+    image: require('../assets/images/plan_choose_2.png'),
     stepTitle: "choose your plan",
     stepDescription: "Use our product finder or connect with an expert at Grow Fit to figure out your unique health fingerprint and the right program. "
   },
   {
-    image: require('../utils/images/eat_smart_3.png'),
+    image: require('../assets/images/eat_smart_3.png'),
     stepTitle: "#eatsmart",
     stepDescription: "Choose from our delicious foods, delivered to you at your convenience, to make a change. Your friendly Grow Fit nutritionist will support you with recipes and hacks."
   },
   {
-    image: require('../utils/images/win_life_4.png'),
+    image: require('../assets/images/win_life_4.png'),
     stepTitle: "win at life",
     stepDescription: "Our scientifically-developed, patent-pending products are proven to work. So just chomp away, experience the upgraded you and bask in the compliments."
   }
