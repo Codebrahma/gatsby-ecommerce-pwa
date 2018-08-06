@@ -57,7 +57,7 @@ const DemoNavbar = (props) => (
                 <img className="logo img-responsive" src={logo} />
             </Link>
         </div>
-        <div className="nav-inner" style={{ height: '1.5em' }}>
+        <div className="nav-inner col col-lg-9 col-md-12 col-xs-12" style={{ height: '1.5em' }}>
             <div id="pt_custommenu" className="pt_custommenu">
                 <NavLink title="Weight Loss" linkTo="diet-plan" />
                 <NavLink title="breakfast" linkTo="breakfast" />
