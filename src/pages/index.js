@@ -160,6 +160,7 @@ class HomePage extends Component{
   )
 
   render() {
+    console.log('Props', this.props.data)
     return (
       <div className="container">
         {this.renderHomeCarousel()}
@@ -179,13 +180,20 @@ class HomePage extends Component{
 export default HomePage
 
 export const pageQuery = graphql`
-  query BannerImage1 {
-        file(relativePath: {eq: "banner-1.jpg"}) {
-          childImageSharp {
-            fluid (maxWidth: 400) {
-              ...GatsbyImageSharpFluid
-            }    
-          }
-        }
+  query BannerQuery {
+    banner1:  file(relativePath: {eq: "banner-1.jpg"}) {
+                childImageSharp {
+                  sizes(maxWidth: 1240 ) {
+                    ...GatsbyImageSharpSizes
+                  }
+                }
+              }
+    banner2: file(relativePath: {eq: "banner-2.jpg"}) {
+                childImageSharp {
+                  sizes(maxWidth: 1240 ) {
+                    ...GatsbyImageSharpSizes
+                  }   
+                }
+              }
   }
 `
