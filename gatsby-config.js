@@ -20,6 +20,13 @@ module.exports = {
         precision: 8,
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `img`,
+        path: `${__dirname}/src/assets/images`
+      }
+    },
     'gatsby-plugin-sharp',
     {
       resolve: "gatsby-plugin-manifest",
@@ -48,6 +55,8 @@ module.exports = {
     },
     
     'gatsby-plugin-offline',
-    'gatsby-plugin-netlify'
+    'gatsby-plugin-netlify',
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp'
   ],
 }

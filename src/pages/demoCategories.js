@@ -12,7 +12,7 @@ class DemoCategories extends Component {
                 <div className="row">
                     <div className="demo-product-collection">
                         <div className="demo-product-collection-header">
-                            <h3>{`${pathContext.productType} collection`}</h3>
+                            <p>{`${pathContext.productType} collection`}</p>
                         </div>
                         <DemoProductList products={this.props.pathContext.products} />
                     </div>
