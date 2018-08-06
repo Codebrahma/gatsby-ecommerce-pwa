@@ -129,7 +129,7 @@ class DemoProductItem extends Component {
         <div className="demo-product-item row">
           <div className="demo-product-item-image col-md-6 col-sm-12">
             <img 
-              src={ (this.props.pathContext.images && this.props.pathContext.images.length !== 0 && this.props.pathContext.images[0].originalSrc) || require('../utils/images/default.jpeg')} 
+              src={ (this.props.pathContext.images && this.props.pathContext.images.length !== 0 && this.props.pathContext.images[0].originalSrc) || require('../assets/images/default.jpeg')} 
               alt={this.props.pathContext.productName} 
             />
           </div>

@@ -4,7 +4,7 @@ import axios from 'axios'
 import ProductList from '../components/presentational/products/ProductList';
 import ProductCard from '../components/presentational/products/productCard';
 import './style.scss'
-import { createCart } from '../utils/shopifyUtils';
+import { createCart } from '../assets/shopifyUtils';
 
 const newProducts = [
   {

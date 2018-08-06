@@ -12,7 +12,7 @@ const DemoProductList = ({products}) => (
             productId={node.id} 
             productName={node.title}
             description={node.description}
-            productImage={node.images[0] ? node.images[0].originalSrc : require('../utils/images/default.jpeg')}
+            productImage={node.images[0] ? node.images[0].originalSrc : require('../assets/images/default.jpeg')}
             price={node.priceRange.minVariantPrice.amount}
         />
       ))
