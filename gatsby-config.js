@@ -35,21 +35,20 @@ module.exports = {
         description: "Ecommerce App",
         start_url: "/",
         display: "standalone",
-        "icons": [
+        icons: [
           {
-            "src": "\/android-chrome-192x192.png?v=yyxgnp97qG",
+            "src": "static/192.png",
             "sizes": "192x192",
-            "type": "image\/png"
+            "type": "image/png"
           },
           {
-            "src": "\/android-chrome-384x384.png?v=yyxgnp97qG",
-            "sizes": "384x384",
-            "type": "image\/png"
+            "src": "static/512.png",
+            "sizes": "512x512",
+            "type": "image/png"
           }
         ],
         "theme_color": "#ffffff",
-        "background_color": "#57A3E8",
-        "display": "browser"
+        "background_color": "#57A3E8"
       }
     },
     
