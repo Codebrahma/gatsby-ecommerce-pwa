@@ -6,13 +6,13 @@ import PropTypes from 'prop-types';
 const DemoProductList = ({products}) => (
   <div className="demo-product-list">
     {
-      _.map(products, product => (
+      _.map( products, ({ node }, index) => (
         <DemoProductCard 
-            key={product.productId} 
-            productId={product.productId} 
-            productName={product.productName}
-            productImage={product.productImage}
-            price={product.price}
+            key={index} 
+            productId={node.id} 
+            productName={node.title}
+            productImage={node.images[0] ? node.images[0].originalSrc : require('../utils/images/default.jpeg')}
+            price={node.priceRange.minVariantPrice.amount}
         />
       ))
     }
