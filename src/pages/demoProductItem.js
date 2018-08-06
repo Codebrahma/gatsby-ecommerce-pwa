@@ -111,7 +111,6 @@ class DemoProductItem extends Component {
     </div>
   )
 
-  //Description will get replaced by props
   renderDescription = () => (
     <div className="demo-product-description">
       <div className="title">
