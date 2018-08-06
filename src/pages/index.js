@@ -177,3 +177,15 @@ class HomePage extends Component{
 
 
 export default HomePage
+
+export const pageQuery = graphql`
+  query BannerImage1 {
+        file(relativePath: {eq: "banner-1.jpg"}) {
+          childImageSharp {
+            fluid (maxWidth: 400) {
+              ...GatsbyImageSharpFluid
+            }    
+          }
+        }
+  }
+`
