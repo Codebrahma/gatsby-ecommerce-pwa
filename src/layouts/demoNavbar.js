@@ -14,7 +14,7 @@ const showDropdown = () => {
 const NavLink = (props) => (
     <div id="pt_menu10" className="pt_menu nav-1 nav-left-items">
         <div className="parentMenu">
-            <Link id="link-style" exact to={`/category/${props.linkTo}`}>{props.title}</Link>
+            <Link id="link-style"  exact to={`/category/${props.linkTo}`} activeClassName="demo-active-link">{props.title}</Link>
         </div>
     </div>
 )
@@ -58,7 +58,7 @@ const DemoNavbar = (props) => (
                 <img className="logo img-responsive" src={logo} />
             </Link>
         </div>
-        <div className="nav-inner col col-lg-9 col-md-12 col-xs-12" style={{ height: '1.5em', float: 'right'}}>
+        <div className="col col-lg-9 col-md-12 col-xs-12" style={{marginTop: '0.6%', float: 'right'}}>
             <div id="pt_custommenu" className="pt_custommenu">
                 <NavLink title="diet plan" linkTo="diet-plan" />
                 <NavLink title="breakfast" linkTo="breakfast" />
