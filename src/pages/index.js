@@ -66,21 +66,6 @@ const featuredProducts = [
   },
 ]
 
-const corouselItems = [
-  {
-    image: require('../assets/images/banner-1.jpg'),
-    productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzg2NTU2MDk2NzM=" 
-  },
-  {
-    image: require('../assets/images/banner-2.jpg'),
-    productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzkyNTg4NzE3NTM=" 
-  },
-  {
-    image: require('../assets/images/banner-3.jpg'),
-    productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzg4MjY3MjAyMDE=" 
-  }
-]
-
 const planSteps = [
   {
     image: require('../assets/images/goals_1.png'),
