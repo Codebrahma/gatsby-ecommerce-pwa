@@ -107,11 +107,27 @@ const planSteps = [
 class HomePage extends Component{
     state = {
       currentIndex: 0,
+      corouselItems: [],
     }
 
     componentDidMount() {
+      const corouselItems = [
+        {
+          image: this.props.data.banner1.childImageSharp.sizes,
+          productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzg2NTU2MDk2NzM=" 
+        },
+        {
+          image: this.props.data.banner2.childImageSharp.sizes,
+          productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzkyNTg4NzE3NTM=" 
+        },
+        {
+          image: this.props.data.banner3.childImageSharp.sizes,
+          productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzg4MjY3MjAyMDE=" 
+        }
+      ];
       this.setState({
-        currentIndex: 0
+        currentIndex: 0,
+        corouselItems,
       })
     }
 
@@ -123,15 +139,15 @@ class HomePage extends Component{
 
     goToPrev = () => {
       this.setState((prevState) => ({
-        currentIndex:this.state.currentIndex<1 ? corouselItems.length-1 : prevState.currentIndex-1
+        currentIndex:this.state.currentIndex<1 ? this.state.corouselItems.length-1 : prevState.currentIndex-1
       }))
     }
   
-  renderHomeCarousel = () => (
+  renderHomeCarousel = () => (this.state.corouselItems.length > 0 && 
       <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
         <DemoCorouselItem 
-            image={corouselItems[this.state.currentIndex].image} 
-            productId={corouselItems[this.state.currentIndex].productId} 
+            image={this.state.corouselItems[this.state.currentIndex].image} 
+            productId={this.state.corouselItems[this.state.currentIndex].productId} 
         />
         <div className="carousel-control-prev" onClick={this.goToPrev}>
           <span className="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -160,7 +176,6 @@ class HomePage extends Component{
   )
 
   render() {
-    console.log('Props', this.props.data)
     return (
       <div className="container">
         {this.renderHomeCarousel()}
@@ -195,5 +210,12 @@ export const pageQuery = graphql`
                   }   
                 }
               }
+    banner3: file(relativePath: {eq: "banner-3.jpg"}) {
+      childImageSharp {
+        sizes(maxWidth: 1240 ) {
+          ...GatsbyImageSharpSizes
+        }   
+      }
+    }
   }
 `
