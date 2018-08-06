@@ -14,7 +14,7 @@ const showDropdown = () => {
 const NavLink = (props) => (
     <div id="pt_menu10" className="pt_menu nav-1 nav-left-items">
         <div className="parentMenu">
-            <Link id="link-style" exact to={`/category/${props.linkTo}`}>{props.title}</Link>
+            <Link id="link-style"  exact to={`/category/${props.linkTo}`} activeClassName="demo-active-link">{props.title}</Link>
         </div>
     </div>
 )
@@ -41,6 +41,7 @@ const DropDown = () => (
             <div id="interest-dropdown" onMouseEnter={showDropdown} onMouseLeave={toggleDropdown}>more
                             <i className="fa fa-angle-double-down"></i>
                 <div className="dropdown-menu">
+                    <DropdownLink linkTo="skin-and-hair-plan" title="Skin and Hair" />
                     <DropdownLink linkTo="skin-care-plan" title="skin care" />
                     <DropdownLink linkTo="smoothie" title="smoothies" />
                     <DropdownLink linkTo="others" title="other" />
@@ -57,15 +58,14 @@ const DemoNavbar = (props) => (
                 <img className="logo img-responsive" src={logo} />
             </Link>
         </div>
-        <div className="nav-inner col col-lg-9 col-md-12 col-xs-12" style={{ height: '1.5em' }}>
+        <div className="col col-lg-9 col-md-12 col-xs-12" style={{marginTop: '0.6%', float: 'right'}}>
             <div id="pt_custommenu" className="pt_custommenu">
-                <NavLink title="Weight Loss" linkTo="diet-plan" />
+                <NavLink title="diet plan" linkTo="diet-plan" />
                 <NavLink title="breakfast" linkTo="breakfast" />
                 <NavLink title="lunch" linkTo="lunch" />
                 <NavLink title="Dinner" linkTo="dinner" />
-                <NavLink title="Skin and Hair" linkTo="skin-and-hair-plan" />
                 <DropDown />
-                <div style={{ display: 'inline-block' }} >
+                <div style={{ display: 'inline-block', float: 'right'}} >
                     <NavLinkRight linkTo="/">
                         Cart({props.cartLength || 0})
                         </NavLinkRight>

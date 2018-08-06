@@ -8,7 +8,7 @@ class DemoCategories extends Component {
     render() {
         const { pathContext } = this.props;
         return (
-            <div className="container">
+            <div className="container demo-container">
                 <div className="row">
                     <div className="demo-product-collection">
                         <div className="demo-product-collection-header">

@@ -7,7 +7,7 @@ const Header = (props) => {
   return (
     <header id="header">
       <nav className="header-nav">
-        <div className="container">
+        <div className="container demo-container">
           <div className="row">
             <div className="col-center col col-xs-12 col-lg-12 col-md-12">
               <div className="header-menu">
