@@ -1,38 +1,23 @@
 import React from 'react'
 import Link from 'gatsby-link'
 
-const DemoMenu = (props) => {
-  const activePath = (path) => {
-    return (props.headPath === `/${path}`) ? "item-active" : ""
-  }
-  
-  return (
+
+const NavLink = (props) => (
+  <div className="col-12">
+    <Link onClick={props.toggleSidebar} to={`/category/${props.linkTo}`}>{props.title}</Link>
+  </div>
+)
+
+const DemoMenu = (props) => (
     <div id="side-bar" className="bg-white">
-      <div className={`col-12 ${activePath("furnitures")}`}>
-        <Link onClick={props.toggleSidebar} to='/category/diet-plan'>Weight Loss</Link>
-      </div>
-      <div className={`col-12 ${activePath("lighting")}`}>
-        <Link onClick={props.toggleSidebar} to="/category/breakfast">Breakfast</Link>
-      </div>
-      <div className={`col-12 ${activePath("products")}`}>
-        <Link onClick={props.toggleSidebar} to="/category/lunch">Lunch</Link>
-      </div>
-      <div className={`col-12 ${activePath("blog")}`}>
-        <Link onClick={props.toggleSidebar} to="/category/dinner">Dinner</Link>
-      </div>
-      <div className={`col-12 ${activePath("growtv")}`}>
-        <Link onClick={props.toggleSidebar} to="/category/skin-and-hair-plan">Skin and Hair</Link>
-      </div>
-      <div className={`col-12 ${activePath("furnitures")}`}>
-        <Link onClick={props.toggleSidebar} to="/category/skin-care-plan">Skin Care</Link>
-      </div>
-      <div className={`col-12 ${activePath("furnitures")}`}>
-        <Link onClick={props.toggleSidebar} to="/category/smoothie">Smoothies</Link>
-      </div>
-      <div className={`col-12 ${activePath("furnitures")}`}>
-        <Link onClick={props.toggleSidebar} to="/category/others">Other</Link>
-      </div>
+        <NavLink linkTo="diet-plan" title="weight loss" {...props}/>
+        <NavLink linkTo="lunch" title="lunch" {...props}/>
+        <NavLink linkTo="dinner" title="dinner" {...props}/>
+        <NavLink linkTo="skin-and-hair-plan" title="skin and hair" {...props}/>
+        <NavLink linkTo="skin-care-plan" title="skin care" {...props}/>
+        <NavLink linkTo="smoothie" title="smoothies" {...props}/>
+        <NavLink linkTo="others" title="other" {...props}/>
     </div>
   )
-}
+  
 export default DemoMenu
