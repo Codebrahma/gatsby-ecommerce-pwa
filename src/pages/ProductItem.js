@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import _ from "lodash"
 import Link from 'gatsby-link'
-import './demo-products.scss';
-import DemoProductFaqs from "../components/DemoProductFaqs.js";
-import DemoProductSubscription from "../components/DemoProductSubscription.js";
-import DemoProductVariants from "../components/DemoProductVariants.js";
-import DemoVariantType from "../components/DemoVariantType.js";
+import './products.scss';
+import ProductFaqs from "../components/ProductFaqs.js";
+import ProductSubscription from "../components/ProductSubscription.js";
+import ProductVariants from "../components/ProductVariants.js";
+import VariantType from "../components/VariantType.js";
 
 
 
-class DemoProductItem extends Component {
+class ProductItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -53,9 +53,9 @@ class DemoProductItem extends Component {
       })
     })
     return Object.keys(options).map(
-      key => <DemoProductVariants key={key} variantItems={_.uniq(options[key])} >
-        <DemoVariantType variantType={key} />
-      </DemoProductVariants>
+      key => <ProductVariants key={key} variantItems={_.uniq(options[key])} >
+        <VariantType variantType={key} />
+      </ProductVariants>
     )
   }
 
@@ -84,12 +84,12 @@ class DemoProductItem extends Component {
     <div id="social-icons">
       <ul>
         <li>
-          <Link to="/demoProductItem">
+          <Link to="/ProductItem">
             <i className="fab fa-facebook-f"></i>
           </Link>
         </li>
         <li>
-          <Link to="/demoProductItem">
+          <Link to="/ProductItem">
             <i className="fab fa-twitter"></i>
           </Link>
         </li>
@@ -103,7 +103,7 @@ class DemoProductItem extends Component {
         {
           _.map(this.props.pathContext.tags, (tag, index) => (
             <li key={index} >
-              <Link to="/demoProductItem" activeClassName="active-item">{tag}</Link>
+              <Link to="/ProductItem" activeClassName="active-item">{tag}</Link>
             </li>
           ))
         }
@@ -148,14 +148,14 @@ class DemoProductItem extends Component {
           {this.renderDescription()}
         </div>
         <div className="container">
-          <DemoProductSubscription />
+          <ProductSubscription />
         </div>
         <div className="container">
-          <DemoProductFaqs faqs={this.props.pathContext.faqs} />
+          <ProductFaqs faqs={this.props.pathContext.faqs} />
         </div>
       </div>
     )
   }
 }
 
-export default DemoProductItem
+export default ProductItem

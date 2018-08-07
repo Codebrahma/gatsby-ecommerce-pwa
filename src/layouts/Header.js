@@ -1,18 +1,18 @@
 import React from 'react'
-import DemoNavbar from './demoNavbar';
-import DemoNavbarMobile from './demoNavbarMobile';
-import './demostyle.scss';
+import Navbar from './Navbar';
+import NavbarMobile from './NavbarMobile';
+import './style.scss';
 
-const DemoHeader = (props) => {
+const Header = (props) => {
   return (
     <header id="header" className="demo-header">
       <div className="container demo-container">
         <div className="row">
           <div className="col-center col col-xs-12 col-lg-12 col-md-12">
-            <DemoNavbar
+            <Navbar
               cartLength={props.cartLength}
             />
-            <DemoNavbarMobile
+            <NavbarMobile
               headPath={props.headPath}
               cartLength={props.cartLength}
             />
@@ -23,4 +23,4 @@ const DemoHeader = (props) => {
   )
 }
 
-export default DemoHeader
+export default Header

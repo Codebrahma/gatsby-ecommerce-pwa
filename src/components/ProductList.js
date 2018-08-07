@@ -1,13 +1,13 @@
 import React from 'react'
-import DemoProductCard from './DemoProductCard';
+import ProductCard from './ProductCard';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
 
-const DemoProductList = ({products}) => (
+const ProductList = ({products}) => (
   <div className="demo-product-list">
     {
       _.map( products, ({ node }, index) => (
-        <DemoProductCard 
+        <ProductCard 
             key={index} 
             productId={node.id} 
             productName={node.title}
@@ -20,8 +20,8 @@ const DemoProductList = ({products}) => (
   </div>
 )
 
-DemoProductList.propTypes = {
+ProductList.propTypes = {
   products: PropTypes.arrayOf(PropTypes.object).isRequired
 }
 
-export default DemoProductList
+export default ProductList

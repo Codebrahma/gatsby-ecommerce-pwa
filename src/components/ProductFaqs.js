@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import _ from 'lodash'
 
 
-const DemoProductFaqs = ({faqs}) => (
+const ProductFaqs = ({faqs}) => (
   <div className="demo-product-faq-container">
     <h3 id="faq-header">FAQ'S</h3>
     {
@@ -19,8 +19,8 @@ const DemoProductFaqs = ({faqs}) => (
   </div>
 )
 
-DemoProductFaqs.propTypes = {
+ProductFaqs.propTypes = {
   faqs: PropTypes.array
 }
 
-export default DemoProductFaqs
+export default ProductFaqs

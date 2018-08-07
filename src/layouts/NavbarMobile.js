@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import Link from 'gatsby-link'
-import Menu from '../components/menu.js'
 import '../components/css/menuBarStyle.scss'
+import logo from '../components/img/logo-new.png'
+import Menu from './Menu.js';
 
 class NavbarMobile extends Component {
   state = {
@@ -9,30 +10,33 @@ class NavbarMobile extends Component {
   }
 
   mainMenuClick = e => {
+    document.getElementById('side-bar').style.left = this.state.displaySubMenu ? '-40vw' : '0 ';
     this.setState(prevState => ({
       displaySubMenu: !prevState.displaySubMenu,
     }))
   }
   render() {
-    const { displaySubMenu } = this.state
     return (
-      <div className="ma-nav-mobile-container hidden-lg-up">
-        <div className="pt_custommenu_mobile">
-          <div className="navbar">
-            <div id="navbar-inner" className={displaySubMenu ? 'expanded' : ''}>
-              <Link to="/">
-                <span className="btn-home left-item"></span>
-              </Link>
-                <span className="btn-toggle right-item" onClick={this.mainMenuClick}></span>
+      <div className="ma-nav-mobile-container">
+        <div className="pt_custommenu_mobile" >
+          <div id="brand-logo" className="header_logo col-left d-flex w-25">
+            <Link to="/">
+              <img className="logo img-responsive" src={logo} />
+            </Link>
+          </div>
+          <div className="col-right col-3 right-menu">
+            <div className="navbar bg-transparent">
+              <div id="navbar-inner">
+                <Link to="/">
+                  <i className="fa fa-home icon-mobile" />
+                </Link>
 
-              <Link to="/cart">
-                <span className="cart-count">
-                  ({this.props.cartLength || 0})
-                </span>
-                <span className="btn-cart right-item"></span>
-              </Link>
-
-              {displaySubMenu && <Menu headPath={this.props.headPath}/>}
+                <Link to="/cart">
+                  <i className="fa fa-shopping-cart icon-mobile"/>
+                </Link>
+                <i className="fa fa-bars icon-mobile" onClick={this.mainMenuClick} />
+                 <Menu headPath={this.props.headPath} toggleSidebar={this.mainMenuClick}/>
+              </div>
             </div>
           </div>
         </div>
