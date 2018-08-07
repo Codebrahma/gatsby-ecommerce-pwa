@@ -30,26 +30,14 @@ module.exports = {
     {
       resolve: "gatsby-plugin-manifest",
       options: {
-        name: "Codebrahma PWA",
-        short_name: "CB PWA",
+        name: "Growfit PWA",
+        short_name: "Growfit PWA",
         description: "Ecommerce App",
         start_url: "/",
         display: "standalone",
-        "icons": [
-          {
-            "src": "\/android-chrome-192x192.png?v=yyxgnp97qG",
-            "sizes": "192x192",
-            "type": "image\/png"
-          },
-          {
-            "src": "\/android-chrome-384x384.png?v=yyxgnp97qG",
-            "sizes": "384x384",
-            "type": "image\/png"
-          }
-        ],
+        icon: 'src/assets/images/512.png',
         "theme_color": "#ffffff",
-        "background_color": "#57A3E8",
-        "display": "browser"
+        "background_color": "#57A3E8"
       }
     },
     
