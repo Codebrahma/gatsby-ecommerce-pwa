@@ -171,19 +171,21 @@ class HomePage extends Component {
           <div className="demo-product-collection-header">
             <p>Featured Products</p>
           </div>
-          {
+          <div className="demo-product-list">
+            {
               _.map(featuredProducts, ({ node }, index) => {
-              return <ProductCard
-                key={index}
-                productId={node.id}
-                productName={node.title}
-                description={node.description}
-                price={node.priceRange.minVariantPrice.amount}
-              >
-              <Img sizes={node.images[0].originalSrc}/>
-              </ProductCard>
-            })
-          }
+                return <ProductCard
+                  key={index}
+                  productId={node.id}
+                  productName={node.title}
+                  description={node.description}
+                  price={node.priceRange.minVariantPrice.amount}
+                >
+                  <Img sizes={node.images[0].originalSrc} />
+                </ProductCard>
+              })
+            }
+          </div>
         </div>
       </div>
     )
