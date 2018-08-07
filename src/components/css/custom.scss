@@ -3,7 +3,6 @@ $main: #808080;
 $dark: #333333;
 $light:#ffffff;
 $main_border:1px solid #e5e5e5;
-@import "font-awesome";
 
 @mixin placeholder {
   &::-moz-placeholder { @content }
