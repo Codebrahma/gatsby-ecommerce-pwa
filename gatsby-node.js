@@ -22,7 +22,6 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             }
             id
             productType
-            productType
             description
             title
             priceRange{
