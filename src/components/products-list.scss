@@ -15,6 +15,8 @@
   }
   .demo-product-list {
     padding: 0 15px;
+    display: flex;
+    flex-wrap: wrap;
     .demo-product-card {
       border-radius: 8px;
       overflow: hidden;
@@ -30,15 +32,23 @@
         width: 100%;
       }
       .demo-product-card-details {
-        color: #222;
         text-align: center;
         margin: 10px 0;
         padding-left: 10%;
         padding-right: 10%;
         height: 5em !important;
         #demo-product-title {
+          color: #333 !important;
           font-size: 18px;
           font-weight: 500;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+        }
+        #demo-product-description {
+          @extend #demo-product-title;
+          font-size: 14px;
+          max-width: 300px; 
         }
       }
       .demo-product-card-footer {

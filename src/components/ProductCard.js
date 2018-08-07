@@ -6,10 +6,10 @@ const ProductCard = props => (
   <div className="col-lg-4 col-md-6 col-sm-6 col-xs-12">
     <div className="demo-product-card">
       <Link to={`/product/${props.productId}`} style={{margin: '0'}}>
-        <img src={props.productImage} alt={props.productName} />
+        { props.children ||  <img src={props.productImage} alt={props.productName} />}
         <div className="demo-product-card-details">
           <p id="demo-product-title">{props.productName}</p>
-          <p>{`${props.description.slice(0,30)}...`}</p>
+          <p id="demo-product-description">{props.description}</p>
         </div>
       </Link>
       <div className="demo-product-card-footer">

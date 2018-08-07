@@ -55,7 +55,7 @@ const Navbar = (props) => (
     <div className="nav-container">
         <div id="brand-logo" className="header_logo col-left col col-lg-3 col-md-12 col-xs-12">
             <Link to="/">
-                <img className="logo img-responsive" src={logo} />
+                <img className="logo img-responsive" src={logo} alt="logo"/>
             </Link>
         </div>
         <div className="col col-lg-9 col-md-12 col-xs-12" style={{marginTop: '0.6%', float: 'right'}}>
@@ -71,9 +71,6 @@ const Navbar = (props) => (
                         </NavLinkRight>
                     <NavLinkRight linkTo="/">
                         <i className="fas fa-search" id="search-icon" />
-                    </NavLinkRight>
-                    <NavLinkRight linkTo="/">
-                        <i className="fas fa-th-large" id="menu-icon" />
                     </NavLinkRight>
                 </div>
             </div>

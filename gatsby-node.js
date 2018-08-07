@@ -60,10 +60,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           })
           let type = node.productType === '' ? 'others' : node.productType;
           const currentProducts = categoryToProductsMap[type] || []
-          categoryToProductsMap = {
-            ...categoryToProductsMap,
-            [type] : currentProducts.concat(edge),
-          }
+          categoryToProductsMap[type] = currentProducts.concat(edge)
         });
         _.forEach(categoryToProductsMap, (value, key) => {
           createPage({
