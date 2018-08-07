@@ -181,7 +181,7 @@ class HomePage extends Component {
                   description={node.description}
                   price={node.priceRange.minVariantPrice.amount}
                 >
-                  <Img sizes={node.images[0].originalSrc} />
+                  <Img sizes={node.images[0].originalSrc} alt={node.title}/>
                 </ProductCard>
               })
             }

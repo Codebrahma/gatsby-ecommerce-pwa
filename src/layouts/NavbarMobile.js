@@ -21,7 +21,7 @@ class NavbarMobile extends Component {
         <div className="pt_custommenu_mobile" >
           <div id="brand-logo" className="header_logo col-left d-flex w-25">
             <Link to="/">
-              <img className="logo img-responsive" src={logo} />
+              <img className="logo img-responsive" src={logo} alt="logo"/>
             </Link>
           </div>
           <div className="col-right col-3 right-menu">
