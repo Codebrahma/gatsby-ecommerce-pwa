@@ -7,7 +7,7 @@
 
 #link-style {
   text-transform: uppercase;
-  font-size: 0.8em !important;
+  font-size: 0.7em !important;
   padding: 10;
   margin-left: 0;
   &:hover {
@@ -95,6 +95,13 @@
 .demo-header {
   box-shadow: 0px 1px 5px 0 rgba(0, 0, 0, 0.2);
   margin-bottom: 2vh;
+}
+
+
+#sidebar-menu-button {
+  &:focus + #side-bar {
+    left: 0vw;
+  }
 }
 
 #side-bar {

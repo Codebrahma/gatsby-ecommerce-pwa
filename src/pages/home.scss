@@ -1,7 +1,8 @@
 .carousel-control-prev, .carousel-control-next {
   background: rgba(0,0,0,0.3);
-  max-height: 75px;
-  max-width: 75px;
+  padding: 2%;
+  height: fit-content;
+  width: fit-content;
   border-radius: 50%;
   top: 45%;
   margin: 0 20px;
