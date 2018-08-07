@@ -3,19 +3,7 @@ import Link from 'gatsby-link'
 import logo from '../components/img/logo-new.png'
 import Menu from './Menu.js';
 
-class NavbarMobile extends Component {
-  state = {
-    displaySubMenu: false,
-  }
-
-  mainMenuClick = e => {
-    document.getElementById('side-bar').style.left = this.state.displaySubMenu ? '-40vw' : '0 ';
-    this.setState(prevState => ({
-      displaySubMenu: !prevState.displaySubMenu,
-    }))
-  }
-  render() {
-    return (
+const NavbarMobile = (props) => (
       <div className="ma-nav-mobile-container">
         <div className="pt_custommenu_mobile" >
           <div id="brand-logo" className="header_logo col-left d-flex w-25">
@@ -29,15 +17,15 @@ class NavbarMobile extends Component {
                 <Link to="/cart">
                   <i className="fa fa-shopping-cart icon-mobile"/>
                 </Link>
-                <i className="fa fa-bars icon-mobile" onClick={this.mainMenuClick} />
-                 <Menu headPath={this.props.headPath} toggleSidebar={this.mainMenuClick}/>
+                <i id="sidebar-menu-button" className="fa fa-bars icon-mobile" 
+                tabIndex="1"
+                />
+                 <Menu headPath={props.headPath}/>
               </div>
             </div>
           </div>
         </div>
       </div>
     )
-  }
-}
 
 export default NavbarMobile

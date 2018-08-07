@@ -72,9 +72,6 @@ const Navbar = (props) => (
                     <NavLinkRight linkTo="/">
                         <i className="fas fa-search" id="search-icon" />
                     </NavLinkRight>
-                    <NavLinkRight linkTo="/">
-                        <i className="fas fa-th-large" id="menu-icon" />
-                    </NavLinkRight>
                 </div>
             </div>
         </div >
