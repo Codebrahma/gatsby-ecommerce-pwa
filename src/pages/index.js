@@ -1,103 +1,205 @@
-import React from 'react'
-import Link from 'gatsby-link'
-import axios from 'axios'
-import ProductList from '../components/presentational/products/ProductList';
-import ProductCard from '../components/presentational/products/productCard';
-import './style.scss'
-import { createCart } from '../utils/shopifyUtils';
+import React, { Component } from "react";
+import _ from 'lodash'
+import ProductList from "../components/ProductList";
+import CorouselItem from "../components/CorouselItem";
+import HomeStep from "../components/HomeStep";
+import './home.scss';
 
-const newProducts = [
+const featuredProducts = [
   {
-    productName: "Ceramic Table lamp",
-    productImage: "https://cdn.shopify.com/s/files/1/0015/0113/4915/products/Ceramic_Table_Lamp.jpg?v=1532332977",
-    price: "270",
-    productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzEzMjQ3OTgwNTAzNzE=",
+      "node": {
+      "images": [
+        {
+          "originalSrc": "https://cdn.shopify.com/s/files/1/1057/7864/products/BAMBOO-SEED-DOSA.jpg?v=1517824551"
+        }
+      ],
+      "id": "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzg2ODk4MTMwMDE=",
+      "productType": "Packaged Foods - South Indian",
+      "description": "A healthier take on South India’s favourite breakfast",
+      "title": "Bamboo Seed Dosa",
+      "priceRange": {
+        "minVariantPrice": {
+          "amount": "190.0",
+          "currencyCode": "INR"
+        }
+      }
+    }
   },
   {
-    productName: "Decorated clock",
-    productImage: "https://cdn.shopify.com/s/files/1/0015/0113/4915/products/Rival_Clock.jpg?v=1532336319",
-    price: "190",
-    productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzEzMjQ4MDgxNzU2ODM=",
+    "node": {
+      "images": [
+        {
+          "originalSrc": "https://cdn.shopify.com/s/files/1/1057/7864/products/High_Fibre_Cookie_large-min.jpg?v=1533206149"
+        }
+      ],
+      "id": "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzg3MDY0NTcxNjE=",
+      "productType": "Cookies",
+      "description": "A filling snack to keep your health on track",
+      "title": "High Fibre Cookie",
+      "priceRange": {
+        "minVariantPrice": {
+          "amount": "90.0",
+          "currencyCode": "INR"
+        }
+      }
+    }
   },
   {
-    productName: "Ceramic Storage",
-    productImage: "https://cdn.shopify.com/s/files/1/0015/0113/4915/products/Meshed_cloth_collector.jpg?v=1532334032",
-    price: "170",
-    productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzEzMjQ4MDE1NTY1NDc=",
-  }
-];
+    "node": {
+      "images": [
+        {
+          "originalSrc": "https://cdn.shopify.com/s/files/1/1057/7864/products/Physique-builder-Post-Workout-Smoothie-1.jpg?v=1518684204"
+        }
+      ],
+      "id": "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzg2NTU2MTc4MDE=",
+      "productType": "Smoothie All India",
+      "description": "Amplify your workout",
+      "title": "Physique Builder Post Workout Smoothie - Pack of 7",
+      "priceRange": {
+        "minVariantPrice": {
+          "amount": "1260.0",
+          "currencyCode": "INR"
+        }
+      }
+    }
+  },
+]
 
-const topProducts = [
+const planSteps = [
   {
-    productName: "Interior Decorator",
-    productImage: "https://cdn.shopify.com/s/files/1/0015/0113/4915/products/Interior_decorator_clock.jpg?v=1532333331",
-    price: "140",
-    productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzEzMjQ3OTkyOTU1NTU=",
+    image: require('../assets/images/goals_1.png'),
+    stepTitle: "set your goals",
+    stepDescription: "Want to lose weight? Build Lean Muscle? Light the room up?"
   },
   {
-    productName: "Table Lamp",
-    productImage: "https://cdn.shopify.com/s/files/1/0015/0113/4915/products/lamp.jpg?v=1532333593",
-    price: "245",
-    productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzEzMjQ3OTk3MjE1Mzk=",
+    image: require('../assets/images/plan_choose_2.png'),
+    stepTitle: "choose your plan",
+    stepDescription: "Use our product finder or connect with an expert at Grow Fit to figure out your unique health fingerprint and the right program. "
   },
   {
-    productName: "Ceramic Table lamp",
-    productImage: "https://cdn.shopify.com/s/files/1/0015/0113/4915/products/Ceramic_Table_Lamp.jpg?v=1532332977",
-    price: "270",
-    productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzEzMjQ3OTgwNTAzNzE=",
+    image: require('../assets/images/eat_smart_3.png'),
+    stepTitle: "#eatsmart",
+    stepDescription: "Choose from our delicious foods, delivered to you at your convenience, to make a change. Your friendly Grow Fit nutritionist will support you with recipes and hacks."
+  },
+  {
+    image: require('../assets/images/win_life_4.png'),
+    stepTitle: "win at life",
+    stepDescription: "Our scientifically-developed, patent-pending products are proven to work. So just chomp away, experience the upgraded you and bask in the compliments."
   }
-];
+]
 
-class IndexPage extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+class HomePage extends Component{
+    state = {
+      currentIndex: 0,
+      corouselItems: [],
+    }
 
-  componentDidMount() {
-    createCart()
-      .catch(err => console.log('Error creating cart ', err));
-  }
+    componentDidMount() {
+      const corouselItems = [
+        {
+          image: this.props.data.banner1.childImageSharp.sizes,
+          productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzg2NTU2MDk2NzM=" 
+        },
+        {
+          image: this.props.data.banner2.childImageSharp.sizes,
+          productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzkyNTg4NzE3NTM=" 
+        },
+        {
+          image: this.props.data.banner3.childImageSharp.sizes,
+          productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzg4MjY3MjAyMDE=" 
+        }
+      ];
+      this.setState({
+        currentIndex: 0,
+        corouselItems,
+      })
+    }
+
+    goToNext = () => {
+      this.setState((prevState)=> ({
+        currentIndex: (prevState.currentIndex + 1) % 3
+      }))
+    }
+
+    goToPrev = () => {
+      this.setState((prevState) => ({
+        currentIndex:this.state.currentIndex<1 ? this.state.corouselItems.length-1 : prevState.currentIndex-1
+      }))
+    }
+  
+  renderHomeCarousel = () => (this.state.corouselItems.length > 0 && 
+      <div className="carousel slide">
+        <CorouselItem 
+            image={this.state.corouselItems[this.state.currentIndex].image} 
+            productId={this.state.corouselItems[this.state.currentIndex].productId} 
+        />
+        <div className="carousel-control-prev" onClick={this.goToPrev}>
+          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span className="sr-only">Previous</span>
+        </div>
+        <div className="carousel-control-next" onClick={this.goToNext}>
+          <span className="carousel-control-next-icon" aria-hidden="true"></span>
+          <span className="sr-only">Next</span>
+        </div>
+      </div>
+    )
+
+  renderHomeSteps = () => (
+    <div className="demo-steps row">
+    {
+      _.map(planSteps, (step,index) => (
+        <HomeStep
+            key={index} 
+            image={step.image}
+            stepTitle={step.stepTitle}
+            stepDescription={step.stepDescription}
+        />
+      ))
+    }
+    </div>
+  )
 
   render() {
     return (
-      <div className="container">
-      <div className="homepage-container">
-        <div className="banner7-des">
-          <div className="container">
-            <div className="info desc1">
-              <div className="container">
-                <p className="title1">Best collection of house decors</p>
-                <p className="title2">in a single place</p>
-                <p className="title3">We'll give you a FREE delivery!</p>
-                <p className="readmore"><Link to="/furnitures"><span>Shop Now</span></Link></p>
-              </div>
+      <div>
+        {this.renderHomeCarousel()}
+        <div className="container demo-product-collection demo-container">
+          {this.renderHomeSteps()}
+            <div className="demo-product-collection-header">
+              <p>Featured Products</p>
             </div>
-          </div>
-        </div>
-        <div className="home_page_content">
-          <div className="pos_title">
-            <span>Newly Added products</span>
-            <h2>
-              New products
-            </h2>
-          </div>
-          <ProductList products={newProducts} />
-        </div>
-
-        <div className="home_page_content">
-          <div className="pos_title">
-            <span>Top sold Watches</span>
-            <h2>
-              Top Products
-            </h2>
-          </div>
-          <ProductList products={topProducts} />
+            <ProductList products={featuredProducts} />
         </div>
       </div>
-    </div>
-
     )
   }
-}
+} 
 
-export default IndexPage
+
+export default HomePage
+
+export const pageQuery = graphql`
+  query BannerQuery {
+    banner1:  file(relativePath: {eq: "banner-1.jpg"}) {
+                childImageSharp {
+                  sizes(maxWidth: 1240 ) {
+                    ...GatsbyImageSharpSizes
+                  }
+                }
+              }
+    banner2: file(relativePath: {eq: "banner-2.jpg"}) {
+                childImageSharp {
+                  sizes(maxWidth: 1240 ) {
+                    ...GatsbyImageSharpSizes
+                  }   
+                }
+              }
+    banner3: file(relativePath: {eq: "banner-3.jpg"}) {
+      childImageSharp {
+        sizes(maxWidth: 1240 ) {
+          ...GatsbyImageSharpSizes
+        }   
+      }
+    }
+  }
+`

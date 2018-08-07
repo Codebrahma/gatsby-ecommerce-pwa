@@ -7,10 +7,10 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-react-next',
     {
-      resolve: 'gatsby-source-shopify',
+      resolve: 'gatsby-shopify-source',
       options: {
-        shopName: 'PWA-ecommerce',
-        accessToken: '0975a46c7772d5b0602e9452ecdad35c',
+        shopName: 'nutritownbygrow',
+        accessToken: '576dea267469e1099e4aa82ecd18c4e7',
         verbose: true,
       },
     },
@@ -20,7 +20,13 @@ module.exports = {
         precision: 8,
       },
     },
-    'gatsby-plugin-sharp',
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `img`,
+        path: `${__dirname}/src/assets/images`
+      }
+    },
     {
       resolve: "gatsby-plugin-manifest",
       options: {
@@ -48,6 +54,8 @@ module.exports = {
     },
     
     'gatsby-plugin-offline',
-    'gatsby-plugin-netlify'
+    'gatsby-plugin-netlify',
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp'
   ],
 }
