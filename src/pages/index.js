@@ -129,7 +129,7 @@ class HomePage extends Component{
     }
   
   renderHomeCarousel = () => (this.state.corouselItems.length > 0 && 
-      <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
+      <div className="carousel slide">
         <DemoCorouselItem 
             image={this.state.corouselItems[this.state.currentIndex].image} 
             productId={this.state.corouselItems[this.state.currentIndex].productId} 
@@ -162,9 +162,9 @@ class HomePage extends Component{
 
   render() {
     return (
-      <div className="container demo-container">
+      <div>
         {this.renderHomeCarousel()}
-        <div className="demo-product-collection">
+        <div className="container demo-product-collection demo-container">
           {this.renderHomeSteps()}
             <div className="demo-product-collection-header">
               <p>Featured Products</p>
