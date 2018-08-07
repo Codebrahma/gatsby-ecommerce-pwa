@@ -27,10 +27,6 @@ class NavbarMobile extends Component {
           <div className="col-right col-3 right-menu">
             <div className="navbar bg-transparent">
               <div id="navbar-inner">
-                <Link to="/">
-                  <i className="fa fa-home icon-mobile" />
-                </Link>
-
                 <Link to="/cart">
                   <i className="fa fa-shopping-cart icon-mobile"/>
                 </Link>
