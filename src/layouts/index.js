@@ -9,7 +9,7 @@ import '../assets/images/512.png';
 
 const InstallPrompt = () => (
   <div id="install" style={{ display: 'none', padding: '0.5em 1em 0.5em 1em', height: '4em' }} className="alert alert-info" role="alert">
-    <span style={{ lineHeight: '2.5em', fontSize: '1.1em', marginRight: '2em' }}>Install our app now for quick access! </span>
+    <span style={{ lineHeight: '2.5em', fontSize: '1.1em', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>Install our app now!</span>
     <button id="install-button" className="btn btn-info" style={{ padding: '0.3em', float: 'right' }}>Add to homescreen</button>
   </div>
 )
@@ -38,7 +38,7 @@ class Layout extends React.Component {
     window.addEventListener('beforeinstallprompt', (e) => {
       let deferredPrompt = e;
       e.preventDefault();
-      document.getElementById('install').style.display = 'block';
+      document.getElementById('install').style.display = 'flex';
       document.getElementById("install-button").addEventListener('click', (e) => {
         document.getElementById('install').style.display = 'none';
         deferredPrompt.prompt();
