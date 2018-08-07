@@ -4,6 +4,9 @@
 
 .demo-product-item {
   padding: 10px;
+  .demo-product-item-image {
+    text-align: center;
+  }
   #demo-product-title {
     font-size: 24px;
     font-weight: 500;

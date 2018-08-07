@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Link from 'gatsby-link'
-import '../components/css/menuBarStyle.scss'
 import logo from '../components/img/logo-new.png'
 import Menu from './Menu.js';
 
