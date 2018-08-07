@@ -5,6 +5,7 @@ import './index.scss'
 import '../components/css/custom.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './Header';
+import '../assets/images/512.png';
 
 const InstallPrompt = () => (
   <div id="install" style={{ display: 'none', padding: '0.5em 1em 0.5em 1em', height: '4em' }} className="alert alert-info" role="alert">

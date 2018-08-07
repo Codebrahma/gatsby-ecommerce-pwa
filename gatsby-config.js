@@ -35,18 +35,7 @@ module.exports = {
         description: "Ecommerce App",
         start_url: "/",
         display: "standalone",
-        icons: [
-          {
-            "src": "192.png",
-            "sizes": "192x192",
-            "type": "image/png"
-          },
-          {
-            "src": "512.png",
-            "sizes": "512x512",
-            "type": "image/png"
-          }
-        ],
+        icon: 'src/assets/images/512.png',
         "theme_color": "#ffffff",
         "background_color": "#57A3E8"
       }
