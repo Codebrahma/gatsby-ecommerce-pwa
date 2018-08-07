@@ -8,9 +8,9 @@ import Header from './Header';
 import '../assets/images/512.png';
 
 const InstallPrompt = () => (
-  <div id="install" style={{ display: 'none', padding: '0.5em 1em 0.5em 1em', height: '4em' }} className="alert alert-info" role="alert">
+  <div id="install" style={{ display: 'none', padding: '0.5em 1em 0.5em 1em', height: '4em', justifyContent: 'space-between' }} className="alert alert-info" role="alert">
     <span style={{ lineHeight: '2.5em', fontSize: '1.1em', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>Install our app now!</span>
-    <button id="install-button" className="btn btn-info" style={{ padding: '0.3em', float: 'right' }}>Add to homescreen</button>
+    <button id="install-button" className="btn btn-info" style={{ padding: '0.3em' }}>Add to homescreen</button>
   </div>
 )
 
