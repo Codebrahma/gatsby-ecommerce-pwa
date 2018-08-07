@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import DemoProductList from "../components/DemoProductList";
-import '../components/demo-products-list.scss';
-import _ from 'lodash';
+import ProductList from "../components/ProductList";
+import '../components/products-list.scss';
 
-class DemoCategories extends Component {
+class Categories extends Component {
 
     render() {
         const { pathContext } = this.props;
@@ -14,7 +13,7 @@ class DemoCategories extends Component {
                         <div className="demo-product-collection-header">
                             <p>{`${pathContext.productType} collection`}</p>
                         </div>
-                        <DemoProductList products={this.props.pathContext.products} />
+                        <ProductList products={this.props.pathContext.products} />
                     </div>
                 </div>
             </div>
@@ -22,4 +21,4 @@ class DemoCategories extends Component {
     }
 }
 
-export default DemoCategories
+export default Categories

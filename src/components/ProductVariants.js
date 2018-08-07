@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import DemoVariantType from "./DemoVariantType";
-import DemoVariantItem from "./DemoVariantItem.js";
+import VariantItem from "./VariantItem.js";
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 
-class DemoProductVariants extends Component {
+class ProductVariants extends Component {
   state = {
     currentItem: ""
   }
@@ -34,7 +33,7 @@ class DemoProductVariants extends Component {
           {
             _.map(variantItems, (option, index) => (
               <div key={`${option}-${index}`}>
-                <DemoVariantItem 
+                <VariantItem 
                     variantItem={option} 
                     activeVariant={() => this.activeVariant(option)}
                     isActive = {this.isActive(option)}
@@ -48,8 +47,8 @@ class DemoProductVariants extends Component {
   }
 }
 
-DemoProductVariants.propTypes = {
+ProductVariants.propTypes = {
   variantItems: PropTypes.arrayOf(PropTypes.string).isRequired
 }
 
-export default DemoProductVariants
+export default ProductVariants

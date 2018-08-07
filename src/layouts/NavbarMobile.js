@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import Link from 'gatsby-link'
 import '../components/css/menuBarStyle.scss'
 import logo from '../components/img/logo-new.png'
-import DemoMenu from './demoMenu.js';
+import Menu from './Menu.js';
 
-class DemoNavbarMobile extends Component {
+class NavbarMobile extends Component {
   state = {
     displaySubMenu: false,
   }
@@ -35,7 +35,7 @@ class DemoNavbarMobile extends Component {
                   <i className="fa fa-shopping-cart icon-mobile"/>
                 </Link>
                 <i className="fa fa-bars icon-mobile" onClick={this.mainMenuClick} />
-                 <DemoMenu headPath={this.props.headPath} toggleSidebar={this.mainMenuClick}/>
+                 <Menu headPath={this.props.headPath} toggleSidebar={this.mainMenuClick}/>
               </div>
             </div>
           </div>
@@ -45,4 +45,4 @@ class DemoNavbarMobile extends Component {
   }
 }
 
-export default DemoNavbarMobile
+export default NavbarMobile

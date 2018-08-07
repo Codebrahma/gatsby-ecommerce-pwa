@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from "prop-types";
 
-const DemoVariantItem = (props) => (
+const VariantItem = (props) => (
       <li>
         <button 
           className={`btn btn-light ${props.isActive ? "variant-active" : ""}`} 
@@ -12,8 +12,8 @@ const DemoVariantItem = (props) => (
       </li>
     )
 
-DemoVariantItem.propTypes = {
+VariantItem.propTypes = {
   variantItem: PropTypes.string.isRequired
 }
 
-export default DemoVariantItem
+export default VariantItem

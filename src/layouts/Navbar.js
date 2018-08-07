@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'gatsby-link';
-import './demostyle.scss';
+import './style.scss';
 import logo from '../components/img/logo-new.png'
 
 const toggleDropdown = () => {
@@ -51,7 +51,7 @@ const DropDown = () => (
     </div>
 )
 
-const DemoNavbar = (props) => (
+const Navbar = (props) => (
     <div className="nav-container">
         <div id="brand-logo" className="header_logo col-left col col-lg-3 col-md-12 col-xs-12">
             <Link to="/">
@@ -81,4 +81,4 @@ const DemoNavbar = (props) => (
     </div >
 )
 
-export default DemoNavbar;
+export default Navbar;

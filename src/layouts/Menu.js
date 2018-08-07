@@ -8,7 +8,7 @@ const NavLink = (props) => (
   </div>
 )
 
-const DemoMenu = (props) => (
+const Menu = (props) => (
     <div id="side-bar" className="bg-white">
         <NavLink linkTo="diet-plan" title="diet plan" {...props}/>
         <NavLink linkTo="lunch" title="lunch" {...props}/>
@@ -20,4 +20,4 @@ const DemoMenu = (props) => (
     </div>
   )
   
-export default DemoMenu
+export default Menu

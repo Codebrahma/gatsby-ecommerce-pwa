@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const DemoVariantType = (props) => (
+const VariantType = (props) => (
       <span id="variant-title">{props.variantType}</span>
 )
 
-DemoVariantType.propTypes = {
+VariantType.propTypes = {
   variantType: PropTypes.string.isRequired
 }
 
-export default DemoVariantType
+export default VariantType

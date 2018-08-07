@@ -1,6 +1,6 @@
 import React from 'react'
 
-const DemoProductSubscription = () => (
+const ProductSubscription = () => (
   <div className="demo-product-subscription">
     <h3 id="subscription-header">subscription menu</h3>
     <select id="subscription-week">
@@ -121,4 +121,4 @@ const DemoProductSubscription = () => (
   </div>
 )
 
-export default DemoProductSubscription
+export default ProductSubscription

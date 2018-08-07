@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import Link from 'gatsby-link'
 import _ from 'lodash'
-import DemoProductList from "../components/DemoProductList";
-import DemoCorouselItem from "../components/DemoCorouselItem";
-import DemoHomeStep from "../components/DemoHomeStep";
-import './demo-home.scss';
+import ProductList from "../components/ProductList";
+import CorouselItem from "../components/CorouselItem";
+import HomeStep from "../components/HomeStep";
+import './home.scss';
 
 const featuredProducts = [
   {
@@ -130,7 +129,7 @@ class HomePage extends Component{
   
   renderHomeCarousel = () => (this.state.corouselItems.length > 0 && 
       <div className="carousel slide">
-        <DemoCorouselItem 
+        <CorouselItem 
             image={this.state.corouselItems[this.state.currentIndex].image} 
             productId={this.state.corouselItems[this.state.currentIndex].productId} 
         />
@@ -149,7 +148,7 @@ class HomePage extends Component{
     <div className="demo-steps row">
     {
       _.map(planSteps, (step,index) => (
-        <DemoHomeStep
+        <HomeStep
             key={index} 
             image={step.image}
             stepTitle={step.stepTitle}
@@ -169,7 +168,7 @@ class HomePage extends Component{
             <div className="demo-product-collection-header">
               <p>Featured Products</p>
             </div>
-            <DemoProductList products={featuredProducts} />
+            <ProductList products={featuredProducts} />
         </div>
       </div>
     )
