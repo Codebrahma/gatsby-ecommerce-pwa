@@ -6,6 +6,12 @@ import '../components/css/custom.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './Header';
 
+const InstallPrompt = () => (
+  <div id="install" style={{ display: 'none', padding: '0.5em 1em 0.5em 1em', height: '4em' }} className="alert alert-info" role="alert">
+    <span style={{ lineHeight: '2.5em', fontSize: '1.1em', marginRight: '2em' }}>Install our app now for quick access! </span>
+    <button id="install-button" className="btn btn-info" style={{ padding: '0.3em', float: 'right' }}>Add to homescreen</button>
+  </div>
+)
 
 class Layout extends React.Component {
   constructor(props) {
@@ -36,14 +42,14 @@ class Layout extends React.Component {
         document.getElementById('install').style.display = 'none';
         deferredPrompt.prompt();
         deferredPrompt.userChoice
-        .then((choiceResult) => {
-          if (choiceResult.outcome === 'accepted') {
-            console.log('User accepted the A2HS prompt');
-          } else {
-            console.log('User dismissed the A2HS prompt');
-          }
-          deferredPrompt = null;
-        });
+          .then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+              console.log('User accepted the A2HS prompt');
+            } else {
+              console.log('User dismissed the A2HS prompt');
+            }
+            deferredPrompt = null;
+          });
       });
     });
   }
@@ -76,8 +82,8 @@ class Layout extends React.Component {
         <Helmet defaultTitle="Progressive Web app" />
         <Header 
           headPath = {location.pathname}
-          cartLength = {this.state.cartLength}
-        />
+          cartLength = {this.state.cartLength} />
+        <InstallPrompt />
         {children({ ...this.props, eventedLocalStorage: this.eventedLocalStorage })}
       </div>
     );
