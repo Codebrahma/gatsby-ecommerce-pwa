@@ -80,7 +80,9 @@ class Layout extends React.Component {
 
     return (
       <div>
-        <Helmet defaultTitle="Progressive Web app" />
+        <Helmet defaultTitle="Progressive Web app" >
+          <html lang="en"/>
+        </Helmet>
         <InstallPrompt />
         <Header 
           headPath = {location.pathname}

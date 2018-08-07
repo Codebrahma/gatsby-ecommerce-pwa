@@ -1,69 +1,11 @@
 import React, { Component } from "react";
 import _ from 'lodash'
 import ProductList from "../components/ProductList";
+import Img from 'gatsby-image';
 import CorouselItem from "../components/CorouselItem";
 import HomeStep from "../components/HomeStep";
 import './home.scss';
-
-const featuredProducts = [
-  {
-      "node": {
-      "images": [
-        {
-          "originalSrc": "https://cdn.shopify.com/s/files/1/1057/7864/products/BAMBOO-SEED-DOSA.jpg?v=1517824551"
-        }
-      ],
-      "id": "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzg2ODk4MTMwMDE=",
-      "productType": "Packaged Foods - South Indian",
-      "description": "A healthier take on South India’s favourite breakfast",
-      "title": "Bamboo Seed Dosa",
-      "priceRange": {
-        "minVariantPrice": {
-          "amount": "190.0",
-          "currencyCode": "INR"
-        }
-      }
-    }
-  },
-  {
-    "node": {
-      "images": [
-        {
-          "originalSrc": "https://cdn.shopify.com/s/files/1/1057/7864/products/High_Fibre_Cookie_large-min.jpg?v=1533206149"
-        }
-      ],
-      "id": "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzg3MDY0NTcxNjE=",
-      "productType": "Cookies",
-      "description": "A filling snack to keep your health on track",
-      "title": "High Fibre Cookie",
-      "priceRange": {
-        "minVariantPrice": {
-          "amount": "90.0",
-          "currencyCode": "INR"
-        }
-      }
-    }
-  },
-  {
-    "node": {
-      "images": [
-        {
-          "originalSrc": "https://cdn.shopify.com/s/files/1/1057/7864/products/Physique-builder-Post-Workout-Smoothie-1.jpg?v=1518684204"
-        }
-      ],
-      "id": "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzg2NTU2MTc4MDE=",
-      "productType": "Smoothie All India",
-      "description": "Amplify your workout",
-      "title": "Physique Builder Post Workout Smoothie - Pack of 7",
-      "priceRange": {
-        "minVariantPrice": {
-          "amount": "1260.0",
-          "currencyCode": "INR"
-        }
-      }
-    }
-  },
-]
+import ProductCard from "../components/ProductCard";
 
 const planSteps = [
   {
@@ -88,92 +30,167 @@ const planSteps = [
   }
 ]
 
-class HomePage extends Component{
-    state = {
+class HomePage extends Component {
+  state = {
+    currentIndex: 0,
+    corouselItems: [],
+  }
+
+  componentDidMount() {
+    const corouselItems = [
+      {
+        image: this.props.data.banner1.childImageSharp.sizes,
+        productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzg2NTU2MDk2NzM="
+      },
+      {
+        image: this.props.data.banner2.childImageSharp.sizes,
+        productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzkyNTg4NzE3NTM="
+      },
+      {
+        image: this.props.data.banner3.childImageSharp.sizes,
+        productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzg4MjY3MjAyMDE="
+      }
+    ];
+    this.setState({
       currentIndex: 0,
-      corouselItems: [],
-    }
+      corouselItems,
+    })
+  }
 
-    componentDidMount() {
-      const corouselItems = [
-        {
-          image: this.props.data.banner1.childImageSharp.sizes,
-          productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzg2NTU2MDk2NzM=" 
-        },
-        {
-          image: this.props.data.banner2.childImageSharp.sizes,
-          productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzkyNTg4NzE3NTM=" 
-        },
-        {
-          image: this.props.data.banner3.childImageSharp.sizes,
-          productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzg4MjY3MjAyMDE=" 
-        }
-      ];
-      this.setState({
-        currentIndex: 0,
-        corouselItems,
-      })
-    }
+  goToNext = () => {
+    this.setState((prevState) => ({
+      currentIndex: (prevState.currentIndex + 1) % 3
+    }))
+  }
 
-    goToNext = () => {
-      this.setState((prevState)=> ({
-        currentIndex: (prevState.currentIndex + 1) % 3
-      }))
-    }
+  goToPrev = () => {
+    this.setState((prevState) => ({
+      currentIndex: this.state.currentIndex < 1 ? this.state.corouselItems.length - 1 : prevState.currentIndex - 1
+    }))
+  }
 
-    goToPrev = () => {
-      this.setState((prevState) => ({
-        currentIndex:this.state.currentIndex<1 ? this.state.corouselItems.length-1 : prevState.currentIndex-1
-      }))
-    }
-  
-  renderHomeCarousel = () => (this.state.corouselItems.length > 0 && 
-      <div className="carousel slide">
-        <CorouselItem 
-            image={this.state.corouselItems[this.state.currentIndex].image} 
-            productId={this.state.corouselItems[this.state.currentIndex].productId} 
-        />
-        <div className="carousel-control-prev" onClick={this.goToPrev}>
-          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span className="sr-only">Previous</span>
-        </div>
-        <div className="carousel-control-next" onClick={this.goToNext}>
-          <span className="carousel-control-next-icon" aria-hidden="true"></span>
-          <span className="sr-only">Next</span>
-        </div>
+  renderHomeCarousel = () => (this.state.corouselItems.length > 0 &&
+    <div className="carousel slide">
+      <CorouselItem
+        image={this.state.corouselItems[this.state.currentIndex].image}
+        productId={this.state.corouselItems[this.state.currentIndex].productId}
+      />
+      <div className="carousel-control-prev" onClick={this.goToPrev}>
+        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span className="sr-only">Previous</span>
       </div>
-    )
+      <div className="carousel-control-next" onClick={this.goToNext}>
+        <span className="carousel-control-next-icon" aria-hidden="true"></span>
+        <span className="sr-only">Next</span>
+      </div>
+    </div>
+  )
 
   renderHomeSteps = () => (
     <div className="demo-steps row">
-    {
-      _.map(planSteps, (step,index) => (
-        <HomeStep
-            key={index} 
+      {
+        _.map(planSteps, (step, index) => (
+          <HomeStep
+            key={index}
             image={step.image}
             stepTitle={step.stepTitle}
             stepDescription={step.stepDescription}
-        />
-      ))
-    }
+          />
+        ))
+      }
     </div>
   )
 
   render() {
+
+    const featuredProducts = [
+      {
+        "node": {
+          "images": [
+            {
+              "originalSrc": this.props.data.featuredProductOne.childImageSharp.sizes
+            }
+          ],
+          "id": "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzg2ODk4MTMwMDE=",
+          "productType": "Packaged Foods - South Indian",
+          "description": "A healthier take on South India’s favourite breakfast",
+          "title": "Bamboo Seed Dosa",
+          "priceRange": {
+            "minVariantPrice": {
+              "amount": "190.0",
+              "currencyCode": "INR"
+            }
+          }
+        }
+      },
+      {
+        "node": {
+          "images": [
+            {
+              "originalSrc": this.props.data.featuredProductTwo.childImageSharp.sizes
+            }
+          ],
+          "id": "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzg3MDY0NTcxNjE=",
+          "productType": "Cookies",
+          "description": "A filling snack to keep your health on track",
+          "title": "High Fibre Cookie",
+          "priceRange": {
+            "minVariantPrice": {
+              "amount": "90.0",
+              "currencyCode": "INR"
+            }
+          }
+        }
+      },
+      {
+        "node": {
+          "images": [
+            {
+              "originalSrc": this.props.data.featuredProductThree.childImageSharp.sizes
+            }
+          ],
+          "id": "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzg2NTU2MTc4MDE=",
+          "productType": "Smoothie All India",
+          "description": "Amplify your workout",
+          "title": "Physique Builder Post Workout Smoothie - Pack of 7",
+          "priceRange": {
+            "minVariantPrice": {
+              "amount": "1260.0",
+              "currencyCode": "INR"
+            }
+          }
+        }
+      },
+    ]
+
     return (
       <div>
         {this.renderHomeCarousel()}
         <div className="container demo-product-collection demo-container">
           {this.renderHomeSteps()}
-            <div className="demo-product-collection-header">
-              <p>Featured Products</p>
-            </div>
-            <ProductList products={featuredProducts} />
+          <div className="demo-product-collection-header">
+            <p>Featured Products</p>
+          </div>
+          <div className="demo-product-list">
+            {
+              _.map(featuredProducts, ({ node }, index) => {
+                return <ProductCard
+                  key={index}
+                  productId={node.id}
+                  productName={node.title}
+                  description={node.description}
+                  price={node.priceRange.minVariantPrice.amount}
+                >
+                  <Img sizes={node.images[0].originalSrc} alt={node.title}/>
+                </ProductCard>
+              })
+            }
+          </div>
         </div>
       </div>
     )
   }
-} 
+}
 
 
 export default HomePage
@@ -199,6 +216,27 @@ export const pageQuery = graphql`
         sizes(maxWidth: 1240 ) {
           ...GatsbyImageSharpSizes
         }   
+      }
+    }
+    featuredProductOne: file(relativePath: {eq: "feat-products1.jpg"}) {
+      childImageSharp {
+        sizes(maxWidth: 300) {
+          ...GatsbyImageSharpSizes
+        }
+      }
+    }
+    featuredProductTwo: file(relativePath: {eq: "feat-products2.jpg"}) {
+      childImageSharp {
+        sizes(maxWidth: 300) {
+          ...GatsbyImageSharpSizes
+        }
+      }
+    }
+    featuredProductThree: file(relativePath: {eq: "feat-products3.jpg"}) {
+      childImageSharp {
+        sizes(maxWidth: 300) {
+          ...GatsbyImageSharpSizes
+        }
       }
     }
   }
