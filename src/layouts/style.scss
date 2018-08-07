@@ -10,13 +10,14 @@
   font-size: 0.7em !important;
   padding: 10;
   margin-left: 0;
+  border-bottom: 2px solid rgba(245, 124, 0, 0);
   &:hover {
     background-color: transparent !important;
     color: rgb(245, 124, 0) !important;
   }
 }
 .demo-active-link {
-  border-bottom: 2px solid rgb(245, 124, 0);
+  border-bottom: 2px solid rgba(245, 124, 0, 1) !important;
   color: rgb(245, 124, 0) !important;
 }
 
