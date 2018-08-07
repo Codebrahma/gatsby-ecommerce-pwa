@@ -30,8 +30,8 @@ module.exports = {
     {
       resolve: "gatsby-plugin-manifest",
       options: {
-        name: "Codebrahma PWA",
-        short_name: "CB PWA",
+        name: "Growfit PWA",
+        short_name: "Growfit PWA",
         description: "Ecommerce App",
         start_url: "/",
         display: "standalone",

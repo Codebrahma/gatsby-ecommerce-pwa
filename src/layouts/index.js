@@ -81,10 +81,10 @@ class Layout extends React.Component {
     return (
       <div>
         <Helmet defaultTitle="Progressive Web app" />
+        <InstallPrompt />
         <Header 
           headPath = {location.pathname}
           cartLength = {this.state.cartLength} />
-        <InstallPrompt />
         {children({ ...this.props, eventedLocalStorage: this.eventedLocalStorage })}
       </div>
     );
