@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './checkout.scss';
 import _ from 'lodash';
 import TakeMoney from '../components/TakeMoney';
-import FormInputField from './form';
+import FormInputField from '../components/form';
 
 const CheckoutDetails = () => {
     const cartDetails = JSON.parse(localStorage.getItem('cart'));

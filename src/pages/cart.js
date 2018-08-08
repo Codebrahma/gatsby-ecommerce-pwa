@@ -13,13 +13,13 @@ class Cart extends Component {
         this.setState({
             appOnline: window.navigator.onLine
         })
-        window.addEventListener('online', this.online())
-        window.addEventListener('offline', this.offline())
+        window.addEventListener('online', this.online)
+        window.addEventListener('offline', this.offline)
     }
 
     componentWillUnmount = () => {
-        window.removeEventListener('online');
-        window.removeEventListener('offline');
+        window.removeEventListener('online', this.online);
+        window.removeEventListener('offline', this.offline);
     }
 
     online = () => {

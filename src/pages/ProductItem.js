@@ -17,28 +17,51 @@ class ProductItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      active: false,
-      itemCount: 7
+      isInCart: false,
+      itemCount: 7,
+      currentCartItems: {}
     }
   }
 
+  componentDidMount() {
+    const currentCartItems = JSON.parse(localStorage.getItem('cart')) || {};
+    const { productId } = this.props.pathContext;
+    this.setState({
+      currentCartItems,
+      isInCart: currentCartItems[productId],
+      itemCount: currentCartItems[productId] ? currentCartItems[productId].purchaseQuantity : 0
+    })
+  }
+
   changeItemCount = (change) => {
+    const { productId } = this.props.pathContext;
+    let {currentCartItems} = this.state;
+    if (currentCartItems[productId] && currentCartItems[productId].purchaseQuantity >= 0) {
+      currentCartItems[productId].purchaseQuantity += change
+      localStorage.setItem('cart', JSON.stringify(currentCartItems));
+    }
     if (!(this.state.itemCount === 0 && change < 0)) {
       this.setState(prevState => ({
-        itemCount: prevState.itemCount + change
+        itemCount: prevState.itemCount + change,
+        isInCart: currentCartItems[productId],
       }))
+      localStorage.removeItem('cart', JSON.stringify(currentCartItems[productId]))
+      this.props.eventedLocalStorage();
     }
   }
 
   addItemToCart = () => {
     const { productId } = this.props.pathContext;
-    let currentCartItems = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : {};
+    let {currentCartItems} = this.state;
     if (currentCartItems[productId]) {
       currentCartItems[productId].purchaseQuantity += this.state.itemCount
     } else {
       currentCartItems[productId] = this.props.pathContext;
       currentCartItems[productId].purchaseQuantity = this.state.itemCount
     }
+    this.setState({
+      isInCart: currentCartItems[productId]
+    })
     localStorage.setItem('cart', JSON.stringify(currentCartItems));
     this.props.eventedLocalStorage();
   }
@@ -67,7 +90,7 @@ class ProductItem extends Component {
     <div className="demo-product-actions">
       <div id="action-input">
         <div id="quantity">
-          <button onClick={() => this.changeItemCount(-7)} className="btn btn-light minus-btn">
+          <button onClick={() => this.changeItemCount(-7)} className="btn btn-light minus-btn" disabled={!this.state.itemCount}>
             <img src={minus} className="icon" alt="icon"/>
           </button>
           <input type="text" disabled min="0" value={this.state.itemCount} />
@@ -78,7 +101,9 @@ class ProductItem extends Component {
         <span id="price">Rs. {(this.props.pathContext.productPrice / 7.0) * ((this.state.itemCount === 0) ? 7 : this.state.itemCount)}</span>
       </div>
       <div id="action-button">
-        <button className="btn btn-dark" onClick={this.addItemToCart} disabled={!this.state.itemCount}>add to cart</button>
+        <button className={`btn btn-${this.state.isInCart ? "light" : "dark"}`} onClick={this.addItemToCart} disabled={!this.state.itemCount || this.state.isInCart}>
+          {this.state.isInCart ? "In Cart" : "add to cart"}
+        </button>
         <button className="btn btn-dark">buy now</button>
       </div>
     </div>
