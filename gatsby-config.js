@@ -1,3 +1,5 @@
+import { ACCESS_TOKEN, SHOP_NAME } from "./config";
+
 module.exports = {
   siteMetadata: {
     title: 'Gatsby Default Starter',
@@ -9,8 +11,8 @@ module.exports = {
     {
       resolve: 'gatsby-shopify-source',
       options: {
-        shopName: 'nutritownbygrow',
-        accessToken: '576dea267469e1099e4aa82ecd18c4e7',
+        shopName: SHOP_NAME,
+        accessToken: ACCESS_TOKEN,
         verbose: true,
       },
     },
