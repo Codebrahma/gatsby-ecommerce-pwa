@@ -1,3 +1,7 @@
+.icon {
+  width: 15px;
+  height: 15px;
+}
 .demo-product-collection {
   p {
     color: #222;
@@ -61,7 +65,9 @@
             width: 70%;
             border-right: 1px solid #ccc;
           }
-          i {
+          .icon {
+            max-height: 30px;
+            max-width: 40px;
             padding: 5px 10px;
             border: 2px solid black;
           }

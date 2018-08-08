@@ -140,9 +140,6 @@ main {
 		    display: block;
 			line-height:50px;
 			padding:0px 25px;
-			@media (max-width:1199px) {
-
-			}
 			font-size: 16px;
 			font-weight: 400;
 			color:#000;
@@ -150,15 +147,6 @@ main {
 			text-transform: capitalize;
 			position: relative;
       letter-spacing:0.05em;
-			i {
-				font-size: 11px;
-				padding: 0 0 0 7px;
-				display: none;
-				&:before {
-					content: "\f107";
-					font-family: "FontAwesome";
-				}
-			}
 		}
 		&.act .parentMenu a,&.active .parentMenu a {
 			color:#1a1a1a !important;
@@ -201,7 +189,6 @@ main {
 				color: #fff;
 				font-size: 15px;
 				font-weight: 400;
-				font-family: "FontAwesome";
 				cursor:pointer;
 				pointer-events: all;
 			}

@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import Link from 'gatsby-link'
 import logo from '../components/img/logo-new.png'
 import Menu from './Menu.js';
+import cart from '../assets/icons/shopping-cart-solid.svg'
+import menu from '../assets/icons/bars-solid.svg'
 
 const NavbarMobile = (props) => (
       <div className="ma-nav-mobile-container">
@@ -15,9 +17,9 @@ const NavbarMobile = (props) => (
             <div className="navbar bg-transparent">
               <div id="navbar-inner">
                 <Link to="/cart">
-                  <i className="fa fa-shopping-cart icon-mobile"/>
+                  <img src={cart} className="icon icon-mobile" alt="icon"/>
                 </Link>
-                <i id="sidebar-menu-button" className="fa fa-bars icon-mobile" 
+                <img src={menu} id="sidebar-menu-button" className="icon icon-mobile" alt="icon" 
                 tabIndex="1"
                 />
                  <Menu headPath={props.headPath}/>

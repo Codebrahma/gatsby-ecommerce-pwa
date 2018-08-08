@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'gatsby-link'
 import PropTypes from 'prop-types'
+import plus from '../assets/icons/plus-solid.svg'
 
 const ProductCard = props => (
   <div className="col-lg-4 col-md-6 col-sm-6 col-xs-12">
@@ -14,7 +15,7 @@ const ProductCard = props => (
       </Link>
       <div className="demo-product-card-footer">
         <span>Rs.{props.price}</span>
-        <span><i className="far fa-plus"></i></span>
+        <span><img src={plus} className="icon" alt="icon" /></span>
       </div>
     </div>
   </div>
