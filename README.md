@@ -13,6 +13,23 @@ Make sure you install all the dependencies, use
 ```sh
 npm install
 ```
+ **For Development** ,
+
+Add ```.env.development``` file with variables given in ```.env.sample```
+```sh
+SHOPIFY_STORE_NAME='STORE_NAME'
+SHOPIFY_STORE_ACCESS_TOKEN='STORE_ACCESS_TOKEN'
+```
+```.env.development``` will be ignored by ```git```.
+
+ **For Production**,
+
+Add ```.env.production``` with
+```sh
+SHOPIFY_STORE_NAME='PRODUCTION_STORE_NAME'
+SHOPIFY_STORE_ACCESS_TOKEN='PRODUCTION_STORE_ACCESS_TOKEN'
+```
+
 Also make sure you have the gatsby CLI, use
 ```sh
 npm install --global gatsby-cli
@@ -20,9 +37,9 @@ npm install --global gatsby-cli
 
 To start the project use
 ```
-gatsby develop
+npm run develop
 ```
-
+ 
 Want to develop your own gatsby site? Visit [Gatsby Docs](https://www.gatsbyjs.org/docs/ "Gatsby Documentation") for helpful information.
 
 ## App Walkthrough
