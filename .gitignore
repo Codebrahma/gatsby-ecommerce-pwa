@@ -8,3 +8,4 @@ yarn-error.log
 .DS_Store
 
 package-lock.json
+.env.development
