@@ -1,7 +1,10 @@
 .demo-container {
   margin: 0 auto;
 }
-
+.icon {
+  width: 15px;
+  height: 15px;
+}
 .demo-product-item {
   padding: 10px;
   .demo-product-item-image {
@@ -65,10 +68,10 @@
           text-align: center;
         }
         button {
-          border: 1px solid #000;
           border-radius: 0;
           padding-top: 0;
           padding-bottom: 0;
+          border: 1px solid #000;
         }
         .minus-btn {
           border-top-left-radius: 12px;
@@ -109,11 +112,11 @@
       li {
         padding: 5px;
         a {
-          padding: 14px 18px;
+          padding: 16px;
           background: #000;
           border-radius: 50%;
-          font-size: 16px;
-          color: #fff;
+          font-size: 14px;
+          margin: 0 10px;
         }
       }
     }
@@ -154,16 +157,11 @@
     padding: 6px 10px;
     border-radius: 5px;
     box-sizing: border-box;
-    i {
+    .icon {
       margin: 0 5px;
     }
   }
 }
-
-i {
-  font-family: "FontAwesome";
-}
-
 .demo-product-description {
   margin: 20px 0;
   border: 1px solid #e4e0db;
