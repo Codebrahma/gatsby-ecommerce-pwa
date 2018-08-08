@@ -1,0 +1,27 @@
+.form-container {
+    padding: 7%; 
+    box-shadow: 0.2px 0.5px 5px 1px rgba(0,0,0,0.4);
+    .form-group {
+        .radio-inline {
+            margin: 2%;
+            input {
+                color: blue;
+            }
+        }
+    }
+}
+
+.checkout-details {
+    padding: 7%;
+    box-shadow: 0.2px 0.5px 5px 1px rgba(0,0,0,0.4);
+}
+
+.checkout-detail {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cart-item {
+    padding: 2%;
+    box-shadow: 0.2px 0.5px 5px 1px rgba(0,0,0,0.4);
+}
