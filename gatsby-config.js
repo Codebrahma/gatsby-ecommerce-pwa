@@ -1,3 +1,7 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
 module.exports = {
   siteMetadata: {
     title: 'Gatsby Default Starter',
@@ -9,8 +13,8 @@ module.exports = {
     {
       resolve: 'gatsby-shopify-source',
       options: {
-        shopName: 'nutritownbygrow',
-        accessToken: '576dea267469e1099e4aa82ecd18c4e7',
+        shopName: process.env.SHOPIFY_STORE_NAME,
+        accessToken: process.env.SHOPIFY_STORE_ACCESS_TOKEN,
         verbose: true,
       },
     },

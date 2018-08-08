@@ -2,6 +2,8 @@ import React from 'react';
 import Link from 'gatsby-link';
 import './style.scss';
 import logo from '../components/img/logo-new.png'
+import search from '../assets/icons/search-solid.svg'
+import angleDown from '../assets/icons/angle-double-down-solid.svg'
 
 const toggleDropdown = () => {
     document.querySelector("#interest-dropdown > .dropdown-menu").style.display = 'none'
@@ -39,7 +41,7 @@ const DropDown = () => (
     <div id="pt_menu10" className="pt_menu nav-1 nav-left-items">
         <div className="parentMenu">
             <div id="interest-dropdown" onMouseEnter={showDropdown} onMouseLeave={toggleDropdown}>more
-                            <i className="fa fa-angle-double-down"></i>
+                            <img src={angleDown} className="icon" alt="icon" style={{maxWidth: "7px",maxHeight: "10px", margin: "0 5px"}}/>
                 <div className="dropdown-menu">
                     <DropdownLink linkTo="skin-and-hair-plan" title="Skin and Hair" />
                     <DropdownLink linkTo="skin-care-plan" title="skin care" />
@@ -70,7 +72,7 @@ const Navbar = (props) => (
                         Cart({props.cartLength || 0})
                         </NavLinkRight>
                     <NavLinkRight linkTo="/">
-                        <i className="fas fa-search" id="search-icon" />
+                        <img src={search} className="icon" alt="icon" />
                     </NavLinkRight>
                 </div>
             </div>

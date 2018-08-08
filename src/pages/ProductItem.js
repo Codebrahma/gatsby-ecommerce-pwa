@@ -6,7 +6,11 @@ import ProductFaqs from "../components/ProductFaqs.js";
 import ProductSubscription from "../components/ProductSubscription.js";
 import ProductVariants from "../components/ProductVariants.js";
 import VariantType from "../components/VariantType.js";
-
+import facebook from "../assets/icons/facebook-f-brands.svg";
+import twitter from "../assets/icons/twitter-brands.svg";
+import plus from "../assets/icons/plus-solid.svg";
+import minus from "../assets/icons/minus-solid.svg";
+import download from "../assets/icons/download-solid.svg"
 
 
 class ProductItem extends Component {
@@ -64,11 +68,11 @@ class ProductItem extends Component {
       <div id="action-input">
         <div id="quantity">
           <button onClick={() => this.changeItemCount(-7)} className="btn btn-light minus-btn">
-            <i className="fas fa-minus"></i>
+            <img src={minus} className="icon" alt="icon"/>
           </button>
           <input type="text" disabled min="0" value={this.state.itemCount} />
           <button onClick={() => this.changeItemCount(7)} className="btn btn-light plus-btn">
-            <i className="fas fa-plus" ></i>
+            <img src={plus} className="icon" alt="icon"/>
           </button>
         </div>
         <span id="price">Rs. {(this.props.pathContext.productPrice / 7.0) * ((this.state.itemCount === 0) ? 7 : this.state.itemCount)}</span>
@@ -84,14 +88,14 @@ class ProductItem extends Component {
     <div id="social-icons">
       <ul>
         <li>
-          <Link to="/ProductItem">
-            <i className="fab fa-facebook-f"></i>
-          </Link>
+          <a href="#">
+            <img src={facebook} className="icon" alt="icon"/>
+          </a>
         </li>
         <li>
-          <Link to="/ProductItem">
-            <i className="fab fa-twitter"></i>
-          </Link>
+          <a href="#">
+            <img src={twitter} className="icon" alt="icon"/>
+          </a>
         </li>
       </ul>
     </div>
@@ -138,7 +142,7 @@ class ProductItem extends Component {
             {this.renderProductActions()}
             {this.renderSocialIcons()}
             <span id="behind-science">
-              <i className="fas fa-download"></i>
+              <img src={download} className="icon" alt="icon"/>
               Read the science behind the program
             </span>
             {this.renderTags()}
