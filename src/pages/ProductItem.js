@@ -32,15 +32,15 @@ class ProductItem extends Component {
 
   addItemToCart = () => {
     const { productId } = this.props.pathContext;
-    let currentCartItems = localStorage.getItem('demo-cart') ? JSON.parse(localStorage.getItem('demo-cart')) : {};
+    let currentCartItems = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : {};
     if (currentCartItems[productId]) {
       currentCartItems[productId].purchaseQuantity += this.state.itemCount
     } else {
-      currentCartItems[productId] = this.props.product;
+      currentCartItems[productId] = this.props.pathContext;
       currentCartItems[productId].purchaseQuantity = this.state.itemCount
     }
-    localStorage.setItem('demo-cart', JSON.stringify(currentCartItems));
-    console.log(JSON.parse(localStorage.getItem('demo-cart')))
+    localStorage.setItem('cart', JSON.stringify(currentCartItems));
+    this.props.eventedLocalStorage();
   }
 
   renderVariants = () => {

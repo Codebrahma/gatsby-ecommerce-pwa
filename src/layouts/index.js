@@ -29,7 +29,7 @@ class Layout extends React.Component {
   componentDidMount() {
     this.setState({
       isAppOnline: window.navigator.onLine,
-      cartLength: (JSON.parse(localStorage.getItem('cart')) || []).length
+      cartLength: Object.keys(JSON.parse(localStorage.getItem('cart')) || {}).length
     })
     window.addEventListener('online', this.cameOnline);
     window.addEventListener('offline', this.cameOffline);
@@ -61,7 +61,7 @@ class Layout extends React.Component {
   }
   eventedLocalStorage = () => {
     this.setState({
-      cartLength: (JSON.parse(localStorage.getItem('cart')) || []).length
+      cartLength: Object.keys(JSON.parse(localStorage.getItem('cart')) || {}).length
     })
   }
 
