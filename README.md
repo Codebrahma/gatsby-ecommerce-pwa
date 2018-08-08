@@ -29,12 +29,13 @@ SHOPIFY_STORE_NAME='PRODUCTION_STORE_NAME'
 SHOPIFY_STORE_ACCESS_TOKEN='PRODUCTION_STORE_ACCESS_TOKEN'
 ```
 ```.env.development``` and ```.env.production``` will be ignored by ```git```.
+
 Also make sure you have the gatsby CLI, use
 ```sh
 npm install --global gatsby-cli
 ```
 
-To start the project use
+ **To start the project use**
 ```
 npm run develop
 ```
