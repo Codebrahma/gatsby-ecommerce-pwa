@@ -47,7 +47,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           const { node } = edge;
           createPage({
             path: `product/${node.id}`,
-            component: path.resolve(`./src/pages/ProductItem.js`),
+            component: path.resolve(`./src/pages/Products/index.js`),
             context: {
               productId: node.id,
               productName: node.title,
@@ -65,7 +65,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         _.forEach(categoryToProductsMap, (value, key) => {
           createPage({
             path: `category/${key.toLowerCase().split(' ').join('-')}`,
-            component: path.resolve(`./src/pages/Categories.js`),
+            component: path.resolve(`./src/pages/Categories/index.js`),
             context: {
               productType: key,
               products: value,
