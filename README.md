@@ -20,7 +20,6 @@ Add ```.env.development``` file with variables given in ```.env.sample```
 SHOPIFY_STORE_NAME='STORE_NAME'
 SHOPIFY_STORE_ACCESS_TOKEN='STORE_ACCESS_TOKEN'
 ```
-```.env.development``` will be ignored by ```git```.
 
  **For Production**,
 
@@ -29,7 +28,7 @@ Add ```.env.production``` with
 SHOPIFY_STORE_NAME='PRODUCTION_STORE_NAME'
 SHOPIFY_STORE_ACCESS_TOKEN='PRODUCTION_STORE_ACCESS_TOKEN'
 ```
-
+```.env.development``` and ```.env.production``` will be ignored by ```git```.
 Also make sure you have the gatsby CLI, use
 ```sh
 npm install --global gatsby-cli
