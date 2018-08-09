@@ -8,6 +8,14 @@
   cursor: pointer;
   margin: 0 20px;
 }
+@-moz-document url-prefix() {
+  .carousel-control-prev, .carousel-control-next {
+    max-width: 40px;
+    max-height: 40px;
+    box-sizing: content-box;
+    padding: 1%;
+  }
+}
 .demo-carousel-image {
   max-width: 100vw; 
   max-height: 65vh;
