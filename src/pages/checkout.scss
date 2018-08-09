@@ -21,7 +21,22 @@
     justify-content: space-between;
 }
 
+.cart-container {
+    max-height: 80vh;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
 .cart-item {
     padding: 2%;
     box-shadow: 0.2px 0.5px 5px 1px rgba(0,0,0,0.4);
+    .item-count {
+        height: 40%;
+        background-color: rgba(0,0,0,0.05);
+    }
+}
+
+.delete-icon {
+    max-height: 1.5em;
+    width: auto;
 }

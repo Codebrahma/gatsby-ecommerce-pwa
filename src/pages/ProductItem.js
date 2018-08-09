@@ -17,68 +17,51 @@ class ProductItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      itemCount: 7
-    }
-  }
 
-  getItemFromCart = () => {
-    const currentCartItems = JSON.parse(localStorage.getItem('cart')) || {};
-    const { productId } = this.props.pathContext;
-    if(this.isItemInCart()){
-      return currentCartItems[productId]
-    } else {
-      return null
     }
   }
 
   componentDidMount() {
-    let item = this.getItemFromCart()
-    this.setState({
-      itemCount: item ? item.purchaseQuantity : 0
-    })
-  }
-
-  isItemInCart() {
+    const currentCartItems = JSON.parse(localStorage.getItem('cart')) || {};
     const { productId } = this.props.pathContext;
-    let currentCartItems = JSON.parse(localStorage.getItem('cart')) || {};
-    if (currentCartItems[productId]) {
-      return true
-    }
-    return false
+    this.setState({
+      itemCount: currentCartItems[productId] ? currentCartItems[productId].purchaseQuantity : 7,
+      isInCart: currentCartItems[productId] ? true : false
+    })
   }
 
   updateCart = (change) => {
     const { productId } = this.props.pathContext;
     let currentCartItems = JSON.parse(localStorage.getItem('cart')) || {};
-    if (this.isItemInCart()) {
-      if (currentCartItems[productId].purchaseQuantity + change === 0) {
+    if (this.state.isInCart) {
+      currentCartItems[productId].purchaseQuantity += change
+      if (currentCartItems[productId].purchaseQuantity === 0) {
         delete currentCartItems[productId]
-      } else {
-        currentCartItems[productId].purchaseQuantity += change
+        this.setState({
+          isInCart: false
+        })
       }
       localStorage.setItem('cart', JSON.stringify(currentCartItems));
     }
-    this.props.eventedLocalStorage();
   }
 
   changeItemCount = (change) => {
     this.setState(prevState => ({
       itemCount: prevState.itemCount + change,
     }))
-    this.props.eventedLocalStorage();
     this.updateCart(change);
+    this.props.eventedLocalStorage();
   }
 
   addItemToCart = () => {
     const { productId } = this.props.pathContext;
     let currentCartItems = JSON.parse(localStorage.getItem('cart')) || {};
-    if (currentCartItems[productId]) {
-      currentCartItems[productId].purchaseQuantity += this.state.itemCount
-    } else {
-      currentCartItems[productId] = this.props.pathContext;
-      currentCartItems[productId].purchaseQuantity = this.state.itemCount
-    }
+    currentCartItems[productId] = this.props.pathContext;
+    currentCartItems[productId].purchaseQuantity = this.state.itemCount
     localStorage.setItem('cart', JSON.stringify(currentCartItems));
+    this.setState({
+      isInCart: true
+    })
     this.props.eventedLocalStorage();
   }
 
@@ -86,7 +69,7 @@ class ProductItem extends Component {
     let product = {};
     product[this.props.pathContext.productId] = this.props.pathContext;
     product[this.props.pathContext.productId].purchaseQuantity = this.state.itemCount;
-    localStorage.setItem('bn-item',JSON.stringify(product));
+    localStorage.setItem('bn-item', JSON.stringify(product));
     navigateTo('/checkout');
   }
 
@@ -127,8 +110,8 @@ class ProductItem extends Component {
         <span id="price">Rs. {(this.props.pathContext.productPrice / 7.0) * ((this.state.itemCount === 0) ? 7 : this.state.itemCount)}</span>
       </div>
       <div id="action-button">
-        <button className={`btn btn-${this.isItemInCart() ? "light" : "dark"}`} onClick={this.addItemToCart} disabled={!this.state.itemCount}>
-          {this.isItemInCart() ? "In Cart" : "add to cart"}
+        <button className={`btn btn-${this.state.isInCart ? "light" : "dark"}`} onClick={this.addItemToCart} disabled={!this.state.itemCount}>
+          {this.state.isInCart ? "In Cart" : "add to cart"}
         </button>
         <button className="btn btn-dark" disabled={!this.state.itemCount} onClick={this.handleBuyNow}>buy now</button>
       </div>
