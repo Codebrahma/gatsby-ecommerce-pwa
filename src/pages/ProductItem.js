@@ -99,7 +99,7 @@ class ProductItem extends Component {
     <div className="demo-product-actions">
       <div id="action-input">
         <div id="quantity">
-          <button onClick={() => this.changeItemCount(-7)} className="btn btn-light minus-btn" disabled={!this.state.itemCount}>
+          <button onClick={() => this.changeItemCount(-7)} className={`btn btn-light minus-btn ${!this.state.itemCount ? 'cursor-disabled' : ''}`} disabled={!this.state.itemCount}>
             <img src={minus} className="icon" alt="icon" />
           </button>
           <div className="quantity-num container p-1 text-center">{this.state.itemCount}</div>
@@ -110,7 +110,7 @@ class ProductItem extends Component {
         <span id="price">Rs. {(this.props.pathContext.productPrice / 7.0) * ((this.state.itemCount === 0) ? 7 : this.state.itemCount)}</span>
       </div>
       <div id="action-button">
-        <button className={`btn btn-${this.state.isInCart ? "light" : "dark"}`} onClick={this.addItemToCart} disabled={!this.state.itemCount}>
+        <button className={`btn btn-${this.state.isInCart ? "info cursor-disabled" : "dark"}`} onClick={this.addItemToCart} disabled={!this.state.itemCount || this.state.isInCart}>
           {this.state.isInCart ? "In Cart" : "add to cart"}
         </button>
         <button className="btn btn-dark" disabled={!this.state.itemCount} onClick={this.handleBuyNow}>buy now</button>

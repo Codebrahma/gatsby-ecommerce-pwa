@@ -74,7 +74,7 @@ class Cart extends Component {
         if (Object.keys(cartItems).length) {
             return Object.keys(cartItems).map((key) => {
                 return (
-                    <div key={key} className="row cart-item mb-3 bg-light">
+                    <div key={key} className="row cart-item mb-3">
                         <div className="col col-lg-3 col-md-3 col-sm-3">
                             <img src={cartItems[key].images.length ? cartItems[key].images[0].originalSrc : require('../assets/images/default.jpeg')} alt="product-image" />
                         </div>
@@ -109,16 +109,19 @@ class Cart extends Component {
         return (
             <div className="container p-4">
                 <div className="row">
-                    <div className="col col-lg-9 col-md-9 col-sm-12 cart-container">
+                    <div className="col col-lg-9 col-md-9 col-sm-12">
                         <div className="container p-2 px-4">
                             {this.showCartItems()}
                         </div>
                     </div>
-                    <div className="col col-lg-3 col-md-3 col-sm-12">
-                        <div className="container p-2 px-4">
-                            {this.displayCheckoutInfo()}
+                    {
+                        this.getCheckoutMoney() !==0 &&
+                        <div className="col col-lg-3 col-md-3 col-sm-12">
+                            <div className="container p-2 px-4">
+                                {this.displayCheckoutInfo()}
+                            </div>
                         </div>
-                    </div>
+                    }
                 </div>
             </div>
         )

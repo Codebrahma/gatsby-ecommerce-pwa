@@ -3,6 +3,7 @@ import './checkout.scss';
 import _ from 'lodash';
 import TakeMoney from '../components/TakeMoney';
 import FormInputField from '../components/form';
+import { navigateTo } from 'gatsby-link';
 
 class CheckoutDetails extends Component {
 
@@ -14,10 +15,26 @@ class CheckoutDetails extends Component {
     }
 
     componentDidMount() {
+        let bnDetails = JSON.parse(localStorage.getItem('bn-item'));
+        let cartDetails = JSON.parse(localStorage.getItem('cart'));
         this.setState({
-            bnDetails: JSON.parse(localStorage.getItem('bn-item')),
-            cartDetails: JSON.parse(localStorage.getItem('cart'))
+            bnDetails,
+            cartDetails
         })
+        let totalPrice = 0;
+        const checkoutItems = bnDetails ? bnDetails : cartDetails;
+        if (checkoutItems) {
+            Object.keys(checkoutItems).map((key) => {
+                totalPrice += (checkoutItems[key].productPrice / 7.0) * checkoutItems[key].purchaseQuantity
+            })
+        }
+        if(totalPrice === 0) {
+            navigateTo('/cart');
+        }
+    }
+
+    componentWillUnmount() {
+        localStorage.removeItem('bn-item');
     }
 
     render() {
