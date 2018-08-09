@@ -51,7 +51,7 @@ class Cart extends Component {
     displayCheckoutInfo = () => (
         <div className="row">
             <div className="col col-lg-12 col-md-12 col-sm-6 p-2">
-                {`Total: Rs. ${this.getCheckoutMoney()}`}
+                {`Total: Rs. ${(this.getCheckoutMoney()).toFixed(2)}`}
             </div>
             <div className="col col-lg-12 col-md-12 col-sm-6">
                 <GatsbyLink className="btn btn-dark" to="/checkout">Proceed to Checkout</GatsbyLink>

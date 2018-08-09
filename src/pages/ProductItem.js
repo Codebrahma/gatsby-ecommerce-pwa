@@ -104,7 +104,7 @@ class ProductItem extends Component {
             <img src={plus} className="icon" alt="icon" />
           </button>
         </div>
-        <span id="price">Rs. {(this.props.pathContext.productPrice / 7.0) * ((this.state.itemCount === 0) ? 7 : this.state.itemCount)}</span>
+        <span id="price">Rs. {((this.props.pathContext.productPrice / 7.0) * ((this.state.itemCount === 0) ? 7 : this.state.itemCount)).toFixed(2)}</span>
       </div>
       <div id="action-button">
         <button className={`btn btn-${this.state.isInCart ? "info cursor-disabled" : "dark"}`} onClick={this.addItemToCart} disabled={!this.state.itemCount || this.state.isInCart}>
