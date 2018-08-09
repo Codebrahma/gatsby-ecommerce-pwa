@@ -13,13 +13,13 @@ class Cart extends Component {
         this.setState({
             appOnline: window.navigator.onLine
         })
-        window.addEventListener('online', this.online())
-        window.addEventListener('offline', this.offline())
+        window.addEventListener('online', this.online)
+        window.addEventListener('offline', this.offline)
     }
 
     componentWillUnmount = () => {
-        window.removeEventListener('online');
-        window.removeEventListener('offline');
+        window.removeEventListener('online', this.online);
+        window.removeEventListener('offline', this.offline);
     }
 
     online = () => {
@@ -57,8 +57,8 @@ class Cart extends Component {
     )
 
     showCartItems = () => {
-        const cartItems = JSON.parse(localStorage.getItem('cart'));
-        if (cartItems) {
+        const cartItems = JSON.parse(localStorage.getItem('cart')) || {};
+        if (Object.keys(cartItems).length) {
             return Object.keys(cartItems).map((key) => {
                 return (
                     <div key={key} className="row cart-item mb-3">
