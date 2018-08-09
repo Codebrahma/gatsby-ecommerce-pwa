@@ -6,6 +6,7 @@ import '../components/css/custom.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './Header';
 import '../assets/images/512.png';
+import ProductList from "../components/ProductList";
 
 const closePopup = () => {
   document.getElementById("install").style.display = 'none';
@@ -77,6 +78,21 @@ class Layout extends React.Component {
     })
   }
 
+  renderPage = ({ categoryName, productsInCategory}) => {
+    return(
+      <div className="container demo-container">
+        <div className="row">
+            <div className="demo-product-collection">
+                <div className="demo-product-collection-header">
+                    <p>{`${categoryName} collection`}</p>
+                </div>
+                <ProductList products={productsInCategory} />
+            </div>
+        </div>
+    </div>
+    )
+  }
+
   render() {
     const {
       children,
@@ -92,7 +108,10 @@ class Layout extends React.Component {
         <Header 
           headPath = {location.pathname}
           cartLength = {this.state.cartLength} />
-        {children({ ...this.props, eventedLocalStorage: this.eventedLocalStorage })}
+        {children({ ...this.props, 
+          eventedLocalStorage: this.eventedLocalStorage,
+          renderPage: this.renderPage
+          })}
       </div>
     );
   }
