@@ -130,7 +130,7 @@ class ProductItem extends Component {
         <button className={`btn btn-${this.isItemInCart() ? "light" : "dark"}`} onClick={this.addItemToCart} disabled={!this.state.itemCount}>
           {this.isItemInCart() ? "In Cart" : "add to cart"}
         </button>
-        <button className="btn btn-dark">buy now</button>
+        <button className="btn btn-dark" disabled={!this.state.itemCount} onClick={this.handleBuyNow}>buy now</button>
       </div>
     </div>
   )
