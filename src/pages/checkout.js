@@ -13,7 +13,7 @@ class CheckoutDetails extends Component {
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.setState({
             bnDetails: JSON.parse(localStorage.getItem('bn-item')),
             cartDetails: JSON.parse(localStorage.getItem('cart'))
@@ -31,7 +31,7 @@ class CheckoutDetails extends Component {
         }
 
         return (
-            <div className="checkout-details container">
+            <div className="checkout-details">
                 <div className="container">
                     <div className="checkout-detail row mb-2">
                         <span>{itemCount} items</span>
@@ -81,7 +81,7 @@ class Checkout extends Component {
         return (
             <div className="container py-4 px-2">
                 <div className="row">
-                    <div className="col col-lg-8 col-md-8 col-sm-12 mb-2">
+                    <div className="col-lg-8 col-md-12 col-sm-12 col-xs-12 mb-2">
                         <div className="form-container container mb-3">
                             <h4 className="lead mb-4">Personal Info</h4>
                             {_.map(personalInfoFormFields, field =>
@@ -107,7 +107,7 @@ class Checkout extends Component {
                             )}
                         </div>
                     </div>
-                    <div className="col col-lg-4 col-md-4 col-sm-12">
+                    <div className="col-lg-4 col-md-12 col-sm-12 col-xs-12">
                         <CheckoutDetails />
                         <CheckoutButton eventedLocalStorage={this.props.eventedLocalStorage} />
                     </div>

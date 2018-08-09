@@ -4,11 +4,11 @@ import PropTypes from 'prop-types'
 const FormInputField = (props) => {
 
   const renderTextField = (type, name, value) => (
-    <input className="form-control" name={name} type={type} value={value} required="" disabled />
+    <input className="form-control" name={name} type={type} defaultValue={value} required=""  />
   )
 
   const renderSelectField = () => (
-    <select className="form-control form-control-select" name="id_state" required disabled>
+    <select className="form-control form-control-select" name="id_state" required >
       <option defaultValue="" disabled>--Please Select One--</option>
       <option value="1">Option-1</option>
       <option value="2">Option-2</option>
@@ -40,13 +40,10 @@ const FormInputField = (props) => {
       case "email":
       case "number":
         return renderTextField(type, name, value)
-        break;
       case "select":
         return renderSelectField()
-        break;
       case "radio":
         return renderRadioButton(type)
-        break;
       default:
         return (
           <span></span>
