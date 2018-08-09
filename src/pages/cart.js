@@ -63,6 +63,9 @@ class Cart extends Component {
         let { cartItems } = this.state;
         delete cartItems[productId]
         localStorage.setItem('cart', JSON.stringify(cartItems))
+        this.setState({
+            cartItems
+        })
         this.props.eventedLocalStorage()
     }
 
