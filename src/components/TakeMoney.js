@@ -54,8 +54,8 @@ export default class TakeMoney extends React.Component {
 
   render() {
     const { isPaymentSuccess } = this.state
-    const { isOnline } = this.props;
-    const paymentContent = isOnline ? (
+    const { appOnline } = this.state;
+    const paymentContent = appOnline ? (
       <StripeCheckout
         token={this.onToken}
         stripeKey="pk_test_rM2enW1rNROwx4ukBXGaIzhr"
@@ -63,8 +63,7 @@ export default class TakeMoney extends React.Component {
       >   
         <button
           type="submit"
-          className="btn btn-dark center-block" 
-          disabled={!this.state.appOnline}
+          className="btn btn-dark center-block"
         >
           Proceed to Pay
         </button>
