@@ -61,11 +61,9 @@
       margin: 10px 0;
       #quantity {
         display: inline-flex;
-        input {
+        .quantity-num {
           border: 1px solid #000;
-          max-width: 50px;
-          padding: 5px;
-          text-align: center;
+          width: 2.5em !important;
         }
         button {
           border-radius: 0;
@@ -76,10 +74,12 @@
         .minus-btn {
           border-top-left-radius: 12px;
           border-bottom-left-radius: 12px;
+          width: 2em !important;
         }
         .plus-btn {
           border-top-right-radius: 12px;
           border-bottom-right-radius: 12px;
+          width: 2em !important;
         }
       }
       #price {

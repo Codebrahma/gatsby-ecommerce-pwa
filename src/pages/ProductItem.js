@@ -102,7 +102,7 @@ class ProductItem extends Component {
           <button onClick={() => this.changeItemCount(-7)} className="btn btn-light minus-btn" disabled={!this.state.itemCount}>
             <img src={minus} className="icon" alt="icon" />
           </button>
-          <input type="text" disabled min="0" value={this.state.itemCount} />
+          <div className="quantity-num container p-1 text-center">{this.state.itemCount}</div>
           <button onClick={() => this.changeItemCount(7)} className="btn btn-light plus-btn">
             <img src={plus} className="icon" alt="icon" />
           </button>

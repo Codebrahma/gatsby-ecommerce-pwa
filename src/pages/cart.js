@@ -7,12 +7,14 @@ class Cart extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            cartItems: {}
         }
     }
 
     componentDidMount() {
         this.setState({
-            appOnline: window.navigator.onLine
+            appOnline: window.navigator.onLine,
+            cartItems: JSON.parse(localStorage.getItem('cart')) || {}
         })
         window.addEventListener('online', this.online)
         window.addEventListener('offline', this.offline)
@@ -36,7 +38,7 @@ class Cart extends Component {
     }
 
     getCheckoutMoney = () => {
-        const cartItems = JSON.parse(localStorage.getItem('cart'));
+        const { cartItems } = this.state;
         let total = 0;
         if (cartItems) {
             Object.keys(cartItems).map((key) => {
@@ -58,14 +60,14 @@ class Cart extends Component {
     )
 
     removeItemFromCart = (productId) => {
-        const currentCartItems = JSON.parse(localStorage.getItem('cart')) || {};
-        delete currentCartItems[productId]
-        localStorage.setItem('cart', JSON.stringify(currentCartItems))
+        let { cartItems } = this.state;
+        delete cartItems[productId]
+        localStorage.setItem('cart', JSON.stringify(cartItems))
         this.props.eventedLocalStorage()
     }
 
     showCartItems = () => {
-        const cartItems = JSON.parse(localStorage.getItem('cart')) || {};
+        const { cartItems } = this.state;
         if (Object.keys(cartItems).length) {
             return Object.keys(cartItems).map((key) => {
                 return (
