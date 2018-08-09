@@ -33,29 +33,18 @@ const CheckoutDetails = () => {
 
 }
 
-const CheckoutButton = ({ isOnline, eventedLocalStorage }) => (
+const CheckoutButton = ({ eventedLocalStorage }) => (
     <div className="container">
         <div className="row text-center py-2">
             <div className="col col-lg-12 col-md-12 col-sm-12">
-                <TakeMoney isOnline={isOnline} eventedLocalStorage={eventedLocalStorage} />
+                <TakeMoney eventedLocalStorage={eventedLocalStorage} />
             </div>
         </div>
     </div>
 )
 
 class Checkout extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
 
-        }
-    }
-
-    componentWillMount() {
-        this.setState({
-            isOnline: window.navigator.onLine
-        })
-    }
     render() {
         const personalInfoFormFields = [
             { id:1, label: "Title", type: "radio", optional: "" },
@@ -106,7 +95,7 @@ class Checkout extends Component {
                     </div>
                     <div className="col col-lg-4 col-md-4 col-sm-12">
                         <CheckoutDetails />
-                        <CheckoutButton isOnline={this.state.isOnline} eventedLocalStorage={this.props.eventedLocalStorage} />
+                        <CheckoutButton eventedLocalStorage={this.props.eventedLocalStorage} />
                     </div>
                 </div>
             </div>
