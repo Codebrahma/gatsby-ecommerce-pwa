@@ -56,6 +56,13 @@ class Cart extends Component {
         </div>
     )
 
+    removeItemFromCart = (productId) => {
+      const currentCartItems = JSON.parse(localStorage.getItem('cart')) || {};
+      delete currentCartItems[productId]
+      localStorage.setItem('cart',JSON.stringify(currentCartItems))
+      this.props.eventedLocalStorage()
+    }
+
     showCartItems = () => {
         const cartItems = JSON.parse(localStorage.getItem('cart')) || {};
         if (Object.keys(cartItems).length) {
@@ -69,6 +76,7 @@ class Cart extends Component {
                             <p>{cartItems[key].productName}</p>
                             <p><strong>Quantity : </strong>{cartItems[key].purchaseQuantity}</p>
                             <p><strong>Amount : </strong>Rs. {cartItems[key].productPrice * (cartItems[key].purchaseQuantity / 7)}</p>
+                            <button onClick={() => this.removeItemFromCart(cartItems[key].productId)} className="btn btn-danger">Delete Item</button>
                         </div>
                     </div>
                 )
