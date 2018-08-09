@@ -68,7 +68,7 @@ const Navbar = (props) => (
                 <NavLink title="Dinner" linkTo="dinner" />
                 <DropDown />
                 <div style={{ display: 'inline-block', float: 'right'}} >
-                    <NavLinkRight linkTo="/">
+                    <NavLinkRight linkTo="/cart">
                         Cart({props.cartLength || 0})
                         </NavLinkRight>
                     <NavLinkRight linkTo="/">

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import _ from "lodash"
-import Link from 'gatsby-link'
+import Link, { navigateTo } from 'gatsby-link'
 import './products.scss';
 import ProductFaqs from "../components/ProductFaqs.js";
 import ProductSubscription from "../components/ProductSubscription.js";
@@ -17,30 +17,57 @@ class ProductItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      active: false,
-      itemCount: 7
+
+    }
+  }
+
+  componentDidMount() {
+    const currentCartItems = JSON.parse(localStorage.getItem('cart')) || {};
+    const { productId } = this.props.pathContext;
+    this.setState({
+      itemCount: currentCartItems[productId] ? currentCartItems[productId].purchaseQuantity : 7,
+      isInCart: currentCartItems[productId] ? true : false
+    })
+  }
+
+  updateCart = (change) => {
+    const { productId } = this.props.pathContext;
+    let currentCartItems = JSON.parse(localStorage.getItem('cart')) || {};
+    if (this.state.isInCart) {
+      currentCartItems[productId].purchaseQuantity += change
+      if (currentCartItems[productId].purchaseQuantity === 0) {
+        delete currentCartItems[productId]
+        this.setState({
+          isInCart: false
+        })
+      }
+      localStorage.setItem('cart', JSON.stringify(currentCartItems));
     }
   }
 
   changeItemCount = (change) => {
-    if (!(this.state.itemCount === 0 && change < 0)) {
-      this.setState(prevState => ({
-        itemCount: prevState.itemCount + change
-      }))
-    }
+    this.setState(prevState => ({
+      itemCount: prevState.itemCount + change,
+    }))
+    this.updateCart(change);
+    this.props.eventedLocalStorage();
   }
 
   addItemToCart = () => {
     const { productId } = this.props.pathContext;
-    let currentCartItems = localStorage.getItem('demo-cart') ? JSON.parse(localStorage.getItem('demo-cart')) : {};
-    if (currentCartItems[productId]) {
-      currentCartItems[productId].purchaseQuantity += this.state.itemCount
-    } else {
-      currentCartItems[productId] = this.props.product;
-      currentCartItems[productId].purchaseQuantity = this.state.itemCount
-    }
-    localStorage.setItem('demo-cart', JSON.stringify(currentCartItems));
-    console.log(JSON.parse(localStorage.getItem('demo-cart')))
+    let currentCartItems = JSON.parse(localStorage.getItem('cart')) || {};
+    currentCartItems[productId] = this.props.pathContext;
+    currentCartItems[productId].purchaseQuantity = this.state.itemCount
+    localStorage.setItem('cart', JSON.stringify(currentCartItems));
+    this.setState({
+      isInCart: true
+    })
+    this.props.eventedLocalStorage();
+  }
+
+  handleBuyNow = () => {
+    this.addItemToCart();
+    navigateTo('/cart');
   }
 
   renderVariants = () => {
@@ -48,7 +75,7 @@ class ProductItem extends Component {
     _.map(this.props.pathContext.variants, (variant) => {
       _.map(variant.selectedOptions, item => {
         let { name, value } = item;
-        if(options[name]) {
+        if (options[name]) {
           options[name].push(value)
         } else {
           options[name] = [];
@@ -57,9 +84,11 @@ class ProductItem extends Component {
       })
     })
     return Object.keys(options).map(
-      key => <ProductVariants key={key} variantItems={_.uniq(options[key])} >
-        <VariantType variantType={key} />
-      </ProductVariants>
+      key => (
+        <ProductVariants key={key} variantItems={_.uniq(options[key])} >
+          <VariantType variantType={key} />
+        </ProductVariants>
+      )
     )
   }
 
@@ -67,19 +96,21 @@ class ProductItem extends Component {
     <div className="demo-product-actions">
       <div id="action-input">
         <div id="quantity">
-          <button onClick={() => this.changeItemCount(-7)} className="btn btn-light minus-btn">
-            <img src={minus} className="icon" alt="icon"/>
+          <button onClick={() => this.changeItemCount(-7)} className={`btn btn-light minus-btn ${!this.state.itemCount ? 'cursor-disabled' : ''}`} disabled={!this.state.itemCount}>
+            <img src={minus} className="icon" alt="icon" />
           </button>
-          <input type="text" disabled min="0" value={this.state.itemCount} />
+          <div className="quantity-num container p-1 text-center">{this.state.itemCount}</div>
           <button onClick={() => this.changeItemCount(7)} className="btn btn-light plus-btn">
-            <img src={plus} className="icon" alt="icon"/>
+            <img src={plus} className="icon" alt="icon" />
           </button>
         </div>
         <span id="price">Rs. {(this.props.pathContext.productPrice / 7.0) * ((this.state.itemCount === 0) ? 7 : this.state.itemCount)}</span>
       </div>
       <div id="action-button">
-        <button className="btn btn-dark" onClick={this.addItemToCart} disabled={!this.state.itemCount}>add to cart</button>
-        <button className="btn btn-dark">buy now</button>
+        <button className={`btn btn-${this.state.isInCart ? "info cursor-disabled" : "dark"}`} onClick={this.addItemToCart} disabled={!this.state.itemCount || this.state.isInCart}>
+          {this.state.isInCart ? "In Cart" : "add to cart"}
+        </button>
+        <button className="btn btn-dark" disabled={!this.state.itemCount} onClick={this.handleBuyNow}>buy now</button>
       </div>
     </div>
   )
@@ -89,12 +120,12 @@ class ProductItem extends Component {
       <ul>
         <li>
           <a href="#">
-            <img src={facebook} className="icon" alt="icon"/>
+            <img src={facebook} className="icon" alt="icon" />
           </a>
         </li>
         <li>
           <a href="#">
-            <img src={twitter} className="icon" alt="icon"/>
+            <img src={twitter} className="icon" alt="icon" />
           </a>
         </li>
       </ul>
@@ -131,9 +162,9 @@ class ProductItem extends Component {
       <div className="container">
         <div className="demo-product-item row">
           <div className="demo-product-item-image col-md-6 col-sm-12">
-            <img 
-              src={ (this.props.pathContext.images && this.props.pathContext.images.length !== 0 && this.props.pathContext.images[0].originalSrc) || require('../assets/images/default.jpeg')} 
-              alt={this.props.pathContext.productName} 
+            <img
+              src={(this.props.pathContext.images && this.props.pathContext.images.length !== 0 && this.props.pathContext.images[0].originalSrc) || require('../assets/images/default.jpeg')}
+              alt={this.props.pathContext.productName}
             />
           </div>
           <div className="demo-product-item-details col-md-6 col-sm-12" >
@@ -142,7 +173,7 @@ class ProductItem extends Component {
             {this.renderProductActions()}
             {this.renderSocialIcons()}
             <span id="behind-science">
-              <img src={download} className="icon" alt="icon"/>
+              <img src={download} className="icon" alt="icon" />
               Read the science behind the program
             </span>
             {this.renderTags()}
