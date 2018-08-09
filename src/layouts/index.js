@@ -78,7 +78,7 @@ class Layout extends React.Component {
     })
   }
 
-  renderPage = ({ categoryName, productsInCategory}) => {
+  renderPage = ({ categoryName, productsInCategory, applyFilter }) => {
     return(
       <div className="container demo-container">
         <div className="row">
@@ -86,6 +86,7 @@ class Layout extends React.Component {
                 <div className="demo-product-collection-header">
                     <p>{`${categoryName} collection`}</p>
                 </div>
+                <button onClick={applyFilter}>Apply filter</button>
                 <ProductList products={productsInCategory} />
             </div>
         </div>
