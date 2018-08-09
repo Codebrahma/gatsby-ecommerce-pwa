@@ -51,7 +51,7 @@ class Cart extends Component {
     displayCheckoutInfo = () => (
         <div className="row">
             <div className="col col-lg-12 col-md-12 col-sm-6 p-2">
-                Total: {this.getCheckoutMoney()}
+                {`Total: Rs. ${this.getCheckoutMoney()}`}
             </div>
             <div className="col col-lg-12 col-md-12 col-sm-6">
                 <GatsbyLink className="btn btn-dark" to="/checkout">Proceed to Checkout</GatsbyLink>
@@ -79,7 +79,7 @@ class Cart extends Component {
                             <img src={cartItems[key].images.length ? cartItems[key].images[0].originalSrc : require('../assets/images/default.jpeg')} alt="product-image" />
                         </div>
                         <div className="col col-lg-7 col-md-7 col-sm-7">
-                            <GatsbyLink to={`/product/${key}`}>{cartItems[key].productName}</GatsbyLink>
+                            <GatsbyLink style={{ color: 'rgba(27,55,100, 1)' }} to={`/product/${key}`}>{cartItems[key].productName}</GatsbyLink>
                             <p className="mt-5" >Rs. {cartItems[key].productPrice * (cartItems[key].purchaseQuantity / 7)}</p>
                         </div>
                         <div className="col col-lg-2 col-md-2 col-sm-2">

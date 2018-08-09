@@ -66,11 +66,8 @@ class ProductItem extends Component {
   }
 
   handleBuyNow = () => {
-    let product = {};
-    product[this.props.pathContext.productId] = this.props.pathContext;
-    product[this.props.pathContext.productId].purchaseQuantity = this.state.itemCount;
-    localStorage.setItem('bn-item', JSON.stringify(product));
-    navigateTo('/checkout');
+    this.addItemToCart();
+    navigateTo('/cart');
   }
 
   renderVariants = () => {

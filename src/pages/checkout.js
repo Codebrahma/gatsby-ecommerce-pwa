@@ -52,7 +52,7 @@ class CheckoutDetails extends Component {
                 <div className="container">
                     <div className="checkout-detail row mb-2">
                         <span>{itemCount} items</span>
-                        <span>{totalPrice}</span>
+                        <span>{`Rs. ${totalPrice}`}</span>
                     </div>
                     <div className="checkout-detail row">
                         <span>Shipping charges</span>

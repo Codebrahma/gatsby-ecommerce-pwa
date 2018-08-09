@@ -23,7 +23,7 @@
 
 .cart-item {
     padding: 2%;
-    box-shadow: 0.2px 0.5px 5px 1px rgba(0, 0, 0, 0.4);
+    box-shadow: 0.2px 0.5px 2px 0.5px rgba(0, 0, 0, 0.4);
     .item-count {
         height: 40%;
     }
@@ -32,6 +32,7 @@
 .delete-icon {
     max-height: 1.5em;
     width: auto;
+    cursor: pointer;
 }
 
 .cursor-disabled {
