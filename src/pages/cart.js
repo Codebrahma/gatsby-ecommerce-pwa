@@ -57,8 +57,8 @@ class Cart extends Component {
     )
 
     showCartItems = () => {
-        const cartItems = JSON.parse(localStorage.getItem('cart'));
-        if (cartItems) {
+        const cartItems = JSON.parse(localStorage.getItem('cart')) || {};
+        if (Object.keys(cartItems).length) {
             return Object.keys(cartItems).map((key) => {
                 return (
                     <div key={key} className="row cart-item mb-3">
