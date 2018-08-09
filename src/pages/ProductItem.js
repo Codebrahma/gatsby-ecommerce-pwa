@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import _ from "lodash"
-import Link from 'gatsby-link'
+import Link, { navigateTo } from 'gatsby-link'
 import './products.scss';
 import ProductFaqs from "../components/ProductFaqs.js";
 import ProductSubscription from "../components/ProductSubscription.js";
@@ -43,6 +43,14 @@ class ProductItem extends Component {
     this.props.eventedLocalStorage();
   }
 
+  handleBuyNow = () => {
+    let product = {};
+    product[this.props.pathContext.productId] = this.props.pathContext;
+    product[this.props.pathContext.productId].purchaseQuantity = this.state.itemCount;
+    localStorage.setItem('bn-item',JSON.stringify(product));
+    navigateTo('/checkout');
+  }
+
   renderVariants = () => {
     let options = {};
     _.map(this.props.pathContext.variants, (variant) => {
@@ -79,7 +87,7 @@ class ProductItem extends Component {
       </div>
       <div id="action-button">
         <button className="btn btn-dark" onClick={this.addItemToCart} disabled={!this.state.itemCount}>add to cart</button>
-        <button className="btn btn-dark">buy now</button>
+        <button className="btn btn-dark" onClick={this.handleBuyNow}>buy now</button>
       </div>
     </div>
   )

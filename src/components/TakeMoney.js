@@ -39,7 +39,7 @@ export default class TakeMoney extends React.Component {
       method: 'POST',
       body: JSON.stringify(token),
     }).then(() => {
-      localStorage.setItem('cart', JSON.stringify({}));
+      localStorage.getItem('bn-item') ? localStorage.removeItem('bn-item') : localStorage.setItem('cart', JSON.stringify({}));
       this.props.eventedLocalStorage();
       this.setState({
         isPaymentSuccess: true,
@@ -48,8 +48,8 @@ export default class TakeMoney extends React.Component {
   }
 
   componentWillUnmount() {
-    window.removeEventListener('online');
-    window.removeEventListener('offline');
+    window.removeEventListener('online', this.online);
+    window.removeEventListener('offline', this.offline);
   }
 
   render() {

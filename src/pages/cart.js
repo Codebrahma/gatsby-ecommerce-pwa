@@ -18,8 +18,8 @@ class Cart extends Component {
     }
 
     componentWillUnmount = () => {
-        window.removeEventListener('online');
-        window.removeEventListener('offline');
+        window.removeEventListener('online', this.online);
+        window.removeEventListener('offline', this.offline);
     }
 
     online = () => {

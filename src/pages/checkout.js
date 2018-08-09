@@ -5,12 +5,16 @@ import TakeMoney from '../components/TakeMoney';
 import FormInputField from './form';
 
 const CheckoutDetails = () => {
+    const bnDetails = JSON.parse(localStorage.getItem('bn-item'));
     const cartDetails = JSON.parse(localStorage.getItem('cart'));
+    const checkoutItems = bnDetails ? bnDetails : cartDetails;
     let itemCount = 0; let totalPrice = 0;
-    Object.keys(cartDetails).map((key) => {
-        itemCount++;
-        totalPrice += cartDetails[key].productPrice * (cartDetails[key].purchaseQuantity / 7)
-    })
+    if(checkoutItems) {
+        Object.keys(checkoutItems).map((key) => {
+            itemCount++;
+            totalPrice += (checkoutItems[key].productPrice / 7.0) * checkoutItems[key].purchaseQuantity
+        })
+    }
 
     return (
         <div className="checkout-details container">
