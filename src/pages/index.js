@@ -179,7 +179,8 @@ class HomePage extends Component {
                   productId={node.id}
                   productName={node.title}
                   description={node.description}
-                  productPrice={node.priceRange.minVariantPrice.amount}
+                  productPrice={node.priceRange.minVariantPrice.amount} 
+                  addCardToCart={this.props.addItemToCart}
                 >
                   <Img sizes={node.images[0].originalSrc} alt={node.title}/>
                 </ProductCard>
