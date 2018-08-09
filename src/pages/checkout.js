@@ -15,17 +15,14 @@ class CheckoutDetails extends Component {
     }
 
     componentDidMount() {
-        let bnDetails = JSON.parse(localStorage.getItem('bn-item'));
         let cartDetails = JSON.parse(localStorage.getItem('cart'));
         this.setState({
-            bnDetails,
             cartDetails
         })
         let totalPrice = 0;
-        const checkoutItems = bnDetails ? bnDetails : cartDetails;
-        if (checkoutItems) {
-            Object.keys(checkoutItems).map((key) => {
-                totalPrice += (checkoutItems[key].productPrice / 7.0) * checkoutItems[key].purchaseQuantity
+        if (cartDetails) {
+            Object.keys(cartDetails).map((key) => {
+                totalPrice += (cartDetails[key].productPrice / 7.0) * cartDetails[key].purchaseQuantity
             })
         }
         if(totalPrice === 0) {
@@ -33,17 +30,13 @@ class CheckoutDetails extends Component {
         }
     }
 
-    componentWillUnmount() {
-        localStorage.removeItem('bn-item');
-    }
-
     render() {
-        const checkoutItems = this.state.bnDetails ? this.state.bnDetails : this.state.cartDetails;
+        const {cartDetails} =  this.state;
         let itemCount = 0; let totalPrice = 0;
-        if (checkoutItems) {
-            Object.keys(checkoutItems).map((key) => {
+        if (cartDetails) {
+            Object.keys(cartDetails).map((key) => {
                 itemCount++;
-                totalPrice += (checkoutItems[key].productPrice / 7.0) * checkoutItems[key].purchaseQuantity
+                totalPrice += (cartDetails[key].productPrice / 7.0) * cartDetails[key].purchaseQuantity
             })
         }
 
@@ -52,7 +45,7 @@ class CheckoutDetails extends Component {
                 <div className="container">
                     <div className="checkout-detail row mb-2">
                         <span>{itemCount} items</span>
-                        <span>{`Rs. ${totalPrice}`}</span>
+                        <span>{`Rs. ${(totalPrice).toFixed(2)}`}</span>
                     </div>
                     <div className="checkout-detail row">
                         <span>Shipping charges</span>
