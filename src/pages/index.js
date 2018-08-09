@@ -114,6 +114,9 @@ class HomePage extends Component {
           "id": "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzg2ODk4MTMwMDE=",
           "productType": "Packaged Foods - South Indian",
           "description": "A healthier take on South India’s favourite breakfast",
+          "image": [{
+            "originalSrc": "https://cdn.shopify.com/s/files/1/1057/7864/products/BAMBOO-SEED-DOSA.jpg?v=1517824551",
+          }],
           "title": "Bamboo Seed Dosa",
           "priceRange": {
             "minVariantPrice": {
@@ -133,6 +136,9 @@ class HomePage extends Component {
           "id": "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzg3MDY0NTcxNjE=",
           "productType": "Cookies",
           "description": "A filling snack to keep your health on track",
+          "image": [{
+            "originalSrc": "https://cdn.shopify.com/s/files/1/1057/7864/products/High_Fibre_Cookie_large-min.jpg?v=1533206149",
+          }], 
           "title": "High Fibre Cookie",
           "priceRange": {
             "minVariantPrice": {
@@ -152,6 +158,9 @@ class HomePage extends Component {
           "id": "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzg2NTU2MTc4MDE=",
           "productType": "Smoothie All India",
           "description": "Amplify your workout",
+          "image": [{
+            "originalSrc": "https://cdn.shopify.com/s/files/1/1057/7864/products/Physique-builder-Post-Workout-Smoothie-1.jpg?v=1518684204",
+          }], 
           "title": "Physique Builder Post Workout Smoothie - Pack of 7",
           "priceRange": {
             "minVariantPrice": {
@@ -179,7 +188,9 @@ class HomePage extends Component {
                   productId={node.id}
                   productName={node.title}
                   description={node.description}
-                  price={node.priceRange.minVariantPrice.amount}
+                  productPrice={node.priceRange.minVariantPrice.amount} 
+                  images={node.image}  
+                  addCardToCart={this.props.addItemToCart}
                 >
                   <Img sizes={node.images[0].originalSrc} alt={node.title}/>
                 </ProductCard>

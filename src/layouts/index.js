@@ -29,7 +29,7 @@ class Layout extends React.Component {
   componentDidMount() {
     this.setState({
       isAppOnline: window.navigator.onLine,
-      cartLength: (JSON.parse(localStorage.getItem('cart')) || []).length
+      cartLength: Object.keys(JSON.parse(localStorage.getItem('cart')) || {}).length
     })
     window.addEventListener('online', this.cameOnline);
     window.addEventListener('offline', this.cameOffline);
@@ -61,7 +61,7 @@ class Layout extends React.Component {
   }
   eventedLocalStorage = () => {
     this.setState({
-      cartLength: (JSON.parse(localStorage.getItem('cart')) || []).length
+      cartLength: Object.keys(JSON.parse(localStorage.getItem('cart')) || {}).length
     })
   }
 
@@ -75,6 +75,15 @@ class Layout extends React.Component {
     this.setState({
       isAppOnline: false,
     })
+  }
+
+  addItemToCart = (product) => {
+    let currentCartItems = JSON.parse(localStorage.getItem('cart')) || {}
+    const toBeAddedProduct = Object.assign({}, product)
+    currentCartItems[toBeAddedProduct.productId] = toBeAddedProduct
+    currentCartItems[toBeAddedProduct.productId].purchaseQuantity = 7
+    localStorage.setItem('cart',JSON.stringify(currentCartItems))
+    this.eventedLocalStorage()
   }
 
   render() {
@@ -92,7 +101,7 @@ class Layout extends React.Component {
         <Header 
           headPath = {location.pathname}
           cartLength = {this.state.cartLength} />
-        {children({ ...this.props, eventedLocalStorage: this.eventedLocalStorage })}
+        {children({ ...this.props, eventedLocalStorage: this.eventedLocalStorage, addItemToCart: this.addItemToCart })}
       </div>
     );
   }

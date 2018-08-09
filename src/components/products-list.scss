@@ -3,6 +3,7 @@
   height: 15px;
 }
 .demo-product-collection {
+  max-width: 100%;
   p {
     color: #222;
     margin: 0;
@@ -60,6 +61,9 @@
         justify-content: space-around;
         border-top: 1px solid #ccc;
         span {
+          &:nth-child(2) {
+            cursor: pointer;
+          }
           padding: 15px;
           &:first-child {
             width: 70%;
