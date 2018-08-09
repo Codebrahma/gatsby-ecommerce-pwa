@@ -4,35 +4,49 @@ import _ from 'lodash';
 import TakeMoney from '../components/TakeMoney';
 import FormInputField from '../components/form';
 
-const CheckoutDetails = () => {
-    const bnDetails = JSON.parse(localStorage.getItem('bn-item'));
-    const cartDetails = JSON.parse(localStorage.getItem('cart'));
-    const checkoutItems = bnDetails ? bnDetails : cartDetails;
-    let itemCount = 0; let totalPrice = 0;
-    if(checkoutItems) {
-        Object.keys(checkoutItems).map((key) => {
-            itemCount++;
-            totalPrice += (checkoutItems[key].productPrice / 7.0) * checkoutItems[key].purchaseQuantity
+class CheckoutDetails extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+
+        }
+    }
+
+    componentWillMount() {
+        this.setState({
+            bnDetails: JSON.parse(localStorage.getItem('bn-item')),
+            cartDetails: JSON.parse(localStorage.getItem('cart'))
         })
     }
 
-    return (
-        <div className="checkout-details container">
-            <div className="container">
-                <div className="checkout-detail row mb-2">
-                    <span>{itemCount} items</span>
-                    <span>{totalPrice}</span>
-                </div>
-                <div className="checkout-detail row">
-                    <span>Shipping charges</span>
-                    <span>0.00</span>
+    render() {
+        const checkoutItems = this.state.bnDetails ? this.state.bnDetails : this.state.cartDetails;
+        let itemCount = 0; let totalPrice = 0;
+        if (checkoutItems) {
+            Object.keys(checkoutItems).map((key) => {
+                itemCount++;
+                totalPrice += (checkoutItems[key].productPrice / 7.0) * checkoutItems[key].purchaseQuantity
+            })
+        }
+
+        return (
+            <div className="checkout-details container">
+                <div className="container">
+                    <div className="checkout-detail row mb-2">
+                        <span>{itemCount} items</span>
+                        <span>{totalPrice}</span>
+                    </div>
+                    <div className="checkout-detail row">
+                        <span>Shipping charges</span>
+                        <span>0.00</span>
+                    </div>
                 </div>
             </div>
-        </div>
-    )
+        )
 
+    }
 }
-
 const CheckoutButton = ({ eventedLocalStorage }) => (
     <div className="container">
         <div className="row text-center py-2">
@@ -47,7 +61,7 @@ class Checkout extends Component {
 
     render() {
         const personalInfoFormFields = [
-            { id:1, label: "Title", type: "radio", optional: "" },
+            { id: 1, label: "Title", type: "radio", optional: "" },
             { id: 2, label: "First Name", type: "text", optional: "", name: "firstname", value: "John" },
             { id: 3, label: "Last Name", type: "text", optional: "", name: "lastname", value: "Doe" },
             { id: 4, label: "Email address", type: "email", optional: "", name: "email", value: "john@doe.com" }
@@ -69,28 +83,28 @@ class Checkout extends Component {
                 <div className="row">
                     <div className="col col-lg-8 col-md-8 col-sm-12 mb-2">
                         <div className="form-container container mb-3">
-                        <h4 className="lead mb-4">Personal Info</h4>
-                        {_.map(personalInfoFormFields, field =>
-                            <FormInputField
-                                key={field.id}
-                                label={field.label}
-                                type={field.type}
-                                name={field.name}
-                                value={field.value}
-                                optional={field.Optional} />
-                        )}
+                            <h4 className="lead mb-4">Personal Info</h4>
+                            {_.map(personalInfoFormFields, field =>
+                                <FormInputField
+                                    key={field.id}
+                                    label={field.label}
+                                    type={field.type}
+                                    name={field.name}
+                                    value={field.value}
+                                    optional={field.Optional} />
+                            )}
                         </div>
                         <div className="form-container container mb-3">
-                        <h4 className="lead mb-4">Address Info</h4>
-                        {_.map(addressFormFields, field =>
-                            <FormInputField
-                                key={field.id}
-                                label={field.label}
-                                type={field.type}
-                                name={field.name}
-                                value={field.value}
-                                optional={field.Optional} />
-                        )}
+                            <h4 className="lead mb-4">Address Info</h4>
+                            {_.map(addressFormFields, field =>
+                                <FormInputField
+                                    key={field.id}
+                                    label={field.label}
+                                    type={field.type}
+                                    name={field.name}
+                                    value={field.value}
+                                    optional={field.Optional} />
+                            )}
                         </div>
                     </div>
                     <div className="col col-lg-4 col-md-4 col-sm-12">
