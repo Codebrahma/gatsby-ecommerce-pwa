@@ -13,7 +13,7 @@ class CheckoutDetails extends Component {
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.setState({
             bnDetails: JSON.parse(localStorage.getItem('bn-item')),
             cartDetails: JSON.parse(localStorage.getItem('cart'))
