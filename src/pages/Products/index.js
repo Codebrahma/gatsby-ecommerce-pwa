@@ -1,16 +1,19 @@
 import React, { Component } from "react";
-import _ from "lodash"
 import Link, { navigateTo } from 'gatsby-link'
+import _ from "lodash"
+
+import ProductFaqs from "../../components/Products/ProductFaqs.js";
+import ProductSubscription from "../../components/Products/ProductSubscription.js";
+import ProductVariants from "../../components/Products/ProductVariants.js";
+
+//scss
 import './products.scss';
-import ProductFaqs from "../components/ProductFaqs.js";
-import ProductSubscription from "../components/ProductSubscription.js";
-import ProductVariants from "../components/ProductVariants.js";
-import VariantType from "../components/VariantType.js";
-import facebook from "../assets/icons/facebook-f-brands.svg";
-import twitter from "../assets/icons/twitter-brands.svg";
-import plus from "../assets/icons/plus-solid.svg";
-import minus from "../assets/icons/minus-solid.svg";
-import download from "../assets/icons/download-solid.svg"
+//icons
+import facebook from "../../assets/icons/facebook-f-brands.svg";
+import twitter from "../../assets/icons/twitter-brands.svg";
+import plus from "../../assets/icons/plus-solid.svg";
+import minus from "../../assets/icons/minus-solid.svg";
+import download from "../../assets/icons/download-solid.svg"
 
 
 class ProductItem extends Component {
@@ -86,7 +89,7 @@ class ProductItem extends Component {
     return Object.keys(options).map(
       key => (
         <ProductVariants key={key} variantItems={_.uniq(options[key])} >
-          <VariantType variantType={key} />
+          <span id="variant-title">{key}</span>
         </ProductVariants>
       )
     )
@@ -157,18 +160,26 @@ class ProductItem extends Component {
     </div>
   )
 
+  renderImage = () => {
+    this.props.pathContext.images && 
+    this.props.pathContext.images.length !== 0 && 
+    this.props.pathContext.images[0].originalSrc
+  }
+
   render() {
     return (
       <div className="container">
         <div className="demo-product-item row">
           <div className="demo-product-item-image col-md-6 col-sm-12">
             <img
-              src={(this.props.pathContext.images && this.props.pathContext.images.length !== 0 && this.props.pathContext.images[0].originalSrc) || require('../assets/images/default.jpeg')}
+              src={ this.renderImage() || require('../../assets/images/default.jpeg')}
               alt={this.props.pathContext.productName}
             />
           </div>
           <div className="demo-product-item-details col-md-6 col-sm-12" >
-            <h1 id="demo-product-title">{this.props.pathContext.productName}</h1>
+            <h1 id="demo-product-title">
+              {this.props.pathContext.productName}
+            </h1>
             {this.renderVariants()}
             {this.renderProductActions()}
             {this.renderSocialIcons()}

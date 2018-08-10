@@ -7,6 +7,7 @@
 // You can delete this file if you're not using it
 const path = require('path');
 const _ = require('lodash');
+const fs = require('fs');
 
 //  exports.sourceNodes = async ({ boundActionCreators }) => {....}
 exports.createPages = ({ graphql, boundActionCreators }) => {
@@ -42,12 +43,14 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
       }
     }
     `).then(result => {
+        console.log(JSON.stringify(result));
+        //fs.writeFileSync('./a.txt', JSON.stringify(result));
         let categoryToProductsMap = {};
         result.data.allShopifyProduct.edges.forEach((edge) => {
           const { node } = edge;
           createPage({
-            path: `product/${node.id}`,
-            component: path.resolve(`./src/pages/ProductItem.js`),
+            path: `product/${node.title.replace(/[^A-Z0-9]+/ig, "_")}`,
+            component: path.resolve(`./src/pages/Products/index.js`),
             context: {
               productId: node.id,
               productName: node.title,
@@ -65,7 +68,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         _.forEach(categoryToProductsMap, (value, key) => {
           createPage({
             path: `category/${key.toLowerCase().split(' ').join('-')}`,
-            component: path.resolve(`./src/pages/Categories.js`),
+            component: path.resolve(`./src/pages/Categories/index.js`),
             context: {
               productType: key,
               products: value,
