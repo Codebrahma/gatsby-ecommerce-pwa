@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import _ from "lodash"
 import Link, { navigateTo } from 'gatsby-link'
-import '../assets/styles/products.scss';
-import ProductFaqs from "../components/ProductFaqs.js";
-import ProductSubscription from "../components/ProductSubscription.js";
-import ProductVariants from "../components/ProductVariants.js";
-import VariantType from "../components/VariantType.js";
+import './product/product.scss';
+import ProductFaqs from "./product/ProductFaqs.js";
+import ProductSubscription from "./product/ProductSubscription.js";
+import ProductVariants from "./product/ProductVariants.js";
+import VariantType from "./product/VariantType.js";
 import facebook from "../assets/icons/facebook-f-brands.svg";
 import twitter from "../assets/icons/twitter-brands.svg";
 import plus from "../assets/icons/plus-solid.svg";

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import '../assets/styles/checkout.scss';
+import './checkout/checkout.scss';
 import _ from 'lodash';
-import TakeMoney from '../components/TakeMoney';
-import FormInputField from '../components/form';
+import TakeMoney from './checkout/TakeMoney';
+import FormInputField from './checkout/Form';
 import { navigateTo } from 'gatsby-link';
 
 class CheckoutDetails extends Component {

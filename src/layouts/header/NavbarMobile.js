@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Link from 'gatsby-link'
-import logo from '../components/img/logo-new.png'
-import Menu from './Menu.js';
-import cart from '../assets/icons/shopping-cart-solid.svg'
-import menu from '../assets/icons/bars-solid.svg'
+import logo from '../../assets/images/logo-new.png'
+import Menu from './Menu';
+import cart from '../../assets/icons/shopping-cart-solid.svg'
+import menu from '../../assets/icons/bars-solid.svg'
 
 const NavbarMobile = (props) => (
       <div className="ma-nav-mobile-container">

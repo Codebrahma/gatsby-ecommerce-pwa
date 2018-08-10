@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet';
 import '../assets/styles/index.scss'
-import '../components/css/custom.scss';
+import './custom.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './Header';
 import '../assets/images/512.png';

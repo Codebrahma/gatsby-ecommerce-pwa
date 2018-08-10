@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react/index.js'
 import VariantItem from "./VariantItem.js";
 import PropTypes from 'prop-types';
 import _ from 'lodash';

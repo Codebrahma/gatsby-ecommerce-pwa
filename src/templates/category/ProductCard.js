@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import Link from 'gatsby-link'
 import PropTypes from 'prop-types'
-import plus from '../assets/icons/plus-solid.svg'
-import cart from '../assets/icons/shopping-cart-solid.svg'
+import plus from '../../assets/icons/plus-solid.svg'
+import cart from '../../assets/icons/shopping-cart-solid.svg'
 
 class ProductCard extends Component {
 
@@ -31,7 +31,7 @@ class ProductCard extends Component {
       <div className="col-lg-4 col-md-6 col-sm-6 col-xs-12">
         <div className="demo-product-card">
           <Link to={`/product/${this.props.productId}`} style={{margin: '0'}}>
-            { this.props.children ||  <img src={this.props.images[0] ? this.props.images[0].originalSrc : require('../assets/images/default.jpeg')} alt={this.props.productName} />}
+            { this.props.children ||  <img src={this.props.images[0] ? this.props.images[0].originalSrc : require('../../assets/images/default.jpeg')} alt={this.props.productName} />}
             <div className="demo-product-card-details">
               <p id="demo-product-title">{this.props.productName}</p>
               <p id="demo-product-description">{this.props.description}</p>
