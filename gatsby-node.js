@@ -49,7 +49,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         result.data.allShopifyProduct.edges.forEach((edge) => {
           const { node } = edge;
           createPage({
-            path: `product/${node.id}`,
+            path: `product/${node.title.replace(/[^A-Z0-9]+/ig, "_")}`,
             component: path.resolve(`./src/pages/Products/index.js`),
             context: {
               productId: node.id,

@@ -30,7 +30,7 @@ class ProductCard extends Component {
     return (
       <div className="col-lg-4 col-md-6 col-sm-6 col-xs-12">
         <div className="demo-product-card">
-          <Link to={`/product/${this.props.productId}`} style={{margin: '0'}}>
+          <Link to={`/product/${this.props.productName.replace(/[^A-Z0-9]+/ig, "_")}`} style={{margin: '0'}}>
             { this.props.children ||  <img src={this.props.images[0] ? this.props.images[0].originalSrc : require('../../assets/images/default.jpeg')} alt={this.props.productName} />}
             <div className="demo-product-card-details">
               <p id="demo-product-title">{this.props.productName}</p>
