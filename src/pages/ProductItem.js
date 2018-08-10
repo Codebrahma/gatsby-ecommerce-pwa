@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import _ from "lodash"
 import Link, { navigateTo } from 'gatsby-link'
-import './products.scss';
+import '../assets/styles/products.scss';
 import ProductFaqs from "../components/ProductFaqs.js";
 import ProductSubscription from "../components/ProductSubscription.js";
 import ProductVariants from "../components/ProductVariants.js";

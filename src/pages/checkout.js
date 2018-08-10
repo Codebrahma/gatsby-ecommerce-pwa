@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './checkout.scss';
+import '../assets/styles/checkout.scss';
 import _ from 'lodash';
 import TakeMoney from '../components/TakeMoney';
 import FormInputField from '../components/form';

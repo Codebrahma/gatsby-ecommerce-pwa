@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'gatsby-link';
-import './style.scss';
+import '../assets/styles/style.scss';
 import logo from '../components/img/logo-new.png'
 import search from '../assets/icons/search-solid.svg'
 import angleDown from '../assets/icons/angle-double-down-solid.svg'

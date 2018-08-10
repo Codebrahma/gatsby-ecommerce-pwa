@@ -4,7 +4,7 @@ import ProductList from "../components/ProductList";
 import Img from 'gatsby-image';
 import CorouselItem from "../components/CorouselItem";
 import HomeStep from "../components/HomeStep";
-import './home.scss';
+import '../assets/styles/home.scss';
 import ProductCard from "../components/ProductCard";
 
 const planSteps = [

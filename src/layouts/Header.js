@@ -1,7 +1,7 @@
 import React from 'react'
 import Navbar from './Navbar';
 import NavbarMobile from './NavbarMobile';
-import './style.scss';
+import '../assets/styles/style.scss';
 
 const Header = (props) => {
   return (
