@@ -7,6 +7,7 @@
 // You can delete this file if you're not using it
 const path = require('path');
 const _ = require('lodash');
+const fs = require('fs');
 
 //  exports.sourceNodes = async ({ boundActionCreators }) => {....}
 exports.createPages = ({ graphql, boundActionCreators }) => {
@@ -42,6 +43,8 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
       }
     }
     `).then(result => {
+        console.log(JSON.stringify(result));
+        //fs.writeFileSync('./a.txt', JSON.stringify(result));
         let categoryToProductsMap = {};
         result.data.allShopifyProduct.edges.forEach((edge) => {
           const { node } = edge;

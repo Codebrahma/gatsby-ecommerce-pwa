@@ -14,7 +14,7 @@ const ProductList = (props) => (
             description={node.description}
             images={node.images}
             productPrice={node.priceRange.minVariantPrice.amount}
-            addCardToCart={props.addCardToCart}
+            addItemToCart={props.addItemToCart}
         />
       ))
     }
