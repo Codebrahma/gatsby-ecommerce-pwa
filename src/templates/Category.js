@@ -1,5 +1,7 @@
 import React from "react";
+
 import ProductList from "./category/ProductList";
+
 import './category/category.scss';
 
 const Categories = (props) => {

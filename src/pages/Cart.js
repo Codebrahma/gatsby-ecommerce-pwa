@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import GatsbyLink from 'gatsby-link';
+
 import deleteIcon from '../assets/icons/baseline-delete-24px.svg';
 
 class Cart extends Component {

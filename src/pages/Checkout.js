@@ -1,71 +1,11 @@
 import React, { Component } from 'react';
-import './checkout/checkout.scss';
 import _ from 'lodash';
-import TakeMoney from './checkout/TakeMoney';
+
 import FormInputField from './checkout/Form';
-import { navigateTo } from 'gatsby-link';
+import CheckoutDetails from './checkout/CheckoutDetails';
+import CheckoutButton from './checkout/CheckoutButton';
 
-class CheckoutDetails extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-
-        }
-    }
-
-    componentDidMount() {
-        let cartDetails = JSON.parse(localStorage.getItem('cart'));
-        this.setState({
-            cartDetails
-        })
-        let totalPrice = 0;
-        if (cartDetails) {
-            Object.keys(cartDetails).map((key) => {
-                totalPrice += (cartDetails[key].productPrice / 7.0) * cartDetails[key].purchaseQuantity
-            })
-        }
-        if(totalPrice === 0) {
-            navigateTo('/cart');
-        }
-    }
-
-    render() {
-        const {cartDetails} =  this.state;
-        let itemCount = 0; let totalPrice = 0;
-        if (cartDetails) {
-            Object.keys(cartDetails).map((key) => {
-                itemCount++;
-                totalPrice += (cartDetails[key].productPrice / 7.0) * cartDetails[key].purchaseQuantity
-            })
-        }
-
-        return (
-            <div className="checkout-details">
-                <div className="container">
-                    <div className="checkout-detail row mb-2">
-                        <span>{itemCount} items</span>
-                        <span>{`Rs. ${(totalPrice).toFixed(2)}`}</span>
-                    </div>
-                    <div className="checkout-detail row">
-                        <span>Shipping charges</span>
-                        <span>0.00</span>
-                    </div>
-                </div>
-            </div>
-        )
-
-    }
-}
-const CheckoutButton = ({ eventedLocalStorage }) => (
-    <div className="container">
-        <div className="row text-center py-2">
-            <div className="col col-lg-12 col-md-12 col-sm-12">
-                <TakeMoney eventedLocalStorage={eventedLocalStorage} />
-            </div>
-        </div>
-    </div>
-)
+import './checkout/checkout.scss';
 
 class Checkout extends Component {
 

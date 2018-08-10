@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import _ from 'lodash'
 import Img from 'gatsby-image';
+
 import CorouselItem from "./homepage/CorouselItem";
 import HomeStep from "./homepage/HomeStep";
-import './homepage/home.scss';
 import ProductCard from "../templates/category/ProductCard";
+
+import './homepage/home.scss';
 
 const planSteps = [
   {

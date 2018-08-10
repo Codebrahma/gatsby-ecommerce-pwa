@@ -1,16 +1,21 @@
-import React, { Component } from "react";
-import _ from "lodash"
-import Link, { navigateTo } from 'gatsby-link'
+import React, { Component } from 'react';
+import _ from 'lodash';
+import Link, { navigateTo } from 'gatsby-link';
+
+import ProductFaqs from './product/ProductFaqs.js';
+import ProductSubscription from './product/ProductSubscription.js';
+import ProductVariants from './product/ProductVariants.js';
+import VariantType from './product/VariantType.js';
+import Button from '../components/Button';
+
 import './product/product.scss';
-import ProductFaqs from "./product/ProductFaqs.js";
-import ProductSubscription from "./product/ProductSubscription.js";
-import ProductVariants from "./product/ProductVariants.js";
-import VariantType from "./product/VariantType.js";
-import facebook from "../assets/icons/facebook-f-brands.svg";
-import twitter from "../assets/icons/twitter-brands.svg";
-import plus from "../assets/icons/plus-solid.svg";
-import minus from "../assets/icons/minus-solid.svg";
-import download from "../assets/icons/download-solid.svg"
+
+import facebook from '../assets/icons/facebook-f-brands.svg';
+import twitter from '../assets/icons/twitter-brands.svg';
+import plus from '../assets/icons/plus-solid.svg';
+import minus from '../assets/icons/minus-solid.svg';
+import download from '../assets/icons/download-solid.svg';
+
 
 
 class ProductItem extends Component {
@@ -96,21 +101,19 @@ class ProductItem extends Component {
     <div className="demo-product-actions">
       <div id="action-input">
         <div id="quantity">
-          <button onClick={() => this.changeItemCount(-7)} className={`btn btn-light minus-btn ${!this.state.itemCount ? 'cursor-disabled' : ''}`} disabled={!this.state.itemCount}>
+          <Button handleClick={() => this.changeItemCount(-7)} classes={`btn btn-light minus-btn ${!this.state.itemCount ? 'cursor-disabled' : ''}`} disable={!this.state.itemCount}>
             <img src={minus} className="icon" alt="icon" />
-          </button>
+          </Button>
           <div className="quantity-num container p-1 text-center">{this.state.itemCount}</div>
-          <button onClick={() => this.changeItemCount(7)} className="btn btn-light plus-btn">
+          <Button handleClick={() => this.changeItemCount(7)} classes="btn btn-light plus-btn">
             <img src={plus} className="icon" alt="icon" />
-          </button>
+          </Button>
         </div>
         <span id="price">Rs. {((this.props.pathContext.productPrice / 7.0) * ((this.state.itemCount === 0) ? 7 : this.state.itemCount)).toFixed(2)}</span>
       </div>
       <div id="action-button">
-        <button className={`btn btn-${this.state.isInCart ? "info cursor-disabled" : "dark"}`} onClick={this.addItemToCart} disabled={!this.state.itemCount || this.state.isInCart}>
-          {this.state.isInCart ? "In Cart" : "add to cart"}
-        </button>
-        <button className="btn btn-dark" disabled={!this.state.itemCount} onClick={this.handleBuyNow}>buy now</button>
+        <Button classes={`btn btn-${this.state.isInCart ? "info cursor-disabled" : "dark"}`} handleClick={this.addItemToCart} disable={!this.state.itemCount || this.state.isInCart} buttonText={this.state.isInCart ? "in Cart" : "add to cart"} />
+        <Button disable={!this.state.itemCount} handleClick={this.handleBuyNow} buttonText="buy now"/>
       </div>
     </div>
   )
@@ -158,12 +161,14 @@ class ProductItem extends Component {
   )
 
   render() {
+    let imageSrc = (this.props.pathContext.images && this.props.pathContext.images.length !== 0 && this.props.pathContext.images[0].originalSrc) || require('../assets/images/default.jpeg');
+
     return (
       <div className="container">
         <div className="demo-product-item row">
           <div className="demo-product-item-image col-md-6 col-sm-12">
             <img
-              src={(this.props.pathContext.images && this.props.pathContext.images.length !== 0 && this.props.pathContext.images[0].originalSrc) || require('../assets/images/default.jpeg')}
+              src={imageSrc}
               alt={this.props.pathContext.productName}
             />
           </div>
