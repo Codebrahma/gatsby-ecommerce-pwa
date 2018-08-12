@@ -50,13 +50,13 @@ class ProductCard extends Component {
                   ? (
                       <span>
                         <Link to="/cart">
-                          <img src={cart} className="icon" alt="icon" />
+                          <img src={cart} className="icon" alt="cart" />
                         </Link>
                       </span>
                     )
                   : (
                       <span onClick={this.handleAddClick}>
-                        <img src={plus} className="icon" alt="icon" />
+                        <img src={plus} className="icon" alt="plus" />
                       </span>
                     )
               }

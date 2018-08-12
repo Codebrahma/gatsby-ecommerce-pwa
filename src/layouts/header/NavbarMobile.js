@@ -20,10 +20,10 @@ const NavbarMobile = (props) => (
           <div className="col-right col-3 right-menu">
             <div className="navbar bg-transparent">
               <div id="navbar-inner">
-                <NavLink position="right" linkTo="/cart">
-                  <img src={cart} className="icon icon-mobile" alt="icon"/>
+                <NavLink position="left" linkTo="/cart" noActive >
+                  <img src={cart} className="icon icon-mobile" alt="cart"/>
                 </NavLink>
-                <img src={menu} id="sidebar-menu-button" className="icon icon-mobile" alt="icon" 
+                <img src={menu} id="sidebar-menu-button" className="icon icon-mobile" alt="menu" 
                 tabIndex="1"
                 />
                  <Menu headPath={props.headPath}/>

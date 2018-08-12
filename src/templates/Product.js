@@ -102,11 +102,11 @@ class ProductItem extends Component {
       <div id="action-input">
         <div id="quantity">
           <Button handleClick={() => this.changeItemCount(-7)} classes={`btn btn-light minus-btn ${!this.state.itemCount ? 'cursor-disabled' : ''}`} disable={!this.state.itemCount}>
-            <img src={minus} className="icon" alt="icon" />
+            <img src={minus} className="icon" alt="minus" />
           </Button>
           <div className="quantity-num container p-1 text-center">{this.state.itemCount}</div>
           <Button handleClick={() => this.changeItemCount(7)} classes="btn btn-light plus-btn">
-            <img src={plus} className="icon" alt="icon" />
+            <img src={plus} className="icon" alt="plus" />
           </Button>
         </div>
         <span id="price">Rs. {((this.props.pathContext.productPrice / 7.0) * ((this.state.itemCount === 0) ? 7 : this.state.itemCount)).toFixed(2)}</span>
@@ -123,12 +123,12 @@ class ProductItem extends Component {
       <ul>
         <li>
           <a href="#">
-            <img src={facebook} className="icon" alt="icon" />
+            <img src={facebook} className="icon" alt="facebook" />
           </a>
         </li>
         <li>
           <a href="#">
-            <img src={twitter} className="icon" alt="icon" />
+            <img src={twitter} className="icon" alt="twitter" />
           </a>
         </li>
       </ul>
@@ -178,7 +178,7 @@ class ProductItem extends Component {
             {this.renderProductActions()}
             {this.renderSocialIcons()}
             <span id="behind-science">
-              <img src={download} className="icon" alt="icon" />
+              <img src={download} className="icon" alt="download" />
               Read the science behind the program
             </span>
             {this.renderTags()}
