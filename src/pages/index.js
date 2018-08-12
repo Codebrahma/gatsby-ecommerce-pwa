@@ -176,7 +176,7 @@ class HomePage extends Component {
     return (
       <div>
         {this.renderHomeCarousel()}
-        <div className="container demo-product-collection demo-container">
+        <div className="container demo-product-collection w-75">
           {this.renderHomeSteps()}
           <div className="demo-product-collection-header">
             <p>Featured Products</p>

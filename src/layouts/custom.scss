@@ -118,14 +118,7 @@ main {
 		a{
 			.logo{
 				float: left;
-        padding-top: 6px;
-			}
-		}
-		img {
-			margin:0;
-			@media(max-width: 991px){
-				margin:auto;
-				margin-bottom: 20px;
+        padding: 6px 0;
 			}
 		}
 	}
@@ -156,7 +149,9 @@ main {
 .pt_custommenu_mobile {
     text-align: left;
     position: relative;
-    clear: both;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 	.navbar {
 		min-height:40px;
 		margin: 0;
@@ -226,7 +221,6 @@ main {
   .col-right{
     text-align: center;
     float: none;
-    margin-top:25px;
     display: inline-block;
   }
 }
