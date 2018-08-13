@@ -6,7 +6,7 @@ import Button from '../../components/Button';
 const VariantItem = (props) => (
       <li>
         <Button 
-          classes={`btn btn-light ${props.isActive ? "variant-active" : ""}`} 
+          classes={`variant-btn ${props.isActive ? "variant-active" : ""}`} 
           handleClick={props.activeVariant}
           buttonText={props.variantItem} />
       </li>
