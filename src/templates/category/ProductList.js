@@ -1,7 +1,8 @@
 import React from 'react'
-import ProductCard from './ProductCard';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
+
+import ProductCard from './ProductCard';
 
 const ProductList = (props) => (
   <div className="demo-product-list">

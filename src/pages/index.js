@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import _ from 'lodash'
-import ProductList from "../components/ProductList";
 import Img from 'gatsby-image';
-import CorouselItem from "../components/CorouselItem";
-import HomeStep from "../components/HomeStep";
-import './home.scss';
-import ProductCard from "../components/ProductCard";
+
+import CorouselItem from "./homepage/CorouselItem";
+import HomeStep from "./homepage/HomeStep";
+import ProductCard from "../templates/category/ProductCard";
+
+import './homepage/home.scss';
 
 const planSteps = [
   {
@@ -175,7 +176,7 @@ class HomePage extends Component {
     return (
       <div>
         {this.renderHomeCarousel()}
-        <div className="container demo-product-collection demo-container">
+        <div className="container demo-product-collection w-75">
           {this.renderHomeSteps()}
           <div className="demo-product-collection-header">
             <p>Featured Products</p>

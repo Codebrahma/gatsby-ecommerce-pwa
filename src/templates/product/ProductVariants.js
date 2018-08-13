@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import VariantItem from "./VariantItem.js";
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+
+import VariantItem from './VariantItem.js';
 
 class ProductVariants extends Component {
   state = {
@@ -13,7 +14,7 @@ class ProductVariants extends Component {
       currentItem: this.props.variantItems[0]
     })
   }
-  
+
   isActive = (item) => {
     return this.state.currentItem === item
   }
@@ -25,20 +26,19 @@ class ProductVariants extends Component {
   }
 
   render() {
-    const {children, variantItems} = this.props
+    const { children, variantItems } = this.props
     return (
       <div className="demo-product-variants" >
         {children}
         <ul>
           {
             _.map(variantItems, (option, index) => (
-              <div key={`${option}-${index}`}>
-                <VariantItem 
-                    variantItem={option} 
-                    activeVariant={() => this.activeVariant(option)}
-                    isActive = {this.isActive(option)}
-                />
-              </div>
+              <VariantItem
+                key={`${option}-${index}`}
+                variantItem={option}
+                activeVariant={() => this.activeVariant(option)}
+                isActive={this.isActive(option)}
+              />
             ))
           }
         </ul>

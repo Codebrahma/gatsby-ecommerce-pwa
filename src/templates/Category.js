@@ -1,6 +1,8 @@
 import React from "react";
-import ProductList from "../components/ProductList";
-import '../components/products-list.scss';
+
+import ProductList from "./category/ProductList";
+
+import './category/category.scss';
 
 const Categories = (props) => {
 

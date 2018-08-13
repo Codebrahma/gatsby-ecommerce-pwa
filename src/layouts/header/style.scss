@@ -1,6 +1,5 @@
 #brand-logo {
   margin: 0.5vh;
-  min-width: 11em;
   width: auto;
   float: left;
 }
@@ -12,8 +11,7 @@
 #link-style {
   text-transform: uppercase;
   font-size: 0.7em !important;
-  padding: 10;
-  margin-left: 0;
+  margin: 0;
   border-bottom: 2px solid rgba(245, 124, 0, 0);
   &:hover {
     background-color: transparent !important;
@@ -162,6 +160,7 @@
 .right-menu {
   float: right;
   margin: 0;
+  padding-right: 0 !important;
 }
 
 .icon-mobile {
