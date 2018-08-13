@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 
-import FormInputField from './checkout/Form';
-import CheckoutDetails from './checkout/CheckoutDetails';
-import CheckoutButton from './checkout/CheckoutButton';
+import FormInputField from '../components/Form';
+import CheckoutDetails from '../components/CheckoutDetails';
+import CheckoutButton from '../components/CheckoutButton';
 
-import './checkout/checkout.scss';
+import './checkout.scss';
 
 class Checkout extends Component {
 

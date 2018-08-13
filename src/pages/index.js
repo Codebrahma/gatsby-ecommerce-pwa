@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import _ from 'lodash'
 import Img from 'gatsby-image';
-import { Container, Flex, Carousel, Box, Circle, Card } from "rebass";
 import Link from 'gatsby-link';
+import { Container, Flex, Carousel, Box } from "rebass";
 
-import HomeStep from "./homepage/HomeStep";
 import ProductCard from "../templates/category/ProductCard";
+import HomeStep from "../components/HomeStep";
 
-import './homepage/home.scss';
+import './home.scss';
 
 const planSteps = [
   {
@@ -77,7 +77,6 @@ class HomePage extends Component {
         _.map(this.state.carouselItems, (item) => {
           return (
             <Box>
-              <div style={{ height:'100%', backgroundColor: 'orange', display: 'grid' }}>
               <div className="carousel-button-prev" onClick={this.goToPrev}>
                 <span><strong>{`<`}</strong></span>
               </div>
@@ -86,7 +85,6 @@ class HomePage extends Component {
               </Link>
               <div className="carousel-button-next" onClick={this.goToNext}>
                 <span><strong>{`>`}</strong></span>
-              </div>
               </div>
             </Box>
           )
@@ -184,7 +182,7 @@ class HomePage extends Component {
 
     return (
       <Box px={0}>
-          {this.renderHomeCarousel()}
+        {this.renderHomeCarousel()}
         <Container my={4}>
           {this.renderHomeSteps()}
         </Container>
