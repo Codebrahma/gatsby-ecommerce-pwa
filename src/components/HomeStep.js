@@ -1,26 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import { Box, Image, Text } from "rebass";
 
-const HomeStep = ({ image, stepTitle, stepDescription }) => (
-  <div className="demo-each-step col-lg-3 col-md-6 cols-sm-6 cols-xs-12">
-    <img src={image} alt="step" />
-    <span>
-      {stepTitle}
-    </span>
-    <p>
-      {stepDescription}
-    </p>
-  </div>
-);
+const HomeStep = (props) => (
+  <Box width={[1, 1 / 2, 1 / 4]} p={3}>
+    <Image src={props.image} alt="step" mb={3} />
+    <Text children={props.stepTitle} textAlign='center' fontWeight='bold' mb={2} />
+    <Text children={props.stepDescription} textAlign='center'/>
+  </Box>
+)
 
-HomeStep.propTypes = {
-  image: PropTypes.node.isRequired,
-  stepTitle: PropTypes.string.isRequired,
-  stepDescription: PropTypes.string,
-};
-
-HomeStep.defaultProps = {
-  stepDescription: '',
-};
-
-export default HomeStep;
+export default HomeStep

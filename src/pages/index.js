@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import Img from 'gatsby-image';
-import { Container, Flex, Carousel, Box, Circle, Card } from "rebass";
 import Link from 'gatsby-link';
+import { Container, Flex, Carousel, Box } from "rebass";
 
-import HomeStep from "./homepage/HomeStep";
 import ProductCard from "../templates/category/ProductCard";
+import HomeStep from "../components/HomeStep";
 
-import './homepage/home.scss';
+import './home.scss';
 
 import goalsImage from '../assets/images/goals_1.png';
 import chooseImage from '../assets/images/plan_choose_2.png';
@@ -87,31 +87,27 @@ class HomePage extends Component {
     }));
   }
 
-  renderHomeCarousel = () => {
-    const { corouselItems, currentIndex } = this.state;
-    return (corouselItems.length > 0 && (
-    <div className="carousel slide">
-      <CorouselItem
-        image={corouselItems[currentIndex].image}
-        productId={
-              corouselItems[currentIndex].productId
-            }
-      />
-      <div className="carousel-control-prev" onClick={this.goToPrev}>
-        <span className="carousel-control-prev-icon" aria-hidden="true" />
-        <span className="sr-only">
-  Previous
-        </span>
-      </div>
-      <div className="carousel-control-next" onClick={this.goToNext}>
-        <span className="carousel-control-next-icon" aria-hidden="true" />
-        <span className="sr-only">
-  Next
-        </span>
-      </div>
-    </div>
-    ));
-  }
+  renderHomeCarousel = () => (this.state.carouselItems.length > 0 &&
+    <Carousel index={this.state.currentIndex}>
+      {
+        _.map(this.state.carouselItems, (item) => {
+          return (
+            <Box>
+              <div className="carousel-button-prev" onClick={this.goToPrev}>
+                <span><strong>{`<`}</strong></span>
+              </div>
+              <Link to={`product/${item.productId}`} style={{ margin: "0" }}>
+                <Img className="d-block w-100 demo-carousel-image" sizes={item.image} alt="home-page-item" />
+              </Link>
+              <div className="carousel-button-next" onClick={this.goToNext}>
+                <span><strong>{`>`}</strong></span>
+              </div>
+            </Box>
+          )
+        })
+      }
+    </Carousel>
+  )
 
 
   renderHomeSteps = () => (
@@ -208,7 +204,7 @@ class HomePage extends Component {
 
     return (
       <Box px={0}>
-          {this.renderHomeCarousel()}
+        {this.renderHomeCarousel()}
         <Container my={4}>
           {this.renderHomeSteps()}
         </Container>

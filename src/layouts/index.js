@@ -9,7 +9,6 @@ import InstallPrompt from './InstallPrompt';
 
 import './index.scss';
 import './custom.scss';
-// import 'bootstrap/dist/css/bootstrap.min.css';
 
 import '../assets/images/512.png';
 

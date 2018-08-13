@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Link, { navigateTo } from 'gatsby-link'
 import PropTypes from 'prop-types'
-import { Box, Card, BackgroundImage, Label, Text, Row, Column, Container } from "rebass";
+import { Box, Card, BackgroundImage, Text, } from "rebass";
 
 import plus from '../../assets/icons/plus-solid.svg';
 import cart from '../../assets/icons/shopping-cart-solid.svg';
