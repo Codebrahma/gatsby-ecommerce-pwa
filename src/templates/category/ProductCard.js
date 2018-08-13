@@ -25,11 +25,12 @@ class ProductCard extends Component {
       productName,
       description,
       productPrice,
+      addCardToCart,
     } = this.props;
     this.setState({
       isInCart: true,
     });
-    this.props.addCardToCart({
+    addCardToCart({
       productId,
       images,
       productName,
@@ -39,32 +40,41 @@ class ProductCard extends Component {
   }
 
   render() {
-    const imageSrc = this.props.images[0]
-      ? this.props.images[0].originalSrc
+    const {
+      images,
+      productId,
+      productName,
+      description,
+      productPrice,
+      children,
+    } = this.props;
+    const { isInCart } = this.state;
+    const imageSrc = images[0]
+      ? images[0].originalSrc
       : require('../../assets/images/default.jpeg');
 
     return (
       <div className="col-lg-4 col-md-6 col-sm-6 col-xs-12">
         <div className="demo-product-card">
-          <Link to={`/product/${this.props.productId}`} style={{ margin: '0' }}>
-            {this.props.children || (
-              <img src={imageSrc} alt={this.props.productName} />
+          <Link to={`/product/${productId}`} style={{ margin: '0' }}>
+            {children || (
+              <img src={imageSrc} alt={productName} />
             )}
             <div className="demo-product-card-details">
               <p id="demo-product-title">
-                {this.props.productName}
+                {productName}
               </p>
               <p id="demo-product-description">
-                {this.props.description}
+                {description}
               </p>
             </div>
           </Link>
           <div className="demo-product-card-footer">
             <span>
 Rs.
-              {this.props.productPrice}
+              {productPrice}
             </span>
-            {this.state.isInCart ? (
+            {isInCart ? (
               <span>
                 <Link to="/cart">
                   <img src={cart} className="icon" alt="cart" />
@@ -84,9 +94,16 @@ Rs.
 
 ProductCard.propTypes = {
   productId: PropTypes.string.isRequired,
-  productImage: PropTypes.string,
   productName: PropTypes.string.isRequired,
-  price: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  productPrice: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  images: PropTypes.oneOfType([PropTypes.array]).isRequired,
+  description: PropTypes.string,
+  addCardToCart: PropTypes.func.isRequired,
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]),
+};
+ProductCard.defaultProps = {
+  description: '',
+  children: null,
 };
 
 export default ProductCard;

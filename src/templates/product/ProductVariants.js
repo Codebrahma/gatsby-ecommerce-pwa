@@ -49,7 +49,7 @@ class ProductVariants extends Component {
 
 ProductVariants.propTypes = {
   variantItems: PropTypes.arrayOf(PropTypes.string).isRequired,
-  children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]).isRequired,
 };
 
 export default ProductVariants;

@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 
 import ProductCard from './ProductCard';
 
-const ProductList = props => (
+const ProductList = ({ products, addCardToCart }) => (
   <div className="demo-product-list">
-    {_.map(props.products, ({ node }, index) => (
+    {_.map(products, ({ node }, index) => (
       <ProductCard
         key={index}
         productId={node.id}
@@ -14,7 +14,7 @@ const ProductList = props => (
         description={node.description}
         images={node.images}
         productPrice={node.priceRange.minVariantPrice.amount}
-        addCardToCart={props.addCardToCart}
+        addCardToCart={addCardToCart}
       />
     ))}
   </div>
@@ -22,6 +22,7 @@ const ProductList = props => (
 
 ProductList.propTypes = {
   products: PropTypes.arrayOf(PropTypes.object).isRequired,
+  addCardToCart: PropTypes.func.isRequired,
 };
 
 export default ProductList;
