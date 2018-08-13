@@ -1,9 +1,16 @@
 import React from 'react';
 import GatsbyLink from 'gatsby-link';
 import PropType from 'prop-types';
+import { Row, Column } from "rebass";
 
 const DropdownLink = (props) => (
-    <GatsbyLink className="dropdown-item" to={`/category/${props.linkTo}`}>{props.title}</GatsbyLink>
+    <Row px={2}>
+        <Column my={3}>
+            <GatsbyLink className="dropdown-item" to={`/category/${props.linkTo}`}>
+                {props.title}
+            </GatsbyLink>
+        </Column>
+    </Row>
 )
 
 DropdownLink.propTypes = {

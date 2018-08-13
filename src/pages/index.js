@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import _ from 'lodash'
 import Img from 'gatsby-image';
+import { Container, Flex, Carousel, Box, Circle, Card } from "rebass";
+import Link from 'gatsby-link';
 
-import CorouselItem from "./homepage/CorouselItem";
 import HomeStep from "./homepage/HomeStep";
 import ProductCard from "../templates/category/ProductCard";
 
@@ -34,11 +35,11 @@ const planSteps = [
 class HomePage extends Component {
   state = {
     currentIndex: 0,
-    corouselItems: [],
+    carouselItems: [],
   }
 
   componentDidMount() {
-    const corouselItems = [
+    const carouselItems = [
       {
         image: this.props.data.banner1.childImageSharp.sizes,
         productId: "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzg2NTU2MDk2NzM="
@@ -54,7 +55,7 @@ class HomePage extends Component {
     ];
     this.setState({
       currentIndex: 0,
-      corouselItems,
+      carouselItems,
     })
   }
 
@@ -66,29 +67,37 @@ class HomePage extends Component {
 
   goToPrev = () => {
     this.setState((prevState) => ({
-      currentIndex: this.state.currentIndex < 1 ? this.state.corouselItems.length - 1 : prevState.currentIndex - 1
+      currentIndex: this.state.currentIndex < 1 ? this.state.carouselItems.length - 1 : prevState.currentIndex - 1
     }))
   }
 
-  renderHomeCarousel = () => (this.state.corouselItems.length > 0 &&
-    <div className="carousel slide">
-      <CorouselItem
-        image={this.state.corouselItems[this.state.currentIndex].image}
-        productId={this.state.corouselItems[this.state.currentIndex].productId}
-      />
-      <div className="carousel-control-prev" onClick={this.goToPrev}>
-        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span className="sr-only">Previous</span>
-      </div>
-      <div className="carousel-control-next" onClick={this.goToNext}>
-        <span className="carousel-control-next-icon" aria-hidden="true"></span>
-        <span className="sr-only">Next</span>
-      </div>
-    </div>
+  renderHomeCarousel = () => (this.state.carouselItems.length > 0 &&
+    <Carousel index={this.state.currentIndex}>
+      {
+        _.map(this.state.carouselItems, (item) => {
+          return (
+            <Box>
+              <div style={{ height:'100%', backgroundColor: 'orange', display: 'grid' }}>
+              <div className="carousel-button-prev" onClick={this.goToPrev}>
+                <span><strong>{`<`}</strong></span>
+              </div>
+              <Link to={`product/${item.productId}`} style={{ margin: "0" }}>
+                <Img className="d-block w-100 demo-carousel-image" sizes={item.image} alt="home-page-item" />
+              </Link>
+              <div className="carousel-button-next" onClick={this.goToNext}>
+                <span><strong>{`>`}</strong></span>
+              </div>
+              </div>
+            </Box>
+          )
+        })
+      }
+    </Carousel>
   )
 
+
   renderHomeSteps = () => (
-    <div className="demo-steps row">
+    <Flex flexWrap='wrap'>
       {
         _.map(planSteps, (step, index) => (
           <HomeStep
@@ -99,7 +108,7 @@ class HomePage extends Component {
           />
         ))
       }
-    </div>
+    </Flex>
   )
 
   render() {
@@ -139,7 +148,7 @@ class HomePage extends Component {
           "description": "A filling snack to keep your health on track",
           "image": [{
             "originalSrc": "https://cdn.shopify.com/s/files/1/1057/7864/products/High_Fibre_Cookie_large-min.jpg?v=1533206149",
-          }], 
+          }],
           "title": "High Fibre Cookie",
           "priceRange": {
             "minVariantPrice": {
@@ -161,7 +170,7 @@ class HomePage extends Component {
           "description": "Amplify your workout",
           "image": [{
             "originalSrc": "https://cdn.shopify.com/s/files/1/1057/7864/products/Physique-builder-Post-Workout-Smoothie-1.jpg?v=1518684204",
-          }], 
+          }],
           "title": "Physique Builder Post Workout Smoothie - Pack of 7",
           "priceRange": {
             "minVariantPrice": {
@@ -174,14 +183,16 @@ class HomePage extends Component {
     ]
 
     return (
-      <div>
-        {this.renderHomeCarousel()}
-        <div className="container demo-product-collection w-75">
+      <Box px={0}>
+          {this.renderHomeCarousel()}
+        <Container my={4}>
           {this.renderHomeSteps()}
+        </Container>
+        <Container >
           <div className="demo-product-collection-header">
             <p>Featured Products</p>
           </div>
-          <div className="demo-product-list">
+          <Flex>
             {
               _.map(featuredProducts, ({ node }, index) => {
                 return <ProductCard
@@ -189,17 +200,17 @@ class HomePage extends Component {
                   productId={node.id}
                   productName={node.title}
                   description={node.description}
-                  productPrice={node.priceRange.minVariantPrice.amount} 
-                  images={node.image}  
+                  productPrice={node.priceRange.minVariantPrice.amount}
+                  images={node.image}
                   addCardToCart={this.props.addItemToCart}
                 >
-                  <Img sizes={node.images[0].originalSrc} alt={node.title}/>
+                  <Img sizes={node.images[0].originalSrc} alt={node.title} />
                 </ProductCard>
               })
             }
-          </div>
-        </div>
-      </div>
+          </Flex>
+        </Container >
+      </Box>
     )
   }
 }
@@ -209,46 +220,46 @@ export default HomePage
 
 export const pageQuery = graphql`
   query BannerQuery {
-    banner1:  file(relativePath: {eq: "banner-1.jpg"}) {
-                childImageSharp {
-                  sizes(maxWidth: 1240 ) {
-                    ...GatsbyImageSharpSizes
-                  }
-                }
-              }
+        banner1: file(relativePath: {eq: "banner-1.jpg"}) {
+        childImageSharp {
+      sizes(maxWidth: 1240 ) {
+        ...GatsbyImageSharpSizes
+      }
+      }
+    }
     banner2: file(relativePath: {eq: "banner-2.jpg"}) {
-                childImageSharp {
-                  sizes(maxWidth: 1240 ) {
-                    ...GatsbyImageSharpSizes
-                  }   
-                }
-              }
+        childImageSharp {
+      sizes(maxWidth: 1240 ) {
+        ...GatsbyImageSharpSizes
+      }
+      }
+    }
     banner3: file(relativePath: {eq: "banner-3.jpg"}) {
-      childImageSharp {
-        sizes(maxWidth: 1240 ) {
-          ...GatsbyImageSharpSizes
-        }   
+        childImageSharp {
+      sizes(maxWidth: 1240 ) {
+        ...GatsbyImageSharpSizes
+      }
       }
     }
     featuredProductOne: file(relativePath: {eq: "feat-products1.jpg"}) {
-      childImageSharp {
-        sizes(maxWidth: 300) {
-          ...GatsbyImageSharpSizes
-        }
+        childImageSharp {
+      sizes(maxWidth: 300) {
+        ...GatsbyImageSharpSizes
+      }
       }
     }
     featuredProductTwo: file(relativePath: {eq: "feat-products2.jpg"}) {
-      childImageSharp {
-        sizes(maxWidth: 300) {
-          ...GatsbyImageSharpSizes
-        }
+        childImageSharp {
+      sizes(maxWidth: 300) {
+        ...GatsbyImageSharpSizes
+      }
       }
     }
     featuredProductThree: file(relativePath: {eq: "feat-products3.jpg"}) {
-      childImageSharp {
-        sizes(maxWidth: 300) {
-          ...GatsbyImageSharpSizes
-        }
+        childImageSharp {
+      sizes(maxWidth: 300) {
+        ...GatsbyImageSharpSizes
+      }
       }
     }
   }

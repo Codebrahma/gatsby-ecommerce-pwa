@@ -1,11 +1,12 @@
 import React from 'react'
+import { Box, Image, Text } from "rebass";
 
 const HomeStep = (props) => (
-  <div className="demo-each-step col-lg-3 col-md-6 cols-sm-6 cols-xs-12">
-    <img src={props.image} alt="step"/>
-    <span>{props.stepTitle}</span>
-    <p>{props.stepDescription}</p>
-  </div>
+  <Box width={[1, 1 / 2, 1 / 4]} p={3}>
+    <Image src={props.image} alt="step" mb={3} />
+    <Text children={props.stepTitle} textAlign='center' fontWeight='bold' mb={2} />
+    <Text children={props.stepDescription} textAlign='center'/>
+  </Box>
 )
 
 export default HomeStep

@@ -1,15 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet';
+import { Provider } from "rebass";
+import { injectGlobal } from 'styled-components'
 
 import Header from './Header';
 import InstallPrompt from './InstallPrompt';
 
 import './index.scss'
 import './custom.scss';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 import '../assets/images/512.png';
+
+
+injectGlobal`
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+`
 
 class Layout extends React.Component {
   constructor(props) {
@@ -85,7 +93,7 @@ class Layout extends React.Component {
     } = this.props;
 
     return (
-      <div>
+      <Provider>
         <Helmet defaultTitle="Progressive Web app" >
           <html lang="en"/>
         </Helmet>
@@ -94,7 +102,7 @@ class Layout extends React.Component {
           headPath = {location.pathname}
           cartLength = {this.state.cartLength} />
         {children({ ...this.props, eventedLocalStorage: this.eventedLocalStorage, addItemToCart: this.addItemToCart })}
-      </div>
+      </Provider>
     );
   }
 }

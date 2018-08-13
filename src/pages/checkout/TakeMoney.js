@@ -39,7 +39,7 @@ export default class TakeMoney extends React.Component {
       method: 'POST',
       body: JSON.stringify(token),
     }).then(() => {
-      localStorage.getItem('bn-item') ? localStorage.removeItem('bn-item') : localStorage.setItem('cart', JSON.stringify({}));
+      localStorage.setItem('cart', JSON.stringify({}));
       this.props.eventedLocalStorage();
       this.setState({
         isPaymentSuccess: true,
@@ -60,7 +60,7 @@ export default class TakeMoney extends React.Component {
         token={this.onToken}
         stripeKey="pk_test_rM2enW1rNROwx4ukBXGaIzhr"
         closed={this.onClosed}
-      >   
+      >
         <button
           type="submit"
           className="btn btn-dark center-block"
@@ -69,20 +69,20 @@ export default class TakeMoney extends React.Component {
         </button>
       </StripeCheckout>
     ) : (
-      <p>Please connect Internet to proceed for payment</p>
-    );
+        <p>Please connect Internet to proceed for payment</p>
+      );
     return (
       <div className="payment-active">
         {
           isPaymentSuccess
-            ? ( <div className="container p-2">
-                  <span className="d-inline">Payment Success</span>
-                  <Link to='/' className="btn btn-primary">Continue Shopping</Link>
-                </div>
-              )
-            : paymentContent               
-        }  
+            ? (<div className="container p-2">
+              <span className="d-inline">Payment Success</span>
+              <Link to='/' className="btn btn-primary">Continue Shopping</Link>
+            </div>
+            )
+            : paymentContent
+        }
       </div>
     )
-    }
+  }
 }

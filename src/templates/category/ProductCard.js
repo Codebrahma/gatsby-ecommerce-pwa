@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import Link from 'gatsby-link'
+import Link, { navigateTo } from 'gatsby-link'
 import PropTypes from 'prop-types'
+import { Box, Card, BackgroundImage, Label, Text, Row, Column, Container } from "rebass";
 
 import plus from '../../assets/icons/plus-solid.svg'
 import cart from '../../assets/icons/shopping-cart-solid.svg'
@@ -10,7 +11,7 @@ class ProductCard extends Component {
   state = {
     isInCart: false
   }
-  
+
   componentDidMount() {
     const currentCartItems = JSON.parse(localStorage.getItem('cart')) || {};
     const { productId } = this.props;
@@ -27,43 +28,37 @@ class ProductCard extends Component {
     this.props.addCardToCart({ productId, images, productName, description, productPrice })
   }
 
-  
+
   render() {
     let imageSrc = this.props.images[0] ? this.props.images[0].originalSrc : require('../../assets/images/default.jpeg')
-    
+
     return (
-      <div className="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-        <div className="demo-product-card">
-          <Link to={`/product/${this.props.productId}`} style={{margin: '0'}}>
-            { 
-              this.props.children ||  <img src={imageSrc} alt={this.props.productName} />
-          }
-            <div className="demo-product-card-details">
-              <p id="demo-product-title">{this.props.productName}</p>
-              <p id="demo-product-description">{this.props.description}</p>
-            </div>
+      <Box width={[1, 1 / 2, 1 / 3]} p={3}>
+        <Card>
+          <Link to={`/product/${this.props.productId}`} style={{ margin: '0' }}>
+            {
+              this.props.children || <BackgroundImage src={imageSrc} alt={this.props.productName} />
+            }
           </Link>
-          <div className="demo-product-card-footer">
-            <span>Rs.{this.props.productPrice}</span>
-              {
-                this.state.isInCart
-                  ? (
-                      <span>
-                        <Link to="/cart">
-                          <img src={cart} className="icon" alt="cart" />
-                        </Link>
-                      </span>
-                    )
-                  : (
-                      <span onClick={this.handleAddClick}>
-                        <img src={plus} className="icon" alt="plus" />
-                      </span>
-                    )
-              }
-            
-          </div>
-        </div>
-      </div>
+          <Text id="demo-product-title" p={2}>{this.props.productName}</Text>
+          <Text className="demo-product-card-details">{this.props.description}</Text>
+          {
+            this.state.isInCart
+              ? (
+                <span className="demo-product-card-footer">
+                  <span>Rs.{this.props.productPrice}</span>
+                  <img src={cart} className="icon" alt="cart" onClick={()=>{ navigateTo('/cart') }}/>
+                </span>
+              )
+              : (
+                <span className="demo-product-card-footer" onClick={this.handleAddClick}>
+                  <span>Rs.{this.props.productPrice}</span>
+                  <img src={plus} className="icon" alt="plus" />
+                </span>
+              )
+          }
+        </Card>
+      </Box>
     )
   }
 }
