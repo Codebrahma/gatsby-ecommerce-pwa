@@ -7,7 +7,8 @@
 // You can delete this file if you're not using it
 const path = require('path');
 const _ = require('lodash');
-
+const themeRoot = require('./theme-path');
+const themeComponents = themeRoot + '/components'
 //  exports.sourceNodes = async ({ boundActionCreators }) => {....}
 exports.createPages = ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators
@@ -78,4 +79,21 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
     console.log(error)
     reject()
   })
+};
+
+exports.modifyWebpackConfig = ({ config, stage }) => {
+  // console.log("New Pack config")
+  config.merge({
+    resolve: {
+      // modules: [
+      //   path.resolve(__dirname, themeRoot)
+      // ],
+      extensions: ['.js'],
+      alias: {
+        'theme/components': themeComponents,
+      }
+    }
+  });
+  console.log(config)
+  return config;
 };

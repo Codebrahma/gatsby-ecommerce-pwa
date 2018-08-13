@@ -6,7 +6,7 @@ import '../components/css/custom.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './Header';
 import '../assets/images/512.png';
-import CategoryList from '../components/CategoryList';
+import CategoryList from 'theme/components/CategoryList';
 
 const closePopup = () => {
   document.getElementById("install").style.display = 'none';
