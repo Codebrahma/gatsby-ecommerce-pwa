@@ -10,7 +10,7 @@
   .demo-product-item-image {
     text-align: center;
   }
-  #demo-product-title {
+  #demo-product-item-title {
     font-size: 24px;
     font-weight: 500;
     color: #312e23;
@@ -44,6 +44,9 @@
           text-transform: capitalize;
           padding: 10px 20px;
           border-radius: 6px;
+          border: none;
+          color: #000;
+          background: #f5f5f5;
           cursor: pointer;
           &:hover {
             background: #000;
@@ -260,4 +263,23 @@
       }
     }
   }
+}
+button {
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.bg-black-btn {
+  background: rgba(0,0,0,0.8);
+  color: #f5f5f5;
+  &:hover {
+    background: rgba(0,0,0,1)
+  }
+}
+.bg-white-btn {
+  background: #f5f5f5;
+  color: #000;
+}
+.min-w-35 {
+  min-width: 35px;
 }
