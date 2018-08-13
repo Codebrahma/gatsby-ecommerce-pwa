@@ -10,7 +10,7 @@ import search from '../../assets/icons/search-solid.svg'
 const Navbar = (props) => (
     <div className="nav-container">
         <div id="brand-logo" className="header_logo col-left col col-lg-3 col-md-12 col-xs-12">
-            <NavLink to="/" noActive>
+            <NavLink linkTo="/" noActive>
                 <img className="logo img-responsive" src={logo} alt="logo" />
             </NavLink>
         </div>
@@ -24,7 +24,7 @@ const Navbar = (props) => (
                 <div style={{ display: 'inline-block', float: 'right' }} >
                     <NavLink linkTo="/cart" title={`Cart(${props.cartLength || 0})`} position="right"/>
                     <NavLink linkTo="/" position="right" noActive>
-                        <img src={search} className="icon" alt="icon" />
+                        <img src={search} className="icon" alt="search" />
                     </NavLink>
                 </div>
             </div>
