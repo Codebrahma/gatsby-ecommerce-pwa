@@ -32,7 +32,7 @@ const Navbar = (props) => (
                     </Column>
                     <Column pt={3} px={5} mb={0}>
                         <div style={{ display: 'inline-block', float: 'right' }} >
-                            <NavLink linkTo="/cart" title={`Cart(${props.cartLength || 0})`} position="right" />
+                            <NavLink linkTo="/cart" title={`Cart(${props.cartLength || 0})`} position="right" noActive/>
                             <NavLink linkTo="/" position="right" noActive>
                                 <img src={search} className="icon" alt="search" />
                             </NavLink>
