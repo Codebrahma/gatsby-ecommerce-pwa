@@ -1,12 +1,14 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const VariantType = (props) => (
-      <span id="variant-title">{props.variantType}</span>
-)
+const VariantType = ({ variantType }) => (
+  <span id="variant-title">
+    {variantType}
+  </span>
+);
 
 VariantType.propTypes = {
-  variantType: PropTypes.string.isRequired
-}
+  variantType: PropTypes.string.isRequired,
+};
 
-export default VariantType
+export default VariantType;

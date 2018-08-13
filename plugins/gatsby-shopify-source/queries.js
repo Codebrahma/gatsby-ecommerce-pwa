@@ -50,7 +50,7 @@ exports.ARTICLES_QUERY = `
       }
     }
   }
-`
+`;
 
 exports.BLOGS_QUERY = `
   query GetBlogs($first: Int!, $after: String) {
@@ -70,7 +70,7 @@ exports.BLOGS_QUERY = `
       }
     }
   }
-`
+`;
 
 exports.COLLECTIONS_QUERY = `
   query GetCollections($first: Int!, $after: String) {
@@ -105,7 +105,7 @@ exports.COLLECTIONS_QUERY = `
       }
     }
   }
-`
+`;
 
 exports.PRODUCTS_QUERY = `
   query GetProducts($first: Int!, $after: String) {
@@ -181,7 +181,7 @@ exports.PRODUCTS_QUERY = `
       }
     }
   }
-`
+`;
 
 exports.SHOP_POLICIES_QUERY = `
   query GetPolicies {
@@ -206,4 +206,4 @@ exports.SHOP_POLICIES_QUERY = `
       }
     }
   }
-`
+`;
