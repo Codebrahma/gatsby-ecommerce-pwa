@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 
-import VariantItem from './VariantItem.js';
+import VariantItem from './VariantItem';
 
 class ProductVariants extends Component {
   state = {
@@ -10,12 +10,16 @@ class ProductVariants extends Component {
   }
 
   componentDidMount() {
+    const { variantItems } = this.props;
     this.setState({
-      currentItem: this.props.variantItems[0],
+      currentItem: variantItems[0],
     });
   }
 
-  isActive = item => this.state.currentItem === item
+  isActive = (item) => {
+    const { currentItem } = this.state;
+    return currentItem === item;
+  }
 
   activeVariant = (item) => {
     this.setState({
@@ -45,6 +49,7 @@ class ProductVariants extends Component {
 
 ProductVariants.propTypes = {
   variantItems: PropTypes.arrayOf(PropTypes.string).isRequired,
+  children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
 };
 
 export default ProductVariants;

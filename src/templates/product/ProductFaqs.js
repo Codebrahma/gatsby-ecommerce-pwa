@@ -5,15 +5,15 @@ import _ from 'lodash';
 const ProductFaqs = ({ faqs }) => (
   <div className="demo-product-faq-container">
     <h3 id="faq-header">
-FAQ'S
+      {"FAQ'S"}
     </h3>
-    {_.map(faqs, (faqs, index) => (
+    {_.map(faqs, (faq, index) => (
       <div className="demo-product-faq" key={index}>
         <span id="faq-question">
-          {faqs.question}
+          {faq.question}
         </span>
         <span id="faq-answer">
-          {faqs.answer}
+          {faq.answer}
         </span>
       </div>
     ))}
@@ -21,7 +21,10 @@ FAQ'S
 );
 
 ProductFaqs.propTypes = {
-  faqs: PropTypes.array,
+  faqs: PropTypes.arrayOf(PropTypes.object),
+};
+ProductFaqs.defaultProps = {
+  faqs: [],
 };
 
 export default ProductFaqs;
