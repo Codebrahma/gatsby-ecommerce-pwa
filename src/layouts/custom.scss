@@ -126,25 +126,22 @@ main {
 .pt_custommenu {
     position: relative;
     text-align: center;
-    margin-top: -5px;
-	.pt_menu {
 		display: inline-block;
+		font-size: 1.5em;
 		.parentMenu a {
-		    display: block;
-			line-height:50px;
-			padding:0px 25px;
-			font-size: 16px;
-			font-weight: 400;
-			color:#000;
-			background: transparent;
-			text-transform: capitalize;
-			position: relative;
-      letter-spacing:0.05em;
-		}
+    display: block;
+    line-height: 50px;
+    padding: 0px 25px;
+    font-weight: 400;
+    color: #000;
+    background: transparent;
+    text-transform: capitalize;
+    position: relative;
+    letter-spacing: 0.05em;
+}
 		&.act .parentMenu a,&.active .parentMenu a {
 			color:#1a1a1a !important;
 		}
-	}
 }
 .pt_custommenu_mobile {
     text-align: left;

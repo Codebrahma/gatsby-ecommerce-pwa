@@ -1,15 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
+import { Provider } from "rebass";
+import { injectGlobal } from 'styled-components'
 
 import Header from './Header';
 import InstallPrompt from './InstallPrompt';
 
 import './index.scss';
 import './custom.scss';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 import '../assets/images/512.png';
+
+
+injectGlobal`
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+`
 
 class Layout extends React.Component {
   constructor(props) {
@@ -62,21 +70,16 @@ class Layout extends React.Component {
     const { children, location } = this.props;
     const { cartLength } = this.state;
     return (
-      <div>
-        <Helmet defaultTitle="Progressive Web app">
-          <html lang="en" />
+      <Provider>
+        <Helmet defaultTitle="Progressive Web app" >
+          <html lang="en"/>
         </Helmet>
         <InstallPrompt />
-        <Header
-          headPath={location.pathname}
-          cartLength={cartLength}
-        />
-        {children({
-          ...this.props,
-          eventedLocalStorage: this.eventedLocalStorage,
-          addItemToCart: this.addItemToCart,
-        })}
-      </div>
+        <Header 
+          headPath = {location.pathname}
+          cartLength = {cartLength} />
+        {children({ ...this.props, eventedLocalStorage: this.eventedLocalStorage, addItemToCart: this.addItemToCart })}
+      </Provider>
     );
   }
 }

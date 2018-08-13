@@ -62,11 +62,19 @@ export default class TakeMoney extends React.Component {
         stripeKey="pk_test_rM2enW1rNROwx4ukBXGaIzhr"
         closed={this.onClosed}
       >
+<<<<<<< 2b236085db07aaee61d984b0a0aee19ea69c372b
         <button type="submit" className="btn btn-dark center-block">
+=======
+        <button
+          type="submit"
+          className="btn btn-dark center-block"
+        >
+>>>>>>> apply rebass to homespage
           Proceed to Pay
         </button>
       </StripeCheckout>
     ) : (
+<<<<<<< 2b236085db07aaee61d984b0a0aee19ea69c372b
       <p>
 Please connect Internet to proceed for payment
       </p>
@@ -87,6 +95,23 @@ Payment Success
         )}
       </div>
     );
+=======
+        <p>Please connect Internet to proceed for payment</p>
+      );
+    return (
+      <div className="payment-active">
+        {
+          isPaymentSuccess
+            ? (<div className="container p-2">
+              <span className="d-inline">Payment Success</span>
+              <Link to='/' className="btn btn-primary">Continue Shopping</Link>
+            </div>
+            )
+            : paymentContent
+        }
+      </div>
+    )
+>>>>>>> apply rebass to homespage
   }
 }
 

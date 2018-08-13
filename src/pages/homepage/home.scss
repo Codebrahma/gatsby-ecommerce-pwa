@@ -1,50 +1,64 @@
-.carousel-control-prev, .carousel-control-next {
-  background: rgba(0,0,0,0.3);
-  padding: 2%;
-  height: fit-content;
-  width: fit-content;
-  border-radius: 50%;
-  top: 45%;
-  cursor: pointer;
-  margin: 0 20px;
+.carousel-button-prev, .carousel-button-next {
+    position: absolute;
+    background-color: rgb(158, 158, 158);
+    width: fit-content;
+    padding: 0.5% 1.3%;
+    border-radius: 50%;
+    z-index: 2;
+    opacity: 0.3;
+    color: white;
+    top: 25vh;
+    span {
+        font-size: 2em;
+    }
 }
+
+.carousel-button-prev {
+  left: 2%;
+}
+
+.carousel-button-next {
+  right: 2%;
+}
+
 @-moz-document url-prefix() {
-  .carousel-control-prev, .carousel-control-next {
-    max-width: 40px;
-    max-height: 40px;
-    box-sizing: content-box;
-    padding: 1%;
-  }
+    .carousel-button {
+        background-color: yellow;
+        width: fit-content;
+        padding: 1% 2%;
+        border-radius: 50%;
+    }
 }
+
 .demo-carousel-image {
-  max-width: 100vw; 
-  max-height: 65vh;
-  margin: 0 auto;
+    max-width: 100vw;
+    max-height: 65vh;
+    margin: 0 auto;
 }
 
 .demo-steps {
-  padding: 40px 0;
-  .demo-each-step {
-    margin: 10px 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    cursor: pointer;
-    img {
-      height: 70px;
-      width: 70px;
-      margin: 10px 0 20px 0;
+    padding: 40px 0;
+    .demo-each-step {
+        margin: 10px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        cursor: pointer;
+        img {
+            height: 70px;
+            width: 70px;
+            margin: 10px 0 20px 0;
+        }
+        span {
+            text-transform: uppercase;
+            color: #222;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        p {
+            color: #444;
+            text-align: center;
+        }
     }
-    span {
-      text-transform: uppercase;
-      color: #222;
-      margin-bottom: 15px;
-      font-weight: 600;
-    }
-    p {
-      color: #444;
-      text-align: center;
-    }
-  }
 }
