@@ -16,6 +16,7 @@ import twitter from '../assets/icons/twitter-brands.svg';
 import plus from '../assets/icons/plus-solid.svg';
 import minus from '../assets/icons/minus-solid.svg';
 import download from '../assets/icons/download-solid.svg';
+import defaultImage from '../assets/images/default.jpeg';
 
 class ProductItem extends Component {
   constructor(props) {
@@ -210,7 +211,7 @@ class ProductItem extends Component {
     const imageSrc = (pathContext.images
         && pathContext.images.length !== 0
         && pathContext.images[0].originalSrc)
-      || require('../assets/images/default.jpeg');
+      || defaultImage;
 
     return (
       <div className="container">

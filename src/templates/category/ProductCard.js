@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import plus from '../../assets/icons/plus-solid.svg';
 import cart from '../../assets/icons/shopping-cart-solid.svg';
+import defaultImage from '../../assets/images/default.jpeg';
 
 class ProductCard extends Component {
   state = {
@@ -51,7 +52,7 @@ class ProductCard extends Component {
     const { isInCart } = this.state;
     const imageSrc = images[0]
       ? images[0].originalSrc
-      : require('../../assets/images/default.jpeg');
+      : defaultImage;
 
     return (
       <div className="col-lg-4 col-md-6 col-sm-6 col-xs-12">

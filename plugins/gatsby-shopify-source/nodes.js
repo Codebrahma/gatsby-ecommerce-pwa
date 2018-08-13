@@ -1,5 +1,5 @@
 const createNodeHelpers = require('gatsby-node-helpers');
-const { tap } = require('lodash/fp');
+// const { tap } = require('lodash/fp');
 const { map } = require('p-iteration');
 const { createRemoteFileNode } = require('gatsby-source-filesystem');
 
@@ -21,7 +21,10 @@ const { createNodeFactory, generateNodeId } = createNodeHelpers.default({
 });
 
 const downloadImageAndCreateFileNode = async (
-  { id, url },
+  {
+    // id,
+    url,
+  },
   {
     createNode, touchNode, store, cache,
   },
@@ -32,7 +35,7 @@ const downloadImageAndCreateFileNode = async (
   const cacheMediaData = await cache.get(mediaDataCacheKey);
 
   if (cacheMediaData) {
-    fileNodeID = cacheMediaData.fileNodeID;
+    ({ fileNodeID } = cacheMediaData);
     touchNode(fileNodeID);
     return fileNodeID;
   }
@@ -50,11 +53,13 @@ const downloadImageAndCreateFileNode = async (
   return undefined;
 };
 
+/* eslint-disable no-param-reassign */
 exports.ArticleNode = imageArgs => createNodeFactory(ARTICLE, async (node) => {
   if (node.blog) node.blog___NODE = generateNodeId(BLOG, node.blog.id);
 
-  if (node.comments) node.comments___NODE = node.comments.edges.map(edge => generateNodeId(COMMENT, edge.node.id));
-
+  if (node.comments) {
+    node.comments___NODE = node.comments.edges.map(edge => generateNodeId(COMMENT, edge.node.id));
+  }
   if (node.image) {
     node.image.localFile___NODE = await downloadImageAndCreateFileNode(
       { id: node.image.id, url: node.image.src },
@@ -65,11 +70,12 @@ exports.ArticleNode = imageArgs => createNodeFactory(ARTICLE, async (node) => {
   return node;
 });
 
-exports.BlogNode = _imageArgs => createNodeFactory(BLOG);
+exports.BlogNode = () => createNodeFactory(BLOG);
 
 exports.CollectionNode = imageArgs => createNodeFactory(COLLECTION, async (node) => {
-  if (node.products) node.products___NODE = node.products.edges.map(edge => generateNodeId(PRODUCT, edge.node.id));
-
+  if (node.products) {
+    node.products___NODE = node.products.edges.map(edge => generateNodeId(PRODUCT, edge.node.id));
+  }
   if (node.image) {
     node.image.localFile___NODE = await downloadImageAndCreateFileNode(
       { id: node.image.id, url: node.image.src },
@@ -80,7 +86,7 @@ exports.CollectionNode = imageArgs => createNodeFactory(COLLECTION, async (node)
   return node;
 });
 
-exports.CommentNode = _imageArgs => createNodeFactory(COMMENT);
+exports.CommentNode = () => createNodeFactory(COMMENT);
 
 exports.ProductNode = imageArgs => createNodeFactory(PRODUCT, async (node) => {
   if (node.variants) {
@@ -89,8 +95,9 @@ exports.ProductNode = imageArgs => createNodeFactory(PRODUCT, async (node) => {
     node.variants___NODE = variants.map(variant => generateNodeId(PRODUCT_VARIANT, variant.id));
   }
 
-  if (node.options) node.options___NODE = node.options.map(option => generateNodeId(PRODUCT_OPTION, option.id));
-
+  if (node.options) {
+    node.options___NODE = node.options.map(option => generateNodeId(PRODUCT_OPTION, option.id));
+  }
   if (node.images && node.images.edges) {
     node.images = await map(node.images.edges, async (edge) => {
       edge.node.localFile___NODE = await downloadImageAndCreateFileNode(
@@ -104,7 +111,7 @@ exports.ProductNode = imageArgs => createNodeFactory(PRODUCT, async (node) => {
   return node;
 });
 
-exports.ProductOptionNode = _imageArgs => createNodeFactory(PRODUCT_OPTION);
+exports.ProductOptionNode = () => createNodeFactory(PRODUCT_OPTION);
 
 exports.ProductVariantNode = imageArgs => createNodeFactory(PRODUCT_VARIANT, async (node) => {
   if (node.image) {
@@ -118,3 +125,5 @@ exports.ProductVariantNode = imageArgs => createNodeFactory(PRODUCT_VARIANT, asy
 });
 
 exports.ShopPolicyNode = createNodeFactory(SHOP_POLICY);
+
+/* eslint-enable no-param-reassign */

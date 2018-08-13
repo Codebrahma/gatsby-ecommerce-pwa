@@ -9,27 +9,32 @@ import ProductCard from '../templates/category/ProductCard';
 
 import './homepage/home.scss';
 
+import goalsImage from '../assets/images/goals_1.png';
+import chooseImage from '../assets/images/plan_choose_2.png';
+import smartImage from '../assets/images/eat_smart_3.png';
+import winLifeImage from '../assets/images/win_life_4.png';
+
 const planSteps = [
   {
-    image: require('../assets/images/goals_1.png'),
+    image: goalsImage,
     stepTitle: 'set your goals',
     stepDescription:
       'Want to lose weight? Build Lean Muscle? Light the room up?',
   },
   {
-    image: require('../assets/images/plan_choose_2.png'),
+    image: chooseImage,
     stepTitle: 'choose your plan',
     stepDescription:
       'Use our product finder or connect with an expert at Grow Fit to figure out your unique health fingerprint and the right program. ',
   },
   {
-    image: require('../assets/images/eat_smart_3.png'),
+    image: smartImage,
     stepTitle: '#eatsmart',
     stepDescription:
       'Choose from our delicious foods, delivered to you at your convenience, to make a change. Your friendly Grow Fit nutritionist will support you with recipes and hacks.',
   },
   {
-    image: require('../assets/images/win_life_4.png'),
+    image: winLifeImage,
     stepTitle: 'win at life',
     stepDescription:
       'Our scientifically-developed, patent-pending products are proven to work. So just chomp away, experience the upgraded you and bask in the compliments.',

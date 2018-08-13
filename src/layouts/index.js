@@ -24,13 +24,7 @@ class Layout extends React.Component {
     });
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker
-        .register('sw.js')
-        .then((reg) => {
-          console.log('service worker registered!', reg);
-        })
-        .catch((err) => {
-          console.log('error registering service worker', err);
-        });
+        .register('sw.js');
     }
     window.addEventListener('beforeinstallprompt', (e) => {
       let deferredPrompt = e;
@@ -41,12 +35,7 @@ class Layout extends React.Component {
         .addEventListener('click', () => {
           document.getElementById('install').style.top = '-5em';
           deferredPrompt.prompt();
-          deferredPrompt.userChoice.then((choiceResult) => {
-            if (choiceResult.outcome === 'accepted') {
-              console.log('User accepted the A2HS prompt');
-            } else {
-              console.log('User dismissed the A2HS prompt');
-            }
+          deferredPrompt.userChoice.then(() => {
             deferredPrompt = null;
           });
         });

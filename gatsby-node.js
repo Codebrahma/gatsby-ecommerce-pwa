@@ -73,9 +73,9 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         });
       });
       resolve();
+    }).catch((error) => {
+      console.log(error);
+      reject();
     });
-  }).catch((error) => {
-    console.log(error);
-    reject();
   });
 };
