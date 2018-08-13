@@ -1,10 +1,11 @@
 import React from 'react';
 import Link from 'gatsby-link';
+import PropTypes from 'prop-types';
 
-const NavLink = props => (
+const NavLink = ({ linkTo, title }) => (
   <div className="col-12">
-    <Link to={`/category/${props.linkTo}`}>
-      {props.title}
+    <Link to={`/category/${linkTo}`}>
+      {title}
     </Link>
   </div>
 );
@@ -20,5 +21,10 @@ const Menu = () => (
     <NavLink linkTo="others" title="other" />
   </div>
 );
+
+NavLink.propTypes = {
+  linkTo: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+};
 
 export default Menu;

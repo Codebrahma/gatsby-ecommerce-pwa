@@ -78,7 +78,6 @@ Option-2
 
   return (
     <div className="form-group row">
-      {/* eslint-disable jsx-a11y/label-has-for */}
       <label className="col-md-3 form-control-label required">
         {label}
       </label>

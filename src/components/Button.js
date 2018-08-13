@@ -1,23 +1,31 @@
 import React from 'react';
-import PropType from 'prop-types';
+import PropTypes from 'prop-types';
 
-const Button = props => (
+const Button = ({
+  type,
+  classes,
+  disable,
+  handleClick,
+  children,
+  buttonText,
+}) => (
   <button
-    type={props.type}
-    className={props.classes}
-    disabled={props.disable}
-    onClick={props.handleClick}
+    type={type}
+    className={classes}
+    disabled={disable}
+    onClick={handleClick}
   >
-    {props.children || props.buttonText}
+    {children || buttonText}
   </button>
 );
 
 Button.propTypes = {
-  classes: PropType.string,
-  handleClick: PropType.func,
-  disable: PropType.bool,
-  buttonText: PropType.string,
-  type: PropType.string,
+  classes: PropTypes.string,
+  handleClick: PropTypes.func,
+  disable: PropTypes.bool,
+  buttonText: PropTypes.string,
+  type: PropTypes.string,
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]),
 };
 
 Button.defaultProps = {
@@ -28,6 +36,7 @@ Button.defaultProps = {
   disable: false,
   buttonText: 'Button',
   type: 'button',
+  children: null,
 };
 
 export default Button;

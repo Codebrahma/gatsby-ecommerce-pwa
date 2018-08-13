@@ -243,6 +243,7 @@ HomePage.propTypes = {
 
 export default HomePage;
 
+/* eslint-disable no-undef */
 export const pageQuery = graphql`
   query BannerQuery {
     banner1: file(relativePath: { eq: "banner-1.jpg" }) {
@@ -289,3 +290,4 @@ export const pageQuery = graphql`
     }
   }
 `;
+/* eslint-enable no-undef */

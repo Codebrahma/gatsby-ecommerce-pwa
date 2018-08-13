@@ -28,13 +28,14 @@ const InstallPrompt = () => (
       Install our app now!
     </span>
     <button
+      type="button"
       id="install-button"
       className="btn btn-info"
       style={{ padding: '0.3em' }}
     >
       Add to homescreen
     </button>
-    <button className="btn bg-transparent" onClick={closePopup}>
+    <button type="button" className="btn bg-transparent" onClick={closePopup}>
       <i style={{ color: 'grey' }} className="fa fa-close" />
     </button>
   </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import NavLink from '../../components/Navlink';
 import DropDown from './navbar/Dropdown';
@@ -6,7 +7,7 @@ import DropDown from './navbar/Dropdown';
 import logo from '../../assets/images/logo-new.png';
 import search from '../../assets/icons/search-solid.svg';
 
-const Navbar = props => (
+const Navbar = ({ cartLength }) => (
   <div className="nav-container">
     <div
       id="brand-logo"
@@ -37,7 +38,7 @@ const Navbar = props => (
         <div style={{ display: 'inline-block', float: 'right' }}>
           <NavLink
             linkTo="/cart"
-            title={`Cart(${props.cartLength || 0})`}
+            title={`Cart(${cartLength})`}
             position="right"
           />
           <NavLink linkTo="/" position="right" noActive>
@@ -48,5 +49,13 @@ const Navbar = props => (
     </div>
   </div>
 );
+
+Navbar.propTypes = {
+  cartLength: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+};
+
+Navbar.defaultProps = {
+  cartLength: 0,
+};
 
 export default Navbar;

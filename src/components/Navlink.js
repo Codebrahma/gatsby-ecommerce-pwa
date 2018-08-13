@@ -1,33 +1,41 @@
 import React from 'react';
 import GatsbyLink from 'gatsby-link';
-import PropType from 'prop-types';
+import PropTypes from 'prop-types';
 
-const NavLink = props => (
-  <div className={`pt_menu nav-${props.position}-items`}>
+const NavLink = ({
+  position,
+  linkTo,
+  children,
+  title,
+  noActive,
+}) => (
+  <div className={`pt_menu nav-${position}-items`}>
     <div className="parentMenu">
       <GatsbyLink
-        id={`link-style${props.position === 'right' ? '-right' : ''}`}
+        id={`link-style${position === 'right' ? '-right' : ''}`}
         exact
-        to={props.linkTo}
-        activeClassName={props.noActive ? '' : 'demo-active-link'}
+        to={linkTo}
+        activeClassName={noActive ? '' : 'demo-active-link'}
       >
-        {props.children || props.title}
+        {children || title}
       </GatsbyLink>
     </div>
   </div>
 );
 
 NavLink.propTypes = {
-  linkTo: PropType.string.isRequired,
-  position: PropType.oneOf(['left', 'right']),
-  title: PropType.string,
-  children: PropType.element,
+  linkTo: PropTypes.string.isRequired,
+  position: PropTypes.oneOf(['left', 'right']),
+  title: PropTypes.string,
+  children: PropTypes.element,
+  noActive: PropTypes.bool,
 };
 
 NavLink.defaultProps = {
   title: 'Navlink default title',
   children: null,
   position: 'left',
+  noActive: false,
 };
 
 export default NavLink;

@@ -19,12 +19,9 @@ class Layout extends React.Component {
 
   componentDidMount() {
     this.setState({
-      isAppOnline: window.navigator.onLine,
       cartLength: Object.keys(JSON.parse(localStorage.getItem('cart')) || {})
         .length,
     });
-    window.addEventListener('online', this.cameOnline);
-    window.addEventListener('offline', this.cameOffline);
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker
         .register('sw.js')
@@ -63,18 +60,6 @@ class Layout extends React.Component {
     });
   }
 
-  cameOnline = () => {
-    this.setState({
-      isAppOnline: true,
-    });
-  }
-
-  cameOffline = () => {
-    this.setState({
-      isAppOnline: false,
-    });
-  }
-
   addItemToCart = (product) => {
     const currentCartItems = JSON.parse(localStorage.getItem('cart')) || {};
     const toBeAddedProduct = Object.assign({}, product);
@@ -86,7 +71,7 @@ class Layout extends React.Component {
 
   render() {
     const { children, location } = this.props;
-
+    const { cartLength } = this.state;
     return (
       <div>
         <Helmet defaultTitle="Progressive Web app">
@@ -95,7 +80,7 @@ class Layout extends React.Component {
         <InstallPrompt />
         <Header
           headPath={location.pathname}
-          cartLength={this.state.cartLength}
+          cartLength={cartLength}
         />
         {children({
           ...this.props,
@@ -109,6 +94,11 @@ class Layout extends React.Component {
 
 Layout.propTypes = {
   children: PropTypes.func,
+  location: PropTypes.oneOfType([PropTypes.object]).isRequired,
+};
+
+Layout.defaultProps = {
+  children: null,
 };
 
 export default Layout;

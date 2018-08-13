@@ -2,9 +2,9 @@ import React from 'react';
 import GatsbyLink from 'gatsby-link';
 import PropType from 'prop-types';
 
-const DropdownLink = props => (
-  <GatsbyLink className="dropdown-item" to={`/category/${props.linkTo}`}>
-    {props.title}
+const DropdownLink = ({ linkTo, title }) => (
+  <GatsbyLink className="dropdown-item" to={`/category/${linkTo}`}>
+    {title}
   </GatsbyLink>
 );
 

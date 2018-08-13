@@ -16,10 +16,7 @@ export const createCart = () => new Promise((resolve, reject) => {
       })
       .catch((err) => {
         console.log('Error ', err);
-        reject({
-          success: false,
-          err,
-        });
+        reject(new Error(err));
       });
   } else {
     resolve({ success: true });
