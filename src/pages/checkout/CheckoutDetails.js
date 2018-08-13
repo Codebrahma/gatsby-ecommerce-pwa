@@ -15,9 +15,8 @@ class CheckoutDetails extends Component {
     let totalPrice = 0;
     if (cartDetails) {
       Object.keys(cartDetails).map((key) => {
-        totalPrice
-          += (cartDetails[key].productPrice / 7.0)
-          * cartDetails[key].purchaseQuantity;
+        totalPrice += (cartDetails[key].productPrice / 7.0) * cartDetails[key].purchaseQuantity;
+        return true;
       });
     }
     if (totalPrice === 0) {
@@ -31,10 +30,9 @@ class CheckoutDetails extends Component {
     let totalPrice = 0;
     if (cartDetails) {
       Object.keys(cartDetails).map((key) => {
-        itemCount++;
-        totalPrice
-          += (cartDetails[key].productPrice / 7.0)
-          * cartDetails[key].purchaseQuantity;
+        itemCount += 1;
+        totalPrice += (cartDetails[key].productPrice / 7.0) * cartDetails[key].purchaseQuantity;
+        return true;
       });
     }
 

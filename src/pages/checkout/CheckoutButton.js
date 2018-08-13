@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import TakeMoney from './TakeMoney';
 
@@ -11,5 +12,9 @@ const CheckoutButton = ({ eventedLocalStorage }) => (
     </div>
   </div>
 );
+
+CheckoutButton.propTypes = {
+  eventedLocalStorage: PropTypes.func.isRequired,
+};
 
 export default CheckoutButton;

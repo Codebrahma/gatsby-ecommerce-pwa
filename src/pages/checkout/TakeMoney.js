@@ -1,6 +1,7 @@
 import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 import Link from 'gatsby-link';
+import PropTypes from 'prop-types';
 
 export default class TakeMoney extends React.Component {
   constructor(props) {
@@ -21,9 +22,28 @@ export default class TakeMoney extends React.Component {
     });
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('online', this.online);
+    window.removeEventListener('offline', this.offline);
+  }
+
   online = () => {
     this.setState({
       appOnline: true,
+    });
+  }
+
+  onToken = (token) => {
+    const { eventedLocalStorage } = this.props;
+    fetch('/save-stripe-token', {
+      method: 'POST',
+      body: JSON.stringify(token),
+    }).then(() => {
+      localStorage.setItem('cart', JSON.stringify({}));
+      eventedLocalStorage();
+      this.setState({
+        isPaymentSuccess: true,
+      });
     });
   }
 
@@ -31,26 +51,6 @@ export default class TakeMoney extends React.Component {
     this.setState({
       appOnline: false,
     });
-  }
-
-  onToken = (token) => {
-    fetch('/save-stripe-token', {
-      method: 'POST',
-      body: JSON.stringify(token),
-    }).then(() => {
-      localStorage.getItem('bn-item')
-        ? localStorage.removeItem('bn-item')
-        : localStorage.setItem('cart', JSON.stringify({}));
-      this.props.eventedLocalStorage();
-      this.setState({
-        isPaymentSuccess: true,
-      });
-    });
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('online', this.online);
-    window.removeEventListener('offline', this.offline);
   }
 
   render() {
@@ -89,3 +89,7 @@ Payment Success
     );
   }
 }
+
+TakeMoney.propTypes = {
+  eventedLocalStorage: PropTypes.func.isRequired,
+};

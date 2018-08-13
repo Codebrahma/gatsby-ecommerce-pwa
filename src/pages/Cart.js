@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import GatsbyLink from 'gatsby-link';
+import PropTypes from 'prop-types';
 
 import deleteIcon from '../assets/icons/baseline-delete-24px.svg';
 
@@ -13,11 +14,8 @@ class Cart extends Component {
 
   componentDidMount() {
     this.setState({
-      appOnline: window.navigator.onLine,
       cartItems: JSON.parse(localStorage.getItem('cart')) || {},
     });
-    window.addEventListener('online', this.online);
-    window.addEventListener('offline', this.offline);
   }
 
   componentWillUnmount = () => {
@@ -25,25 +23,13 @@ class Cart extends Component {
     window.removeEventListener('offline', this.offline);
   }
 
-  online = () => {
-    this.setState({
-      appOnline: true,
-    });
-  }
-
-  offline = () => {
-    this.setState({
-      appOnline: false,
-    });
-  }
-
   getCheckoutMoney = () => {
     const { cartItems } = this.state;
     let total = 0;
     if (cartItems) {
       Object.keys(cartItems).map((key) => {
-        total
-          += +cartItems[key].productPrice * (cartItems[key].purchaseQuantity / 7);
+        total += +cartItems[key].productPrice * (cartItems[key].purchaseQuantity / 7);
+        return true;
       });
     }
     return total;
@@ -64,12 +50,13 @@ class Cart extends Component {
 
   removeItemFromCart = (productId) => {
     const { cartItems } = this.state;
+    const { eventedLocalStorage } = this.props;
     delete cartItems[productId];
     localStorage.setItem('cart', JSON.stringify(cartItems));
     this.setState({
       cartItems,
     });
-    this.props.eventedLocalStorage();
+    eventedLocalStorage();
   }
 
   showCartItems = () => {
@@ -84,7 +71,7 @@ class Cart extends Component {
                     ? cartItems[key].images[0].originalSrc
                     : require('../assets/images/default.jpeg')
                 }
-              alt="product-image"
+              alt="product"
             />
           </div>
           <div className="col col-lg-7 col-md-7 col-sm-7">
@@ -105,19 +92,15 @@ class Cart extends Component {
             <div className="container p-1 mb-2 text-center">
               {cartItems[key].purchaseQuantity}
             </div>
-            <div className="container p-2 text-center">
-              <ul>
-                <li
-                  onClick={() => this.removeItemFromCart(cartItems[key].productId)
-                    }
-                >
-                  <img
-                    className="item-count img img-fluid delete-icon"
-                    src={deleteIcon}
-                    alt="delete-icon"
-                  />
-                </li>
-              </ul>
+            <div
+              className="p-2 text-center delete-icon"
+              onClick={() => this.removeItemFromCart(cartItems[key].productId)}
+            >
+              <img
+                className="item-count img img-fluid"
+                src={deleteIcon}
+                alt="delete-icon"
+              />
             </div>
           </div>
         </div>
@@ -154,5 +137,9 @@ Shop items.
     );
   }
 }
+
+Cart.propTypes = {
+  eventedLocalStorage: PropTypes.func.isRequired,
+};
 
 export default Cart;
