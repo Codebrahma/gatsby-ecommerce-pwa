@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import _ from 'lodash'
 import Img from 'gatsby-image';
 
-import CorouselItem from "./homepage/CorouselItem";
-import HomeStep from "./homepage/HomeStep";
-import ProductCard from "../templates/category/ProductCard";
+import CorouselItem from '../components/CorouselItem';
+import HomeStep from '../components/HomeStep';
+import ProductCard from '../templates/category/ProductCard';
 
 import './homepage/home.scss';
 
