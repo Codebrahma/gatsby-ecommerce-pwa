@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import Img from 'gatsby-image';
+import PropTypes from 'prop-types';
 
 import CorouselItem from '../components/CorouselItem';
 import HomeStep from '../components/HomeStep';
@@ -42,19 +43,20 @@ class HomePage extends Component {
   }
 
   componentDidMount() {
+    const { data } = this.props;
     const corouselItems = [
       {
-        image: this.props.data.banner1.childImageSharp.sizes,
+        image: data.banner1.childImageSharp.sizes,
         productId:
           'Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzg2NTU2MDk2NzM=',
       },
       {
-        image: this.props.data.banner2.childImageSharp.sizes,
+        image: data.banner2.childImageSharp.sizes,
         productId:
           'Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzkyNTg4NzE3NTM=',
       },
       {
-        image: this.props.data.banner3.childImageSharp.sizes,
+        image: data.banner3.childImageSharp.sizes,
         productId:
           'Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzg4MjY3MjAyMDE=',
       },
@@ -72,36 +74,40 @@ class HomePage extends Component {
   }
 
   goToPrev = () => {
+    const { currentIndex, corouselItems } = this.state;
     this.setState(prevState => ({
       currentIndex:
-        this.state.currentIndex < 1
-          ? this.state.corouselItems.length - 1
+        currentIndex < 1
+          ? corouselItems.length - 1
           : prevState.currentIndex - 1,
     }));
   }
 
-  renderHomeCarousel = () => this.state.corouselItems.length > 0 && (
-  <div className="carousel slide">
-    <CorouselItem
-      image={this.state.corouselItems[this.state.currentIndex].image}
-      productId={
-            this.state.corouselItems[this.state.currentIndex].productId
-          }
-    />
-    <div className="carousel-control-prev" onClick={this.goToPrev}>
-      <span className="carousel-control-prev-icon" aria-hidden="true" />
-      <span className="sr-only">
-Previous
-      </span>
+  renderHomeCarousel = () => {
+    const { corouselItems, currentIndex } = this.state;
+    return (corouselItems.length > 0 && (
+    <div className="carousel slide">
+      <CorouselItem
+        image={corouselItems[currentIndex].image}
+        productId={
+              corouselItems[currentIndex].productId
+            }
+      />
+      <div className="carousel-control-prev" onClick={this.goToPrev}>
+        <span className="carousel-control-prev-icon" aria-hidden="true" />
+        <span className="sr-only">
+  Previous
+        </span>
+      </div>
+      <div className="carousel-control-next" onClick={this.goToNext}>
+        <span className="carousel-control-next-icon" aria-hidden="true" />
+        <span className="sr-only">
+  Next
+        </span>
+      </div>
     </div>
-    <div className="carousel-control-next" onClick={this.goToNext}>
-      <span className="carousel-control-next-icon" aria-hidden="true" />
-      <span className="sr-only">
-Next
-      </span>
-    </div>
-  </div>
-  )
+    ));
+  }
 
   renderHomeSteps = () => (
     <div className="demo-steps row">
@@ -117,12 +123,13 @@ Next
   )
 
   render() {
+    const { data, addItemToCart } = this.props;
     const featuredProducts = [
       {
         node: {
           images: [
             {
-              originalSrc: this.props.data.featuredProductOne.childImageSharp
+              originalSrc: data.featuredProductOne.childImageSharp
                 .sizes,
             },
           ],
@@ -148,7 +155,7 @@ Next
         node: {
           images: [
             {
-              originalSrc: this.props.data.featuredProductTwo.childImageSharp
+              originalSrc: data.featuredProductTwo.childImageSharp
                 .sizes,
             },
           ],
@@ -174,7 +181,7 @@ Next
         node: {
           images: [
             {
-              originalSrc: this.props.data.featuredProductThree.childImageSharp
+              originalSrc: data.featuredProductThree.childImageSharp
                 .sizes,
             },
           ],
@@ -217,7 +224,7 @@ Featured Products
                 description={node.description}
                 productPrice={node.priceRange.minVariantPrice.amount}
                 images={node.image}
-                addCardToCart={this.props.addItemToCart}
+                addCardToCart={addItemToCart}
               >
                 <Img sizes={node.images[0].originalSrc} alt={node.title} />
               </ProductCard>
@@ -228,6 +235,11 @@ Featured Products
     );
   }
 }
+
+HomePage.propTypes = {
+  data: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  addItemToCart: PropTypes.func.isRequired,
+};
 
 export default HomePage;
 
