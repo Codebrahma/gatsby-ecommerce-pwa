@@ -1,6 +1,7 @@
 import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
-import Link from 'gatsby-link';
+import GatsbyLink from 'gatsby-link';
+import { Container, Button, Text } from 'rebass';
 import PropTypes from 'prop-types';
 
 export default class TakeMoney extends React.Component {
@@ -62,12 +63,9 @@ export default class TakeMoney extends React.Component {
         stripeKey="pk_test_rM2enW1rNROwx4ukBXGaIzhr"
         closed={this.onClosed}
       >
-        <button
-          type="submit"
-          className="btn btn-dark center-block"
-        >
+        <Button bg="black" px={2}>
           Proceed to Pay
-        </button>
+        </Button>
       </StripeCheckout>
     ) : (
       <p>
@@ -75,18 +73,20 @@ Please connect Internet to proceed for payment
       </p>
     );
     return (
-      <div className="payment-active">
+      <div>
         {
           isPaymentSuccess
             ? (
-              <div className="container p-2">
-                <span className="d-inline">
-Payment Success
-                </span>
-                <Link to="/" className="btn btn-primary">
-Continue Shopping
-                </Link>
-              </div>
+              <Container>
+                <Text textAlign="center">
+                  Payment Success
+                </Text>
+                <GatsbyLink to="/">
+                  <Button px={2}>
+                    Continue Shopping
+                  </Button>
+                </GatsbyLink>
+              </Container>
             )
             : paymentContent
         }
