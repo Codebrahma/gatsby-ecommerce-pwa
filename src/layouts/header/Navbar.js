@@ -21,8 +21,8 @@ const Navbar = ({ cartLength }) => (
       </Column>
       <Column mb={0}>
         <Row px={0}>
-          <Column mb={0}>
-            <div id="pt_custommenu" className="pt_custommenu">
+          <Column mb={0} pt={1}>
+            <div className="pt_custommenu" id="navmenu">
               <NavLink title="diet plan" linkTo="/category/diet-plan" position="left" />
               <NavLink title="breakfast" linkTo="/category/breakfast" position="left" />
               <NavLink title="lunch" linkTo="/category/lunch" position="left" />

@@ -6,7 +6,6 @@
   "dependencies": {
     "axios": "^0.18.0",
     "babel-eslint": "^8.2.6",
-    "bootstrap": "^4.0.0-beta.2",
     "chalk": "^2.4.1",
     "gatsby": "^1.9.247",
     "gatsby-image": "^1.0.55",

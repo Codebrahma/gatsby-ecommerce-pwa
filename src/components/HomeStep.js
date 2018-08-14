@@ -1,13 +1,15 @@
 import React from 'react';
 import Proptypes from 'prop-types';
-import { Box, Image, Text } from 'rebass';
+import {
+  Box, Image, Text, Caps,
+} from 'rebass';
 
 const HomeStep = ({ image, stepTitle, stepDescription }) => (
   <Box width={[1, 1 / 2, 1 / 4]} p={3}>
     <Image src={image} alt="step" mb={3} />
-    <Text textAlign="center" fontWeight="bold" mb={2}>
+    <Caps letterSpacing="0.1em" textAlign="center" fontWeight="bold" mb={2}>
       {stepTitle}
-    </Text>
+    </Caps>
     <Text textAlign="center">
       {stepDescription}
     </Text>

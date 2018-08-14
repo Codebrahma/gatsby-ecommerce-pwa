@@ -3,7 +3,7 @@ import _ from 'lodash';
 import Img from 'gatsby-image';
 import Link from 'gatsby-link';
 import {
-  Container, Flex, Carousel, Box,
+  Container, Flex, Carousel, Box, Caps,
 } from 'rebass';
 import PropTypes from 'prop-types';
 import ProductCard from '../templates/category/ProductCard';
@@ -95,31 +95,31 @@ class HomePage extends Component {
 
     return (carouselItems.length > 0
       && (
-      <Carousel index={currentIndex}>
-        {
-          _.map(carouselItems, item => (
-            <Box key={item.productId}>
-              <div className="carousel-button-prev" onClick={this.goToPrev}>
-                <span>
-                  <strong>
-                    {'<'}
-                  </strong>
-                </span>
-              </div>
-              <Link to={`product/${item.productId}`} style={{ margin: '0' }}>
-                <Img className="d-block w-100 demo-carousel-image" sizes={item.image} alt="home-page-item" />
-              </Link>
-              <div className="carousel-button-next" onClick={this.goToNext}>
-                <span>
-                  <strong>
-                    {'>'}
-                  </strong>
-                </span>
-              </div>
-            </Box>
-          ))
-        }
-      </Carousel>
+        <Carousel index={currentIndex}>
+          {
+            _.map(carouselItems, item => (
+              <Box key={item.productId}>
+                <div className="carousel-button-prev" onClick={this.goToPrev}>
+                  <span>
+                    <strong>
+                      {'<'}
+                    </strong>
+                  </span>
+                </div>
+                <Link to={`product/${item.productId}`} style={{ margin: '0' }}>
+                  <Img className="d-block w-100 demo-carousel-image" sizes={item.image} alt="home-page-item" />
+                </Link>
+                <div className="carousel-button-next" onClick={this.goToNext}>
+                  <span>
+                    <strong>
+                      {'>'}
+                    </strong>
+                  </span>
+                </div>
+              </Box>
+            ))
+          }
+        </Carousel>
       )
     );
   }
@@ -220,16 +220,14 @@ class HomePage extends Component {
     return (
       <Box px={0}>
         {this.renderHomeCarousel()}
-        <Container my={4}>
+        <Container my={5}>
           {this.renderHomeSteps()}
         </Container>
         <Container>
-          <div className="demo-product-collection-header">
-            <p>
-              Featured Products
-            </p>
-          </div>
-          <Flex>
+          <Caps textAlign="center" fontSize={2}>
+            Featured Products
+          </Caps>
+          <Flex flexWrap="wrap">
             {
               _.map(featuredProducts, ({ node }, index) => (
                 <ProductCard

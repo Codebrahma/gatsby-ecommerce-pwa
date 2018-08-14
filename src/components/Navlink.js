@@ -16,6 +16,7 @@ const NavLink = ({
         exact
         to={linkTo}
         activeClassName={noActive ? '' : 'demo-active-link'}
+        style={{ height: '100%' }}
       >
         {children || title}
       </GatsbyLink>

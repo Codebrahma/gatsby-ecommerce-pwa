@@ -16,10 +16,12 @@
     text-align: center;
     padding: 2% 5%;
     line-height: 1.4em;
-    height: 7.5em !important;
-    word-wrap: break-word;
+    height: 4.5em !important;
+    display: -webkit-box;
     overflow: hidden;
     text-overflow: ellipsis;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
 
 .demo-product-card-footer {
@@ -27,7 +29,7 @@
     justify-content: space-around;
     border-top: 1px solid #ccc;
     span {
-        padding: 1% !important;
+        padding: 1% 5% !important;
         &:first-child {
             width: 70%;
             border-right: 1px solid #ccc;
@@ -81,5 +83,13 @@
                 max-width: 300px;
             }
         }
+    }
+}
+
+.card-footer {
+    border-top: 1px solid rgba(26,26,26, 0.5);
+    .card-footer-button {
+        cursor: pointer;
+        border-left: 1px solid rgba(26,26,26, 0.5);
     }
 }

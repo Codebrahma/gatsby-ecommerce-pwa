@@ -31,7 +31,6 @@ const NavbarMobile = ({ headPath }) => (
             </NavLink>
           </Column>
           <Column mb={0}>
-            <Menu headPath={headPath} />
             <img
               src={menu}
               id="sidebar-menu-button"
@@ -39,6 +38,7 @@ const NavbarMobile = ({ headPath }) => (
               alt="menu"
               tabIndex={0}
             />
+            <Menu headPath={headPath} />
           </Column>
         </Row>
       </Column>

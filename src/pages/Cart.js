@@ -97,7 +97,7 @@ class Cart extends Component {
             </Flex>
           </Box>
           <Box p={2} onClick={() => this.removeItemFromCart(cartItems[key].productId)} className="button-container">
-            <Image className="delete-icon" src={deleteIcon} alt="delete-icon" />
+            <Image src={deleteIcon} alt="delete-icon" />
           </Box>
         </Flex>
       ));

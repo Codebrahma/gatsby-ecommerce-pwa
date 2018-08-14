@@ -111,13 +111,14 @@
 
 
 #sidebar-menu-button {
+  cursor: pointer;
   &:focus + #side-bar {
-    left: 0vw;
+    left: 0vw !important;
   }
 }
 
 #side-bar {
-  min-width: 30vw;
+  max-width: 30vw;
   top: 0;
   left: -40vw;
   bottom: 0;
@@ -125,6 +126,8 @@
   transition: 0.5s ease-in;
   z-index: 2000;
   overflow: hidden;
+  background-color: white;
+  padding: 1% 5%;
   #interests-dropdown {
     background-color: rgba(0, 0, 0, 0.05);
     height: 0px;
@@ -178,5 +181,12 @@
   margin: 0 5%;
   &:hover {
     color: rgb(245, 124, 0) !important;
+  }
+}
+
+#navmenu {
+  height: 100% !important;
+  div {
+    height: 100%;
   }
 }
