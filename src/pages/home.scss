@@ -1,4 +1,5 @@
-.carousel-button-prev, .carousel-button-next {
+.carousel-button-prev,
+.carousel-button-next {
     position: absolute;
     background-color: rgb(158, 158, 158);
     width: fit-content;
@@ -14,11 +15,11 @@
 }
 
 .carousel-button-prev {
-  left: 2%;
+    left: 2%;
 }
 
 .carousel-button-next {
-  right: 2%;
+    right: 2%;
 }
 
 @-moz-document url-prefix() {
@@ -30,35 +31,8 @@
     }
 }
 
-.demo-carousel-image {
+.carousel-image {
     max-width: 100vw;
     max-height: 65vh;
     margin: 0 auto;
-}
-
-.demo-steps {
-    padding: 40px 0;
-    .demo-each-step {
-        margin: 10px 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        cursor: pointer;
-        img {
-            height: 70px;
-            width: 70px;
-            margin: 10px 0 20px 0;
-        }
-        span {
-            text-transform: uppercase;
-            color: #222;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-        p {
-            color: #444;
-            text-align: center;
-        }
-    }
 }

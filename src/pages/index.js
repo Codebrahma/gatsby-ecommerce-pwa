@@ -107,7 +107,7 @@ class HomePage extends Component {
                   </span>
                 </div>
                 <Link to={`product/${item.productId}`} style={{ margin: '0' }}>
-                  <Img className="d-block w-100 demo-carousel-image" sizes={item.image} alt="home-page-item" />
+                  <Img className="carousel-image" sizes={item.image} alt="home-page-item" />
                 </Link>
                 <div className="carousel-button-next" onClick={this.goToNext}>
                   <span>

@@ -129,8 +129,8 @@ class ProductItem extends Component {
           </span>
         </div>
         <div id="action-button">
-          <Button classes={`bg-${isInCart ? 'white-btn cursor-disabled' : 'black-btn'}`} handleClick={this.addItemToCart} disable={!itemCount || isInCart} buttonText={isInCart ? 'in Cart' : 'add to cart'} />
-          <Button classes="bg-black-btn" disable={!itemCount} handleClick={this.handleBuyNow} buttonText="buy now" />
+          <Button classes={`bg-${(!itemCount || isInCart) ? 'white-btn cursor-disabled' : 'black-btn'}`} handleClick={this.addItemToCart} disable={!itemCount || isInCart} buttonText={isInCart ? 'in Cart' : 'add to cart'} />
+          <Button classes={`bg-${!itemCount ? 'white-btn cursor-disabled' : 'black-btn'}`} disable={!itemCount} handleClick={this.handleBuyNow} buttonText="buy now" />
         </div>
       </div>
     );
@@ -199,7 +199,7 @@ class ProductItem extends Component {
       <Container>
         <Row className="demo-product-item row">
           <Flex flexWrap="wrap">
-            <Box width={[1, 1, 1 / 2]} px={20} className="demo-product-item-image">
+            <Box width={[1, 1, 1 / 2]} px={20}>
               <img
                 src={imageSrc}
                 alt={pathContext.productName}
