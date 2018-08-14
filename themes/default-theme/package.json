@@ -1,5 +1,5 @@
 {
-  "name": "default-theme",
+  "name": "@gatsby-ecommerce/default-theme",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
