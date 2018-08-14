@@ -1,7 +1,9 @@
-import React, { Component } from 'react'
-import Link, { navigateTo } from 'gatsby-link'
-import PropTypes from 'prop-types'
-import { Box, Card, BackgroundImage, Text, } from "rebass";
+import React, { Component } from 'react';
+import Link, { navigateTo } from 'gatsby-link';
+import PropTypes from 'prop-types';
+import {
+  Box, Card, BackgroundImage, Text, Truncate,
+} from 'rebass';
 
 import plus from '../../assets/icons/plus-solid.svg';
 import cart from '../../assets/icons/shopping-cart-solid.svg';
@@ -43,7 +45,7 @@ class ProductCard extends Component {
 
 
   render() {
-    let imageSrc = this.props.images[0] ? this.props.images[0].originalSrc : require('../../assets/images/default.jpeg')
+    const imageSrc = this.props.images[0] ? this.props.images[0].originalSrc : require('../../assets/images/default.jpeg');
 
     return (
       <Box width={[1, 1 / 2, 1 / 3]} p={3}>
@@ -53,26 +55,36 @@ class ProductCard extends Component {
               this.props.children || <BackgroundImage src={imageSrc} alt={this.props.productName} />
             }
           </Link>
-          <Text id="demo-product-title" p={2}>{this.props.productName}</Text>
-          <Text className="demo-product-card-details">{this.props.description}</Text>
+          <Truncate fontWeight="bold" p={2}>
+            {this.props.productName}
+          </Truncate>
+          <Text className="demo-product-card-details">
+            {this.props.description}
+          </Text>
           {
             this.state.isInCart
               ? (
                 <span className="demo-product-card-footer">
-                  <span>Rs.{this.props.productPrice}</span>
-                  <img src={cart} className="icon" alt="cart" onClick={()=>{ navigateTo('/cart') }}/>
+                  <span>
+Rs.
+                    {this.props.productPrice}
+                  </span>
+                  <img src={cart} className="icon" alt="cart" onClick={() => { navigateTo('/cart'); }} />
                 </span>
               )
               : (
                 <span className="demo-product-card-footer" onClick={this.handleAddClick}>
-                  <span>Rs.{this.props.productPrice}</span>
+                  <span>
+Rs.
+                    {this.props.productPrice}
+                  </span>
                   <img src={plus} className="icon" alt="plus" />
                 </span>
               )
           }
         </Card>
       </Box>
-    )
+    );
   }
 }
 

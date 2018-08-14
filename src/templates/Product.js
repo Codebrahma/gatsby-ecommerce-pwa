@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 import Link, { navigateTo } from 'gatsby-link';
 import PropTypes from 'prop-types';
-import { Container, Row, Text, Flex, Box } from 'rebass';
+import {
+  Container, Row, Text, Flex, Box,
+} from 'rebass';
 
 import ProductFaqs from './product/ProductFaqs';
 import ProductSubscription from './product/ProductSubscription';
@@ -18,7 +20,6 @@ import plus from '../assets/icons/plus-solid.svg';
 import minus from '../assets/icons/minus-solid.svg';
 import download from '../assets/icons/download-solid.svg';
 import defaultImage from '../assets/images/default.jpeg';
-
 
 
 class ProductItem extends Component {
@@ -112,16 +113,21 @@ class ProductItem extends Component {
           <Button handleClick={() => this.changeItemCount(-7)} classes={`minus-btn min-w-35 bg-white-btn ${!this.state.itemCount ? 'cursor-disabled' : ''}`} disable={!this.state.itemCount}>
             <img src={minus} className="icon" alt="minus" />
           </Button>
-          <Text className="quantity-num min-w-35" textAlign='center' p={2} fontSize={16}>{this.state.itemCount}</Text>
+          <Text className="quantity-num min-w-35" textAlign="center" p={2} fontSize={16}>
+            {this.state.itemCount}
+          </Text>
           <Button handleClick={() => this.changeItemCount(7)} classes="min-w-35  plus-btn bg-white-btn">
             <img src={plus} className="icon" alt="plus" />
           </Button>
         </div>
-        <span id="price">Rs. {((this.props.pathContext.productPrice / 7.0) * ((this.state.itemCount === 0) ? 7 : this.state.itemCount)).toFixed(2)}</span>
+        <span id="price">
+Rs.
+          {((this.props.pathContext.productPrice / 7.0) * ((this.state.itemCount === 0) ? 7 : this.state.itemCount)).toFixed(2)}
+        </span>
       </div>
       <div id="action-button">
-        <Button classes={`bg-${this.state.isInCart ? "white-btn cursor-disabled" : "black-btn"}`} handleClick={this.addItemToCart} disable={!this.state.itemCount || this.state.isInCart} buttonText={this.state.isInCart ? "in Cart" : "add to cart"} />
-        <Button classes='bg-black-btn' disable={!this.state.itemCount} handleClick={this.handleBuyNow} buttonText="buy now" />
+        <Button classes={`bg-${this.state.isInCart ? 'white-btn cursor-disabled' : 'black-btn'}`} handleClick={this.addItemToCart} disable={!this.state.itemCount || this.state.isInCart} buttonText={this.state.isInCart ? 'in Cart' : 'add to cart'} />
+        <Button classes="bg-black-btn" disable={!this.state.itemCount} handleClick={this.handleBuyNow} buttonText="buy now" />
       </div>
     </div>
   );
@@ -177,7 +183,7 @@ class ProductItem extends Component {
   }
 
   render() {
-    let imageSrc = (
+    const imageSrc = (
       this.props.pathContext.images
       && this.props.pathContext.images.length !== 0
       && this.props.pathContext.images[0].originalSrc
@@ -186,22 +192,24 @@ class ProductItem extends Component {
     return (
       <Container>
         <Row className="demo-product-item row">
-          <Flex flexWrap='wrap'>
+          <Flex flexWrap="wrap">
             <Box width={[1, 1, 1 / 2]} px={20} className="demo-product-item-image">
               <img
                 src={imageSrc}
                 alt={this.props.pathContext.productName}
               />
             </Box>
-            <Box width={[1, 1, 1 / 2]} px={20} className="demo-product-item-details" >
-              <h1 id="demo-product-item-title">{this.props.pathContext.productName}</h1>
+            <Box width={[1, 1, 1 / 2]} px={20} className="demo-product-item-details">
+              <h1 id="demo-product-item-title">
+                {this.props.pathContext.productName}
+              </h1>
               {this.renderVariants()}
               {this.renderProductActions()}
               {this.renderSocialIcons()}
               <span id="behind-science">
                 <img src={download} className="icon" alt="download" />
                 Read the science behind the program
-            </span>
+              </span>
               {this.renderTags()}
             </Box>
           </Flex>
@@ -218,7 +226,7 @@ class ProductItem extends Component {
           <ProductFaqs faqs={this.props.pathContext.faqs} />
         </Row>
       </Container>
-    )
+    );
   }
 }
 

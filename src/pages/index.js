@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 import Img from 'gatsby-image';
 import Link from 'gatsby-link';
-import { Container, Flex, Carousel, Box } from "rebass";
-
-import ProductCard from "../templates/category/ProductCard";
-import HomeStep from "../components/HomeStep";
+import {
+  Container, Flex, Carousel, Box,
+} from 'rebass';
+import PropTypes from 'prop-types';
+import ProductCard from '../templates/category/ProductCard';
+import HomeStep from '../components/HomeStep';
 
 import './home.scss';
 
@@ -48,6 +50,7 @@ class HomePage extends Component {
   }
 
   componentDidMount() {
+    const { data } = this.props;
     const carouselItems = [
       {
         image: data.banner1.childImageSharp.sizes,
@@ -68,7 +71,7 @@ class HomePage extends Component {
     this.setState({
       currentIndex: 0,
       carouselItems,
-    })
+    });
   }
 
   goToNext = () => {
@@ -87,31 +90,39 @@ class HomePage extends Component {
     }));
   }
 
-  renderHomeCarousel = () => (this.state.carouselItems.length > 0 &&
+  renderHomeCarousel = () => (this.state.carouselItems.length > 0
+    && (
     <Carousel index={this.state.currentIndex}>
       {
-        _.map(this.state.carouselItems, (item) => {
-          return (
-            <Box>
-              <div className="carousel-button-prev" onClick={this.goToPrev}>
-                <span><strong>{`<`}</strong></span>
-              </div>
-              <Link to={`product/${item.productId}`} style={{ margin: "0" }}>
-                <Img className="d-block w-100 demo-carousel-image" sizes={item.image} alt="home-page-item" />
-              </Link>
-              <div className="carousel-button-next" onClick={this.goToNext}>
-                <span><strong>{`>`}</strong></span>
-              </div>
-            </Box>
-          )
-        })
+        _.map(this.state.carouselItems, item => (
+          <Box key={item.productId}>
+            <div className="carousel-button-prev" onClick={this.goToPrev}>
+              <span>
+                <strong>
+                  {'<'}
+                </strong>
+              </span>
+            </div>
+            <Link to={`product/${item.productId}`} style={{ margin: '0' }}>
+              <Img className="d-block w-100 demo-carousel-image" sizes={item.image} alt="home-page-item" />
+            </Link>
+            <div className="carousel-button-next" onClick={this.goToNext}>
+              <span>
+                <strong>
+                  {'>'}
+                </strong>
+              </span>
+            </div>
+          </Box>
+        ))
       }
     </Carousel>
+    )
   )
 
 
   renderHomeSteps = () => (
-    <Flex flexWrap='wrap'>
+    <Flex flexWrap="wrap">
       {
         _.map(planSteps, (step, index) => (
           <HomeStep
@@ -162,20 +173,20 @@ class HomePage extends Component {
                 .sizes,
             },
           ],
-          "id": "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzg3MDY0NTcxNjE=",
-          "productType": "Cookies",
-          "description": "A filling snack to keep your health on track",
-          "image": [{
-            "originalSrc": "https://cdn.shopify.com/s/files/1/1057/7864/products/High_Fibre_Cookie_large-min.jpg?v=1533206149",
+          id: 'Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzg3MDY0NTcxNjE=',
+          productType: 'Cookies',
+          description: 'A filling snack to keep your health on track',
+          image: [{
+            originalSrc: 'https://cdn.shopify.com/s/files/1/1057/7864/products/High_Fibre_Cookie_large-min.jpg?v=1533206149',
           }],
-          "title": "High Fibre Cookie",
-          "priceRange": {
-            "minVariantPrice": {
-              "amount": "90.0",
-              "currencyCode": "INR"
-            }
-          }
-        }
+          title: 'High Fibre Cookie',
+          priceRange: {
+            minVariantPrice: {
+              amount: '90.0',
+              currencyCode: 'INR',
+            },
+          },
+        },
       },
       {
         node: {
@@ -185,20 +196,20 @@ class HomePage extends Component {
                 .sizes,
             },
           ],
-          "id": "Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzg2NTU2MTc4MDE=",
-          "productType": "Smoothie All India",
-          "description": "Amplify your workout",
-          "image": [{
-            "originalSrc": "https://cdn.shopify.com/s/files/1/1057/7864/products/Physique-builder-Post-Workout-Smoothie-1.jpg?v=1518684204",
+          id: 'Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzg2NTU2MTc4MDE=',
+          productType: 'Smoothie All India',
+          description: 'Amplify your workout',
+          image: [{
+            originalSrc: 'https://cdn.shopify.com/s/files/1/1057/7864/products/Physique-builder-Post-Workout-Smoothie-1.jpg?v=1518684204',
           }],
-          "title": "Physique Builder Post Workout Smoothie - Pack of 7",
-          "priceRange": {
-            "minVariantPrice": {
-              "amount": "1260.0",
-              "currencyCode": "INR"
-            }
-          }
-        }
+          title: 'Physique Builder Post Workout Smoothie - Pack of 7',
+          priceRange: {
+            minVariantPrice: {
+              amount: '1260.0',
+              currencyCode: 'INR',
+            },
+          },
+        },
       },
     ];
 
@@ -208,16 +219,16 @@ class HomePage extends Component {
         <Container my={4}>
           {this.renderHomeSteps()}
         </Container>
-        <Container >
+        <Container>
           <div className="demo-product-collection-header">
             <p>
-Featured Products
+              Featured Products
             </p>
           </div>
           <Flex>
             {
-              _.map(featuredProducts, ({ node }, index) => {
-                return <ProductCard
+              _.map(featuredProducts, ({ node }, index) => (
+                <ProductCard
                   key={index}
                   productId={node.id}
                   productName={node.title}
@@ -228,12 +239,12 @@ Featured Products
                 >
                   <Img sizes={node.images[0].originalSrc} alt={node.title} />
                 </ProductCard>
-              })
+              ))
             }
           </Flex>
-        </Container >
+        </Container>
       </Box>
-    )
+    );
   }
 }
 
