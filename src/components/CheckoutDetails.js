@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { navigateTo } from 'gatsby-link';
+import { Container, Flex, Box } from 'rebass';
 
 class CheckoutDetails extends Component {
   constructor(props) {
@@ -37,28 +38,28 @@ class CheckoutDetails extends Component {
     }
 
     return (
-      <div className="checkout-details">
-        <div className="container">
-          <div className="checkout-detail row mb-2">
+      <Container p={2} style={{ boxShadow: '1px 1px 4px 1px rgba(158,158,158, 0.5)' }}>
+        <Flex flexWrap="wrap">
+          <Box width={[1]}>
             <span>
               {itemCount}
               {' '}
-items
+              items
             </span>
-            <span>
+            <span style={{ float: 'right' }}>
               {`Rs. ${totalPrice.toFixed(2)}`}
             </span>
-          </div>
-          <div className="checkout-detail row">
+          </Box>
+          <Box width={[1]}>
             <span>
-Shipping charges
+              Shipping charges
             </span>
-            <span>
-0.00
+            <span style={{ float: 'right' }}>
+              0.00
             </span>
-          </div>
-        </div>
-      </div>
+          </Box>
+        </Flex>
+      </Container>
     );
   }
 }

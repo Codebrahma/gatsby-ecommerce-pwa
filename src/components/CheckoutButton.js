@@ -1,16 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Container, Text } from 'rebass';
 
 import TakeMoney from './TakeMoney';
 
 const CheckoutButton = ({ eventedLocalStorage }) => (
-  <div className="container">
-    <div className="row text-center py-2">
-      <div className="col col-lg-12 col-md-12 col-sm-12">
-        <TakeMoney eventedLocalStorage={eventedLocalStorage} />
-      </div>
-    </div>
-  </div>
+  <Container mt={2}>
+    <Text textAlign="center">
+      <TakeMoney eventedLocalStorage={eventedLocalStorage} />
+    </Text>
+  </Container>
 );
 
 CheckoutButton.propTypes = {
