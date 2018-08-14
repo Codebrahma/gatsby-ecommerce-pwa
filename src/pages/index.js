@@ -81,11 +81,11 @@ class HomePage extends Component {
   }
 
   goToPrev = () => {
-    const { currentIndex, corouselItems } = this.state;
+    const { currentIndex, carouselItems } = this.state;
     this.setState(prevState => ({
       currentIndex:
         currentIndex < 1
-          ? corouselItems.length - 1
+          ? carouselItems.length - 1
           : prevState.currentIndex - 1,
     }));
   }
