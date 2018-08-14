@@ -82,7 +82,6 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 };
 
 exports.modifyWebpackConfig = ({ config, stage }) => {
-  // console.log("New Pack config")
   config.merge({
     resolve: {
       // modules: [
@@ -94,6 +93,5 @@ exports.modifyWebpackConfig = ({ config, stage }) => {
       }
     }
   });
-  console.log(config)
   return config;
 };

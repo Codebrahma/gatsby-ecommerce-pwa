@@ -46,7 +46,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
-    "detect-installed": "^2.0.4",
     "prettier": "1.13.7"
   },
   "repository": {

@@ -10,7 +10,7 @@ export default ({ categoryName, productsInCategory, applyFilter }) => {
               <div className="demo-product-collection-header">
                   <p>{`${categoryName} collection`}</p>
               </div>
-              <button onClick={applyFilter}>Apply filter</button>
+              <button onClick={applyFilter}>Apply filter with custom theme</button>
               <ProductList products={productsInCategory} />
           </div>
       </div>

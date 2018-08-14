@@ -96,7 +96,7 @@ class Layout extends React.Component {
         {
           children({ ...this.props, 
           eventedLocalStorage: this.eventedLocalStorage,
-          renderPage: (props) => <CategoryList {...props}/>
+          renderCategoriesListPage: (props) => <CategoryList {...props}/>
           })
         }
       </div>

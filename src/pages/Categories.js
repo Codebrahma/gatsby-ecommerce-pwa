@@ -31,7 +31,7 @@ class Categories extends Component {
         return (
           <React.Fragment>
             {
-              this.props.renderPage({
+              this.props.renderCategoriesListPage({
                 categoryName: pathContext.productType,
                 productsInCategory: this.state.productsToDisplay,
                 applyFilter: this.applyFilter
