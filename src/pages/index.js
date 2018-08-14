@@ -90,35 +90,39 @@ class HomePage extends Component {
     }));
   }
 
-  renderHomeCarousel = () => (this.state.carouselItems.length > 0
-    && (
-    <Carousel index={this.state.currentIndex}>
-      {
-        _.map(this.state.carouselItems, item => (
-          <Box key={item.productId}>
-            <div className="carousel-button-prev" onClick={this.goToPrev}>
-              <span>
-                <strong>
-                  {'<'}
-                </strong>
-              </span>
-            </div>
-            <Link to={`product/${item.productId}`} style={{ margin: '0' }}>
-              <Img className="d-block w-100 demo-carousel-image" sizes={item.image} alt="home-page-item" />
-            </Link>
-            <div className="carousel-button-next" onClick={this.goToNext}>
-              <span>
-                <strong>
-                  {'>'}
-                </strong>
-              </span>
-            </div>
-          </Box>
-        ))
-      }
-    </Carousel>
-    )
-  )
+  renderHomeCarousel = () => {
+    const { carouselItems, currentIndex } = this.state;
+
+    return (carouselItems.length > 0
+      && (
+      <Carousel index={currentIndex}>
+        {
+          _.map(carouselItems, item => (
+            <Box key={item.productId}>
+              <div className="carousel-button-prev" onClick={this.goToPrev}>
+                <span>
+                  <strong>
+                    {'<'}
+                  </strong>
+                </span>
+              </div>
+              <Link to={`product/${item.productId}`} style={{ margin: '0' }}>
+                <Img className="d-block w-100 demo-carousel-image" sizes={item.image} alt="home-page-item" />
+              </Link>
+              <div className="carousel-button-next" onClick={this.goToNext}>
+                <span>
+                  <strong>
+                    {'>'}
+                  </strong>
+                </span>
+              </div>
+            </Box>
+          ))
+        }
+      </Carousel>
+      )
+    );
+  }
 
 
   renderHomeSteps = () => (
@@ -235,7 +239,7 @@ class HomePage extends Component {
                   description={node.description}
                   productPrice={node.priceRange.minVariantPrice.amount}
                   images={node.image}
-                  addCardToCart={this.props.addItemToCart}
+                  addCardToCart={addItemToCart}
                 >
                   <Img sizes={node.images[0].originalSrc} alt={node.title} />
                 </ProductCard>

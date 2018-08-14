@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 
 import Button from '../../components/Button';
 
-const VariantItem = props => (
+const VariantItem = ({ isActive, activeVariant, variantItem }) => (
   <li>
     <Button
-      classes={`variant-btn ${props.isActive ? 'variant-active' : ''}`}
-      handleClick={props.activeVariant}
-      buttonText={props.variantItem}
+      classes={`variant-btn ${isActive ? 'variant-active' : ''}`}
+      handleClick={activeVariant}
+      buttonText={variantItem}
     />
   </li>
 );

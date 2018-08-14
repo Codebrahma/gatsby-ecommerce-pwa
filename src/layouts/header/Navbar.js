@@ -9,7 +9,7 @@ import logo from '../../assets/images/logo-new.png';
 import search from '../../assets/icons/search-solid.svg';
 
 
-const Navbar = props => (
+const Navbar = ({ cartLength }) => (
   <div className="nav-container">
     <Row>
       <Column mb={0}>
@@ -32,7 +32,7 @@ const Navbar = props => (
           </Column>
           <Column pt={3} px={5} mb={0}>
             <div style={{ display: 'inline-block', float: 'right' }}>
-              <NavLink linkTo="/cart" title={`Cart(${props.cartLength || 0})`} position="right" noActive />
+              <NavLink linkTo="/cart" title={`Cart(${cartLength || 0})`} position="right" noActive />
               <NavLink linkTo="/" position="right" noActive>
                 <img src={search} className="icon" alt="search" />
               </NavLink>
@@ -43,5 +43,9 @@ const Navbar = props => (
     </Row>
   </div>
 );
+
+Navbar.propTypes = {
+  cartLength: PropTypes.number.isRequired,
+};
 
 export default Navbar;

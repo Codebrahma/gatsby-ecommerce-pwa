@@ -12,11 +12,12 @@ import './custom.scss';
 
 import '../assets/images/512.png';
 
-
+/* eslint-disable no-unused-expressions */
 injectGlobal`
-  * { box-sizing: border-box; }
-  body { margin: 0; }
+* { box-sizing: border-box; }
+body { margin: 0; }
 `;
+/* eslint-enable no-unused-expressions */
 
 class Layout extends React.Component {
   constructor(props) {
@@ -78,7 +79,11 @@ class Layout extends React.Component {
           headPath={location.pathname}
           cartLength={cartLength}
         />
-        {children({ ...this.props, eventedLocalStorage: this.eventedLocalStorage, addItemToCart: this.addItemToCart })}
+        {children({
+          ...this.props,
+          eventedLocalStorage: this.eventedLocalStorage,
+          addItemToCart: this.addItemToCart,
+        })}
       </Provider>
     );
   }

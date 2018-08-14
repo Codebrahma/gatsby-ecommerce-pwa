@@ -45,30 +45,34 @@ class ProductCard extends Component {
 
 
   render() {
-    const imageSrc = this.props.images[0] ? this.props.images[0].originalSrc : require('../../assets/images/default.jpeg');
-
+    const {
+      images, productId, productName, description, productPrice, children,
+    } = this.props;
+    const { isInCart } = this.state;
+    const imageSrc = images[0] ? images[0].originalSrc : defaultImage;
     return (
       <Box width={[1, 1 / 2, 1 / 3]} p={3}>
         <Card>
-          <Link to={`/product/${this.props.productId}`} style={{ margin: '0' }}>
+          <Link to={`/product/${productId}`} style={{ margin: '0' }}>
             {
-              this.props.children || <BackgroundImage src={imageSrc} alt={this.props.productName} />
+              children || <BackgroundImage src={imageSrc} alt={productName} />
             }
           </Link>
           <Truncate fontWeight="bold" p={2}>
-            {this.props.productName}
+            {productName}
           </Truncate>
           <Text className="demo-product-card-details">
-            {this.props.description}
+            {description}
           </Text>
           {
-            this.state.isInCart
+            isInCart
               ? (
                 <span className="demo-product-card-footer">
                   <span>
 Rs.
-                    {this.props.productPrice}
+                    {productPrice}
                   </span>
+                  {/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */}
                   <img src={cart} className="icon" alt="cart" onClick={() => { navigateTo('/cart'); }} />
                 </span>
               )
@@ -76,7 +80,7 @@ Rs.
                 <span className="demo-product-card-footer" onClick={this.handleAddClick}>
                   <span>
 Rs.
-                    {this.props.productPrice}
+                    {productPrice}
                   </span>
                   <img src={plus} className="icon" alt="plus" />
                 </span>

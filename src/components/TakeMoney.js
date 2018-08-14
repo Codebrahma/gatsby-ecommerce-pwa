@@ -78,14 +78,15 @@ Please connect Internet to proceed for payment
       <div className="payment-active">
         {
           isPaymentSuccess
-            ? (<div className="container p-2">
-              <span className="d-inline">
+            ? (
+              <div className="container p-2">
+                <span className="d-inline">
 Payment Success
-              </span>
-              <Link to="/" className="btn btn-primary">
+                </span>
+                <Link to="/" className="btn btn-primary">
 Continue Shopping
-              </Link>
-            </div>
+                </Link>
+              </div>
             )
             : paymentContent
         }

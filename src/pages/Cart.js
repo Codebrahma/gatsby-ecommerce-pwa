@@ -5,6 +5,7 @@ import {
 } from 'rebass';
 import PropTypes from 'prop-types';
 import deleteIcon from '../assets/icons/baseline-delete-24px.svg';
+import defaultImage from '../assets/images/default.jpeg';
 
 class Cart extends Component {
   constructor(props) {
@@ -61,17 +62,6 @@ class Cart extends Component {
     eventedLocalStorage();
   }
 
-    getCheckoutMoney = () => {
-      const { cartItems } = this.state;
-      let total = 0;
-      if (cartItems) {
-        Object.keys(cartItems).map((key) => {
-          total += (+cartItems[key].productPrice * (cartItems[key].purchaseQuantity / 7));
-        });
-      }
-      return total;
-    }
-
     displayCheckoutInfo = () => (
       <Flex p={2} flexWrap="wrap" style={{ boxShadow: '1px 1px 4px 1px rgba(0,0,0,0.5)' }}>
         <Box width={[1 / 2, 1 / 2, 1]}>
@@ -93,12 +83,13 @@ Proceed to Checkout
 
     removeItemFromCart = (productId) => {
       const { cartItems } = this.state;
+      const { eventedLocalStorage } = this.props;
       delete cartItems[productId];
       localStorage.setItem('cart', JSON.stringify(cartItems));
       this.setState({
         cartItems,
       });
-      this.props.eventedLocalStorage();
+      eventedLocalStorage();
     }
 
     showCartItems = () => {
@@ -107,7 +98,7 @@ Proceed to Checkout
         return Object.keys(cartItems).map(key => (
           <Flex key={cartItems[key].productId} flexWrap="wrap" mb={3} p={2} style={{ boxShadow: '1px 1px 4px 1px rgba(0,0,0,0.5)', position: 'relative' }}>
             <Box style={{ height: '25vh', overflow: 'hidden', backgroundColor: 'rgba(158,158,158, 0.1)' }} width={[1, 1 / 2, 5 / 12]}>
-              <Image style={{ width: 'auto', height: '100%' }} src={cartItems[key].images.length ? cartItems[key].images[0].originalSrc : require('../assets/images/default.jpeg')} alt="product-image" />
+              <Image style={{ width: 'auto', height: '100%' }} src={cartItems[key].images.length ? cartItems[key].images[0].originalSrc : defaultImage} alt="product-image" />
             </Box>
             <Box width={[1, 1 / 2, 7 / 12]} px={3}>
               <Flex flexWrap="wrap">

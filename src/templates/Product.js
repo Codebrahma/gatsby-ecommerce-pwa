@@ -106,31 +106,35 @@ class ProductItem extends Component {
     ));
   }
 
-  renderProductActions = () => (
-    <div className="demo-product-actions">
-      <div id="action-input">
-        <div id="quantity">
-          <Button handleClick={() => this.changeItemCount(-7)} classes={`minus-btn min-w-35 bg-white-btn ${!this.state.itemCount ? 'cursor-disabled' : ''}`} disable={!this.state.itemCount}>
-            <img src={minus} className="icon" alt="minus" />
-          </Button>
-          <Text className="quantity-num min-w-35" textAlign="center" p={2} fontSize={16}>
-            {this.state.itemCount}
-          </Text>
-          <Button handleClick={() => this.changeItemCount(7)} classes="min-w-35  plus-btn bg-white-btn">
-            <img src={plus} className="icon" alt="plus" />
-          </Button>
+  renderProductActions = () => {
+    const { itemCount, isInCart } = this.state;
+    const { pathContext } = this.props;
+    return (
+      <div className="demo-product-actions">
+        <div id="action-input">
+          <div id="quantity">
+            <Button handleClick={() => this.changeItemCount(-7)} classes={`minus-btn min-w-35 bg-white-btn ${!itemCount ? 'cursor-disabled' : ''}`} disable={!itemCount}>
+              <img src={minus} className="icon" alt="minus" />
+            </Button>
+            <Text className="quantity-num min-w-35" textAlign="center" p={2} fontSize={16}>
+              {itemCount}
+            </Text>
+            <Button handleClick={() => this.changeItemCount(7)} classes="min-w-35  plus-btn bg-white-btn">
+              <img src={plus} className="icon" alt="plus" />
+            </Button>
+          </div>
+          <span id="price">
+            Rs.
+            {((pathContext.productPrice / 7.0) * ((itemCount === 0) ? 7 : itemCount)).toFixed(2)}
+          </span>
         </div>
-        <span id="price">
-Rs.
-          {((this.props.pathContext.productPrice / 7.0) * ((this.state.itemCount === 0) ? 7 : this.state.itemCount)).toFixed(2)}
-        </span>
+        <div id="action-button">
+          <Button classes={`bg-${isInCart ? 'white-btn cursor-disabled' : 'black-btn'}`} handleClick={this.addItemToCart} disable={!itemCount || isInCart} buttonText={isInCart ? 'in Cart' : 'add to cart'} />
+          <Button classes="bg-black-btn" disable={!itemCount} handleClick={this.handleBuyNow} buttonText="buy now" />
+        </div>
       </div>
-      <div id="action-button">
-        <Button classes={`bg-${this.state.isInCart ? 'white-btn cursor-disabled' : 'black-btn'}`} handleClick={this.addItemToCart} disable={!this.state.itemCount || this.state.isInCart} buttonText={this.state.isInCart ? 'in Cart' : 'add to cart'} />
-        <Button classes="bg-black-btn" disable={!this.state.itemCount} handleClick={this.handleBuyNow} buttonText="buy now" />
-      </div>
-    </div>
-  );
+    );
+  }
 
   renderSocialIcons = () => (
     <div id="social-icons">
@@ -183,10 +187,12 @@ Rs.
   }
 
   render() {
+    const { pathContext } = this.props;
+
     const imageSrc = (
-      this.props.pathContext.images
-      && this.props.pathContext.images.length !== 0
-      && this.props.pathContext.images[0].originalSrc
+      pathContext.images
+      && pathContext.images.length !== 0
+      && pathContext.images[0].originalSrc
     ) || defaultImage;
 
     return (
@@ -196,12 +202,12 @@ Rs.
             <Box width={[1, 1, 1 / 2]} px={20} className="demo-product-item-image">
               <img
                 src={imageSrc}
-                alt={this.props.pathContext.productName}
+                alt={pathContext.productName}
               />
             </Box>
             <Box width={[1, 1, 1 / 2]} px={20} className="demo-product-item-details">
               <h1 id="demo-product-item-title">
-                {this.props.pathContext.productName}
+                {pathContext.productName}
               </h1>
               {this.renderVariants()}
               {this.renderProductActions()}
@@ -223,7 +229,7 @@ Rs.
           </Box>
         </Row>
         <Row px={20}>
-          <ProductFaqs faqs={this.props.pathContext.faqs} />
+          <ProductFaqs faqs={pathContext.faqs} />
         </Row>
       </Container>
     );

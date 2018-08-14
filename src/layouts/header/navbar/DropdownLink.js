@@ -3,11 +3,11 @@ import GatsbyLink from 'gatsby-link';
 import PropType from 'prop-types';
 import { Row, Column } from 'rebass';
 
-const DropdownLink = props => (
+const DropdownLink = ({ linkTo, title }) => (
   <Row px={2}>
     <Column my={3}>
-      <GatsbyLink className="dropdown-item" to={`/category/${props.linkTo}`}>
-        {props.title}
+      <GatsbyLink className="dropdown-item" to={`/category/${linkTo}`}>
+        {title}
       </GatsbyLink>
     </Column>
   </Row>
