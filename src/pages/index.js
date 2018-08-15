@@ -95,7 +95,7 @@ class HomePage extends Component {
 
     return (carouselItems.length > 0
       && (
-        <Carousel index={currentIndex}>
+        <Carousel index={currentIndex} style={{ position: 'relative' }}>
           {
             _.map(carouselItems, item => (
               <Box key={item.productId}>
