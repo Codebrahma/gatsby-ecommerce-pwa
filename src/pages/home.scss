@@ -8,7 +8,8 @@
     z-index: 2;
     opacity: 0.3;
     color: white;
-    top: 25vh;
+    top: 40%;
+    padding: 1% 1.5%;
     span {
         font-size: 2em;
     }
@@ -23,11 +24,8 @@
 }
 
 @-moz-document url-prefix() {
-    .carousel-button {
-        background-color: yellow;
-        width: fit-content;
-        padding: 1% 2%;
-        border-radius: 50%;
+    .carousel-button-next,.carousel-button-prev {
+        top: 40%;
     }
 }
 

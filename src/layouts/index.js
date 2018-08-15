@@ -15,7 +15,7 @@ import '../assets/images/512.png';
 /* eslint-disable no-unused-expressions */
 injectGlobal`
 * { box-sizing: border-box; font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif }
-body { margin: 0; }
+body { margin: 0; overflow-x: hidden }
 `;
 /* eslint-enable no-unused-expressions */
 
