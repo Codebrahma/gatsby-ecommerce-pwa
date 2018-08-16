@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Row, Column } from 'rebass';
+import { Row, Column, Hide } from 'rebass';
 import Menu from './Menu';
 import NavLink from '../../components/Navlink';
 import BackButtonWithRouter from './BackButton';
@@ -11,7 +11,7 @@ import cart from '../../assets/icons/shopping-cart-solid.svg';
 import menu from '../../assets/icons/bars-solid.svg';
 
 const NavbarMobile = ({ headPath }) => (
-  <div className="pt_custommenu_mobile">
+  <Hide xlarge large>
     <Row>
       <Column flex="0.5 auto" mb={0} p={3}>
         {headPath !== '/' && <BackButtonWithRouter />}
@@ -44,7 +44,7 @@ const NavbarMobile = ({ headPath }) => (
         </Row>
       </Column>
     </Row>
-  </div>
+  </Hide>
 );
 
 NavbarMobile.propTypes = {

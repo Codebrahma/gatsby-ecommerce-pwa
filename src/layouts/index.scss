@@ -1,8 +1,5 @@
 #header {
     box-shadow: 0px 1px 5px 0 rgba(0, 0, 0, 0.2);
-    .nav-container {
-        height: 100%;
-    }
 }
 
 #interest-dropdown {
@@ -18,12 +15,8 @@
     cursor: pointer;
     .dropdown-menu {
         display: none;
-        position: absolute;
-        z-index: 2;
         line-height: 0.5em;
         box-shadow: 1px 2px 4px 1px rgba(0, 0, 0, 0.5);
-        background-color: #ffffff;
-        padding: 1% 2%;
         .dropdown-item {
             text-transform: uppercase;
             font-size: 1em;
@@ -43,29 +36,5 @@
         }
         background-color: transparent !important;
         color: rgb(245, 124, 0) !important;
-    }
-}
-
-.pt_custommenu_mobile {
-    text-align: left;
-    position: relative;
-    justify-content: space-between;
-    align-items: center;
-    @media (min-width: 992px) {
-        display: none;
-    }
-}
-
-@media (max-width:991px) {
-    #header {
-        margin-bottom: 0px;
-    }
-    .nav-container {
-        display: none;
-    }
-    .col-right {
-        text-align: center;
-        float: none;
-        display: inline-block;
     }
 }

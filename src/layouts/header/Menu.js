@@ -1,14 +1,14 @@
 import React from 'react';
 import Link from 'gatsby-link';
 import PropTypes from 'prop-types';
-import { Text } from 'rebass';
+import { Caps } from 'rebass';
 
 const NavLink = ({ linkTo, title }) => (
-  <Text textAlign="center">
+  <Caps textAlign="center" py={3}>
     <Link to={`/category/${linkTo}`}>
       {title}
     </Link>
-  </Text>
+  </Caps>
 );
 
 const Menu = () => (
