@@ -9,7 +9,7 @@ const ProductFaqs = ({ faqs }) => (
       {"FAQ'S"}
     </Heading>
     {_.map(faqs, (faq, index) => (
-      <div key={index}  style={{ margin: '10px 0', textTransform: 'capitalize' }}>
+      <div key={index} style={{ margin: '10px 0', textTransform: 'capitalize' }}>
         <Text fontWeight={600} py={3}>
           {faq.question}
         </Text>

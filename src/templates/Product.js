@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import GatsbyLink, { navigateTo } from 'gatsby-link';
+import { navigateTo } from 'gatsby-link';
 import PropTypes from 'prop-types';
 import {
-  Container, Row, Text, Heading, Flex, Box, Image, Link, Button, Border,
+  Container, Row, Text, Heading, Flex, Box, Image, Link, Button, Border, ButtonOutline,
 } from 'rebass';
 
 import ProductFaqs from './product/ProductFaqs';
@@ -220,13 +220,11 @@ class ProductItem extends Component {
       <div>
         <Flex flexWrap="wrap" my={2}>
           {_.map(pathContext.tags, (tag, index) => (
-            <Border borderColor="#000">
-              <Box m={2} p={15} bg="#f5f5f5" key={index}>
-                <GatsbyLink to="/ProductItem">
-                  {tag}
-                </GatsbyLink>
-              </Box>
-            </Border>
+            <Box m={2} key={`${tag}-${index}`}>
+              <ButtonOutline color="#000" style={{ textTransform: 'capitalize', padding: '10px 15px' }}>
+                {tag}
+              </ButtonOutline>
+            </Box>
           ))}
         </Flex>
       </div>
