@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Subhead } from 'rebass';
 
 const VariantType = ({ variantType }) => (
-  <span id="variant-title">
+  <Subhead fontSize={18} mb={2}>
     {variantType}
-  </span>
+  </Subhead>
 );
 
 VariantType.propTypes = {
