@@ -3,7 +3,7 @@ import _ from 'lodash';
 import { navigateTo } from 'gatsby-link';
 import PropTypes from 'prop-types';
 import {
-  Container, Row, Text, Heading, Flex, Box, Image, Link, Button, Border, ButtonOutline,
+  Container, Row, Text, Heading, Flex, Box, Image, Link, Button, Border, ButtonOutline, Caps,
 } from 'rebass';
 
 import ProductFaqs from './product/ProductFaqs';
@@ -112,12 +112,14 @@ class ProductItem extends Component {
         color={!renderCondition ? '#f5f5f5' : '#000'}
         my={10}
         mr={10}
-        style={{ textTransform: 'uppercase', cursor: (!renderCondition ? 'pointer' : 'not-allowed'), minWidth: '45%' }}
+        style={{ cursor: (!renderCondition ? 'pointer' : 'not-allowed'), minWidth: '170px' }}
         disable={renderCondition}
         onClick={handleClick}
       >
         <Text py={10} px={15}>
-          {buttonText}
+          <Caps fontSize={14} letterSpacing={1}>
+            {buttonText}
+          </Caps>
         </Text>
       </Button>
     );
@@ -134,7 +136,7 @@ class ProductItem extends Component {
       </Button>
     );
     return (
-      <Container>
+      <div>
         <Flex alignItems="center" my={10}>
           <Box>
             <Border
@@ -186,7 +188,7 @@ class ProductItem extends Component {
             buttonText="buy now"
           />
         </div>
-      </Container>
+      </div>
     );
   }
 
@@ -236,20 +238,20 @@ class ProductItem extends Component {
     return (
       <Border my={3} borderColor="#e4e0db">
         <Heading
-          fontSize={18}
           bg="#f5f5f5"
           fontWeight={500}
           p={15}
           style={
             {
-              textTransform: 'uppercase',
               textAlign: 'center',
               maxWidth: '300px',
               borderRight: '1px solid #e4e0db',
             }
           }
         >
-          Description
+          <Caps fontSize={16} letterSpacing={1}>
+            Description
+          </Caps>
         </Heading>
         <Border borderColor="#e4e0db" borderTop={1}>
           <Text p={20} fontSize={16} lineHeight={1.5} color="#212529">
@@ -280,8 +282,10 @@ class ProductItem extends Component {
               />
             </Box>
             <Box width={[1, 1, 1 / 2]} px={20}>
-              <Heading my={3} style={{ textTransform: 'uppercase' }}>
-                {pathContext.productName}
+              <Heading my={3}>
+                <Caps fontSize={20} letterSpacing={1}>
+                  {pathContext.productName}
+                </Caps>
               </Heading>
               {this.renderVariants()}
               {this.renderProductActions()}

@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Heading, Border,
+  Heading, Border, Caps,
 } from 'rebass';
 
 import {
@@ -9,8 +9,10 @@ import {
 
 const ProductSubscription = () => (
   <div style={{ margin: '20px 0' }}>
-    <Heading fontSize={24} fontWeight={500} color="#212529" mb={2} style={{ textTransform: 'uppercase' }}>
-subscription menu
+    <Heading fontWeight={500} color="#212529" mb={2}>
+      <Caps fontSize={24} letterSpacing={1}>
+        subscription menu
+      </Caps>
     </Heading>
     <select style={{ width: '200px', padding: '8px 10px' }}>
       <option>
