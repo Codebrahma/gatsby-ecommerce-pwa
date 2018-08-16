@@ -1,20 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+import { Heading, Text } from 'rebass';
 
 const ProductFaqs = ({ faqs }) => (
-  <div className="demo-product-faq-container">
-    <h3 id="faq-header">
+  <div style={{ margin: '20px 0' }}>
+    <Heading fontSize={24} fontWeight={500} mb={20} color="#212529">
       {"FAQ'S"}
-    </h3>
+    </Heading>
     {_.map(faqs, (faq, index) => (
-      <div className="demo-product-faq" key={index}>
-        <span id="faq-question">
+      <div key={index}  style={{ margin: '10px 0', textTransform: 'capitalize' }}>
+        <Text fontWeight={600} py={3}>
           {faq.question}
-        </span>
-        <span id="faq-answer">
+        </Text>
+        <Text>
           {faq.answer}
-        </span>
+        </Text>
       </div>
     ))}
   </div>
