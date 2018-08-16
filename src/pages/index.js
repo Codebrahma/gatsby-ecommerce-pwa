@@ -3,18 +3,35 @@ import _ from 'lodash';
 import Img from 'gatsby-image';
 import Link from 'gatsby-link';
 import {
-  Container, Flex, Carousel, Box, Caps,
+  Container, Flex, Carousel, Box, Caps, Relative,
 } from 'rebass';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import {
+  position, background, width, borderRadius, zIndex, opacity, top, space, color, left, right,
+} from 'styled-system';
+
 import ProductCard from '../templates/category/ProductCard';
 import HomeStep from '../components/HomeStep';
-
-import './home.scss';
 
 import goalsImage from '../assets/images/goals_1.png';
 import chooseImage from '../assets/images/plan_choose_2.png';
 import smartImage from '../assets/images/eat_smart_3.png';
 import winLifeImage from '../assets/images/win_life_4.png';
+
+const CarouselButton = styled.div`
+  ${position}
+  ${background}
+  ${width}
+  ${space}
+  ${borderRadius}
+  ${zIndex}
+  ${opacity}
+  ${color}
+  ${top}
+  ${left}
+  ${right}
+`;
 
 const planSteps = [
   {
@@ -95,31 +112,57 @@ class HomePage extends Component {
 
     return (carouselItems.length > 0
       && (
-        <Carousel index={currentIndex} style={{ position: 'relative' }}>
-          {
-            _.map(carouselItems, item => (
-              <Box key={item.productId}>
-                <div className="carousel-button-prev" onClick={this.goToPrev}>
-                  <span>
-                    <strong>
-                      {'<'}
-                    </strong>
-                  </span>
-                </div>
-                <Link to={`product/${item.productId}`} style={{ margin: '0' }}>
-                  <Img className="carousel-image" sizes={item.image} alt="home-page-item" />
-                </Link>
-                <div className="carousel-button-next" onClick={this.goToNext}>
-                  <span>
-                    <strong>
-                      {'>'}
-                    </strong>
-                  </span>
-                </div>
-              </Box>
-            ))
-          }
-        </Carousel>
+        <Relative>
+          <Carousel index={currentIndex}>
+            {
+              _.map(carouselItems, item => (
+                <Box key={item.productId}>
+                  <CarouselButton
+                    position="absolute"
+                    background="rgb(158, 158, 158)"
+                    width="fit-content"
+                    borderRadius="50%"
+                    zIndex={2}
+                    opacity={0.3}
+                    color="white"
+                    top="45%"
+                    p={3}
+                    left="2%"
+                    onClick={this.goToPrev}
+                  >
+                    <span>
+                      <strong>
+                        {'<'}
+                      </strong>
+                    </span>
+                  </CarouselButton>
+                  <Link to={`product/${item.productId}`} style={{ margin: '0' }}>
+                    <Img className="carousel-image" width="100vw" height="65vh" style={{ margin: '0 auto' }} sizes={item.image} alt="home-page-item" />
+                  </Link>
+                  <CarouselButton
+                    position="absolute"
+                    background="rgb(158, 158, 158)"
+                    width="fit-content"
+                    borderRadius="50%"
+                    zIndex={2}
+                    opacity={0.3}
+                    color="white"
+                    top="45%"
+                    p={3}
+                    right="2%"
+                    onClick={this.goToNext}
+                  >
+                    <span>
+                      <strong>
+                        {'>'}
+                      </strong>
+                    </span>
+                  </CarouselButton>
+                </Box>
+              ))
+            }
+          </Carousel>
+        </Relative>
       )
     );
   }

@@ -87,8 +87,8 @@ class Cart extends Component {
     const { cartItems } = this.state;
     if (Object.keys(cartItems).length) {
       return Object.keys(cartItems).map(key => (
-        <Relative>
-          <Flex key={cartItems[key].productId} flexWrap="wrap" mb={3} p={2} style={{ boxShadow: '1px 1px 4px 1px rgba(0,0,0,0.5)' }}>
+        <Relative key={cartItems[key].productId}>
+          <Flex flexWrap="wrap" mb={3} p={2} style={{ boxShadow: '1px 1px 4px 1px rgba(0,0,0,0.5)' }}>
             <Box bg="rgba(158,158,158, 0.1)" style={{ height: '25vh', overflow: 'hidden' }} width={[1, 1 / 2, 5 / 12]}>
               <Image
                 style={{
@@ -98,10 +98,10 @@ class Cart extends Component {
                   marginRight: 'auto',
                 }}
                 src={
-                cartItems[key].images.length
-                  ? cartItems[key].images[0].originalSrc
-                  : defaultImage
-              }
+                  cartItems[key].images.length
+                    ? cartItems[key].images[0].originalSrc
+                    : defaultImage
+                }
                 alt="product-image"
               />
             </Box>
@@ -118,7 +118,7 @@ class Cart extends Component {
                 </Box>
                 <Box width={[1]} pt={2}>
                   <Text fontSize={1}>
-                  Rs.
+                    Rs.
                     {cartItems[key].productPrice * (cartItems[key].purchaseQuantity / 7)}
                   </Text>
                 </Box>
@@ -147,11 +147,11 @@ class Cart extends Component {
       ));
     }
     return (
-      <Container>
-        <Text textAlign="center">
-          Oops! No items in the cart.
-          <GatsbyLink to="/">
-            Shop items.
+      <Container p={5}>
+        <Text textAlign="center" fontSize={1} fontWeight="bold">
+          {'Sorry, no items available in cart. '}
+          <GatsbyLink to="/" style={{ textDecoration: 'none' }}>
+            {'Shop items.'}
           </GatsbyLink>
         </Text>
       </Container>

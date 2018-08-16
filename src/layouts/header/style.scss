@@ -1,12 +1,4 @@
-#brand-logo {
-    margin: 0.5vh;
-    width: auto;
-    float: left;
-}
-
 .pt_custommenu {
-    position: relative;
-    display: flex;
     font-size: 1.5em;
     min-width: fit-content;
     .nav-link {
@@ -30,7 +22,7 @@
         color: rgb(245, 124, 0) !important;
     }
     div {
-        padding: 2%;
+        padding: 1.8%;
         min-width: fit-content;
     }
 }
@@ -43,15 +35,8 @@
 }
 
 #side-bar {
-    max-width: 30vw;
-    position: fixed;
-    z-index: 2;
-    top: 0;
-    bottom: 0;
-    left: -40vw;
     padding: 1% 4%;
     overflow: hidden;
-    background-color: white;
     transition: 0.5s ease-in;
     a {
         cursor: pointer;
