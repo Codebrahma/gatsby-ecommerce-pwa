@@ -218,7 +218,7 @@ class HomePage extends Component {
     ];
 
     return (
-      <Box px={0}>
+      <Box px={0} mt={2}>
         {this.renderHomeCarousel()}
         <Container my={5}>
           {this.renderHomeSteps()}

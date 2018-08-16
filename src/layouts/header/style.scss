@@ -4,77 +4,35 @@
     float: left;
 }
 
-#link-style {
-    text-transform: uppercase;
-    font-size: 0.7em !important;
-    margin: 0;
-    border-bottom: 2px solid rgba(245, 124, 0, 0);
-    &:hover {
-        background-color: transparent !important;
+.pt_custommenu {
+    position: relative;
+    display: flex;
+    font-size: 1.5em;
+    min-width: fit-content;
+    .nav-link {
+        height: 100%;
+        text-transform: uppercase;
+        font-size: 0.7em;
+        letter-spacing: 0.05em;
+        font-weight: 400;
+        line-height: 50px;
+        padding: 0 5%;
+        color: black;
+        text-decoration: none;
+        min-width: fit-content;
+        border-bottom: 2px solid rgba(245, 124, 0, 0);
+        &:hover {
+            color: rgb(245, 124, 0);
+        }
+    }
+    .active-link {
+        border-bottom: 2px solid rgba(245, 124, 0, 1) !important;
         color: rgb(245, 124, 0) !important;
     }
-}
-
-.demo-active-link {
-    border-bottom: 2px solid rgba(245, 124, 0, 1) !important;
-    color: rgb(245, 124, 0) !important;
-}
-
-#interest-dropdown {
-    text-transform: uppercase !important;
-    font-size: 0.7em !important;
-    margin-left: 0;
-    display: block;
-    line-height: 50px;
-    width: fit-content;
-    padding: 0px 25px;
-    font-weight: 400;
-    letter-spacing: 0.05em;
-    float: right;
-    cursor: pointer;
-    i {
-        margin-left: 0.5em;
-        color: rgba(0, 0, 0, 0.7);
-    }
-    .dropdown-menu {
+    div {
         padding: 2%;
-        margin-top: -0.2em;
-        overflow-x: hidden;
-        border-radius: 0;
-        display: none;
-        position: absolute;
-        right: 5%;
-        z-index: 2;
-        width: fit-content;
-        line-height: 0.5em;
-        background-color: white;
-        box-shadow: 1px 2px 4px 1px rgba(0, 0, 0, 0.5);
-        .dropdown-item {
-            font-size: 0.7em !important;
-            height: 2em;
-            padding-top: 2%;
-            padding-bottom: 2%;
-            text-transform: uppercase;
-            font-size: 1em !important;
-            color: black;
-            &:hover {
-                background-color: transparent !important;
-                color: rgb(245, 124, 0) !important;
-            }
-        }
+        min-width: fit-content;
     }
-    &:hover {
-        i {
-            color: rgb(245, 124, 0) !important;
-        }
-        background-color: transparent !important;
-        color: rgb(245, 124, 0) !important;
-    }
-}
-
-.demo-header {
-    box-shadow: 0px 1px 5px 0 rgba(0, 0, 0, 0.2);
-    margin-bottom: 2vh;
 }
 
 #sidebar-menu-button {
@@ -95,20 +53,6 @@
     overflow: hidden;
     background-color: white;
     padding: 1% 5%;
-    #interests-dropdown {
-        background-color: rgba(0, 0, 0, 0.05);
-        height: 0px;
-        overflow: hidden;
-        padding: 0;
-        a {
-            &:first-child {
-                margin-top: 5%
-            }
-            &:last-child {
-                margin-bottom: 5%
-            }
-        }
-    }
     div {
         padding: 7% 5%;
         text-transform: uppercase;
@@ -130,26 +74,5 @@
                 color: rgb(245, 124, 0) !important;
             }
         }
-    }
-    .item-active {
-        background-color: rgba(0, 0, 0, 0.05);
-    }
-}
-
-.icon-mobile {
-    font-size: 1.2em;
-    min-width: 20px;
-    min-height: 20px;
-    color: black !important;
-    margin: 0 5%;
-    &:hover {
-        color: rgb(245, 124, 0) !important;
-    }
-}
-
-#navmenu {
-    height: 100% !important;
-    div {
-        height: 100%;
     }
 }

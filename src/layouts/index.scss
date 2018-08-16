@@ -1,8 +1,49 @@
-.pt_custommenu {
-    position: relative;
-    text-align: center;
-    display: inline-block;
-    font-size: 1.5em;
+#header {
+    box-shadow: 0px 1px 5px 0 rgba(0, 0, 0, 0.2);
+    .nav-container {
+        height: 100%;
+    }
+}
+
+#interest-dropdown {
+    text-transform: uppercase;
+    font-size: 0.7em !important;
+    margin-left: 0;
+    line-height: 50px;
+    padding: 0px 25px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    float: right;
+    top: 0;
+    cursor: pointer;
+    .dropdown-menu {
+        display: none;
+        position: absolute;
+        z-index: 2;
+        line-height: 0.5em;
+        box-shadow: 1px 2px 4px 1px rgba(0, 0, 0, 0.5);
+        background-color: #ffffff;
+        padding: 1% 2%;
+        .dropdown-item {
+            text-transform: uppercase;
+            font-size: 1em;
+            letter-spacing: 0.05em;
+            font-weight: 400;
+            color: black;
+            text-decoration: none;
+            white-space: nowrap;
+            &:hover {
+                color: rgb(245, 124, 0);
+            }
+        }
+    }
+    &:hover {
+        i {
+            color: rgb(245, 124, 0) !important;
+        }
+        background-color: transparent !important;
+        color: rgb(245, 124, 0) !important;
+    }
 }
 
 .pt_custommenu_mobile {
@@ -15,13 +56,6 @@
     }
 }
 
-@media (max-width:1199px) {
-    #header {
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-}
-
 @media (max-width:991px) {
     #header {
         margin-bottom: 0px;
@@ -29,30 +63,9 @@
     .nav-container {
         display: none;
     }
-    #header .header_logo a .logo {
-        float: none;
-    }
     .col-right {
         text-align: center;
         float: none;
         display: inline-block;
-    }
-}
-
-.nav-left-items {
-    float: left;
-    a {
-        font-size: 18px !important;
-        color: #000;
-        font-weight: bold;
-    }
-}
-
-.nav-right-items {
-    float: right;
-    a {
-        font-size: 18px !important;
-        color: #000 !important;
-        font-weight: bold;
     }
 }

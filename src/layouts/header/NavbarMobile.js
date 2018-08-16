@@ -27,14 +27,15 @@ const NavbarMobile = ({ headPath }) => (
         <Row p={3}>
           <Column mb={0}>
             <NavLink position="left" linkTo="/cart" noActive>
-              <img src={cart} className="icon icon-mobile" alt="cart" />
+              <img src={cart} height="auto" width="20" alt="cart" />
             </NavLink>
           </Column>
           <Column mb={0}>
             <img
               src={menu}
               id="sidebar-menu-button"
-              className="icon icon-mobile"
+              height="20"
+              width="auto"
               alt="menu"
               tabIndex={0}
             />

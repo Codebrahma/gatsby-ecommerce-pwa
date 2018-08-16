@@ -15,30 +15,6 @@
     -webkit-box-orient: vertical;
 }
 
-
-.demo-product-collection {
-    max-width: 100%;
-    p {
-        color: #222;
-        margin: 0;
-    }
-    .demo-product-collection-header {
-        padding: 0 20px;
-        margin: 10px 15px 20px;
-        p {
-            margin: 5px 0;
-            font-size: 24px;
-            text-align: center;
-            text-transform: uppercase;
-        }
-    }
-    .demo-product-list {
-        padding: 0 15px;
-        display: flex;
-        flex-wrap: wrap;
-    }
-}
-
 .card-footer {
     border-top: 1px solid rgba(26,26,26, 0.5);
     .card-footer-button {

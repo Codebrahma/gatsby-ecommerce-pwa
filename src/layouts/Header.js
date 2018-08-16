@@ -7,7 +7,7 @@ import NavbarMobile from './header/NavbarMobile';
 import './header/style.scss';
 
 const Header = ({ cartLength, headPath }) => (
-  <header id="header" className="demo-header">
+  <header id="header">
     <Navbar cartLength={cartLength} />
     <NavbarMobile
       headPath={headPath}
