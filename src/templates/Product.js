@@ -236,16 +236,29 @@ class ProductItem extends Component {
   renderDescription = () => {
     const { pathContext } = this.props;
     return (
-      <div className="demo-product-description">
-        <div className="title">
-          <span>
-            Description
-          </span>
-        </div>
-        <div className="demo-product-details">
-          {pathContext.description}
-        </div>
-      </div>
+      <Border my={3} borderColor="#e4e0db">
+        <Heading
+          fontSize={18}
+          bg="#f5f5f5"
+          fontWeight={500}
+          p={15}
+          style={
+            {
+              textTransform: 'uppercase',
+              textAlign: 'center',
+              maxWidth: '300px',
+              borderRight: '1px solid #e4e0db',
+            }
+          }
+        >
+          Description
+        </Heading>
+        <Border borderColor="#e4e0db" borderTop={1}>
+          <Text p={20} fontSize={16} lineHeight={1.5} color="#212529">
+            {pathContext.description}
+          </Text>
+        </Border>
+      </Border>
     );
   }
 
