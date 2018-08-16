@@ -78,8 +78,8 @@ Please connect Internet to proceed for payment
           isPaymentSuccess
             ? (
               <Container>
-                <Text textAlign="center">
-                  Payment Success
+                <Text textAlign="center" my={4} color="rgb(76,175,80)" fontWeight="bold">
+                  Payment Success!
                 </Text>
                 <GatsbyLink to="/">
                   <Button px={2}>

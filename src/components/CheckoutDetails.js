@@ -38,9 +38,9 @@ class CheckoutDetails extends Component {
     }
 
     return (
-      <Container p={2} style={{ boxShadow: '1px 1px 4px 1px rgba(158,158,158, 0.5)' }}>
+      <Container p={3} style={{ boxShadow: '1px 1px 4px 1px rgba(158,158,158, 0.5)' }}>
         <Flex flexWrap="wrap">
-          <Box width={[1]}>
+          <Box width={[1]} py={2}>
             <span>
               {itemCount}
               {' '}
@@ -50,7 +50,7 @@ class CheckoutDetails extends Component {
               {`Rs. ${totalPrice.toFixed(2)}`}
             </span>
           </Box>
-          <Box width={[1]}>
+          <Box width={[1]} py={2}>
             <span>
               Shipping charges
             </span>

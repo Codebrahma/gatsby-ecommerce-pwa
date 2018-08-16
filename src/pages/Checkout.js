@@ -9,8 +9,6 @@ import FormInputField from '../components/Form';
 import CheckoutDetails from '../components/CheckoutDetails';
 import CheckoutButton from '../components/CheckoutButton';
 
-import './checkout.scss';
-
 const Checkout = ({ eventedLocalStorage }) => {
   const personalInfoFormFields = [
     {
@@ -114,9 +112,9 @@ const Checkout = ({ eventedLocalStorage }) => {
     },
   ];
   return (
-    <Container>
+    <Container fontSize={1}>
       <Flex flexWrap="wrap">
-        <Box px={2} py={4} width={[1, 1, 4 / 5]}>
+        <Box px={2} py={4} width={[1, 1, 5 / 7]}>
           <Container mb={3} py={3} px={4} style={{ boxShadow: '1px 1px 4px 1px rgba(158,158,158, 0.5)' }}>
             <Lead fontWeight="bold" mb={4}>
               Personal Info
@@ -148,7 +146,7 @@ const Checkout = ({ eventedLocalStorage }) => {
             ))}
           </Container>
         </Box>
-        <Box p={2} pt={4} width={[1, 1, 1 / 5]}>
+        <Box p={3} pt={4} width={[1, 1, 2 / 7]}>
           <CheckoutDetails />
           <CheckoutButton
             eventedLocalStorage={eventedLocalStorage}
