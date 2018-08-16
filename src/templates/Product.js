@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import Link, { navigateTo } from 'gatsby-link';
+import GatsbyLink, { navigateTo } from 'gatsby-link';
 import PropTypes from 'prop-types';
 import {
-  Container, Row, Text, Flex, Box,
+  Container, Row, Text, Heading, Flex, Box, Image, Link, Button, Border,
 } from 'rebass';
 
 import ProductFaqs from './product/ProductFaqs';
 import ProductSubscription from './product/ProductSubscription';
 import ProductVariants from './product/ProductVariants';
 import VariantType from './product/VariantType';
-import Button from '../components/Button';
-
-import './product/product.scss';
 
 import facebook from '../assets/icons/facebook-f-brands.svg';
 import twitter from '../assets/icons/twitter-brands.svg';
@@ -109,63 +106,129 @@ class ProductItem extends Component {
   renderProductActions = () => {
     const { itemCount, isInCart } = this.state;
     const { pathContext } = this.props;
+    const ActionButton = ({ renderCondition, buttonText, handleClick }) => (
+      <Button
+        bg={renderCondition ? '#f5f5f5' : '#000'}
+        color={!renderCondition ? '#f5f5f5' : '#000'}
+        my={10}
+        mr={10}
+        style={{ textTransform: 'uppercase', cursor: (!renderCondition ? 'pointer' : 'not-allowed'), minWidth: '45%' }}
+        disable={renderCondition}
+        onClick={handleClick}
+      >
+        <Text py={10} px={15}>
+          {buttonText}
+        </Text>
+      </Button>
+    );
+    const CountButton = ({
+      imageIcon, handleClick, alternate, renderCondition,
+    }) => (
+      <Button
+        bg="#f5f5f5"
+        disable={renderCondition}
+        onClick={handleClick}
+        style={{ cursor: (renderCondition ? 'not-allowed' : 'pointer') }}
+      >
+        <Image w={15} src={imageIcon} alt={alternate} />
+      </Button>
+    );
     return (
-      <div className="demo-product-actions">
-        <div id="action-input">
-          <div id="quantity">
-            <Button handleClick={() => this.changeItemCount(-7)} classes={`minus-btn min-w-35 bg-white-btn ${!itemCount ? 'cursor-disabled' : ''}`} disable={!itemCount}>
-              <img src={minus} className="icon" alt="minus" />
-            </Button>
-            <Text className="quantity-num min-w-35" textAlign="center" p={2} fontSize={16}>
-              {itemCount}
+      <Container>
+        <Flex alignItems="center" my={10}>
+          <Box>
+            <Border
+              borderColor="#000"
+              my={10}
+              style={
+                {
+                  borderRadius: '8px',
+                  width: 'fit-content',
+                  zIndex: 99,
+                  overflow: 'hidden',
+                }
+              }
+            >
+              <CountButton
+                handleClick={() => this.changeItemCount(-7)}
+                renderCondition={!itemCount}
+                imageIcon={minus}
+                alternate="minus"
+              />
+              <Border borderColor="#000" w={50} style={{ display: 'inline-block' }}>
+                <Text textAlign="center" p={2} fontSize={16}>
+                  {itemCount}
+                </Text>
+              </Border>
+              <CountButton
+                handleClick={() => this.changeItemCount(7)}
+                imageIcon={plus}
+                alternate="plus"
+              />
+            </Border>
+          </Box>
+          <Box ml={20}>
+            <Text fontSize={22} fontWeight={500}>
+              Rs.
+              {((pathContext.productPrice / 7.0) * ((itemCount === 0) ? 7 : itemCount)).toFixed(2)}
             </Text>
-            <Button handleClick={() => this.changeItemCount(7)} classes="min-w-35  plus-btn bg-white-btn">
-              <img src={plus} className="icon" alt="plus" />
-            </Button>
-          </div>
-          <span id="price">
-            Rs.
-            {((pathContext.productPrice / 7.0) * ((itemCount === 0) ? 7 : itemCount)).toFixed(2)}
-          </span>
+          </Box>
+        </Flex>
+        <div>
+          <ActionButton
+            renderCondition={(!itemCount || isInCart)}
+            handleClick={this.addItemToCart}
+            buttonText={isInCart ? 'in Cart' : 'add to cart'}
+          />
+          <ActionButton
+            renderCondition={!itemCount}
+            handleClick={this.handleBuyNow}
+            buttonText="buy now"
+          />
         </div>
-        <div id="action-button">
-          <Button classes={`bg-${(!itemCount || isInCart) ? 'white-btn cursor-disabled' : 'black-btn'}`} handleClick={this.addItemToCart} disable={!itemCount || isInCart} buttonText={isInCart ? 'in Cart' : 'add to cart'} />
-          <Button classes={`bg-${!itemCount ? 'white-btn cursor-disabled' : 'black-btn'}`} disable={!itemCount} handleClick={this.handleBuyNow} buttonText="buy now" />
-        </div>
-      </div>
+      </Container>
     );
   }
 
-  renderSocialIcons = () => (
-    <div id="social-icons">
-      <ul>
-        <li>
-          <a href="https://www.facebook.com/getgrowfit/">
-            <img src={facebook} className="icon" alt="facebook" />
-          </a>
-        </li>
-        <li>
-          <a href="https://twitter.com/getgrowfit?lang=en">
-            <img src={twitter} className="icon" alt="twitter" />
-          </a>
-        </li>
-      </ul>
-    </div>
-  )
+  renderSocialIcons = () => {
+    const SocialIcon = ({ linkTo, imageIcon, alternate }) => (
+      <Link href={linkTo} bg="#000" m={3} style={{ borderRadius: '50%', maxHeight: '50px' }}>
+        <Box p={3}>
+          <Image w={20} style={{ maxHeight: '20px' }} src={imageIcon} alt={alternate} />
+        </Box>
+      </Link>
+    );
+    return (
+      <Flex alignItems="center">
+        <SocialIcon
+          linkTo="https://www.facebook.com/getgrowfit/"
+          imageIcon={facebook}
+          alternate="facebook"
+        />
+        <SocialIcon
+          linkTo="https://twitter.com/getgrowfit?lang=en"
+          imageIcon={twitter}
+          alternate="twitter"
+        />
+      </Flex>
+    );
+  }
 
   renderTags = () => {
     const { pathContext } = this.props;
     return (
-      <div className="demo-product-tags">
-        <ul>
+      <div>
+        <Flex flexWrap="wrap" my={2}>
           {_.map(pathContext.tags, (tag, index) => (
-            <li key={index}>
-              <Link to="/ProductItem" activeClassName="active-item">
-                {tag}
-              </Link>
-            </li>
+            <Border borderColor="#000">
+              <Box m={2} p={15} bg="#f5f5f5" key={index}>
+                <GatsbyLink to="/ProductItem">
+                  {tag}
+                </GatsbyLink>
+              </Box>
+            </Border>
           ))}
-        </ul>
+        </Flex>
       </div>
     );
   }
@@ -197,25 +260,25 @@ class ProductItem extends Component {
 
     return (
       <Container>
-        <Row className="demo-product-item row">
-          <Flex flexWrap="wrap">
+        <Row>
+          <Flex flexWrap="wrap" my={3}>
             <Box width={[1, 1, 1 / 2]} px={20}>
-              <img
+              <Image
                 src={imageSrc}
                 alt={pathContext.productName}
               />
             </Box>
-            <Box width={[1, 1, 1 / 2]} px={20} className="demo-product-item-details">
-              <h1 id="demo-product-item-title">
+            <Box width={[1, 1, 1 / 2]} px={20}>
+              <Heading my={3} style={{ textTransform: 'uppercase' }}>
                 {pathContext.productName}
-              </h1>
+              </Heading>
               {this.renderVariants()}
               {this.renderProductActions()}
               {this.renderSocialIcons()}
-              <span id="behind-science">
-                <img src={download} className="icon" alt="download" />
+              <Text bg="#32baaf" color="#fff" p={1} fontSize={14} fontWeight={600} style={{ borderRadius: '5px', width: 'fit-content' }}>
+                <Image src={download} w={15} mx={2} alt="download" style={{ display: 'inline-block' }} />
                 Read the science behind the program
-              </span>
+              </Text>
               {this.renderTags()}
             </Box>
           </Flex>
