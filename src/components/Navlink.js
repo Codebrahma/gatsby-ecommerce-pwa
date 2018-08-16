@@ -10,17 +10,15 @@ const NavLink = ({
   noActive,
 }) => (
   <div className={`pt_menu nav-${position}-items`}>
-    <div className="parentMenu">
-      <GatsbyLink
-        id={`link-style${position === 'right' ? '-right' : ''}`}
-        exact
-        to={linkTo}
-        activeClassName={noActive ? '' : 'demo-active-link'}
-        style={{ height: '100%' }}
-      >
-        {children || title}
-      </GatsbyLink>
-    </div>
+    <GatsbyLink
+      id={`link-style${position === 'right' ? '-right' : ''}`}
+      exact
+      to={linkTo}
+      activeClassName={noActive ? '' : 'demo-active-link'}
+      style={{ height: '100%' }}
+    >
+      {children || title}
+    </GatsbyLink>
   </div>
 );
 
