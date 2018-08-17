@@ -9,7 +9,6 @@
     "chalk": "^2.4.1",
     "gatsby": "next",
     "gatsby-image": "next",
-    "gatsby-link": "next",
     "gatsby-node-helpers": "^0.3.0",
     "gatsby-plugin-manifest": "next",
     "gatsby-plugin-netlify": "next",

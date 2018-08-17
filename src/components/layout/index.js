@@ -75,7 +75,6 @@ class Layout extends React.Component {
         </Helmet>
         <InstallPrompt />
         <Header
-          // headPath={location.pathname}
           cartLength={cartLength}
         />
         {children}

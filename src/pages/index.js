@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import Img from 'gatsby-image';
-import Link from 'gatsby-link';
+import { Link } from 'gatsby';
 import {
   Container, Flex, Carousel, Box, Caps, Relative,
 } from 'rebass';

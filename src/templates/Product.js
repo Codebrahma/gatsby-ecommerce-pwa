@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import { navigateTo } from 'gatsby-link';
+import { navigate } from 'gatsby';
 import PropTypes from 'prop-types';
 import {
   Container, Row, Text, Heading, Flex, Box, Image, Link, Button, Border, ButtonOutline, Caps,
@@ -80,7 +80,7 @@ class ProductItem extends Component {
 
   handleBuyNow = () => {
     this.addItemToCart();
-    navigateTo('/cart');
+    navigate('/cart');
   }
 
   renderVariants = () => {

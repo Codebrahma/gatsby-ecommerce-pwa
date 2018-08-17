@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Link, { navigateTo } from 'gatsby-link';
+import { Link, navigate } from 'gatsby';
 import PropTypes from 'prop-types';
 import {
   Flex, Box, Card, BackgroundImage, Truncate, Container, Text,
@@ -119,7 +119,7 @@ class ProductCard extends Component {
                       {productPrice}
                     </Box>
                     {/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */}
-                    <Box className="card-footer-button" onClick={() => { navigateTo('/cart'); }} width={1 / 4} pt={2}>
+                    <Box className="card-footer-button" onClick={() => { navigate('/cart'); }} width={1 / 4} pt={2}>
                       <ButtonImage src={cart} alt="cart" maxHeight="15px" maxWidth="auto" />
                     </Box>
                   </Flex>
