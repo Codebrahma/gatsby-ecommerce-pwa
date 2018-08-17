@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import Img from 'gatsby-image';
-import { Link } from 'gatsby';
+import { Link, graphql } from 'gatsby';
 import {
   Container, Flex, Carousel, Box, Caps, Relative,
 } from 'rebass';
@@ -10,8 +10,6 @@ import styled from 'styled-components';
 import {
   position, background, width, borderRadius, zIndex, opacity, top, space, color, left, right,
 } from 'styled-system';
-
-import { graphql } from 'gatsby';
 import ProductCard from '../templates/category/ProductCard';
 import HomeStep from '../components/HomeStep';
 
