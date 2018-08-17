@@ -55,26 +55,34 @@ class ProductCard extends Component {
     });
   }
 
+  addItemToCart = (product) => {
+    const currentCartItems = JSON.parse(localStorage.getItem('cart')) || {};
+    const toBeAddedProduct = Object.assign({}, product);
+    currentCartItems[toBeAddedProduct.productId] = toBeAddedProduct;
+    currentCartItems[toBeAddedProduct.productId].purchaseQuantity = 7;
+    localStorage.setItem('cart', JSON.stringify(currentCartItems));
+    window.dispatchEvent(new CustomEvent('localstorage update'));
+  }
+
   handleAddClick = () => {
-    // const {
-    //   productId,
-    //   images,
-    //   productName,
-    //   description,
-    //   productPrice,
-    // } = this.props;
+    const {
+      productId,
+      images,
+      productName,
+      description,
+      productPrice,
+    } = this.props;
     this.setState({
       isInCart: true,
     });
-    // addCardToCart({
-    //   productId,
-    //   images,
-    //   productName,
-    //   description,
-    //   productPrice,
-    // });
+    this.addItemToCart({
+      productId,
+      images,
+      productName,
+      description,
+      productPrice,
+    });
   }
-
 
   render() {
     const {
@@ -152,7 +160,6 @@ ProductCard.propTypes = {
   productPrice: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   images: PropTypes.oneOfType([PropTypes.array]).isRequired,
   description: PropTypes.string,
-  // addCardToCart: PropTypes.func.isRequired,
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]),
 };
 ProductCard.defaultProps = {

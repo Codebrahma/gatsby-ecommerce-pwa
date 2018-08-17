@@ -1,16 +1,15 @@
 import React from 'react';
 import _ from 'lodash';
-import PropTypes from 'prop-types';
 import {
-  Container, Flex, Box, Lead,
+  Container, Flex, Box, Lead, Text,
 } from 'rebass';
 
 import FormInputField from '../components/Form';
 import CheckoutDetails from '../components/CheckoutDetails';
-import CheckoutButton from '../components/CheckoutButton';
 import Layout from '../components/layout';
+import TakeMoney from '../components/TakeMoney';
 
-const Checkout = ({ eventedLocalStorage }) => {
+const Checkout = () => {
   const personalInfoFormFields = [
     {
       id: 1, label: 'Title', type: 'radio', optional: '',
@@ -120,7 +119,7 @@ const Checkout = ({ eventedLocalStorage }) => {
             <Container mb={3} py={3} px={4} style={{ boxShadow: '1px 1px 4px 1px rgba(158,158,158, 0.5)' }}>
               <Lead fontWeight="bold" mb={4}>
                 Personal Info
-            </Lead>
+              </Lead>
               {_.map(personalInfoFormFields, field => (
                 <FormInputField
                   key={field.id}
@@ -135,7 +134,7 @@ const Checkout = ({ eventedLocalStorage }) => {
             <Container py={3} px={4} style={{ boxShadow: '1px 1px 4px 1px rgba(158,158,158, 0.5)' }}>
               <Lead fontWeight="bold" mb={4}>
                 Address Info
-            </Lead>
+              </Lead>
               {_.map(addressFormFields, field => (
                 <FormInputField
                   key={field.id}
@@ -150,18 +149,16 @@ const Checkout = ({ eventedLocalStorage }) => {
           </Box>
           <Box p={3} pt={4} width={[1, 1, 2 / 7]}>
             <CheckoutDetails />
-            <CheckoutButton
-              eventedLocalStorage={eventedLocalStorage}
-            />
+            <Container mt={2}>
+              <Text textAlign="center">
+                <TakeMoney />
+              </Text>
+            </Container>
           </Box>
         </Flex>
       </Container>
     </Layout>
   );
-};
-
-Checkout.propTypes = {
-  // eventedLocalStorage: PropTypes.func.isRequired,
 };
 
 export default Checkout;

@@ -186,7 +186,7 @@ class HomePage extends Component {
   )
 
   render() {
-    const { data, addItemToCart } = this.props;
+    const { data } = this.props;
     const featuredProducts = [
       {
         node: {
@@ -283,7 +283,6 @@ class HomePage extends Component {
                   description={node.description}
                   productPrice={node.priceRange.minVariantPrice.amount}
                   images={node.image}
-                  addCardToCart={addItemToCart}
                 >
                   <Img fluid={node.images[0].originalSrc} alt={node.title} />
                 </ProductCard>
@@ -299,7 +298,6 @@ class HomePage extends Component {
 
 HomePage.propTypes = {
   data: PropTypes.oneOfType([PropTypes.object]).isRequired,
-  // addItemToCart: PropTypes.func.isRequired,
 };
 
 export default HomePage;

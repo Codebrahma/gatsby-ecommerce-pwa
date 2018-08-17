@@ -22,7 +22,7 @@ const Header = ({ cartLength }) => (
 );
 
 Header.propTypes = {
-  cartLength: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  cartLength: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 Header.defaultProps = {

@@ -8,7 +8,7 @@ import './category/category.scss';
 import Layout from '../components/layout';
 
 const Categories = (props) => {
-  const { pageContext, addItemToCart } = props;
+  const { pageContext } = props;
   return (
     <Layout>
       <Container px={0} maxWidth="90%" mt={4}>
@@ -17,7 +17,6 @@ const Categories = (props) => {
         </Caps>
         <ProductList
           products={pageContext.products}
-          addCardToCart={addItemToCart}
         />
       </Container>
     </Layout>
@@ -26,7 +25,6 @@ const Categories = (props) => {
 
 Categories.propTypes = {
   pageContext: PropTypes.oneOfType([PropTypes.object]).isRequired,
-  // addItemToCart: PropTypes.func.isRequired,
 };
 
 export default Categories;

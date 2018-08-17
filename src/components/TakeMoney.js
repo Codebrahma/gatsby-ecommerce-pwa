@@ -2,7 +2,6 @@ import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 import GatsbyLink from 'gatsby-link';
 import { Container, Button, Text } from 'rebass';
-import PropTypes from 'prop-types';
 
 export default class TakeMoney extends React.Component {
   constructor(props) {
@@ -35,13 +34,12 @@ export default class TakeMoney extends React.Component {
   }
 
   onToken = (token) => {
-    const { eventedLocalStorage } = this.props;
     fetch('/save-stripe-token', {
       method: 'POST',
       body: JSON.stringify(token),
     }).then(() => {
       localStorage.setItem('cart', JSON.stringify({}));
-      eventedLocalStorage();
+      window.dispatchEvent(new CustomEvent('localstorage update'));
       this.setState({
         isPaymentSuccess: true,
       });
@@ -94,7 +92,3 @@ Please connect Internet to proceed for payment
     );
   }
 }
-
-TakeMoney.propTypes = {
-  // eventedLocalStorage: PropTypes.func.isRequired,
-};

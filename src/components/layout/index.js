@@ -47,6 +47,11 @@ class Layout extends React.Component {
           });
         });
     });
+    window.addEventListener('localstorage update', this.eventedLocalStorage);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('localstorage update', this.eventedLocalStorage);
   }
 
   eventedLocalStorage = () => {
@@ -54,15 +59,6 @@ class Layout extends React.Component {
       cartLength: Object.keys(JSON.parse(localStorage.getItem('cart')) || {})
         .length,
     });
-  }
-
-  addItemToCart = (product) => {
-    const currentCartItems = JSON.parse(localStorage.getItem('cart')) || {};
-    const toBeAddedProduct = Object.assign({}, product);
-    currentCartItems[toBeAddedProduct.productId] = toBeAddedProduct;
-    currentCartItems[toBeAddedProduct.productId].purchaseQuantity = 7;
-    localStorage.setItem('cart', JSON.stringify(currentCartItems));
-    this.eventedLocalStorage();
   }
 
   render() {

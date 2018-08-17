@@ -3,7 +3,6 @@ import GatsbyLink from 'gatsby-link';
 import {
   Container, Flex, Box, Button, Image, Text, Absolute, Relative,
 } from 'rebass';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import {
   borderLeft, borderTop, letterSpacing, textColor,
@@ -56,13 +55,12 @@ class Cart extends Component {
 
   removeItemFromCart = (productId) => {
     const { cartItems } = this.state;
-    const { eventedLocalStorage } = this.props;
     delete cartItems[productId];
     localStorage.setItem('cart', JSON.stringify(cartItems));
     this.setState({
       cartItems,
     });
-    eventedLocalStorage();
+    window.dispatchEvent(new CustomEvent('localstorage update'));
   }
 
   displayCheckoutInfo = () => (
@@ -179,9 +177,5 @@ class Cart extends Component {
     );
   }
 }
-
-Cart.propTypes = {
-  // eventedLocalStorage: PropTypes.func.isRequired,
-};
 
 export default Cart;

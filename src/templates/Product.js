@@ -56,16 +56,15 @@ class ProductItem extends Component {
   }
 
   changeItemCount = (change) => {
-    const { eventedLocalStorage } = this.props;
     this.setState(prevState => ({
       itemCount: prevState.itemCount + change,
     }));
     this.updateCart(change);
-    eventedLocalStorage();
+    window.dispatchEvent(new CustomEvent('localstorage update'));
   }
 
   addItemToCart = () => {
-    const { pageContext, eventedLocalStorage } = this.props;
+    const { pageContext } = this.props;
     const { productId } = pageContext;
     const { itemCount } = this.state;
     const currentCartItems = JSON.parse(localStorage.getItem('cart')) || {};
@@ -75,7 +74,7 @@ class ProductItem extends Component {
     this.setState({
       isInCart: true,
     });
-    eventedLocalStorage();
+    window.dispatchEvent(new CustomEvent('localstorage update'));
   }
 
   handleBuyNow = () => {
@@ -124,12 +123,13 @@ class ProductItem extends Component {
       </Button>
     );
     const CountButton = ({
-      imageIcon, handleClick, alternate, renderCondition,
+      imageIcon, handleClick, alternate, renderCondition, disable,
     }) => (
       <Button
         bg="#f5f5f5"
         onClick={handleClick}
         style={{ cursor: (renderCondition ? 'not-allowed' : 'pointer') }}
+        disabled={disable}
       >
         <Image w={15} src={imageIcon} alt={alternate} />
       </Button>
@@ -155,6 +155,7 @@ class ProductItem extends Component {
                 renderCondition={!itemCount}
                 imageIcon={minus}
                 alternate="minus"
+                disable={!itemCount}
               />
               <Border borderColor="#000" w={50} style={{ display: 'inline-block' }}>
                 <Text textAlign="center" p={2} fontSize={16}>
@@ -317,7 +318,6 @@ class ProductItem extends Component {
 
 ProductItem.propTypes = {
   pageContext: PropTypes.oneOfType([PropTypes.object]).isRequired,
-  // eventedLocalStorage: PropTypes.func.isRequired,
 };
 
 export default ProductItem;
