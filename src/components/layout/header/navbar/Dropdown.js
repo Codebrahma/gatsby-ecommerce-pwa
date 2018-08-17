@@ -63,7 +63,7 @@ const DropDown = () => (
       <DownIcon src={angleDown} alt="angleDown" maxWidth="7px" maxHeight="10px" m={2} />
     </Flex>
     <Absolute zIndex="2">
-      <DropDownMenu className="dropdown-menu" p="1.8%" display="none" lineHeight={1} boxShadow="1px 2px 4px 1px rgba(0, 0, 0, 0.5)" background="white" minWidth="fit-content">
+      <DropDownMenu className="dropdown-menu" p={3} display="none" lineHeight={1} boxShadow="1px 2px 4px 1px rgba(0, 0, 0, 0.5)" background="white" minWidth="fit-content">
         <DropdownLink onClick={toggleDropdown} linkTo="skin-and-hair-plan" title="Skin and Hair" />
         <DropdownLink onClick={toggleDropdown} linkTo="skin-care-plan" title="skin care" />
         <DropdownLink onClick={toggleDropdown} linkTo="smoothie" title="smoothies" />

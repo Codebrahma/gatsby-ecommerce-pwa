@@ -15,7 +15,7 @@ const Navbar = ({ cartLength }) => (
   <Hide medium small xsmall>
     <Flex>
       <Box width={1 / 6} mb={0} mr={5} px={3} pt={1}>
-        <div className="header_logo">
+        <div>
           <NavLink linkTo="/" noActive>
             <img src={logo} alt="logo" />
           </NavLink>

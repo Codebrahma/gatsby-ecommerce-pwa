@@ -144,7 +144,7 @@ class HomePage extends Component {
                     </span>
                   </CarouselButton>
                   <Link to={`product/${item.productId}`} style={{ margin: '0' }}>
-                    <Img className="carousel-image" width="100vw" height="65vh" style={{ margin: '0 auto' }} fluid={item.image} alt="home-page-item" />
+                    <Img width="100vw" height="65vh" style={{ margin: '0 auto' }} fluid={item.image} alt="home-page-item" />
                   </Link>
                   <CarouselButton
                     position="absolute"

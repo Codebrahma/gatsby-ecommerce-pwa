@@ -6,8 +6,6 @@ import { boxShadow } from 'styled-system';
 import Navbar from './header/Navbar';
 import NavbarMobile from './header/NavbarMobile';
 
-import './header/style.scss';
-
 const HeaderWrapper = styled.header`
   ${boxShadow}
 `;

@@ -21,7 +21,6 @@ const FormInputField = ({
 
   const renderSelectField = () => (
     <Select
-      className="form-control form-control-select"
       id="form-control"
       name="id_state"
       required
@@ -85,7 +84,7 @@ const FormInputField = ({
       </Box>
       <Box width={[2 / 3]}>
         {renderInputElement(type, name, value)}
-        <div className="col-md-3 form-control-comment">
+        <div>
           {optional}
         </div>
       </Box>

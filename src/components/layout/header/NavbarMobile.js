@@ -1,6 +1,7 @@
 import React from 'react';
 import { Row, Column, Hide } from 'rebass';
 import PropType from 'prop-types';
+import styled from 'styled-components';
 
 import Menu from './Menu';
 import NavLink from '../../Navlink';
@@ -9,6 +10,13 @@ import BackButtonWithRouter from './BackButton';
 import logo from '../../../assets/images/logo-new.png';
 import cart from '../../../assets/icons/shopping-cart-solid.svg';
 import menu from '../../../assets/icons/bars-solid.svg';
+
+const SideMenuButton = styled.img`
+  cursor: pointer;
+  &:focus+#side-bar {
+      left: 0vw !important;
+  }
+`;
 
 const NavbarMobile = ({ headPath }) => (
   <Hide xlarge large>
@@ -31,9 +39,8 @@ const NavbarMobile = ({ headPath }) => (
             </NavLink>
           </Column>
           <Column mb={0} mt={10}>
-            <img
+            <SideMenuButton
               src={menu}
-              id="sidebar-menu-button"
               height="20"
               width="auto"
               alt="menu"

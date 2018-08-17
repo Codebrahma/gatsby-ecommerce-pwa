@@ -41,7 +41,7 @@ const NavLink = ({
 }) => (
   <GatsbyLink
     to={linkTo}
-    activeClassName={noActive ? '' : 'active-link'}
+    activeStyle={noActive ? {} : { borderBottom: '2px solid rgba(245, 124, 0, 1)', color: 'rgb(245, 124, 0)' }}
     style={{
       textTransform: 'uppercase',
       textDecoration: 'none',
