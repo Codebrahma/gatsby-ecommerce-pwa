@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { navigateTo } from 'gatsby-link';
+import { navigate } from 'gatsby';
 import { Container, Flex, Box } from 'rebass';
 
 class CheckoutDetails extends Component {
@@ -21,7 +21,7 @@ class CheckoutDetails extends Component {
       });
     }
     if (totalPrice === 0) {
-      navigateTo('/cart');
+      navigate('/cart');
     }
   }
 

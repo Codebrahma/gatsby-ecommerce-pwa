@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import { navigateTo } from 'gatsby-link';
+import { navigate } from 'gatsby';
 import PropTypes from 'prop-types';
 import {
   Container, Row, Text, Heading, Flex, Box, Image, Link, Button, Border, ButtonOutline, Caps,
@@ -17,6 +17,7 @@ import plus from '../assets/icons/plus-solid.svg';
 import minus from '../assets/icons/minus-solid.svg';
 import download from '../assets/icons/download-solid.svg';
 import defaultImage from '../assets/images/default.jpeg';
+import Layout from '../components/layout';
 
 
 class ProductItem extends Component {
@@ -27,8 +28,8 @@ class ProductItem extends Component {
 
   componentDidMount() {
     const currentCartItems = JSON.parse(localStorage.getItem('cart')) || {};
-    const { pathContext } = this.props;
-    const { productId } = pathContext;
+    const { pageContext } = this.props;
+    const { productId } = pageContext;
     this.setState({
       itemCount: currentCartItems[productId]
         ? currentCartItems[productId].purchaseQuantity
@@ -38,8 +39,8 @@ class ProductItem extends Component {
   }
 
   updateCart = (change) => {
-    const { pathContext } = this.props;
-    const { productId } = pathContext;
+    const { pageContext } = this.props;
+    const { productId } = pageContext;
     const { isInCart } = this.state;
     const currentCartItems = JSON.parse(localStorage.getItem('cart')) || {};
     if (isInCart) {
@@ -55,37 +56,36 @@ class ProductItem extends Component {
   }
 
   changeItemCount = (change) => {
-    const { eventedLocalStorage } = this.props;
     this.setState(prevState => ({
       itemCount: prevState.itemCount + change,
     }));
     this.updateCart(change);
-    eventedLocalStorage();
+    window.dispatchEvent(new CustomEvent('localstorage update'));
   }
 
   addItemToCart = () => {
-    const { pathContext, eventedLocalStorage } = this.props;
-    const { productId } = pathContext;
+    const { pageContext } = this.props;
+    const { productId } = pageContext;
     const { itemCount } = this.state;
     const currentCartItems = JSON.parse(localStorage.getItem('cart')) || {};
-    currentCartItems[productId] = pathContext;
+    currentCartItems[productId] = pageContext;
     currentCartItems[productId].purchaseQuantity = itemCount;
     localStorage.setItem('cart', JSON.stringify(currentCartItems));
     this.setState({
       isInCart: true,
     });
-    eventedLocalStorage();
+    window.dispatchEvent(new CustomEvent('localstorage update'));
   }
 
   handleBuyNow = () => {
     this.addItemToCart();
-    navigateTo('/cart');
+    navigate('/cart');
   }
 
   renderVariants = () => {
-    const { pathContext } = this.props;
+    const { pageContext } = this.props;
     const options = {};
-    _.map(pathContext.variants, (variant) => {
+    _.map(pageContext.variants, (variant) => {
       _.map(variant.selectedOptions, (item) => {
         const { name, value } = item;
         if (options[name]) {
@@ -105,7 +105,7 @@ class ProductItem extends Component {
 
   renderProductActions = () => {
     const { itemCount, isInCart } = this.state;
-    const { pathContext } = this.props;
+    const { pageContext } = this.props;
     const ActionButton = ({ renderCondition, buttonText, handleClick }) => (
       <Button
         bg={renderCondition ? '#f5f5f5' : '#000'}
@@ -113,7 +113,6 @@ class ProductItem extends Component {
         my={10}
         mr={10}
         style={{ cursor: (!renderCondition ? 'pointer' : 'not-allowed'), minWidth: '170px' }}
-        disable={renderCondition}
         onClick={handleClick}
       >
         <Text py={10} px={15}>
@@ -124,13 +123,13 @@ class ProductItem extends Component {
       </Button>
     );
     const CountButton = ({
-      imageIcon, handleClick, alternate, renderCondition,
+      imageIcon, handleClick, alternate, renderCondition, disable,
     }) => (
       <Button
         bg="#f5f5f5"
-        disable={renderCondition}
         onClick={handleClick}
         style={{ cursor: (renderCondition ? 'not-allowed' : 'pointer') }}
+        disabled={disable}
       >
         <Image w={15} src={imageIcon} alt={alternate} />
       </Button>
@@ -156,6 +155,7 @@ class ProductItem extends Component {
                 renderCondition={!itemCount}
                 imageIcon={minus}
                 alternate="minus"
+                disable={!itemCount}
               />
               <Border borderColor="#000" w={50} style={{ display: 'inline-block' }}>
                 <Text textAlign="center" p={2} fontSize={16}>
@@ -172,7 +172,7 @@ class ProductItem extends Component {
           <Box ml={20}>
             <Text fontSize={22} fontWeight={500}>
               Rs.
-              {((pathContext.productPrice / 7.0) * ((itemCount === 0) ? 7 : itemCount)).toFixed(2)}
+              {((pageContext.productPrice / 7.0) * ((itemCount === 0) ? 7 : itemCount)).toFixed(2)}
             </Text>
           </Box>
         </Flex>
@@ -217,11 +217,11 @@ class ProductItem extends Component {
   }
 
   renderTags = () => {
-    const { pathContext } = this.props;
+    const { pageContext } = this.props;
     return (
       <div>
         <Flex flexWrap="wrap" my={2}>
-          {_.map(pathContext.tags, (tag, index) => (
+          {_.map(pageContext.tags, (tag, index) => (
             <Box m={2} key={`${tag}-${index}`}>
               <ButtonOutline color="#000" style={{ textTransform: 'capitalize', padding: '10px 15px' }}>
                 {tag}
@@ -234,7 +234,7 @@ class ProductItem extends Component {
   }
 
   renderDescription = () => {
-    const { pathContext } = this.props;
+    const { pageContext } = this.props;
     return (
       <Border my={3} borderColor="#e4e0db">
         <Heading
@@ -255,7 +255,7 @@ class ProductItem extends Component {
         </Heading>
         <Border borderColor="#e4e0db" borderTop={1}>
           <Text p={20} fontSize={16} lineHeight={1.5} color="#212529">
-            {pathContext.description}
+            {pageContext.description}
           </Text>
         </Border>
       </Border>
@@ -263,60 +263,61 @@ class ProductItem extends Component {
   }
 
   render() {
-    const { pathContext } = this.props;
+    const { pageContext } = this.props;
 
     const imageSrc = (
-      pathContext.images
-      && pathContext.images.length !== 0
-      && pathContext.images[0].originalSrc
+      pageContext.images
+      && pageContext.images.length !== 0
+      && pageContext.images[0].originalSrc
     ) || defaultImage;
 
     return (
-      <Container>
-        <Row>
-          <Flex flexWrap="wrap" my={3}>
-            <Box width={[1, 1, 1 / 2]} px={20}>
-              <Image
-                src={imageSrc}
-                alt={pathContext.productName}
-              />
+      <Layout>
+        <Container>
+          <Row>
+            <Flex flexWrap="wrap" my={3}>
+              <Box width={[1, 1, 1 / 2]} px={20}>
+                <Image
+                  src={imageSrc}
+                  alt={pageContext.productName}
+                />
+              </Box>
+              <Box width={[1, 1, 1 / 2]} px={20}>
+                <Heading my={3}>
+                  <Caps fontSize={20} letterSpacing={1}>
+                    {pageContext.productName}
+                  </Caps>
+                </Heading>
+                {this.renderVariants()}
+                {this.renderProductActions()}
+                {this.renderSocialIcons()}
+                <Text bg="#32baaf" color="#fff" p={1} fontSize={14} fontWeight={600} style={{ borderRadius: '5px', width: 'fit-content' }}>
+                  <Image src={download} w={15} mx={2} alt="download" style={{ display: 'inline-block' }} />
+                  Read the science behind the program
+                </Text>
+                {this.renderTags()}
+              </Box>
+            </Flex>
+          </Row>
+          <Row px={20}>
+            {this.renderDescription()}
+          </Row>
+          <Row px={20}>
+            <Box style={{ width: '100%' }}>
+              <ProductSubscription />
             </Box>
-            <Box width={[1, 1, 1 / 2]} px={20}>
-              <Heading my={3}>
-                <Caps fontSize={20} letterSpacing={1}>
-                  {pathContext.productName}
-                </Caps>
-              </Heading>
-              {this.renderVariants()}
-              {this.renderProductActions()}
-              {this.renderSocialIcons()}
-              <Text bg="#32baaf" color="#fff" p={1} fontSize={14} fontWeight={600} style={{ borderRadius: '5px', width: 'fit-content' }}>
-                <Image src={download} w={15} mx={2} alt="download" style={{ display: 'inline-block' }} />
-                Read the science behind the program
-              </Text>
-              {this.renderTags()}
-            </Box>
-          </Flex>
-        </Row>
-        <Row px={20}>
-          {this.renderDescription()}
-        </Row>
-        <Row px={20}>
-          <Box style={{ width: '100%' }}>
-            <ProductSubscription />
-          </Box>
-        </Row>
-        <Row px={20}>
-          <ProductFaqs faqs={pathContext.faqs} />
-        </Row>
-      </Container>
+          </Row>
+          <Row px={20}>
+            <ProductFaqs faqs={pageContext.faqs} />
+          </Row>
+        </Container>
+      </Layout>
     );
   }
 }
 
 ProductItem.propTypes = {
-  pathContext: PropTypes.oneOfType([PropTypes.object]).isRequired,
-  eventedLocalStorage: PropTypes.func.isRequired,
+  pageContext: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
 export default ProductItem;

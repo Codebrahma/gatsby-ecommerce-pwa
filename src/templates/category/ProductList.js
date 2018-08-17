@@ -5,7 +5,7 @@ import { Flex } from 'rebass';
 
 import ProductCard from './ProductCard';
 
-const ProductList = ({ products, addCardToCart }) => (
+const ProductList = ({ products }) => (
   <Flex flexWrap="wrap" mt={2}>
     {_.map(products, ({ node }, index) => (
       <ProductCard
@@ -15,7 +15,6 @@ const ProductList = ({ products, addCardToCart }) => (
         description={node.description}
         images={node.images}
         productPrice={node.priceRange.minVariantPrice.amount}
-        addCardToCart={addCardToCart}
       />
     ))}
   </Flex>
@@ -23,7 +22,6 @@ const ProductList = ({ products, addCardToCart }) => (
 
 ProductList.propTypes = {
   products: PropTypes.arrayOf(PropTypes.object).isRequired,
-  addCardToCart: PropTypes.func.isRequired,
 };
 
 export default ProductList;

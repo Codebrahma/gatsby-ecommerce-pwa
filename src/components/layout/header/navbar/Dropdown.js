@@ -16,7 +16,7 @@ import {
   minWidth,
 } from 'styled-system';
 import DropdownLink from './DropdownLink';
-import angleDown from '../../../assets/icons/angle-double-down-solid.svg';
+import angleDown from '../../../../assets/icons/angle-double-down-solid.svg';
 
 const DropDownBox = styled.div`
   ${fontSize}

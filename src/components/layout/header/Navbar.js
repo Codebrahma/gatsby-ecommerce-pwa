@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import {
   Flex, Box, Hide, Relative,
 } from 'rebass';
-import NavLink from '../../components/Navlink';
+import NavLink from '../../Navlink';
 import DropDown from './navbar/Dropdown';
 
-import logo from '../../assets/images/logo-new.png';
-import search from '../../assets/icons/search-solid.svg';
+import logo from '../../../assets/images/logo-new.png';
+import search from '../../../assets/icons/search-solid.svg';
 
 
 const Navbar = ({ cartLength }) => (

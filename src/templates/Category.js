@@ -5,25 +5,26 @@ import { Container, Caps } from 'rebass';
 import ProductList from './category/ProductList';
 
 import './category/category.scss';
+import Layout from '../components/layout';
 
 const Categories = (props) => {
-  const { pathContext, addItemToCart } = props;
+  const { pageContext } = props;
   return (
-    <Container px={0} maxWidth="90%" mt={4}>
-      <Caps fontSize={2} textAlign="center">
-        {`${pathContext.productType} collection`}
-      </Caps>
-      <ProductList
-        products={pathContext.products}
-        addCardToCart={addItemToCart}
-      />
-    </Container>
+    <Layout>
+      <Container px={0} maxWidth="90%" mt={4}>
+        <Caps fontSize={2} textAlign="center">
+          {`${pageContext.productType} collection`}
+        </Caps>
+        <ProductList
+          products={pageContext.products}
+        />
+      </Container>
+    </Layout>
   );
 };
 
 Categories.propTypes = {
-  pathContext: PropTypes.oneOfType([PropTypes.object]).isRequired,
-  addItemToCart: PropTypes.func.isRequired,
+  pageContext: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
 export default Categories;

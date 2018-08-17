@@ -9,7 +9,6 @@ const NavLink = ({
   noActive,
 }) => (
   <GatsbyLink
-    exact
     to={linkTo}
     activeClassName={noActive ? '' : 'active-link'}
     className="nav-link"

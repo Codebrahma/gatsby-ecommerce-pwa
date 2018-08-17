@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Link, { navigateTo } from 'gatsby-link';
+import { Link, navigate } from 'gatsby';
 import PropTypes from 'prop-types';
 import {
   Flex, Box, Card, BackgroundImage, Truncate, Container, Text,
@@ -55,6 +55,15 @@ class ProductCard extends Component {
     });
   }
 
+  addItemToCart = (product) => {
+    const currentCartItems = JSON.parse(localStorage.getItem('cart')) || {};
+    const toBeAddedProduct = Object.assign({}, product);
+    currentCartItems[toBeAddedProduct.productId] = toBeAddedProduct;
+    currentCartItems[toBeAddedProduct.productId].purchaseQuantity = 7;
+    localStorage.setItem('cart', JSON.stringify(currentCartItems));
+    window.dispatchEvent(new CustomEvent('localstorage update'));
+  }
+
   handleAddClick = () => {
     const {
       productId,
@@ -62,12 +71,11 @@ class ProductCard extends Component {
       productName,
       description,
       productPrice,
-      addCardToCart,
     } = this.props;
     this.setState({
       isInCart: true,
     });
-    addCardToCart({
+    this.addItemToCart({
       productId,
       images,
       productName,
@@ -75,7 +83,6 @@ class ProductCard extends Component {
       productPrice,
     });
   }
-
 
   render() {
     const {
@@ -120,7 +127,7 @@ class ProductCard extends Component {
                       {productPrice}
                     </Box>
                     {/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */}
-                    <Box className="card-footer-button" onClick={() => { navigateTo('/cart'); }} width={1 / 4} pt={2}>
+                    <Box className="card-footer-button" onClick={() => { navigate('/cart'); }} width={1 / 4} pt={2}>
                       <ButtonImage src={cart} alt="cart" maxHeight="15px" maxWidth="auto" />
                     </Box>
                   </Flex>
@@ -153,7 +160,6 @@ ProductCard.propTypes = {
   productPrice: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   images: PropTypes.oneOfType([PropTypes.array]).isRequired,
   description: PropTypes.string,
-  addCardToCart: PropTypes.func.isRequired,
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]),
 };
 ProductCard.defaultProps = {

@@ -9,7 +9,7 @@ import InstallPrompt from './InstallPrompt';
 
 import './index.scss';
 
-import '../assets/images/512.png';
+import '../../assets/images/512.png';
 
 /* eslint-disable no-unused-expressions */
 injectGlobal`
@@ -28,6 +28,7 @@ class Layout extends React.Component {
     this.setState({
       cartLength: Object.keys(JSON.parse(localStorage.getItem('cart')) || {})
         .length,
+      path: window.location.pathname,
     });
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker
@@ -47,6 +48,11 @@ class Layout extends React.Component {
           });
         });
     });
+    window.addEventListener('localstorage update', this.eventedLocalStorage);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('localstorage update', this.eventedLocalStorage);
   }
 
   eventedLocalStorage = () => {
@@ -56,18 +62,9 @@ class Layout extends React.Component {
     });
   }
 
-  addItemToCart = (product) => {
-    const currentCartItems = JSON.parse(localStorage.getItem('cart')) || {};
-    const toBeAddedProduct = Object.assign({}, product);
-    currentCartItems[toBeAddedProduct.productId] = toBeAddedProduct;
-    currentCartItems[toBeAddedProduct.productId].purchaseQuantity = 7;
-    localStorage.setItem('cart', JSON.stringify(currentCartItems));
-    this.eventedLocalStorage();
-  }
-
   render() {
-    const { children, location } = this.props;
-    const { cartLength } = this.state;
+    const { children } = this.props;
+    const { cartLength, path } = this.state;
     return (
       <Provider>
         <Helmet defaultTitle="Progressive Web app">
@@ -75,22 +72,17 @@ class Layout extends React.Component {
         </Helmet>
         <InstallPrompt />
         <Header
-          headPath={location.pathname}
+          headPath={path}
           cartLength={cartLength}
         />
-        {children({
-          ...this.props,
-          eventedLocalStorage: this.eventedLocalStorage,
-          addItemToCart: this.addItemToCart,
-        })}
+        {children}
       </Provider>
     );
   }
 }
 
 Layout.propTypes = {
-  children: PropTypes.func,
-  location: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 };
 
 Layout.defaultProps = {

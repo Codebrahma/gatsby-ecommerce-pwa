@@ -3,7 +3,6 @@ import GatsbyLink from 'gatsby-link';
 import {
   Container, Flex, Box, Button, Image, Text, Absolute, Relative,
 } from 'rebass';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import {
   borderLeft, borderTop, letterSpacing, textColor,
@@ -11,6 +10,7 @@ import {
 
 import deleteIcon from '../assets/icons/baseline-delete-24px.svg';
 import defaultImage from '../assets/images/default.jpeg';
+import Layout from '../components/layout';
 
 const ButtonBox = styled.div`
   ${borderLeft}
@@ -55,13 +55,12 @@ class Cart extends Component {
 
   removeItemFromCart = (productId) => {
     const { cartItems } = this.state;
-    const { eventedLocalStorage } = this.props;
     delete cartItems[productId];
     localStorage.setItem('cart', JSON.stringify(cartItems));
     this.setState({
       cartItems,
     });
-    eventedLocalStorage();
+    window.dispatchEvent(new CustomEvent('localstorage update'));
   }
 
   displayCheckoutInfo = () => (
@@ -160,25 +159,23 @@ class Cart extends Component {
 
   render() {
     return (
-      <Container>
-        <Flex flexWrap="wrap">
-          <Box width={[1, 1, 3 / 4]} p={3}>
-            {this.showCartItems()}
-          </Box>
-          <Box width={[1, 1, 1 / 4]} p={3}>
-            {
-              this.getCheckoutMoney() !== 0
-              && this.displayCheckoutInfo()
-            }
-          </Box>
-        </Flex>
-      </Container>
+      <Layout>
+        <Container>
+          <Flex flexWrap="wrap">
+            <Box width={[1, 1, 3 / 4]} p={3}>
+              {this.showCartItems()}
+            </Box>
+            <Box width={[1, 1, 1 / 4]} p={3}>
+              {
+                this.getCheckoutMoney() !== 0
+                && this.displayCheckoutInfo()
+              }
+            </Box>
+          </Flex>
+        </Container>
+      </Layout>
     );
   }
 }
-
-Cart.propTypes = {
-  eventedLocalStorage: PropTypes.func.isRequired,
-};
 
 export default Cart;

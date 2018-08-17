@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import Img from 'gatsby-image';
-import Link from 'gatsby-link';
+import { Link, graphql } from 'gatsby';
 import {
   Container, Flex, Carousel, Box, Caps, Relative,
 } from 'rebass';
@@ -10,7 +10,6 @@ import styled from 'styled-components';
 import {
   position, background, width, borderRadius, zIndex, opacity, top, space, color, left, right,
 } from 'styled-system';
-
 import ProductCard from '../templates/category/ProductCard';
 import HomeStep from '../components/HomeStep';
 
@@ -18,6 +17,7 @@ import goalsImage from '../assets/images/goals_1.png';
 import chooseImage from '../assets/images/plan_choose_2.png';
 import smartImage from '../assets/images/eat_smart_3.png';
 import winLifeImage from '../assets/images/win_life_4.png';
+import Layout from '../components/layout';
 
 const CarouselButton = styled.div`
   ${position}
@@ -70,17 +70,17 @@ class HomePage extends Component {
     const { data } = this.props;
     const carouselItems = [
       {
-        image: data.banner1.childImageSharp.sizes,
+        image: data.banner1.childImageSharp.fluid,
         productId:
           'Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzg2NTU2MDk2NzM=',
       },
       {
-        image: data.banner2.childImageSharp.sizes,
+        image: data.banner2.childImageSharp.fluid,
         productId:
           'Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzkyNTg4NzE3NTM=',
       },
       {
-        image: data.banner3.childImageSharp.sizes,
+        image: data.banner3.childImageSharp.fluid,
         productId:
           'Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzg4MjY3MjAyMDE=',
       },
@@ -137,7 +137,7 @@ class HomePage extends Component {
                     </span>
                   </CarouselButton>
                   <Link to={`product/${item.productId}`} style={{ margin: '0' }}>
-                    <Img className="carousel-image" width="100vw" height="65vh" style={{ margin: '0 auto' }} sizes={item.image} alt="home-page-item" />
+                    <Img className="carousel-image" width="100vw" height="65vh" style={{ margin: '0 auto' }} fluid={item.image} alt="home-page-item" />
                   </Link>
                   <CarouselButton
                     position="absolute"
@@ -184,14 +184,14 @@ class HomePage extends Component {
   )
 
   render() {
-    const { data, addItemToCart } = this.props;
+    const { data } = this.props;
     const featuredProducts = [
       {
         node: {
           images: [
             {
               originalSrc: data.featuredProductOne.childImageSharp
-                .sizes,
+                .fluid,
             },
           ],
           id: 'Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzg2ODk4MTMwMDE=',
@@ -217,7 +217,7 @@ class HomePage extends Component {
           images: [
             {
               originalSrc: data.featuredProductTwo.childImageSharp
-                .sizes,
+                .fluid,
             },
           ],
           id: 'Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzg3MDY0NTcxNjE=',
@@ -240,7 +240,7 @@ class HomePage extends Component {
           images: [
             {
               originalSrc: data.featuredProductThree.childImageSharp
-                .sizes,
+                .fluid,
             },
           ],
           id: 'Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzg2NTU2MTc4MDE=',
@@ -261,17 +261,18 @@ class HomePage extends Component {
     ];
 
     return (
-      <Box px={0} mt={2}>
-        {this.renderHomeCarousel()}
-        <Container my={5}>
-          {this.renderHomeSteps()}
-        </Container>
-        <Container>
-          <Caps textAlign="center" fontSize={2}>
+      <Layout>
+        <Box px={0} mt={2}>
+          {this.renderHomeCarousel()}
+          <Container my={5}>
+            {this.renderHomeSteps()}
+          </Container>
+          <Container>
+            <Caps textAlign="center" fontSize={2}>
             Featured Products
-          </Caps>
-          <Flex flexWrap="wrap">
-            {
+            </Caps>
+            <Flex flexWrap="wrap">
+              {
               _.map(featuredProducts, ({ node }, index) => (
                 <ProductCard
                   key={index}
@@ -280,68 +281,67 @@ class HomePage extends Component {
                   description={node.description}
                   productPrice={node.priceRange.minVariantPrice.amount}
                   images={node.image}
-                  addCardToCart={addItemToCart}
                 >
-                  <Img sizes={node.images[0].originalSrc} alt={node.title} />
+                  <Img fluid={node.images[0].originalSrc} alt={node.title} />
                 </ProductCard>
               ))
             }
-          </Flex>
-        </Container>
-      </Box>
+            </Flex>
+          </Container>
+        </Box>
+      </Layout>
     );
   }
 }
 
 HomePage.propTypes = {
   data: PropTypes.oneOfType([PropTypes.object]).isRequired,
-  addItemToCart: PropTypes.func.isRequired,
 };
 
 export default HomePage;
 
 /* eslint-disable no-undef */
 export const pageQuery = graphql`
-  query BannerQuery {
+  query {
         banner1: file(relativePath: {eq: "banner-1.jpg"}) {
         childImageSharp {
-      sizes(maxWidth: 1240 ) {
-        ...GatsbyImageSharpSizes
+      fluid(maxWidth: 1240 ) {
+        ...GatsbyImageSharpFluid
       }
       }
     }
     banner2: file(relativePath: {eq: "banner-2.jpg"}) {
         childImageSharp {
-      sizes(maxWidth: 1240 ) {
-        ...GatsbyImageSharpSizes
+      fluid(maxWidth: 1240 ) {
+        ...GatsbyImageSharpFluid
       }
       }
     }
     banner3: file(relativePath: {eq: "banner-3.jpg"}) {
         childImageSharp {
-      sizes(maxWidth: 1240 ) {
-        ...GatsbyImageSharpSizes
+      fluid(maxWidth: 1240 ) {
+        ...GatsbyImageSharpFluid
       }
       }
     }
     featuredProductOne: file(relativePath: {eq: "feat-products1.jpg"}) {
         childImageSharp {
-      sizes(maxWidth: 300) {
-        ...GatsbyImageSharpSizes
+      fluid(maxWidth: 300) {
+        ...GatsbyImageSharpFluid
       }
       }
     }
     featuredProductTwo: file(relativePath: {eq: "feat-products2.jpg"}) {
         childImageSharp {
-      sizes(maxWidth: 300) {
-        ...GatsbyImageSharpSizes
+      fluid(maxWidth: 300) {
+        ...GatsbyImageSharpFluid
       }
       }
     }
     featuredProductThree: file(relativePath: {eq: "feat-products3.jpg"}) {
         childImageSharp {
-      sizes(maxWidth: 300) {
-        ...GatsbyImageSharpSizes
+      fluid(maxWidth: 300) {
+        ...GatsbyImageSharpFluid
       }
       }
     }

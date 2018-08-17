@@ -55,7 +55,7 @@ const createNodes = async (
 };
 
 exports.sourceNodes = async (
-  { boundActionCreators: { createNode, touchNode }, store, cache },
+  { actions: { createNode, touchNode }, store, cache },
   { shopName, accessToken, verbose = true },
 ) => {
   const client = createClient(shopName, accessToken);
