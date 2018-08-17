@@ -28,6 +28,7 @@ class Layout extends React.Component {
     this.setState({
       cartLength: Object.keys(JSON.parse(localStorage.getItem('cart')) || {})
         .length,
+      path: window.location.pathname,
     });
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker
@@ -63,7 +64,7 @@ class Layout extends React.Component {
 
   render() {
     const { children } = this.props;
-    const { cartLength } = this.state;
+    const { cartLength, path } = this.state;
     return (
       <Provider>
         <Helmet defaultTitle="Progressive Web app">
@@ -71,6 +72,7 @@ class Layout extends React.Component {
         </Helmet>
         <InstallPrompt />
         <Header
+          headPath={path}
           cartLength={cartLength}
         />
         {children}

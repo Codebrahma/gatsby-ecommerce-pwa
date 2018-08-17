@@ -1,6 +1,7 @@
 import React from 'react';
-
 import { Row, Column, Hide } from 'rebass';
+import PropType from 'prop-types';
+
 import Menu from './Menu';
 import NavLink from '../../Navlink';
 import BackButtonWithRouter from './BackButton';
@@ -9,11 +10,11 @@ import logo from '../../../assets/images/logo-new.png';
 import cart from '../../../assets/icons/shopping-cart-solid.svg';
 import menu from '../../../assets/icons/bars-solid.svg';
 
-const NavbarMobile = () => (
+const NavbarMobile = ({ headPath }) => (
   <Hide xlarge large>
     <Row>
       <Column flex="0.5 auto" mb={0} p={3}>
-        {(window.location.pathname !== '/') && <BackButtonWithRouter />}
+        {(headPath !== '/') && <BackButtonWithRouter />}
       </Column>
       <Column flex="20 auto" mb={0}>
         <div id="brand-logo" className="header_logo">
@@ -45,6 +46,10 @@ const NavbarMobile = () => (
     </Row>
   </Hide>
 );
+
+NavbarMobile.propTypes = {
+  headPath: PropType.string.isRequired,
+};
 
 
 export default NavbarMobile;
