@@ -8,7 +8,7 @@
 const path = require('path');
 const _ = require('lodash');
 
-//  exports.sourceNodes = async ({ boundActionCreators }) => {....}
+//  exports.sourceNodes = async ({ actions }) => {....}
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
   return new Promise((resolve, reject) => {
