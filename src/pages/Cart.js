@@ -1,8 +1,26 @@
 import React, { Component } from 'react';
 import GatsbyLink from 'gatsby-link';
+import {
+  Container, Flex, Box, Button, Image, Text, Absolute, Relative,
+} from 'rebass';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import {
+  borderLeft, borderTop, letterSpacing, textColor,
+} from 'styled-system';
 
 import deleteIcon from '../assets/icons/baseline-delete-24px.svg';
+import defaultImage from '../assets/images/default.jpeg';
+
+const ButtonBox = styled.div`
+  ${borderLeft}
+  ${borderTop}
+`;
+
+const ProductLink = styled.div`
+  ${letterSpacing}
+  ${textColor}
+`;
 
 class Cart extends Component {
   constructor(props) {
@@ -35,19 +53,6 @@ class Cart extends Component {
     return total;
   }
 
-  displayCheckoutInfo = () => (
-    <div className="row">
-      <div className="col col-lg-12 col-md-12 col-sm-6 p-2">
-        {`Total: Rs. ${this.getCheckoutMoney().toFixed(2)}`}
-      </div>
-      <div className="col col-lg-12 col-md-12 col-sm-6">
-        <GatsbyLink className="btn btn-dark" to="/checkout">
-          Proceed to Checkout
-        </GatsbyLink>
-      </div>
-    </div>
-  )
-
   removeItemFromCart = (productId) => {
     const { cartItems } = this.state;
     const { eventedLocalStorage } = this.props;
@@ -59,81 +64,115 @@ class Cart extends Component {
     eventedLocalStorage();
   }
 
+  displayCheckoutInfo = () => (
+    <Flex p={2} flexWrap="wrap">
+      <Box width={[1, 1 / 2, 1]}>
+        <Text textAlign="center" fontWeight="bold" fontSize={1} mb={3}>
+          {`Total: Rs. ${(this.getCheckoutMoney()).toFixed(2)}`}
+        </Text>
+      </Box>
+      <Box width={[1, 1 / 2, 1]}>
+        <Text textAlign="center">
+          <GatsbyLink to="/checkout">
+            <Button bg="black" px={2}>
+              Proceed to Checkout
+            </Button>
+          </GatsbyLink>
+        </Text>
+      </Box>
+    </Flex>
+  )
+
   showCartItems = () => {
     const { cartItems } = this.state;
     if (Object.keys(cartItems).length) {
       return Object.keys(cartItems).map(key => (
-        <div key={key} className="row cart-item mb-3">
-          <div className="col col-lg-3 col-md-3 col-sm-3">
-            <img
-              src={
+        <Relative key={cartItems[key].productId}>
+          <Flex flexWrap="wrap" mb={3} p={2} style={{ boxShadow: '1px 1px 4px 1px rgba(0,0,0,0.5)' }}>
+            <Box bg="rgba(158,158,158, 0.1)" style={{ height: '25vh', overflow: 'hidden' }} width={[1, 1 / 2, 5 / 12]}>
+              <Image
+                style={{
+                  width: 'auto',
+                  height: '100%',
+                  marginLeft: 'auto',
+                  marginRight: 'auto',
+                }}
+                src={
                   cartItems[key].images.length
                     ? cartItems[key].images[0].originalSrc
-                    : require('../assets/images/default.jpeg')
+                    : defaultImage
                 }
-              alt="product"
-            />
-          </div>
-          <div className="col col-lg-7 col-md-7 col-sm-7">
-            <GatsbyLink
-              style={{ color: 'rgba(27,55,100, 1)' }}
-              to={`/product/${key}`}
-            >
-              {cartItems[key].productName}
-            </GatsbyLink>
-            <p className="mt-5">
-                Rs.
-              {' '}
-              {cartItems[key].productPrice
-                  * (cartItems[key].purchaseQuantity / 7)}
-            </p>
-          </div>
-          <div className="col col-lg-2 col-md-2 col-sm-2">
-            <div className="container p-1 mb-2 text-center">
-              {cartItems[key].purchaseQuantity}
-            </div>
-            <div
-              className="p-2 text-center delete-icon"
-              onClick={() => this.removeItemFromCart(cartItems[key].productId)}
-            >
-              <img
-                className="item-count img img-fluid"
-                src={deleteIcon}
-                alt="delete-icon"
+                alt="product-image"
               />
-            </div>
-          </div>
-        </div>
+            </Box>
+            <Box width={[1, 1 / 2, 7 / 12]} px={3}>
+              <Flex flexWrap="wrap">
+                <Box width={[1]} py={2}>
+                  <ProductLink textColor="rgba(27,55,100, 1)" letterSpacing="0.075em">
+                    <Text fontWeight="bold" fontSize={1}>
+                      <GatsbyLink style={{ textDecoration: 'none' }} to={`/product/${key}`}>
+                        {cartItems[key].productName}
+                      </GatsbyLink>
+                    </Text>
+                  </ProductLink>
+                </Box>
+                <Box width={[1]} pt={2}>
+                  <Text fontSize={1}>
+                    Rs.
+                    {cartItems[key].productPrice * (cartItems[key].purchaseQuantity / 7)}
+                  </Text>
+                </Box>
+                <Box width={1} pt={2}>
+                  <Text fontSize={1}>
+                    {`Quantity - ${cartItems[key].purchaseQuantity}`}
+                  </Text>
+                </Box>
+              </Flex>
+            </Box>
+            <Absolute bottom={0} right={0}>
+              <ButtonBox borderLeft="1px solid rgba(26, 26, 26, 0.5)" borderTop="1px solid rgba(26, 26, 26, 0.5)">
+                <Box
+                  p={2}
+                  onClick={() => this.removeItemFromCart(cartItems[key].productId)}
+                  style={{
+                    cursor: 'pointer',
+                  }}
+                >
+                  <Image src={deleteIcon} alt="delete-icon" />
+                </Box>
+              </ButtonBox>
+            </Absolute>
+          </Flex>
+        </Relative>
       ));
     }
     return (
-      <div className="container text-center">
-          Oops! No items in the cart.
-        <GatsbyLink to="/">
-Shop items.
-        </GatsbyLink>
-      </div>
+      <Container p={5}>
+        <Text textAlign="center" fontSize={1} fontWeight="bold">
+          {'Sorry, no items available in cart. '}
+          <GatsbyLink to="/" style={{ textDecoration: 'none' }}>
+            {'Shop items.'}
+          </GatsbyLink>
+        </Text>
+      </Container>
     );
   }
 
   render() {
     return (
-      <div className="container p-4">
-        <div className="row">
-          <div className="col col-lg-9 col-md-9 col-sm-12">
-            <div className="container p-2 px-4">
-              {this.showCartItems()}
-            </div>
-          </div>
-          {this.getCheckoutMoney() !== 0 && (
-            <div className="col col-lg-3 col-md-3 col-sm-12">
-              <div className="container p-2 px-4">
-                {this.displayCheckoutInfo()}
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
+      <Container>
+        <Flex flexWrap="wrap">
+          <Box width={[1, 1, 3 / 4]} p={3}>
+            {this.showCartItems()}
+          </Box>
+          <Box width={[1, 1, 1 / 4]} p={3}>
+            {
+              this.getCheckoutMoney() !== 0
+              && this.displayCheckoutInfo()
+            }
+          </Box>
+        </Flex>
+      </Container>
     );
   }
 }

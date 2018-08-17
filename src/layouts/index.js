@@ -1,15 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
+import { Provider } from 'rebass';
+import { injectGlobal } from 'styled-components';
 
 import Header from './Header';
 import InstallPrompt from './InstallPrompt';
 
 import './index.scss';
-import './custom.scss';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 import '../assets/images/512.png';
+
+/* eslint-disable no-unused-expressions */
+injectGlobal`
+* { box-sizing: border-box; font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif }
+body { margin: 0; overflow-x: hidden; font-size: 0.75em }
+`;
+/* eslint-enable no-unused-expressions */
 
 class Layout extends React.Component {
   constructor(props) {
@@ -62,7 +69,7 @@ class Layout extends React.Component {
     const { children, location } = this.props;
     const { cartLength } = this.state;
     return (
-      <div>
+      <Provider>
         <Helmet defaultTitle="Progressive Web app">
           <html lang="en" />
         </Helmet>
@@ -76,7 +83,7 @@ class Layout extends React.Component {
           eventedLocalStorage: this.eventedLocalStorage,
           addItemToCart: this.addItemToCart,
         })}
-      </div>
+      </Provider>
     );
   }
 }

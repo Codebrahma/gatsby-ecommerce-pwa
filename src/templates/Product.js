@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import Link, { navigateTo } from 'gatsby-link';
+import { navigateTo } from 'gatsby-link';
 import PropTypes from 'prop-types';
+import {
+  Container, Row, Text, Heading, Flex, Box, Image, Link, Button, Border, ButtonOutline, Caps,
+} from 'rebass';
 
 import ProductFaqs from './product/ProductFaqs';
 import ProductSubscription from './product/ProductSubscription';
 import ProductVariants from './product/ProductVariants';
 import VariantType from './product/VariantType';
-import Button from '../components/Button';
-
-import './product/product.scss';
 
 import facebook from '../assets/icons/facebook-f-brands.svg';
 import twitter from '../assets/icons/twitter-brands.svg';
@@ -17,6 +17,7 @@ import plus from '../assets/icons/plus-solid.svg';
 import minus from '../assets/icons/minus-solid.svg';
 import download from '../assets/icons/download-solid.svg';
 import defaultImage from '../assets/images/default.jpeg';
+
 
 class ProductItem extends Component {
   constructor(props) {
@@ -105,49 +106,84 @@ class ProductItem extends Component {
   renderProductActions = () => {
     const { itemCount, isInCart } = this.state;
     const { pathContext } = this.props;
+    const ActionButton = ({ renderCondition, buttonText, handleClick }) => (
+      <Button
+        bg={renderCondition ? '#f5f5f5' : '#000'}
+        color={!renderCondition ? '#f5f5f5' : '#000'}
+        my={10}
+        mr={10}
+        style={{ cursor: (!renderCondition ? 'pointer' : 'not-allowed'), minWidth: '170px' }}
+        disable={renderCondition}
+        onClick={handleClick}
+      >
+        <Text py={10} px={15}>
+          <Caps fontSize={14} letterSpacing={1}>
+            {buttonText}
+          </Caps>
+        </Text>
+      </Button>
+    );
+    const CountButton = ({
+      imageIcon, handleClick, alternate, renderCondition,
+    }) => (
+      <Button
+        bg="#f5f5f5"
+        disable={renderCondition}
+        onClick={handleClick}
+        style={{ cursor: (renderCondition ? 'not-allowed' : 'pointer') }}
+      >
+        <Image w={15} src={imageIcon} alt={alternate} />
+      </Button>
+    );
     return (
-      <div className="demo-product-actions">
-        <div id="action-input">
-          <div id="quantity">
-            <Button
-              handleClick={() => this.changeItemCount(-7)}
-              classes={`btn btn-light minus-btn ${
-                !itemCount ? 'cursor-disabled' : ''
-              }`}
-              disable={!itemCount}
+      <div>
+        <Flex alignItems="center" my={10}>
+          <Box>
+            <Border
+              borderColor="#000"
+              my={10}
+              style={
+                {
+                  borderRadius: '8px',
+                  width: 'fit-content',
+                  zIndex: 99,
+                  overflow: 'hidden',
+                }
+              }
             >
-              <img src={minus} className="icon" alt="minus" />
-            </Button>
-            <div className="quantity-num container p-1 text-center">
-              {itemCount}
-            </div>
-            <Button
-              handleClick={() => this.changeItemCount(7)}
-              classes="btn btn-light plus-btn"
-            >
-              <img src={plus} className="icon" alt="plus" />
-            </Button>
-          </div>
-          <span id="price">
-            Rs.
-            {' '}
-            {(
-              (pathContext.productPrice / 7.0)
-              * (itemCount === 0 ? 7 : itemCount)
-            ).toFixed(2)}
-          </span>
-        </div>
-        <div id="action-button">
-          <Button
-            classes={`btn btn-${
-              isInCart ? 'info cursor-disabled' : 'dark'
-            }`}
+              <CountButton
+                handleClick={() => this.changeItemCount(-7)}
+                renderCondition={!itemCount}
+                imageIcon={minus}
+                alternate="minus"
+              />
+              <Border borderColor="#000" w={50} style={{ display: 'inline-block' }}>
+                <Text textAlign="center" p={2} fontSize={16}>
+                  {itemCount}
+                </Text>
+              </Border>
+              <CountButton
+                handleClick={() => this.changeItemCount(7)}
+                imageIcon={plus}
+                alternate="plus"
+              />
+            </Border>
+          </Box>
+          <Box ml={20}>
+            <Text fontSize={22} fontWeight={500}>
+              Rs.
+              {((pathContext.productPrice / 7.0) * ((itemCount === 0) ? 7 : itemCount)).toFixed(2)}
+            </Text>
+          </Box>
+        </Flex>
+        <div>
+          <ActionButton
+            renderCondition={(!itemCount || isInCart)}
             handleClick={this.addItemToCart}
-            disable={!itemCount || isInCart}
             buttonText={isInCart ? 'in Cart' : 'add to cart'}
           />
-          <Button
-            disable={!itemCount}
+          <ActionButton
+            renderCondition={!itemCount}
             handleClick={this.handleBuyNow}
             buttonText="buy now"
           />
@@ -156,36 +192,43 @@ class ProductItem extends Component {
     );
   }
 
-  renderSocialIcons = () => (
-    <div id="social-icons">
-      <ul>
-        <li>
-          <a href="https://www.facebook.com/getgrowfit/">
-            <img src={facebook} className="icon" alt="facebook" />
-          </a>
-        </li>
-        <li>
-          <a href="https://twitter.com/getgrowfit?lang=en">
-            <img src={twitter} className="icon" alt="twitter" />
-          </a>
-        </li>
-      </ul>
-    </div>
-  )
+  renderSocialIcons = () => {
+    const SocialIcon = ({ linkTo, imageIcon, alternate }) => (
+      <Link href={linkTo} bg="#000" m={3} style={{ borderRadius: '50%', maxHeight: '50px' }}>
+        <Box p={3}>
+          <Image w={20} style={{ maxHeight: '20px' }} src={imageIcon} alt={alternate} />
+        </Box>
+      </Link>
+    );
+    return (
+      <Flex alignItems="center">
+        <SocialIcon
+          linkTo="https://www.facebook.com/getgrowfit/"
+          imageIcon={facebook}
+          alternate="facebook"
+        />
+        <SocialIcon
+          linkTo="https://twitter.com/getgrowfit?lang=en"
+          imageIcon={twitter}
+          alternate="twitter"
+        />
+      </Flex>
+    );
+  }
 
   renderTags = () => {
     const { pathContext } = this.props;
     return (
-      <div className="demo-product-tags">
-        <ul>
+      <div>
+        <Flex flexWrap="wrap" my={2}>
           {_.map(pathContext.tags, (tag, index) => (
-            <li key={index}>
-              <Link to="/ProductItem" activeClassName="active-item">
+            <Box m={2} key={`${tag}-${index}`}>
+              <ButtonOutline color="#000" style={{ textTransform: 'capitalize', padding: '10px 15px' }}>
                 {tag}
-              </Link>
-            </li>
+              </ButtonOutline>
+            </Box>
           ))}
-        </ul>
+        </Flex>
       </div>
     );
   }
@@ -193,56 +236,80 @@ class ProductItem extends Component {
   renderDescription = () => {
     const { pathContext } = this.props;
     return (
-      <div className="demo-product-description">
-        <div className="title">
-          <span>
-  Description
-          </span>
-        </div>
-        <div className="demo-product-details">
-          {pathContext.description}
-        </div>
-      </div>
+      <Border my={3} borderColor="#e4e0db">
+        <Heading
+          bg="#f5f5f5"
+          fontWeight={500}
+          p={15}
+          style={
+            {
+              textAlign: 'center',
+              maxWidth: '300px',
+              borderRight: '1px solid #e4e0db',
+            }
+          }
+        >
+          <Caps fontSize={16} letterSpacing={1}>
+            Description
+          </Caps>
+        </Heading>
+        <Border borderColor="#e4e0db" borderTop={1}>
+          <Text p={20} fontSize={16} lineHeight={1.5} color="#212529">
+            {pathContext.description}
+          </Text>
+        </Border>
+      </Border>
     );
   }
 
   render() {
     const { pathContext } = this.props;
-    const imageSrc = (pathContext.images
-        && pathContext.images.length !== 0
-        && pathContext.images[0].originalSrc)
-      || defaultImage;
+
+    const imageSrc = (
+      pathContext.images
+      && pathContext.images.length !== 0
+      && pathContext.images[0].originalSrc
+    ) || defaultImage;
 
     return (
-      <div className="container">
-        <div className="demo-product-item row">
-          <div className="demo-product-item-image col-md-6 col-sm-12">
-            <img src={imageSrc} alt={pathContext.productName} />
-          </div>
-          <div className="demo-product-item-details col-md-6 col-sm-12">
-            <h1 id="demo-product-title">
-              {pathContext.productName}
-            </h1>
-            {this.renderVariants()}
-            {this.renderProductActions()}
-            {this.renderSocialIcons()}
-            <span id="behind-science">
-              <img src={download} className="icon" alt="download" />
-              Read the science behind the program
-            </span>
-            {this.renderTags()}
-          </div>
-        </div>
-        <div className="container">
+      <Container>
+        <Row>
+          <Flex flexWrap="wrap" my={3}>
+            <Box width={[1, 1, 1 / 2]} px={20}>
+              <Image
+                src={imageSrc}
+                alt={pathContext.productName}
+              />
+            </Box>
+            <Box width={[1, 1, 1 / 2]} px={20}>
+              <Heading my={3}>
+                <Caps fontSize={20} letterSpacing={1}>
+                  {pathContext.productName}
+                </Caps>
+              </Heading>
+              {this.renderVariants()}
+              {this.renderProductActions()}
+              {this.renderSocialIcons()}
+              <Text bg="#32baaf" color="#fff" p={1} fontSize={14} fontWeight={600} style={{ borderRadius: '5px', width: 'fit-content' }}>
+                <Image src={download} w={15} mx={2} alt="download" style={{ display: 'inline-block' }} />
+                Read the science behind the program
+              </Text>
+              {this.renderTags()}
+            </Box>
+          </Flex>
+        </Row>
+        <Row px={20}>
           {this.renderDescription()}
-        </div>
-        <div className="container">
-          <ProductSubscription />
-        </div>
-        <div className="container">
+        </Row>
+        <Row px={20}>
+          <Box style={{ width: '100%' }}>
+            <ProductSubscription />
+          </Box>
+        </Row>
+        <Row px={20}>
           <ProductFaqs faqs={pathContext.faqs} />
-        </div>
-      </div>
+        </Row>
+      </Container>
     );
   }
 }

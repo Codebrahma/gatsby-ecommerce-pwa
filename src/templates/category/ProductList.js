@@ -1,11 +1,12 @@
 import React from 'react';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
+import { Flex } from 'rebass';
 
 import ProductCard from './ProductCard';
 
 const ProductList = ({ products, addCardToCart }) => (
-  <div className="demo-product-list">
+  <Flex flexWrap="wrap" mt={2}>
     {_.map(products, ({ node }, index) => (
       <ProductCard
         key={index}
@@ -17,7 +18,7 @@ const ProductList = ({ products, addCardToCart }) => (
         addCardToCart={addCardToCart}
       />
     ))}
-  </div>
+  </Flex>
 );
 
 ProductList.propTypes = {

@@ -1,18 +1,37 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import Img from 'gatsby-image';
+import Link from 'gatsby-link';
+import {
+  Container, Flex, Carousel, Box, Caps, Relative,
+} from 'rebass';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import {
+  position, background, width, borderRadius, zIndex, opacity, top, space, color, left, right,
+} from 'styled-system';
 
-import CorouselItem from '../components/CorouselItem';
-import HomeStep from '../components/HomeStep';
 import ProductCard from '../templates/category/ProductCard';
-
-import './homepage/home.scss';
+import HomeStep from '../components/HomeStep';
 
 import goalsImage from '../assets/images/goals_1.png';
 import chooseImage from '../assets/images/plan_choose_2.png';
 import smartImage from '../assets/images/eat_smart_3.png';
 import winLifeImage from '../assets/images/win_life_4.png';
+
+const CarouselButton = styled.div`
+  ${position}
+  ${background}
+  ${width}
+  ${space}
+  ${borderRadius}
+  ${zIndex}
+  ${opacity}
+  ${color}
+  ${top}
+  ${left}
+  ${right}
+`;
 
 const planSteps = [
   {
@@ -44,12 +63,12 @@ const planSteps = [
 class HomePage extends Component {
   state = {
     currentIndex: 0,
-    corouselItems: [],
+    carouselItems: [],
   }
 
   componentDidMount() {
     const { data } = this.props;
-    const corouselItems = [
+    const carouselItems = [
       {
         image: data.banner1.childImageSharp.sizes,
         productId:
@@ -68,7 +87,7 @@ class HomePage extends Component {
     ];
     this.setState({
       currentIndex: 0,
-      corouselItems,
+      carouselItems,
     });
   }
 
@@ -79,52 +98,89 @@ class HomePage extends Component {
   }
 
   goToPrev = () => {
-    const { currentIndex, corouselItems } = this.state;
+    const { currentIndex, carouselItems } = this.state;
     this.setState(prevState => ({
       currentIndex:
         currentIndex < 1
-          ? corouselItems.length - 1
+          ? carouselItems.length - 1
           : prevState.currentIndex - 1,
     }));
   }
 
   renderHomeCarousel = () => {
-    const { corouselItems, currentIndex } = this.state;
-    return (corouselItems.length > 0 && (
-    <div className="carousel slide">
-      <CorouselItem
-        image={corouselItems[currentIndex].image}
-        productId={
-              corouselItems[currentIndex].productId
+    const { carouselItems, currentIndex } = this.state;
+
+    return (carouselItems.length > 0
+      && (
+        <Relative>
+          <Carousel index={currentIndex}>
+            {
+              _.map(carouselItems, item => (
+                <Box key={item.productId}>
+                  <CarouselButton
+                    position="absolute"
+                    background="rgb(158, 158, 158)"
+                    width="fit-content"
+                    borderRadius="50%"
+                    zIndex={2}
+                    opacity={0.3}
+                    color="white"
+                    top="45%"
+                    p={3}
+                    left="2%"
+                    onClick={this.goToPrev}
+                  >
+                    <span>
+                      <strong>
+                        {'<'}
+                      </strong>
+                    </span>
+                  </CarouselButton>
+                  <Link to={`product/${item.productId}`} style={{ margin: '0' }}>
+                    <Img className="carousel-image" width="100vw" height="65vh" style={{ margin: '0 auto' }} sizes={item.image} alt="home-page-item" />
+                  </Link>
+                  <CarouselButton
+                    position="absolute"
+                    background="rgb(158, 158, 158)"
+                    width="fit-content"
+                    borderRadius="50%"
+                    zIndex={2}
+                    opacity={0.3}
+                    color="white"
+                    top="45%"
+                    p={3}
+                    right="2%"
+                    onClick={this.goToNext}
+                  >
+                    <span>
+                      <strong>
+                        {'>'}
+                      </strong>
+                    </span>
+                  </CarouselButton>
+                </Box>
+              ))
             }
-      />
-      <div className="carousel-control-prev" onClick={this.goToPrev}>
-        <span className="carousel-control-prev-icon" aria-hidden="true" />
-        <span className="sr-only">
-  Previous
-        </span>
-      </div>
-      <div className="carousel-control-next" onClick={this.goToNext}>
-        <span className="carousel-control-next-icon" aria-hidden="true" />
-        <span className="sr-only">
-  Next
-        </span>
-      </div>
-    </div>
-    ));
+          </Carousel>
+        </Relative>
+      )
+    );
   }
 
+
   renderHomeSteps = () => (
-    <div className="demo-steps row">
-      {_.map(planSteps, (step, index) => (
-        <HomeStep
-          key={index}
-          image={step.image}
-          stepTitle={step.stepTitle}
-          stepDescription={step.stepDescription}
-        />
-      ))}
-    </div>
+    <Flex flexWrap="wrap">
+      {
+        _.map(planSteps, (step, index) => (
+          <HomeStep
+            key={index}
+            image={step.image}
+            stepTitle={step.stepTitle}
+            stepDescription={step.stepDescription}
+          />
+        ))
+      }
+    </Flex>
   )
 
   render() {
@@ -167,12 +223,9 @@ class HomePage extends Component {
           id: 'Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzg3MDY0NTcxNjE=',
           productType: 'Cookies',
           description: 'A filling snack to keep your health on track',
-          image: [
-            {
-              originalSrc:
-                'https://cdn.shopify.com/s/files/1/1057/7864/products/High_Fibre_Cookie_large-min.jpg?v=1533206149',
-            },
-          ],
+          image: [{
+            originalSrc: 'https://cdn.shopify.com/s/files/1/1057/7864/products/High_Fibre_Cookie_large-min.jpg?v=1533206149',
+          }],
           title: 'High Fibre Cookie',
           priceRange: {
             minVariantPrice: {
@@ -193,12 +246,9 @@ class HomePage extends Component {
           id: 'Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzg2NTU2MTc4MDE=',
           productType: 'Smoothie All India',
           description: 'Amplify your workout',
-          image: [
-            {
-              originalSrc:
-                'https://cdn.shopify.com/s/files/1/1057/7864/products/Physique-builder-Post-Workout-Smoothie-1.jpg?v=1518684204',
-            },
-          ],
+          image: [{
+            originalSrc: 'https://cdn.shopify.com/s/files/1/1057/7864/products/Physique-builder-Post-Workout-Smoothie-1.jpg?v=1518684204',
+          }],
           title: 'Physique Builder Post Workout Smoothie - Pack of 7',
           priceRange: {
             minVariantPrice: {
@@ -211,32 +261,34 @@ class HomePage extends Component {
     ];
 
     return (
-      <div>
+      <Box px={0} mt={2}>
         {this.renderHomeCarousel()}
-        <div className="container demo-product-collection w-75">
+        <Container my={5}>
           {this.renderHomeSteps()}
-          <div className="demo-product-collection-header">
-            <p>
-Featured Products
-            </p>
-          </div>
-          <div className="demo-product-list">
-            {_.map(featuredProducts, ({ node }, index) => (
-              <ProductCard
-                key={index}
-                productId={node.id}
-                productName={node.title}
-                description={node.description}
-                productPrice={node.priceRange.minVariantPrice.amount}
-                images={node.image}
-                addCardToCart={addItemToCart}
-              >
-                <Img sizes={node.images[0].originalSrc} alt={node.title} />
-              </ProductCard>
-            ))}
-          </div>
-        </div>
-      </div>
+        </Container>
+        <Container>
+          <Caps textAlign="center" fontSize={2}>
+            Featured Products
+          </Caps>
+          <Flex flexWrap="wrap">
+            {
+              _.map(featuredProducts, ({ node }, index) => (
+                <ProductCard
+                  key={index}
+                  productId={node.id}
+                  productName={node.title}
+                  description={node.description}
+                  productPrice={node.priceRange.minVariantPrice.amount}
+                  images={node.image}
+                  addCardToCart={addItemToCart}
+                >
+                  <Img sizes={node.images[0].originalSrc} alt={node.title} />
+                </ProductCard>
+              ))
+            }
+          </Flex>
+        </Container>
+      </Box>
     );
   }
 }
@@ -251,46 +303,46 @@ export default HomePage;
 /* eslint-disable no-undef */
 export const pageQuery = graphql`
   query BannerQuery {
-    banner1: file(relativePath: { eq: "banner-1.jpg" }) {
-      childImageSharp {
-        sizes(maxWidth: 1240) {
-          ...GatsbyImageSharpSizes
-        }
+        banner1: file(relativePath: {eq: "banner-1.jpg"}) {
+        childImageSharp {
+      sizes(maxWidth: 1240 ) {
+        ...GatsbyImageSharpSizes
+      }
       }
     }
-    banner2: file(relativePath: { eq: "banner-2.jpg" }) {
-      childImageSharp {
-        sizes(maxWidth: 1240) {
-          ...GatsbyImageSharpSizes
-        }
+    banner2: file(relativePath: {eq: "banner-2.jpg"}) {
+        childImageSharp {
+      sizes(maxWidth: 1240 ) {
+        ...GatsbyImageSharpSizes
+      }
       }
     }
-    banner3: file(relativePath: { eq: "banner-3.jpg" }) {
-      childImageSharp {
-        sizes(maxWidth: 1240) {
-          ...GatsbyImageSharpSizes
-        }
+    banner3: file(relativePath: {eq: "banner-3.jpg"}) {
+        childImageSharp {
+      sizes(maxWidth: 1240 ) {
+        ...GatsbyImageSharpSizes
+      }
       }
     }
-    featuredProductOne: file(relativePath: { eq: "feat-products1.jpg" }) {
-      childImageSharp {
-        sizes(maxWidth: 300) {
-          ...GatsbyImageSharpSizes
-        }
+    featuredProductOne: file(relativePath: {eq: "feat-products1.jpg"}) {
+        childImageSharp {
+      sizes(maxWidth: 300) {
+        ...GatsbyImageSharpSizes
+      }
       }
     }
-    featuredProductTwo: file(relativePath: { eq: "feat-products2.jpg" }) {
-      childImageSharp {
-        sizes(maxWidth: 300) {
-          ...GatsbyImageSharpSizes
-        }
+    featuredProductTwo: file(relativePath: {eq: "feat-products2.jpg"}) {
+        childImageSharp {
+      sizes(maxWidth: 300) {
+        ...GatsbyImageSharpSizes
+      }
       }
     }
-    featuredProductThree: file(relativePath: { eq: "feat-products3.jpg" }) {
-      childImageSharp {
-        sizes(maxWidth: 300) {
-          ...GatsbyImageSharpSizes
-        }
+    featuredProductThree: file(relativePath: {eq: "feat-products3.jpg"}) {
+        childImageSharp {
+      sizes(maxWidth: 300) {
+        ...GatsbyImageSharpSizes
+      }
       }
     }
   }

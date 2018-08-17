@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+import { Flex } from 'rebass';
 
 import VariantItem from './VariantItem';
 
@@ -30,9 +31,9 @@ class ProductVariants extends Component {
   render() {
     const { children, variantItems } = this.props;
     return (
-      <div className="demo-product-variants">
+      <div>
         {children}
-        <ul>
+        <Flex flexWrap="wrap" my={2}>
           {_.map(variantItems, (option, index) => (
             <VariantItem
               key={`${option}-${index}`}
@@ -41,7 +42,7 @@ class ProductVariants extends Component {
               isActive={this.isActive(option)}
             />
           ))}
-        </ul>
+        </Flex>
       </div>
     );
   }

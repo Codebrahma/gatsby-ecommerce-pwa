@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Row, Column, Hide } from 'rebass';
 import Menu from './Menu';
 import NavLink from '../../components/Navlink';
 import BackButtonWithRouter from './BackButton';
@@ -10,33 +11,40 @@ import cart from '../../assets/icons/shopping-cart-solid.svg';
 import menu from '../../assets/icons/bars-solid.svg';
 
 const NavbarMobile = ({ headPath }) => (
-  <div className="ma-nav-mobile-container">
-    <div className="pt_custommenu_mobile">
-      {headPath !== '/' && <BackButtonWithRouter />}
-      <div id="brand-logo" className="header_logo">
-        <NavLink linkTo="/" noActive>
-          <img className="logo img-responsive" src={logo} alt="logo" />
-        </NavLink>
-      </div>
-      <div className="col-right col-3 right-menu">
-        <div className="navbar bg-transparent">
-          <div id="navbar-inner">
+  <Hide xlarge large>
+    <Row>
+      <Column flex="0.5 auto" mb={0} p={3}>
+        {headPath !== '/' && <BackButtonWithRouter />}
+      </Column>
+      <Column flex="20 auto" mb={0}>
+        <div id="brand-logo" className="header_logo">
+          <NavLink linkTo="/" noActive>
+            <img className="logo img-responsive" src={logo} alt="logo" />
+          </NavLink>
+        </div>
+      </Column>
+      <Column flex="0.5 auto" mb={0}>
+        <Row p={3}>
+          <Column mb={0}>
             <NavLink position="left" linkTo="/cart" noActive>
-              <img src={cart} className="icon icon-mobile" alt="cart" />
+              <img src={cart} height="auto" width="20" alt="cart" />
             </NavLink>
+          </Column>
+          <Column mb={0}>
             <img
               src={menu}
               id="sidebar-menu-button"
-              className="icon icon-mobile"
+              height="20"
+              width="auto"
               alt="menu"
               tabIndex={0}
             />
             <Menu headPath={headPath} />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+          </Column>
+        </Row>
+      </Column>
+    </Row>
+  </Hide>
 );
 
 NavbarMobile.propTypes = {

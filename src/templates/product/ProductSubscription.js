@@ -1,11 +1,20 @@
 import React from 'react';
+import {
+  Heading, Border, Caps,
+} from 'rebass';
+
+import {
+  StyledTable, Stbody, Sthead, Sth, Std, Sspan,
+} from './styledSubscription';
 
 const ProductSubscription = () => (
-  <div className="demo-product-subscription">
-    <h3 id="subscription-header">
-subscription menu
-    </h3>
-    <select id="subscription-week">
+  <div style={{ margin: '20px 0' }}>
+    <Heading fontWeight={500} color="#212529" mb={2}>
+      <Caps fontSize={24} letterSpacing={1}>
+        subscription menu
+      </Caps>
+    </Heading>
+    <select style={{ width: '200px', padding: '8px 10px' }}>
       <option>
 Monday
       </option>
@@ -28,269 +37,268 @@ Saturday
 Sunday
       </option>
     </select>
-    <div className="demo-product-table">
-      <table>
-        <thead>
-          <tr>
-            <th colSpan="7" />
-            <th>
+    <Border borderColor="#c8bebe" my={20} p={0} style={{ borderRadius: '5px', zIndex: 99, overflow: 'hidden' }}>
+      <StyledTable>
+        <Sthead>
+          <tr style={{ height: '70px' }}>
+            <Sth colSpan="7" />
+            <Sth>
 calories
-            </th>
-            <th>
+            </Sth>
+            <Sth>
               carbs
-              <span>
+              <Sspan>
 &nbsp;(g)
-              </span>
-            </th>
-            <th>
+              </Sspan>
+            </Sth>
+            <Sth>
               protein
-              <span>
+              <Sspan>
 &nbsp;(g)
-              </span>
-            </th>
-            <th>
+              </Sspan>
+            </Sth>
+            <Sth>
               fat
-              <span>
+              <Sspan>
 &nbsp;(g)
-              </span>
-            </th>
-            <th>
+              </Sspan>
+            </Sth>
+            <Sth>
               fiber
-              <span>
+              <Sspan>
 &nbsp;(g)
-              </span>
-            </th>
+              </Sspan>
+            </Sth>
           </tr>
-        </thead>
-        <tbody>
+        </Sthead>
+        <Stbody>
           <tr>
-            <td rowSpan="4" id="food-type">
+            <Std rowSpan="4">
               <strong>
 Lunch
               </strong>
-            </td>
-            <td colSpan="5" id="align-left-fix">
+            </Std>
+            <Std colSpan="5" style={{ textAlign: 'left' }}>
               Main Course - Chicken Tikka Pizza
-            </td>
-            <td id="veg">
+            </Std>
+            <Std>
 Veg
-            </td>
-            <td>
+            </Std>
+            <Std>
 584
-            </td>
-            <td>
+            </Std>
+            <Std>
 12
-            </td>
-            <td>
+            </Std>
+            <Std>
 39
-            </td>
-            <td>
+            </Std>
+            <Std>
 40
-            </td>
-            <td>
+            </Std>
+            <Std>
 8
-            </td>
+            </Std>
           </tr>
           <tr>
-            <td colSpan="5">
+            <Std colSpan="5">
 Main Course - Paneer Tikka Pizza
-            </td>
-            <td id="non-veg">
+            </Std>
+            <Std>
 Non-Veg
-            </td>
-            <td>
+            </Std>
+            <Std>
 540
-            </td>
-            <td>
+            </Std>
+            <Std>
 11
-            </td>
-            <td>
+            </Std>
+            <Std>
 38
-            </td>
-            <td>
+            </Std>
+            <Std>
 35
-            </td>
-            <td>
+            </Std>
+            <Std>
 6
-            </td>
+            </Std>
           </tr>
           <tr>
-            <td colSpan="5">
+            <Std colSpan="5">
 Drink - Curcumin Mango
-              {' '}
-            </td>
-            <td id="veg">
+            </Std>
+            <Std>
 Veg
-            </td>
-            <td>
+            </Std>
+            <Std>
 10
-            </td>
-            <td>
+            </Std>
+            <Std>
 2
-            </td>
-            <td>
+            </Std>
+            <Std>
 0
-            </td>
-            <td>
+            </Std>
+            <Std>
 0
-            </td>
-            <td>
+            </Std>
+            <Std>
 1
-            </td>
+            </Std>
           </tr>
           <tr>
-            <td colSpan="5">
+            <Std colSpan="5">
               Snack - Italian Almond Flax Cracker with MCT Dip
-            </td>
-            <td id="veg">
+            </Std>
+            <Std>
 Veg
-            </td>
-            <td>
+            </Std>
+            <Std>
 191
-            </td>
-            <td>
+            </Std>
+            <Std>
 6
-            </td>
-            <td>
+            </Std>
+            <Std>
 10
-            </td>
-            <td>
+            </Std>
+            <Std>
 14
-            </td>
-            <td>
+            </Std>
+            <Std>
 2
-            </td>
+            </Std>
           </tr>
           <tr>
-            <td rowSpan="4" id="food-type">
+            <Std rowSpan="4">
               <strong>
 Dinner
               </strong>
-            </td>
-            <td colSpan="5" id="align-left-fix">
+            </Std>
+            <Std colSpan="5" style={{ textAlign: 'left' }}>
               Main Course - Mix Veg Cheese Zucchini Boats
-            </td>
-            <td id="veg">
+            </Std>
+            <Std>
 Veg
-            </td>
-            <td>
+            </Std>
+            <Std>
 500
-            </td>
-            <td>
+            </Std>
+            <Std>
 11
-            </td>
-            <td>
+            </Std>
+            <Std>
 25
-            </td>
-            <td>
+            </Std>
+            <Std>
 39
-            </td>
-            <td>
+            </Std>
+            <Std>
 5
-            </td>
+            </Std>
           </tr>
           <tr>
-            <td colSpan="5">
+            <Std colSpan="5">
 Main Course - Chicken Cheese Zucchini Boats
-            </td>
-            <td id="non-veg">
+            </Std>
+            <Std>
 Non-Veg
-            </td>
-            <td>
+            </Std>
+            <Std>
 450
-            </td>
-            <td>
+            </Std>
+            <Std>
 9
-            </td>
-            <td>
+            </Std>
+            <Std>
 26
-            </td>
-            <td>
+            </Std>
+            <Std>
 33
-            </td>
-            <td>
+            </Std>
+            <Std>
 5
-            </td>
+            </Std>
           </tr>
           <tr>
-            <td colSpan="5">
+            <Std colSpan="5">
 Drink - Curcumin Mango
               {' '}
-            </td>
-            <td id="veg">
+            </Std>
+            <Std>
 Veg
-            </td>
-            <td>
+            </Std>
+            <Std>
 10
-            </td>
-            <td>
+            </Std>
+            <Std>
 2
-            </td>
-            <td>
+            </Std>
+            <Std>
 0
-            </td>
-            <td>
+            </Std>
+            <Std>
 0
-            </td>
-            <td>
+            </Std>
+            <Std>
 1
-            </td>
+            </Std>
           </tr>
           <tr>
-            <td colSpan="5">
+            <Std colSpan="5">
               Snack - Italian Almond Flax Cracker with MCT Dip
               {' '}
-            </td>
-            <td id="veg">
+            </Std>
+            <Std>
 Veg
-            </td>
-            <td>
+            </Std>
+            <Std>
 191
-            </td>
-            <td>
+            </Std>
+            <Std>
 6
-            </td>
-            <td>
+            </Std>
+            <Std>
 10
-            </td>
-            <td>
+            </Std>
+            <Std>
 14
-            </td>
-            <td>
+            </Std>
+            <Std>
 2
-            </td>
+            </Std>
           </tr>
           <tr>
-            <td rowSpan="4" id="food-type">
+            <Std rowSpan="4">
               <strong>
 Smoothie
               </strong>
-            </td>
-            <td colSpan="5" id="align-left-fix">
+            </Std>
+            <Std colSpan="5" style={{ textAlign: 'left' }}>
               Vanilla Smoothie
-            </td>
-            <td id="veg">
+            </Std>
+            <Std>
 Veg
-            </td>
-            <td>
+            </Std>
+            <Std>
 456
-            </td>
-            <td>
+            </Std>
+            <Std>
 8
-            </td>
-            <td>
+            </Std>
+            <Std>
 27
-            </td>
-            <td>
+            </Std>
+            <Std>
 35
-            </td>
-            <td>
+            </Std>
+            <Std>
 3
-            </td>
+            </Std>
           </tr>
-        </tbody>
-      </table>
-    </div>
+        </Stbody>
+      </StyledTable>
+    </Border>
   </div>
 );
 

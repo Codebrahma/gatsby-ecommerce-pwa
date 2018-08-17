@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {
+  Flex, Box, Label, Input, Select, Text,
+} from 'rebass';
 
 const FormInputField = ({
   label,
@@ -8,19 +11,16 @@ const FormInputField = ({
   name,
   value,
 }) => {
-  const renderTextField = (inputType, inputName, inputValue) => (
-    <input
-      className="form-control"
-      id="form-control"
+  const renderTextField = (inputName, inputValue) => (
+    <Input
       name={inputName}
-      type={inputType}
       defaultValue={inputValue}
       required=""
     />
   );
 
   const renderSelectField = () => (
-    <select
+    <Select
       className="form-control form-control-select"
       id="form-control"
       name="id_state"
@@ -30,18 +30,18 @@ const FormInputField = ({
         --Please Select One--
       </option>
       <option value="1">
-Option-1
+        Option-1
       </option>
       <option value="2">
-Option-2
+        Option-2
       </option>
-    </select>
+    </Select>
   );
 
   const renderRadioButton = (inputType) => {
-    const radioTitle = (title, checked) => (
-      <label htmlFor="radio" className="d-inline">
-        <span className="custom-radio" id="radio">
+    const radioTitle = (title, margin, checked) => (
+      <Box ml={margin}>
+        <Label>
           <input
             name="id_gender"
             type={inputType}
@@ -49,15 +49,15 @@ Option-2
             defaultChecked={checked}
           />
           <span />
-        </span>
-        {title}
-      </label>
+          {title}
+        </Label>
+      </Box>
     );
     return (
-      <div className="form-control d-flex">
-        {radioTitle('Mr.', true)}
-        {radioTitle('Mrs.')}
-      </div>
+      <Flex>
+        {radioTitle('Mr.', 0, true)}
+        {radioTitle('Mrs.', 4)}
+      </Flex>
     );
   };
 
@@ -66,7 +66,7 @@ Option-2
       case 'text':
       case 'email':
       case 'number':
-        return renderTextField(inputType, inputName, inputValue);
+        return renderTextField(inputName, inputValue);
       case 'select':
         return renderSelectField();
       case 'radio':
@@ -77,17 +77,19 @@ Option-2
   };
 
   return (
-    <div className="form-group row">
-      <label className="col-md-3 form-control-label required">
-        {label}
-      </label>
-      <div className="col-md-6">
+    <Flex mb={2}>
+      <Box p={2} width={[1 / 3]}>
+        <Text>
+          {label}
+        </Text>
+      </Box>
+      <Box width={[2 / 3]}>
         {renderInputElement(type, name, value)}
-      </div>
-      <div className="col-md-3 form-control-comment">
-        {optional}
-      </div>
-    </div>
+        <div className="col-md-3 form-control-comment">
+          {optional}
+        </div>
+      </Box>
+    </Flex>
   );
 };
 

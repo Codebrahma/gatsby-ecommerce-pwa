@@ -1,61 +1,53 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import {
+  Flex, Box, Hide, Relative,
+} from 'rebass';
 import NavLink from '../../components/Navlink';
 import DropDown from './navbar/Dropdown';
 
 import logo from '../../assets/images/logo-new.png';
 import search from '../../assets/icons/search-solid.svg';
 
+
 const Navbar = ({ cartLength }) => (
-  <div className="nav-container">
-    <div
-      id="brand-logo"
-      className="header_logo col-left col col-lg-3 col-md-12 col-xs-12"
-    >
-      <NavLink linkTo="/" noActive>
-        <img className="logo img-responsive" src={logo} alt="logo" />
-      </NavLink>
-    </div>
-    <div
-      className="col col-lg-9 col-md-12 col-xs-12"
-      style={{ marginTop: '0.6%', float: 'right' }}
-    >
-      <div id="pt_custommenu" className="pt_custommenu">
-        <NavLink
-          title="diet plan"
-          linkTo="/category/diet-plan"
-          position="left"
-        />
-        <NavLink
-          title="breakfast"
-          linkTo="/category/breakfast"
-          position="left"
-        />
-        <NavLink title="lunch" linkTo="/category/lunch" position="left" />
-        <NavLink title="Dinner" linkTo="/category/dinner" position="left" />
-        <DropDown />
-        <div style={{ display: 'inline-block', float: 'right' }}>
-          <NavLink
-            linkTo="/cart"
-            title={`Cart(${cartLength})`}
-            position="right"
-          />
-          <NavLink linkTo="/" position="right" noActive>
-            <img src={search} className="icon" alt="search" />
+  <Hide medium small xsmall>
+    <Flex>
+      <Box width={1 / 6} mb={0} mr={5} px={3} pt={1}>
+        <div className="header_logo">
+          <NavLink linkTo="/" noActive>
+            <img src={logo} alt="logo" />
           </NavLink>
         </div>
-      </div>
-    </div>
-  </div>
+      </Box>
+      <Box width={5 / 6} mb={0}>
+        <Flex px={0} alignItems="center" justifyContent="space-between">
+          <Box width={5 / 9} mb={0}>
+            <Relative>
+              <Flex className="pt_custommenu">
+                <NavLink title="diet plan" linkTo="/category/diet-plan" />
+                <NavLink title="breakfast" linkTo="/category/breakfast" />
+                <NavLink title="lunch" linkTo="/category/lunch" />
+                <NavLink title="Dinner" linkTo="/category/dinner" />
+                <DropDown />
+              </Flex>
+            </Relative>
+          </Box>
+          <Box className="pt_custommenu" width={2 / 9} mb={0}>
+            <NavLink linkTo="/cart" title={`Cart(${cartLength || 0})`} noActive />
+            <NavLink linkTo="/" noActive>
+              <img src={search} className="icon" alt="search" />
+            </NavLink>
+          </Box>
+        </Flex>
+      </Box>
+    </Flex>
+  </Hide>
 );
 
 Navbar.propTypes = {
-  cartLength: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-};
-
-Navbar.defaultProps = {
-  cartLength: 0,
+  cartLength: PropTypes.number.isRequired,
 };
 
 export default Navbar;
