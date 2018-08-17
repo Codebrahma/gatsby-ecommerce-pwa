@@ -11,6 +11,7 @@ import {
 
 import deleteIcon from '../assets/icons/baseline-delete-24px.svg';
 import defaultImage from '../assets/images/default.jpeg';
+import Layout from '../components/layout';
 
 const ButtonBox = styled.div`
   ${borderLeft}
@@ -160,19 +161,21 @@ class Cart extends Component {
 
   render() {
     return (
-      <Container>
-        <Flex flexWrap="wrap">
-          <Box width={[1, 1, 3 / 4]} p={3}>
-            {this.showCartItems()}
-          </Box>
-          <Box width={[1, 1, 1 / 4]} p={3}>
-            {
-              this.getCheckoutMoney() !== 0
-              && this.displayCheckoutInfo()
-            }
-          </Box>
-        </Flex>
-      </Container>
+      <Layout>
+        <Container>
+          <Flex flexWrap="wrap">
+            <Box width={[1, 1, 3 / 4]} p={3}>
+              {this.showCartItems()}
+            </Box>
+            <Box width={[1, 1, 1 / 4]} p={3}>
+              {
+                this.getCheckoutMoney() !== 0
+                && this.displayCheckoutInfo()
+              }
+            </Box>
+          </Flex>
+        </Container>
+      </Layout>
     );
   }
 }

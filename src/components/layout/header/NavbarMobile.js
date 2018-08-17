@@ -3,18 +3,18 @@ import PropTypes from 'prop-types';
 
 import { Row, Column, Hide } from 'rebass';
 import Menu from './Menu';
-import NavLink from '../../components/Navlink';
-import BackButtonWithRouter from './BackButton';
+import NavLink from '../../Navlink';
+// import BackButtonWithRouter from './BackButton';
 
-import logo from '../../assets/images/logo-new.png';
-import cart from '../../assets/icons/shopping-cart-solid.svg';
-import menu from '../../assets/icons/bars-solid.svg';
+import logo from '../../../assets/images/logo-new.png';
+import cart from '../../../assets/icons/shopping-cart-solid.svg';
+import menu from '../../../assets/icons/bars-solid.svg';
 
 const NavbarMobile = ({ headPath }) => (
   <Hide xlarge large>
     <Row>
       <Column flex="0.5 auto" mb={0} p={3}>
-        {headPath !== '/' && <BackButtonWithRouter />}
+        {/* {headPath !== '/' && <BackButtonWithRouter />} */}
       </Column>
       <Column flex="20 auto" mb={0}>
         <div id="brand-logo" className="header_logo">

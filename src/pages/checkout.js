@@ -8,6 +8,7 @@ import {
 import FormInputField from '../components/Form';
 import CheckoutDetails from '../components/CheckoutDetails';
 import CheckoutButton from '../components/CheckoutButton';
+import Layout from '../components/layout';
 
 const Checkout = ({ eventedLocalStorage }) => {
   const personalInfoFormFields = [
@@ -112,48 +113,50 @@ const Checkout = ({ eventedLocalStorage }) => {
     },
   ];
   return (
-    <Container fontSize={1}>
-      <Flex flexWrap="wrap">
-        <Box px={2} py={4} width={[1, 1, 5 / 7]}>
-          <Container mb={3} py={3} px={4} style={{ boxShadow: '1px 1px 4px 1px rgba(158,158,158, 0.5)' }}>
-            <Lead fontWeight="bold" mb={4}>
-              Personal Info
+    <Layout>
+      <Container fontSize={1}>
+        <Flex flexWrap="wrap">
+          <Box px={2} py={4} width={[1, 1, 5 / 7]}>
+            <Container mb={3} py={3} px={4} style={{ boxShadow: '1px 1px 4px 1px rgba(158,158,158, 0.5)' }}>
+              <Lead fontWeight="bold" mb={4}>
+                Personal Info
             </Lead>
-            {_.map(personalInfoFormFields, field => (
-              <FormInputField
-                key={field.id}
-                label={field.label}
-                type={field.type}
-                name={field.name}
-                value={field.value}
-                optional={field.Optional}
-              />
-            ))}
-          </Container>
-          <Container py={3} px={4} style={{ boxShadow: '1px 1px 4px 1px rgba(158,158,158, 0.5)' }}>
-            <Lead fontWeight="bold" mb={4}>
-              Address Info
+              {_.map(personalInfoFormFields, field => (
+                <FormInputField
+                  key={field.id}
+                  label={field.label}
+                  type={field.type}
+                  name={field.name}
+                  value={field.value}
+                  optional={field.Optional}
+                />
+              ))}
+            </Container>
+            <Container py={3} px={4} style={{ boxShadow: '1px 1px 4px 1px rgba(158,158,158, 0.5)' }}>
+              <Lead fontWeight="bold" mb={4}>
+                Address Info
             </Lead>
-            {_.map(addressFormFields, field => (
-              <FormInputField
-                key={field.id}
-                label={field.label}
-                type={field.type}
-                name={field.name}
-                value={field.value}
-                optional={field.Optional}
-              />
-            ))}
-          </Container>
-        </Box>
-        <Box p={3} pt={4} width={[1, 1, 2 / 7]}>
-          <CheckoutDetails />
-          <CheckoutButton
-            eventedLocalStorage={eventedLocalStorage}
-          />
-        </Box>
-      </Flex>
-    </Container>
+              {_.map(addressFormFields, field => (
+                <FormInputField
+                  key={field.id}
+                  label={field.label}
+                  type={field.type}
+                  name={field.name}
+                  value={field.value}
+                  optional={field.Optional}
+                />
+              ))}
+            </Container>
+          </Box>
+          <Box p={3} pt={4} width={[1, 1, 2 / 7]}>
+            <CheckoutDetails />
+            <CheckoutButton
+              eventedLocalStorage={eventedLocalStorage}
+            />
+          </Box>
+        </Flex>
+      </Container>
+    </Layout>
   );
 };
 

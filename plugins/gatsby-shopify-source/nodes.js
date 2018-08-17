@@ -36,7 +36,7 @@ const downloadImageAndCreateFileNode = async (
 
   if (cacheMediaData) {
     ({ fileNodeID } = cacheMediaData);
-    touchNode(fileNodeID);
+    touchNode({ nodeId: fileNodeID});
     return fileNodeID;
   }
 

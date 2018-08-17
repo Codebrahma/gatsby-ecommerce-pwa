@@ -12,19 +12,17 @@ const HeaderWrapper = styled.header`
   ${boxShadow}
 `;
 
-const Header = ({ cartLength, headPath }) => (
+const Header = ({ cartLength }) => (
   <HeaderWrapper boxShadow="0px 1px 5px 0 rgba(0, 0, 0, 0.2)">
     <Navbar cartLength={cartLength} />
     <NavbarMobile
-      headPath={headPath}
       cartLength={cartLength}
     />
   </HeaderWrapper>
 );
 
 Header.propTypes = {
-  cartLength: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  headPath: PropTypes.string.isRequired,
+  cartLength: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 };
 
 Header.defaultProps = {

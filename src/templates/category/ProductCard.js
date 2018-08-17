@@ -153,7 +153,7 @@ ProductCard.propTypes = {
   productPrice: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   images: PropTypes.oneOfType([PropTypes.array]).isRequired,
   description: PropTypes.string,
-  addCardToCart: PropTypes.func.isRequired,
+  // addCardToCart: PropTypes.func.isRequired,
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]),
 };
 ProductCard.defaultProps = {

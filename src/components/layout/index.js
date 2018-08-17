@@ -9,7 +9,7 @@ import InstallPrompt from './InstallPrompt';
 
 import './index.scss';
 
-import '../assets/images/512.png';
+import '../../assets/images/512.png';
 
 /* eslint-disable no-unused-expressions */
 injectGlobal`
@@ -66,7 +66,8 @@ class Layout extends React.Component {
   }
 
   render() {
-    const { children, location } = this.props;
+    console.log(this.props)
+    const { children } = this.props;
     const { cartLength } = this.state;
     return (
       <Provider>
@@ -75,14 +76,10 @@ class Layout extends React.Component {
         </Helmet>
         <InstallPrompt />
         <Header
-          headPath={location.pathname}
+          // headPath={location.pathname}
           cartLength={cartLength}
         />
-        {children({
-          ...this.props,
-          eventedLocalStorage: this.eventedLocalStorage,
-          addItemToCart: this.addItemToCart,
-        })}
+        {children}
       </Provider>
     );
   }
@@ -90,7 +87,6 @@ class Layout extends React.Component {
 
 Layout.propTypes = {
   children: PropTypes.func,
-  location: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
 Layout.defaultProps = {
