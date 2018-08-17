@@ -19,7 +19,6 @@ import download from '../assets/icons/download-solid.svg';
 import defaultImage from '../assets/images/default.jpeg';
 import Layout from '../components/layout';
 
-
 class ProductItem extends Component {
   constructor(props) {
     super(props);
@@ -113,6 +112,7 @@ class ProductItem extends Component {
         my={10}
         mr={10}
         style={{ cursor: (!renderCondition ? 'pointer' : 'not-allowed'), minWidth: '170px' }}
+        disabled={renderCondition}
         onClick={handleClick}
       >
         <Text py={10} px={15}>

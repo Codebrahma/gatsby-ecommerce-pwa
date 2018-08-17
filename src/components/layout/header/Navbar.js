@@ -35,10 +35,10 @@ const Navbar = ({ cartLength }) => (
             </Relative>
           </Box>
           <Box className="pt_custommenu" width={2 / 9} mb={0}>
-            <NavLink linkTo="/cart" title={`Cart(${cartLength || 0})`} noActive />
             <NavLink linkTo="/" noActive>
-              <img src={search} className="icon" alt="search" />
+              <img src={search} width="12px" alt="search" />
             </NavLink>
+            <NavLink linkTo="/cart" title={`Cart(${cartLength || 0})`} noActive />
           </Box>
         </Flex>
       </Box>

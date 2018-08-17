@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { Container, Caps } from 'rebass';
 
 import ProductList from './category/ProductList';
-
-import './category/category.scss';
 import Layout from '../components/layout';
 
 const Categories = (props) => {
