@@ -1,17 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { boxShadow } from 'styled-system';
+import { boxShadow, height } from 'styled-system';
 
 import Navbar from './header/Navbar';
 import NavbarMobile from './header/NavbarMobile';
 
 const HeaderWrapper = styled.header`
   ${boxShadow}
+  ${height}
 `;
 
 const Header = ({ cartLength, headPath }) => (
-  <HeaderWrapper boxShadow="0px 1px 5px 0 rgba(0, 0, 0, 0.2)">
+  <HeaderWrapper height="4.3em" boxShadow="0px 1px 5px 0 rgba(0, 0, 0, 0.2)">
     <Navbar cartLength={cartLength} />
     <NavbarMobile
       headPath={headPath}

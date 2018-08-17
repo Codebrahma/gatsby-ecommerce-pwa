@@ -21,9 +21,7 @@ const SideMenuButton = styled.img`
 const NavbarMobile = ({ headPath }) => (
   <Hide xlarge large>
     <Row>
-      <Column flex="0.5 auto" mb={0} p={3}>
-        {(headPath !== '/') && <BackButtonWithRouter />}
-      </Column>
+      {(headPath !== '/') && <BackButtonWithRouter />}
       <Column flex="2 auto" mb={0} mt={2}>
         <div id="brand-logo">
           <NavLink linkTo="/" noActive>
@@ -32,7 +30,7 @@ const NavbarMobile = ({ headPath }) => (
         </div>
       </Column>
       <Column flex="0.5 auto" mb={0}>
-        <Row p={3}>
+        <Row p={1}>
           <Column mb={0}>
             <NavLink position="left" linkTo="/cart" noActive>
               <img src={cart} height="auto" width="20" alt="cart" />
