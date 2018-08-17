@@ -4,8 +4,13 @@ import PropTypes from 'prop-types';
 import { Caps } from 'rebass';
 import styled from 'styled-components';
 import {
-  position, zIndex, top, maxWidth, bottom, left, space, background,
+  position, zIndex, top, maxWidth, bottom, left, space, background, style,
 } from 'styled-system';
+
+const overflow = style({
+  prop: 'overflow',
+  cssProperty: 'overflow',
+});
 
 const SideBar = styled.div`
   ${maxWidth}
@@ -16,6 +21,17 @@ const SideBar = styled.div`
   ${left}
   ${space}
   ${background}
+  ${overflow}
+  transition: 0.5s ease-in
+  a {
+    cursor: pointer
+    color: black
+    white-space: nowrap
+    text-decoration: none
+    &:hover {
+        color: rgb(245, 124, 0)
+    }
+
 `;
 
 const NavLink = ({ linkTo, title }) => (
@@ -27,7 +43,7 @@ const NavLink = ({ linkTo, title }) => (
 );
 
 const Menu = () => (
-  <SideBar id="side-bar" maxWidth="30vw" position="fixed" zIndex={2} top={0} bottom={0} left="-40vw" background="white">
+  <SideBar id="side-bar" overflow="hidden" p="1% 4%" maxWidth="30vw" position="fixed" zIndex={2} top={0} bottom={0} left="-40vw" background="white">
     <NavLink linkTo="diet-plan" title="diet plan" />
     <NavLink linkTo="lunch" title="lunch" />
     <NavLink linkTo="dinner" title="dinner" />

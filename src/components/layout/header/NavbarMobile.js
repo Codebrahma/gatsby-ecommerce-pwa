@@ -16,10 +16,10 @@ const NavbarMobile = ({ headPath }) => (
       <Column flex="0.5 auto" mb={0} p={3}>
         {(headPath !== '/') && <BackButtonWithRouter />}
       </Column>
-      <Column flex="20 auto" mb={0}>
-        <div id="brand-logo" className="header_logo">
+      <Column flex="2 auto" mb={0} mt={2}>
+        <div id="brand-logo">
           <NavLink linkTo="/" noActive>
-            <img className="logo img-responsive" src={logo} alt="logo" />
+            <img src={logo} alt="logo" />
           </NavLink>
         </div>
       </Column>
@@ -30,7 +30,7 @@ const NavbarMobile = ({ headPath }) => (
               <img src={cart} height="auto" width="20" alt="cart" />
             </NavLink>
           </Column>
-          <Column mb={0}>
+          <Column mb={0} mt={10}>
             <img
               src={menu}
               id="sidebar-menu-button"

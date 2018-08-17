@@ -25,6 +25,10 @@ const DropDownBox = styled.div`
   ${fontWeight}
   ${letterSpacing}
   ${top}
+  ${minWidth}
+  &:hover {
+    color: rgb(245, 124, 0)
+  }
 `;
 
 const DownIcon = styled.img`
@@ -51,15 +55,15 @@ const showDropdown = () => {
 };
 
 const DropDown = () => (
-  <DropDownBox fontSize="0.7em" lineHeight="2em" fontWeight={400} letterSpacing="0.05em" id="interest-dropdown" onMouseEnter={showDropdown} onMouseLeave={toggleDropdown} style={{ cursor: 'pointer' }}>
-    <Flex pt={2}>
+  <DropDownBox fontSize="0.7em" lineHeight="2em" minWidth="fit-content" p="1.5%" fontWeight={400} letterSpacing="0.05em" id="interest-dropdown" onMouseEnter={showDropdown} onMouseLeave={toggleDropdown} style={{ cursor: 'pointer' }}>
+    <Flex pt={1}>
       <Caps>
         more
       </Caps>
       <DownIcon src={angleDown} alt="angleDown" maxWidth="7px" maxHeight="10px" m={2} />
     </Flex>
     <Absolute zIndex="2">
-      <DropDownMenu className="dropdown-menu" display="none" lineHeight={1} boxShadow="1px 2px 4px 1px rgba(0, 0, 0, 0.5)" background="white" minWidth="fit-content">
+      <DropDownMenu className="dropdown-menu" p="1.8%" display="none" lineHeight={1} boxShadow="1px 2px 4px 1px rgba(0, 0, 0, 0.5)" background="white" minWidth="fit-content">
         <DropdownLink onClick={toggleDropdown} linkTo="skin-and-hair-plan" title="Skin and Hair" />
         <DropdownLink onClick={toggleDropdown} linkTo="skin-care-plan" title="skin care" />
         <DropdownLink onClick={toggleDropdown} linkTo="smoothie" title="smoothies" />

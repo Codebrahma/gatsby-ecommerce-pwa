@@ -1,50 +1,10 @@
-.pt_custommenu {
-    font-size: 1.5em;
-    min-width: fit-content;
-    .nav-link {
-        height: 100%;
-        text-transform: uppercase;
-        font-size: 0.7em;
-        letter-spacing: 0.05em;
-        font-weight: 400;
-        line-height: 50px;
-        padding: 0 5%;
-        color: black;
-        text-decoration: none;
-        min-width: fit-content;
-        border-bottom: 2px solid rgba(245, 124, 0, 0);
-        &:hover {
-            color: rgb(245, 124, 0);
-        }
-    }
-    .active-link {
+   .active-link {
         border-bottom: 2px solid rgba(245, 124, 0, 1) !important;
         color: rgb(245, 124, 0) !important;
     }
-    div {
-        padding: 1.8%;
-        min-width: fit-content;
-    }
-}
-
 #sidebar-menu-button {
     cursor: pointer;
     &:focus+#side-bar {
         left: 0vw !important;
-    }
-}
-
-#side-bar {
-    padding: 1% 4%;
-    overflow: hidden;
-    transition: 0.5s ease-in;
-    a {
-        cursor: pointer;
-        color: black;
-        white-space: nowrap;
-        text-decoration: none;
-        &:hover {
-            color: rgb(245, 124, 0) !important;
-        }
     }
 }

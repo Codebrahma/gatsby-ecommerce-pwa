@@ -25,7 +25,7 @@ const Navbar = ({ cartLength }) => (
         <Flex px={0} alignItems="center" justifyContent="space-between">
           <Box width={5 / 9} mb={0}>
             <Relative>
-              <Flex className="pt_custommenu">
+              <Flex fontSize="1.5em">
                 <NavLink title="diet plan" linkTo="/category/diet-plan" />
                 <NavLink title="breakfast" linkTo="/category/breakfast" />
                 <NavLink title="lunch" linkTo="/category/lunch" />
@@ -34,7 +34,7 @@ const Navbar = ({ cartLength }) => (
               </Flex>
             </Relative>
           </Box>
-          <Box className="pt_custommenu" width={2 / 9} mb={0}>
+          <Box fontSize="1.3em" width={2 / 9} mb={0}>
             <NavLink linkTo="/" noActive>
               <img src={search} width="12px" alt="search" />
             </NavLink>

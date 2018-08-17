@@ -6,9 +6,6 @@ import { injectGlobal } from 'styled-components';
 
 import Header from './Header';
 import InstallPrompt from './InstallPrompt';
-
-import './index.scss';
-
 import '../../assets/images/512.png';
 
 /* eslint-disable no-unused-expressions */

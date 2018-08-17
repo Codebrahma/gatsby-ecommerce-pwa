@@ -1,6 +1,37 @@
 import React from 'react';
 import GatsbyLink from 'gatsby-link';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import {
+  fontSize,
+  letterSpacing,
+  fontWeight,
+  lineHeight,
+  color,
+  textDecoration,
+  maxWidth,
+  borderBottom,
+  textTransform,
+  minHeight,
+  space,
+} from 'styled-system';
+
+const StyledLink = styled.span`
+  ${fontSize}
+  ${letterSpacing}
+  ${fontWeight}
+  ${lineHeight}
+  ${color}
+  ${textDecoration}
+  ${maxWidth}
+  ${borderBottom}
+  ${textTransform}
+  ${minHeight}
+  ${space}
+  &:hover {
+    color: rgb(245, 124, 0);
+}
+`;
 
 const NavLink = ({
   linkTo,
@@ -11,9 +42,25 @@ const NavLink = ({
   <GatsbyLink
     to={linkTo}
     activeClassName={noActive ? '' : 'active-link'}
-    className="nav-link"
+    style={{
+      textTransform: 'uppercase',
+      textDecoration: 'none',
+      minWidth: 'fit-content',
+      color: '#000',
+      borderBottom: '2px solid rgba(245, 124, 0, 0)',
+    }}
+    // onClick={() => activeClass()}
   >
-    {children || title}
+    <StyledLink
+      fontSize="0.7em"
+      letterSpacing="0.05em"
+      fontWeight="400"
+      lineHeight="50px"
+      maxHeight="10px"
+      p="2em 2.5em"
+    >
+      {children || title}
+    </StyledLink>
   </GatsbyLink>
 );
 

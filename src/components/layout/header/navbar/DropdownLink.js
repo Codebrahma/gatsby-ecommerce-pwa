@@ -10,16 +10,24 @@ const DropDownItem = styled.div`
   ${fontSize},
   ${letterSpacing},
   ${fontWeight}
+  a {
+    color: #000
+    text-decoration: none
+    white-space: nowrap
+    &:hover {
+      color: rgb(245, 124, 0);
+    }
+  }
 `;
 
 const DropdownLink = ({ linkTo, title }) => (
   <Box my={3}>
-    <DropDownItem fontSize="1em" fontWeight={400}>
-      <Caps>
-        <GatsbyLink className="dropdown-item" to={`/category/${linkTo}`}>
+    <DropDownItem fontSize="1em" fontWeight={400} letterSpacing="0.05em">
+      <GatsbyLink to={`/category/${linkTo}`}>
+        <Caps color="">
           {title}
-        </GatsbyLink>
-      </Caps>
+        </Caps>
+      </GatsbyLink>
     </DropDownItem>
   </Box>
 );
