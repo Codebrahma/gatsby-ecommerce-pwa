@@ -181,7 +181,7 @@ class Cart extends Component {
 }
 
 Cart.propTypes = {
-  eventedLocalStorage: PropTypes.func.isRequired,
+  // eventedLocalStorage: PropTypes.func.isRequired,
 };
 
 export default Cart;

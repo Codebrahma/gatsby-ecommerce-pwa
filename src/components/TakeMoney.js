@@ -96,5 +96,5 @@ Please connect Internet to proceed for payment
 }
 
 TakeMoney.propTypes = {
-  eventedLocalStorage: PropTypes.func.isRequired,
+  // eventedLocalStorage: PropTypes.func.isRequired,
 };

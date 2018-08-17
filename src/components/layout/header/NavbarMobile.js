@@ -48,7 +48,7 @@ const NavbarMobile = ({ headPath }) => (
 );
 
 NavbarMobile.propTypes = {
-  headPath: PropTypes.string.isRequired,
+  // headPath: PropTypes.string.isRequired,
 };
 
 export default NavbarMobile;

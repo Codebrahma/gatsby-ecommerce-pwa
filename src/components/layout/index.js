@@ -66,7 +66,6 @@ class Layout extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     const { children } = this.props;
     const { cartLength } = this.state;
     return (
@@ -86,7 +85,7 @@ class Layout extends React.Component {
 }
 
 Layout.propTypes = {
-  children: PropTypes.func,
+  children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 };
 
 Layout.defaultProps = {

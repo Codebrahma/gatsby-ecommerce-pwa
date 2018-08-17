@@ -161,7 +161,7 @@ const Checkout = ({ eventedLocalStorage }) => {
 };
 
 Checkout.propTypes = {
-  eventedLocalStorage: PropTypes.func.isRequired,
+  // eventedLocalStorage: PropTypes.func.isRequired,
 };
 
 export default Checkout;

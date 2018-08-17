@@ -56,24 +56,23 @@ class ProductCard extends Component {
   }
 
   handleAddClick = () => {
-    const {
-      productId,
-      images,
-      productName,
-      description,
-      productPrice,
-      addCardToCart,
-    } = this.props;
+    // const {
+    //   productId,
+    //   images,
+    //   productName,
+    //   description,
+    //   productPrice,
+    // } = this.props;
     this.setState({
       isInCart: true,
     });
-    addCardToCart({
-      productId,
-      images,
-      productName,
-      description,
-      productPrice,
-    });
+    // addCardToCart({
+    //   productId,
+    //   images,
+    //   productName,
+    //   description,
+    //   productPrice,
+    // });
   }
 
 

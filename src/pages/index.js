@@ -11,6 +11,7 @@ import {
   position, background, width, borderRadius, zIndex, opacity, top, space, color, left, right,
 } from 'styled-system';
 
+import { graphql } from 'gatsby';
 import ProductCard from '../templates/category/ProductCard';
 import HomeStep from '../components/HomeStep';
 
@@ -18,7 +19,6 @@ import goalsImage from '../assets/images/goals_1.png';
 import chooseImage from '../assets/images/plan_choose_2.png';
 import smartImage from '../assets/images/eat_smart_3.png';
 import winLifeImage from '../assets/images/win_life_4.png';
-import { graphql } from 'gatsby';
 import Layout from '../components/layout';
 
 const CarouselButton = styled.div`
@@ -264,17 +264,17 @@ class HomePage extends Component {
 
     return (
       <Layout>
-      <Box px={0} mt={2}>
-        {this.renderHomeCarousel()}
-        <Container my={5}>
-          {this.renderHomeSteps()}
-        </Container>
-        <Container>
-          <Caps textAlign="center" fontSize={2}>
+        <Box px={0} mt={2}>
+          {this.renderHomeCarousel()}
+          <Container my={5}>
+            {this.renderHomeSteps()}
+          </Container>
+          <Container>
+            <Caps textAlign="center" fontSize={2}>
             Featured Products
-          </Caps>
-          <Flex flexWrap="wrap">
-            {
+            </Caps>
+            <Flex flexWrap="wrap">
+              {
               _.map(featuredProducts, ({ node }, index) => (
                 <ProductCard
                   key={index}
@@ -283,15 +283,15 @@ class HomePage extends Component {
                   description={node.description}
                   productPrice={node.priceRange.minVariantPrice.amount}
                   images={node.image}
-                  // addCardToCart={addItemToCart}
+                  addCardToCart={addItemToCart}
                 >
                   <Img fluid={node.images[0].originalSrc} alt={node.title} />
                 </ProductCard>
               ))
             }
-          </Flex>
-        </Container>
-      </Box>
+            </Flex>
+          </Container>
+        </Box>
       </Layout>
     );
   }
@@ -306,7 +306,7 @@ export default HomePage;
 
 /* eslint-disable no-undef */
 export const pageQuery = graphql`
-  query BannerQuery {
+  query {
         banner1: file(relativePath: {eq: "banner-1.jpg"}) {
         childImageSharp {
       fluid(maxWidth: 1240 ) {

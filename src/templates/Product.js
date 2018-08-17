@@ -114,7 +114,6 @@ class ProductItem extends Component {
         my={10}
         mr={10}
         style={{ cursor: (!renderCondition ? 'pointer' : 'not-allowed'), minWidth: '170px' }}
-        disable={renderCondition}
         onClick={handleClick}
       >
         <Text py={10} px={15}>
@@ -127,15 +126,14 @@ class ProductItem extends Component {
     const CountButton = ({
       imageIcon, handleClick, alternate, renderCondition,
     }) => (
-        <Button
-          bg="#f5f5f5"
-          disable={renderCondition}
-          onClick={handleClick}
-          style={{ cursor: (renderCondition ? 'not-allowed' : 'pointer') }}
-        >
-          <Image w={15} src={imageIcon} alt={alternate} />
-        </Button>
-      );
+      <Button
+        bg="#f5f5f5"
+        onClick={handleClick}
+        style={{ cursor: (renderCondition ? 'not-allowed' : 'pointer') }}
+      >
+        <Image w={15} src={imageIcon} alt={alternate} />
+      </Button>
+    );
     return (
       <div>
         <Flex alignItems="center" my={10}>
@@ -295,7 +293,7 @@ class ProductItem extends Component {
                 <Text bg="#32baaf" color="#fff" p={1} fontSize={14} fontWeight={600} style={{ borderRadius: '5px', width: 'fit-content' }}>
                   <Image src={download} w={15} mx={2} alt="download" style={{ display: 'inline-block' }} />
                   Read the science behind the program
-              </Text>
+                </Text>
                 {this.renderTags()}
               </Box>
             </Flex>

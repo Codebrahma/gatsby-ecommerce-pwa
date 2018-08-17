@@ -13,7 +13,7 @@ const CheckoutButton = ({ eventedLocalStorage }) => (
 );
 
 CheckoutButton.propTypes = {
-  eventedLocalStorage: PropTypes.func.isRequired,
+  // eventedLocalStorage: PropTypes.func.isRequired,
 };
 
 export default CheckoutButton;

@@ -23,7 +23,7 @@ const ProductList = ({ products, addCardToCart }) => (
 
 ProductList.propTypes = {
   products: PropTypes.arrayOf(PropTypes.object).isRequired,
-  addCardToCart: PropTypes.func.isRequired,
+  // addCardToCart: PropTypes.func.isRequired,
 };
 
 export default ProductList;

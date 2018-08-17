@@ -26,7 +26,7 @@ const Categories = (props) => {
 
 Categories.propTypes = {
   pageContext: PropTypes.oneOfType([PropTypes.object]).isRequired,
-  addItemToCart: PropTypes.func.isRequired,
+  // addItemToCart: PropTypes.func.isRequired,
 };
 
 export default Categories;
