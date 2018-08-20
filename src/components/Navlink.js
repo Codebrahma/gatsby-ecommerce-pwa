@@ -15,6 +15,7 @@ import {
   minHeight,
   space,
 } from 'styled-system';
+import { minWidth } from 'styled-system/dist/styles';
 
 const StyledLink = styled.span`
   ${fontSize}
@@ -24,6 +25,7 @@ const StyledLink = styled.span`
   ${color}
   ${textDecoration}
   ${maxWidth}
+  ${minWidth}
   ${borderBottom}
   ${textTransform}
   ${minHeight}
@@ -45,12 +47,13 @@ const NavLink = ({
     style={{
       textTransform: 'uppercase',
       textDecoration: 'none',
-      minWidth: 'fit-content',
       color: '#000',
+      whiteSpace: 'nowrap',
       borderBottom: '2px solid rgba(245, 124, 0, 0)',
     }}
   >
     <StyledLink
+      minWidth="100%"
       fontSize="1.1em"
       letterSpacing="0.05em"
       fontWeight="400"

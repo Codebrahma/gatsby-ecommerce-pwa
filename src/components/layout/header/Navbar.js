@@ -23,7 +23,7 @@ const Navbar = ({ cartLength }) => (
         <Flex px={0} alignItems="center" justifyContent="space-between">
           <Box width={11 / 15} mb={0}>
             <Relative>
-              <Flex>
+              <Flex alignItems="center">
                 <NavLink title="diet plan" linkTo="/category/diet-plan" />
                 <NavLink title="breakfast" linkTo="/category/breakfast" />
                 <NavLink title="lunch" linkTo="/category/lunch" />
