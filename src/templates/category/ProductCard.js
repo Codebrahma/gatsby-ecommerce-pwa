@@ -108,7 +108,7 @@ class ProductCard extends Component {
             </Text>
           </Box>
           {/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */}
-          <Box style={{ borderLeft: '1px solid rgba(26, 26, 26, 0.5)', cursor: 'pointer' }} onClick={handleClick} width={1 / 4} pt={2}>
+          <Box style={{ borderLeft: '1px solid rgba(26, 26, 26, 0.5)', cursor: 'pointer', textAlign: 'center' }} onClick={handleClick} width={1 / 4} pt={2}>
             <ButtonImage src={imageIcon} alt={alternate} maxHeight="15px" maxWidth="auto" />
           </Box>
           {/* eslint-enable jsx-a11y/no-noninteractive-element-interactions */}

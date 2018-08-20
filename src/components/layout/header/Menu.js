@@ -43,7 +43,7 @@ const NavLink = ({ linkTo, title }) => (
 );
 
 const Menu = () => (
-  <SideBar id="side-bar" overflow="hidden" p="1% 4%" maxWidth="30vw" position="fixed" zIndex={2} top={0} bottom={0} left="-40vw" background="white">
+  <SideBar id="side-bar" overflow="hidden" p="1% 4%" maxWidth="30vw" position="fixed" zIndex={3} top={0} bottom={0} left="-40vw" background="white">
     <NavLink linkTo="diet-plan" title="diet plan" />
     <NavLink linkTo="lunch" title="lunch" />
     <NavLink linkTo="dinner" title="dinner" />
