@@ -50,8 +50,11 @@ const ProductDetails = styled.p`
 `;
 
 class ProductCard extends Component {
-  state = {
-    isInCart: false,
+  constructor(props) {
+    super(props);
+    this.state = {
+      isInCart: false,
+    };
   }
 
   componentDidMount() {
@@ -163,7 +166,7 @@ class ProductCard extends Component {
               {desc}
             </ProductDetails>
           </Container>
-          { this.renderCardFooter() }
+          {this.renderCardFooter()}
         </Card>
       </Box>
     );

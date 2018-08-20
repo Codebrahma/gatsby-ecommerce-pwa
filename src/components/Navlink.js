@@ -49,15 +49,14 @@ const NavLink = ({
       color: '#000',
       borderBottom: '2px solid rgba(245, 124, 0, 0)',
     }}
-    // onClick={() => activeClass()}
   >
     <StyledLink
-      fontSize="0.7em"
+      fontSize="1.1em"
       letterSpacing="0.05em"
       fontWeight="400"
       lineHeight="50px"
       maxHeight="10px"
-      p="2em 2.5em"
+      p="2.5em"
     >
       {children || title}
     </StyledLink>

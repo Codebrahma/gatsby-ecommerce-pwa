@@ -12,7 +12,7 @@ const HeaderWrapper = styled.header`
 `;
 
 const Header = ({ cartLength, headPath }) => (
-  <HeaderWrapper height="4.3em" boxShadow="0px 1px 5px 0 rgba(0, 0, 0, 0.2)">
+  <HeaderWrapper height="fit-content" boxShadow="0px 1px 5px 0 rgba(0, 0, 0, 0.2)">
     <Navbar cartLength={cartLength} />
     <NavbarMobile
       headPath={headPath}

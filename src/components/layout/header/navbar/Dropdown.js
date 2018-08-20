@@ -1,5 +1,7 @@
 import React from 'react';
-import { Absolute, Caps, Flex } from 'rebass';
+import {
+  Absolute, Caps, Flex, Box,
+} from 'rebass';
 import styled from 'styled-components';
 import {
   fontSize,
@@ -56,11 +58,15 @@ const showDropdown = () => {
 
 const DropDown = () => (
   <DropDownBox fontSize="0.7em" lineHeight="2em" minWidth="fit-content" p="1.5%" fontWeight={400} letterSpacing="0.05em" id="interest-dropdown" onMouseEnter={showDropdown} onMouseLeave={toggleDropdown} style={{ cursor: 'pointer' }}>
-    <Flex pt={1}>
-      <Caps>
-        more
-      </Caps>
-      <DownIcon src={angleDown} alt="angleDown" maxWidth="7px" maxHeight="10px" m={2} />
+    <Flex>
+      <Box style={{ display: 'flex', alignItems: 'center' }}>
+        <Caps>
+          more
+        </Caps>
+      </Box>
+      <Box>
+        <DownIcon src={angleDown} alt="angleDown" width="7px" height="10px" m={2} />
+      </Box>
     </Flex>
     <Absolute zIndex="2">
       <DropDownMenu className="dropdown-menu" p={3} display="none" lineHeight={1} boxShadow="1px 2px 4px 1px rgba(0, 0, 0, 0.5)" background="white" minWidth="fit-content">
