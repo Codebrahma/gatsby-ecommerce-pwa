@@ -6,10 +6,10 @@ import {
   Container, Flex, Carousel, Box, Caps, Relative,
 } from 'rebass';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import {
   position, background, width, borderRadius, zIndex, opacity, top, space, color, left, right, style,
 } from 'styled-system';
+import styled, { injectGlobal } from 'styled-components';
 import ProductCard from '../templates/category/ProductCard';
 import HomeStep from '../components/HomeStep';
 
@@ -23,6 +23,14 @@ const cursor = style({
   prop: 'cursor',
   cssProperty: 'cursor',
 });
+
+/* eslint-disable no-unused-expressions */
+injectGlobal`
+* { box-sizing: border-box; font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif }
+body { margin: 0; overflow-x: hidden; font-size: 0.75em }
+`;
+/* eslint-enable no-unused-expressions */
+
 
 const CarouselButton = styled.div`
   ${position}
