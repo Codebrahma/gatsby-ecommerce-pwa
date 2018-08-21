@@ -17,6 +17,7 @@ import {
   height,
   display,
   letterSpacing,
+  style,
 } from 'styled-system';
 
 import plus from '../../assets/icons/plus-solid.svg';
@@ -33,6 +34,11 @@ const ButtonImage = styled.img`
   ${maxWidth}
 `;
 
+const overflow = style({
+  prop: 'overflow',
+  cssProperty: 'overflow',
+});
+
 const ProductDetails = styled.p`
   ${textAlign}
   ${space}
@@ -40,11 +46,15 @@ const ProductDetails = styled.p`
   ${height}
   ${display}
   ${letterSpacing}
+  ${overflow}
 `;
 
 class ProductCard extends Component {
-  state = {
-    isInCart: false,
+  constructor(props) {
+    super(props);
+    this.state = {
+      isInCart: false,
+    };
   }
 
   componentDidMount() {
@@ -84,11 +94,50 @@ class ProductCard extends Component {
     });
   }
 
+  renderCardFooter = () => {
+    const { productPrice } = this.props;
+    const { isInCart } = this.state;
+    const CardButton = ({
+      imageIcon, alternate, handleClick,
+    }) => (
+      <Border borderTop="1px solid rgba(26,26,26, 0.5)">
+        <Flex>
+          <Box width={3 / 4} px={4} py={2}>
+            <Text fontWeight={550}>
+              {`Rs. ${productPrice}`}
+            </Text>
+          </Box>
+          {/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */}
+          <Box style={{ borderLeft: '1px solid rgba(26, 26, 26, 0.5)', cursor: 'pointer', textAlign: 'center' }} onClick={handleClick} width={1 / 4} pt={2}>
+            <ButtonImage src={imageIcon} alt={alternate} maxHeight="15px" maxWidth="auto" />
+          </Box>
+          {/* eslint-enable jsx-a11y/no-noninteractive-element-interactions */}
+        </Flex>
+      </Border>
+    );
+    return (
+      isInCart
+        ? (
+          <CardButton
+            imageIcon={cart}
+            alt="cart"
+            handleClick={() => { navigate('/cart'); }}
+          />
+        )
+        : (
+          <CardButton
+            imageIcon={plus}
+            alt="plus"
+            handleClick={this.handleAddClick}
+          />
+        )
+    );
+  }
+
   render() {
     const {
-      images, productId, productName, description, productPrice, children,
+      images, productId, productName, description, children,
     } = this.props;
-    const { isInCart } = this.state;
     const imageSrc = images[0] ? images[0].originalSrc : defaultImage;
     const desc = description.indexOf('-->') === -1 ? description : description.slice(description.indexOf('-->') + 3, description.indexOf(' &lt;'));
     return (
@@ -112,42 +161,12 @@ class ProductCard extends Component {
               height="4.5em"
               display="-webkit-box"
               letterSpacing="0.05em"
-              className="demo-product-card-details"
+              overflow="hidden"
             >
               {desc}
             </ProductDetails>
           </Container>
-          {
-            isInCart
-              ? (
-                <Border borderTop="1px solid rgba(26,26,26, 0.5)">
-                  <Flex>
-                    <Box width={3 / 4} px={4} py={2}>
-                      Rs.
-                      {productPrice}
-                    </Box>
-                    {/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */}
-                    <Box className="card-footer-button" onClick={() => { navigate('/cart'); }} width={1 / 4} pt={2}>
-                      <ButtonImage src={cart} alt="cart" maxHeight="15px" maxWidth="auto" />
-                    </Box>
-                  </Flex>
-                </Border>
-              )
-              : (
-                <Border borderTop="1px solid rgba(26,26,26, 0.5)">
-                  <Flex>
-                    <Box width={3 / 4} px={4} py={2}>
-                      <Text fontWeight={550}>
-                        {`Rs. ${productPrice}`}
-                      </Text>
-                    </Box>
-                    <Box className="card-footer-button" width={1 / 4} onClick={this.handleAddClick} pt={2}>
-                      <ButtonImage src={plus} alt="plus" maxHeight="15px" maxWidth="auto" />
-                    </Box>
-                  </Flex>
-                </Border>
-              )
-          }
+          {this.renderCardFooter()}
         </Card>
       </Box>
     );

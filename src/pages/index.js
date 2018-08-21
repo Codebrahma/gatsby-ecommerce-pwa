@@ -6,10 +6,10 @@ import {
   Container, Flex, Carousel, Box, Caps, Relative,
 } from 'rebass';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import {
-  position, background, width, borderRadius, zIndex, opacity, top, space, color, left, right,
+  position, background, width, borderRadius, zIndex, opacity, top, space, color, left, right, style,
 } from 'styled-system';
+import styled, { injectGlobal } from 'styled-components';
 import ProductCard from '../templates/category/ProductCard';
 import HomeStep from '../components/HomeStep';
 
@@ -18,6 +18,19 @@ import chooseImage from '../assets/images/plan_choose_2.png';
 import smartImage from '../assets/images/eat_smart_3.png';
 import winLifeImage from '../assets/images/win_life_4.png';
 import Layout from '../components/layout';
+
+const cursor = style({
+  prop: 'cursor',
+  cssProperty: 'cursor',
+});
+
+/* eslint-disable no-unused-expressions */
+injectGlobal`
+* { box-sizing: border-box; font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif }
+body { margin: 0; overflow-x: hidden; font-size: 0.75em }
+`;
+/* eslint-enable no-unused-expressions */
+
 
 const CarouselButton = styled.div`
   ${position}
@@ -31,6 +44,7 @@ const CarouselButton = styled.div`
   ${top}
   ${left}
   ${right}
+  ${cursor}
 `;
 
 const planSteps = [
@@ -128,6 +142,7 @@ class HomePage extends Component {
                     top="45%"
                     p={3}
                     left="2%"
+                    cursor="pointer"
                     onClick={this.goToPrev}
                   >
                     <span>
@@ -137,7 +152,7 @@ class HomePage extends Component {
                     </span>
                   </CarouselButton>
                   <Link to={`product/${item.productId}`} style={{ margin: '0' }}>
-                    <Img className="carousel-image" width="100vw" height="65vh" style={{ margin: '0 auto' }} fluid={item.image} alt="home-page-item" />
+                    <Img width="100vw" height="65vh" style={{ margin: '0 auto' }} fluid={item.image} alt="home-page-item" />
                   </Link>
                   <CarouselButton
                     position="absolute"
@@ -150,6 +165,7 @@ class HomePage extends Component {
                     top="45%"
                     p={3}
                     right="2%"
+                    cursor="pointer"
                     onClick={this.goToNext}
                   >
                     <span>

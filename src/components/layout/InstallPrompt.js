@@ -13,7 +13,6 @@ const InstallPrompt = () => (
       height: '4em',
       justifyContent: 'space-between',
     }}
-    className="alert alert-info"
     role="alert"
   >
     <span
@@ -30,13 +29,12 @@ const InstallPrompt = () => (
     <button
       type="button"
       id="install-button"
-      className="btn btn-info"
       style={{ padding: '0.3em' }}
     >
       Add to homescreen
     </button>
-    <button type="button" className="btn bg-transparent" onClick={closePopup}>
-      <i style={{ color: 'grey' }} className="fa fa-close" />
+    <button type="button" onClick={closePopup}>
+      <i style={{ color: 'grey' }} />
     </button>
   </div>
 );
