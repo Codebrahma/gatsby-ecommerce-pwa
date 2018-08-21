@@ -7,6 +7,8 @@
 // You can delete this file if you're not using it
 const path = require('path');
 const _ = require('lodash');
+const themeRoot = require('./theme-path');
+const themeComponents = themeRoot + '/components'
 
 //  exports.sourceNodes = async ({ actions }) => {....}
 exports.createPages = ({ graphql, actions }) => {
@@ -78,4 +80,16 @@ exports.createPages = ({ graphql, actions }) => {
       reject();
     });
   });
+};
+
+exports.modifyWebpackConfig = ({ config, stage }) => {
+  config.merge({
+    resolve: {
+      extensions: ['.js'],
+      alias: {
+        'theme/components': themeComponents,
+      }
+    }
+  });
+  return config;
 };
