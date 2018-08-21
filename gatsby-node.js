@@ -8,7 +8,7 @@
 const path = require('path');
 const _ = require('lodash');
 const themeRoot = require('./theme-path');
-const themeComponents = themeRoot + '/components'
+const themeComponents = themeRoot + '/themeComponents'
 
 //  exports.sourceNodes = async ({ actions }) => {....}
 exports.createPages = ({ graphql, actions }) => {
@@ -82,8 +82,14 @@ exports.createPages = ({ graphql, actions }) => {
   });
 };
 
-exports.modifyWebpackConfig = ({ config, stage }) => {
-  config.merge({
+exports.onCreateWebpackConfig = ({
+  stage,
+  rules,
+  loaders,
+  plugins,
+  actions,
+}) => {
+  actions.setWebpackConfig({
     resolve: {
       extensions: ['.js'],
       alias: {
@@ -91,5 +97,4 @@ exports.modifyWebpackConfig = ({ config, stage }) => {
       }
     }
   });
-  return config;
-};
+}

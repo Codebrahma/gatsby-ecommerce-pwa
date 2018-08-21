@@ -18,6 +18,7 @@ import chooseImage from '../assets/images/plan_choose_2.png';
 import smartImage from '../assets/images/eat_smart_3.png';
 import winLifeImage from '../assets/images/win_life_4.png';
 import Layout from '../components/layout';
+import CarouselButton from '../components/CarouselButton';
 
 const cursor = style({
   prop: 'cursor',
@@ -30,22 +31,6 @@ injectGlobal`
 body { margin: 0; overflow-x: hidden; font-size: 0.75em }
 `;
 /* eslint-enable no-unused-expressions */
-
-
-const CarouselButton = styled.div`
-  ${position}
-  ${background}
-  ${width}
-  ${space}
-  ${borderRadius}
-  ${zIndex}
-  ${opacity}
-  ${color}
-  ${top}
-  ${left}
-  ${right}
-  ${cursor}
-`;
 
 const planSteps = [
   {
@@ -84,17 +69,17 @@ class HomePage extends Component {
     const { data } = this.props;
     const carouselItems = [
       {
-        image: data.banner1.childImageSharp.fluid,
+        image: require('../assets/images/banner-1.jpg'),
         productId:
           'Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzg2NTU2MDk2NzM=',
       },
       {
-        image: data.banner2.childImageSharp.fluid,
+        image: require('../assets/images/banner-2.jpg'),
         productId:
           'Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzkyNTg4NzE3NTM=',
       },
       {
-        image: data.banner3.childImageSharp.fluid,
+        image: require('../assets/images/banner-3.jpg'),
         productId:
           'Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzg4MjY3MjAyMDE=',
       },
@@ -127,57 +112,19 @@ class HomePage extends Component {
     return (carouselItems.length > 0
       && (
         <Relative>
+          <CarouselButton content={'<'} position="left" onClick={this.goToPrev}/>          
           <Carousel index={currentIndex}>
             {
               _.map(carouselItems, item => (
                 <Box key={item.productId}>
-                  <CarouselButton
-                    position="absolute"
-                    background="rgb(158, 158, 158)"
-                    width="fit-content"
-                    borderRadius="50%"
-                    zIndex={2}
-                    opacity={0.3}
-                    color="white"
-                    top="45%"
-                    p={3}
-                    left="2%"
-                    cursor="pointer"
-                    onClick={this.goToPrev}
-                  >
-                    <span>
-                      <strong>
-                        {'<'}
-                      </strong>
-                    </span>
-                  </CarouselButton>
                   <Link to={`product/${item.productId}`} style={{ margin: '0' }}>
-                    <Img width="100vw" height="65vh" style={{ margin: '0 auto' }} fluid={item.image} alt="home-page-item" />
+                    <img style={{ margin: '0 auto', width: "100vw", height: "60vh"}} src={item.image} alt="home-page-item" />
                   </Link>
-                  <CarouselButton
-                    position="absolute"
-                    background="rgb(158, 158, 158)"
-                    width="fit-content"
-                    borderRadius="50%"
-                    zIndex={2}
-                    opacity={0.3}
-                    color="white"
-                    top="45%"
-                    p={3}
-                    right="2%"
-                    cursor="pointer"
-                    onClick={this.goToNext}
-                  >
-                    <span>
-                      <strong>
-                        {'>'}
-                      </strong>
-                    </span>
-                  </CarouselButton>
                 </Box>
               ))
             }
           </Carousel>
+          <CarouselButton content={'>'} position="right" onClick={this.goToNext}/>
         </Relative>
       )
     );
@@ -206,8 +153,7 @@ class HomePage extends Component {
         node: {
           images: [
             {
-              originalSrc: data.featuredProductOne.childImageSharp
-                .fluid,
+              originalSrc: '',
             },
           ],
           id: 'Shopify__Product__Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0Lzg2ODk4MTMwMDE=',
@@ -232,7 +178,7 @@ class HomePage extends Component {
         node: {
           images: [
             {
-              originalSrc: data.featuredProductTwo.childImageSharp
+              originalSrc: ''
                 .fluid,
             },
           ],
@@ -255,7 +201,7 @@ class HomePage extends Component {
         node: {
           images: [
             {
-              originalSrc: data.featuredProductThree.childImageSharp
+              originalSrc: ''
                 .fluid,
             },
           ],
@@ -297,9 +243,7 @@ class HomePage extends Component {
                   description={node.description}
                   productPrice={node.priceRange.minVariantPrice.amount}
                   images={node.image}
-                >
-                  <Img fluid={node.images[0].originalSrc} alt={node.title} />
-                </ProductCard>
+                />
               ))
             }
             </Flex>
@@ -317,50 +261,50 @@ HomePage.propTypes = {
 export default HomePage;
 
 /* eslint-disable no-undef */
-export const pageQuery = graphql`
-  query {
-        banner1: file(relativePath: {eq: "banner-1.jpg"}) {
-        childImageSharp {
-      fluid(maxWidth: 1240 ) {
-        ...GatsbyImageSharpFluid
-      }
-      }
-    }
-    banner2: file(relativePath: {eq: "banner-2.jpg"}) {
-        childImageSharp {
-      fluid(maxWidth: 1240 ) {
-        ...GatsbyImageSharpFluid
-      }
-      }
-    }
-    banner3: file(relativePath: {eq: "banner-3.jpg"}) {
-        childImageSharp {
-      fluid(maxWidth: 1240 ) {
-        ...GatsbyImageSharpFluid
-      }
-      }
-    }
-    featuredProductOne: file(relativePath: {eq: "feat-products1.jpg"}) {
-        childImageSharp {
-      fluid(maxWidth: 300) {
-        ...GatsbyImageSharpFluid
-      }
-      }
-    }
-    featuredProductTwo: file(relativePath: {eq: "feat-products2.jpg"}) {
-        childImageSharp {
-      fluid(maxWidth: 300) {
-        ...GatsbyImageSharpFluid
-      }
-      }
-    }
-    featuredProductThree: file(relativePath: {eq: "feat-products3.jpg"}) {
-        childImageSharp {
-      fluid(maxWidth: 300) {
-        ...GatsbyImageSharpFluid
-      }
-      }
-    }
-  }
-`;
+// export const pageQuery = graphql`
+//   query {
+//         banner1: file(relativePath: {eq: "banner-1.jpg"}) {
+//         childImageSharp {
+//       fluid(maxWidth: 1240 ) {
+//         ...GatsbyImageSharpFluid
+//       }
+//       }
+//     }
+//     banner2: file(relativePath: {eq: "banner-2.jpg"}) {
+//         childImageSharp {
+//       fluid(maxWidth: 1240 ) {
+//         ...GatsbyImageSharpFluid
+//       }
+//       }
+//     }
+//     banner3: file(relativePath: {eq: "banner-3.jpg"}) {
+//         childImageSharp {
+//       fluid(maxWidth: 1240 ) {
+//         ...GatsbyImageSharpFluid
+//       }
+//       }
+//     }
+//     featuredProductOne: file(relativePath: {eq: "feat-products1.jpg"}) {
+//         childImageSharp {
+//       fluid(maxWidth: 300) {
+//         ...GatsbyImageSharpFluid
+//       }
+//       }
+//     }
+//     featuredProductTwo: file(relativePath: {eq: "feat-products2.jpg"}) {
+//         childImageSharp {
+//       fluid(maxWidth: 300) {
+//         ...GatsbyImageSharpFluid
+//       }
+//       }
+//     }
+//     featuredProductThree: file(relativePath: {eq: "feat-products3.jpg"}) {
+//         childImageSharp {
+//       fluid(maxWidth: 300) {
+//         ...GatsbyImageSharpFluid
+//       }
+//       }
+//     }
+//   }
+// `;
 /* eslint-enable no-undef */
