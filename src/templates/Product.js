@@ -33,7 +33,7 @@ class ProductItem extends Component {
     this.setState({
       itemCount: currentCartItems[productId]
         ? currentCartItems[productId].purchaseQuantity
-        : 7,
+        : 1,
       isInCart: !!currentCartItems[productId],
     });
   }
@@ -265,9 +265,12 @@ class ProductItem extends Component {
 
   render() {
     const { pageContext } = this.props;
-
+    const { itemCount, isInCart } = this.state;
     return (
-      <Product productData={pageContext} />
+      <Product 
+        itemCount={itemCount}
+        isInCart={isInCart}
+        productData={pageContext} />
     );
   }
 }

@@ -37,95 +37,94 @@ export default class ProductPage extends React.Component {
     ));
   }
 
-  // renderProductActions = () => {
-  //   const { itemCount, isInCart } = this.state;
-  //   const { productData } = this.props;
-  //   const ActionButton = ({ renderCondition, buttonText, handleClick }) => (
-  //     <Button
-  //       bg={renderCondition ? '#f5f5f5' : '#000'}
-  //       color={!renderCondition ? '#f5f5f5' : '#000'}
-  //       my={10}
-  //       mr={10}
-  //       style={{ cursor: (!renderCondition ? 'pointer' : 'not-allowed'), minWidth: '170px' }}
-  //       disabled={renderCondition}
-  //       onClick={handleClick}
-  //     >
-  //       <Text py={10} px={15}>
-  //         <Caps fontSize={14} letterSpacing={1}>
-  //           {buttonText}
-  //         </Caps>
-  //       </Text>
-  //     </Button>
-  //   );
-  //   const CountButton = ({
-  //     imageIcon, handleClick, alternate, renderCondition, disable,
-  //   }) => (
-  //     <Button
-  //       bg="#f5f5f5"
-  //       onClick={handleClick}
-  //       style={{ cursor: (renderCondition ? 'not-allowed' : 'pointer') }}
-  //       disabled={disable}
-  //     >
-  //       <Image w={15} src={imageIcon} alt={alternate} />
-  //     </Button>
-  //   );
-  //   return (
-  //     <div>
-  //       <Flex alignItems="center" my={10}>
-  //         <Box>
-  //           <Border
-  //             borderColor="#000"
-  //             my={10}
-  //             style={
-  //               {
-  //                 borderRadius: '8px',
-  //                 width: 'fit-content',
-  //                 zIndex: 99,
-  //                 overflow: 'hidden',
-  //               }
-  //             }
-  //           >
-  //             <CountButton
-  //               handleClick={() => this.changeItemCount(-7)}
-  //               renderCondition={!itemCount}
-  //               imageIcon={minus}
-  //               alternate="minus"
-  //               disable={!itemCount}
-  //             />
-  //             <Border borderColor="#000" w={50} style={{ display: 'inline-block' }}>
-  //               <Text textAlign="center" p={2} fontSize={16}>
-  //                 {itemCount}
-  //               </Text>
-  //             </Border>
-  //             <CountButton
-  //               handleClick={() => this.changeItemCount(7)}
-  //               imageIcon={plus}
-  //               alternate="plus"
-  //             />
-  //           </Border>
-  //         </Box>
-  //         <Box ml={20}>
-  //           <Text fontSize={22} fontWeight={500}>
-  //             Rs.
-  //             {((productData.productPrice / 7.0) * ((itemCount === 0) ? 7 : itemCount)).toFixed(2)}
-  //           </Text>
-  //         </Box>
-  //       </Flex>
-  //       <div>
-  //         <ActionButton
-  //           renderCondition={(!itemCount || isInCart)}
-  //           handleClick={this.addItemToCart}
-  //           buttonText={isInCart ? 'in Cart' : 'add to cart'}
-  //         />
-  //         <ActionButton
-  //           renderCondition={!itemCount}
-  //           handleClick={this.handleBuyNow}
-  //           buttonText="buy now"
-  //         />
-  //       </div>
-  //     </div>
-  //   );
-  // }
+  renderProductActions = () => {
+    const { itemCount, isInCart, productData } = this.props;
+    const ActionButton = ({ renderCondition, buttonText, handleClick }) => (
+      <Button
+        bg={renderCondition ? '#f5f5f5' : '#000'}
+        color={!renderCondition ? '#f5f5f5' : '#000'}
+        my={10}
+        mr={10}
+        style={{ cursor: (!renderCondition ? 'pointer' : 'not-allowed'), minWidth: '170px' }}
+        disabled={renderCondition}
+        onClick={handleClick}
+      >
+        <Text py={10} px={15}>
+          <Caps fontSize={14} letterSpacing={1}>
+            {buttonText}
+          </Caps>
+        </Text>
+      </Button>
+    );
+    const CountButton = ({
+      imageIcon, handleClick, alternate, renderCondition, disable,
+    }) => (
+      <Button
+        bg="#f5f5f5"
+        onClick={handleClick}
+        style={{ cursor: (renderCondition ? 'not-allowed' : 'pointer') }}
+        disabled={disable}
+      >
+        <Image w={15} src={imageIcon} alt={alternate} />
+      </Button>
+    );
+    return (
+      <div>
+        <Flex alignItems="center" my={10}>
+          <Box>
+            <Border
+              borderColor="#000"
+              my={10}
+              style={
+                {
+                  borderRadius: '8px',
+                  width: 'fit-content',
+                  zIndex: 99,
+                  overflow: 'hidden',
+                }
+              }
+            >
+              <CountButton
+                handleClick={() => this.changeItemCount(-7)}
+                renderCondition={!itemCount}
+                imageIcon={minus}
+                alternate="minus"
+                disable={!itemCount}
+              />
+              <Border borderColor="#000" w={50} style={{ display: 'inline-block' }}>
+                <Text textAlign="center" p={2} fontSize={16}>
+                  {itemCount}
+                </Text>
+              </Border>
+              <CountButton
+                handleClick={() => this.changeItemCount(7)}
+                imageIcon={plus}
+                alternate="plus"
+              />
+            </Border>
+          </Box>
+          <Box ml={20}>
+            <Text fontSize={22} fontWeight={500}>
+              Rs.
+              {((productData.productPrice / 7.0) * ((itemCount === 0) ? 7 : itemCount)).toFixed(2)}
+            </Text>
+          </Box>
+        </Flex>
+        <div>
+          <ActionButton
+            renderCondition={(!itemCount || isInCart)}
+            handleClick={this.addItemToCart}
+            buttonText={isInCart ? 'in Cart' : 'add to cart'}
+          />
+          <ActionButton
+            renderCondition={!itemCount}
+            handleClick={this.handleBuyNow}
+            buttonText="buy now"
+          />
+        </div>
+      </div>
+    );
+  }
 
   renderSocialIcons = () => {
     const SocialIcon = ({ linkTo, imageIcon, alternate }) => (
@@ -224,7 +223,7 @@ export default class ProductPage extends React.Component {
                   </Caps>
                 </Heading>
                 {this.renderVariants()}
-                {/* {this.renderProductActions()} */}
+                {this.renderProductActions()}
                 {this.renderSocialIcons()}
                 <Text bg="#32baaf" color="#fff" p={1} fontSize={14} fontWeight={600} style={{ borderRadius: '5px', width: 'fit-content' }}>
                   <Image src={download} w={15} mx={2} alt="download" style={{ display: 'inline-block' }} />
