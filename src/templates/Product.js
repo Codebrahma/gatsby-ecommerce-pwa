@@ -18,6 +18,7 @@ import minus from '../assets/icons/minus-solid.svg';
 import download from '../assets/icons/download-solid.svg';
 import defaultImage from '../assets/images/default.jpeg';
 import Layout from '../components/layout';
+import Product from 'theme/components/ProductPage';
 
 class ProductItem extends Component {
   constructor(props) {
@@ -265,53 +266,8 @@ class ProductItem extends Component {
   render() {
     const { pageContext } = this.props;
 
-    const imageSrc = (
-      pageContext.images
-      && pageContext.images.length !== 0
-      && pageContext.images[0].originalSrc
-    ) || defaultImage;
-
     return (
-      <Layout>
-        <Container>
-          <Row>
-            <Flex flexWrap="wrap" my={3}>
-              <Box width={[1, 1, 1 / 2]} px={20}>
-                <Image
-                  src={imageSrc}
-                  alt={pageContext.productName}
-                />
-              </Box>
-              <Box width={[1, 1, 1 / 2]} px={20}>
-                <Heading my={3}>
-                  <Caps fontSize={20} letterSpacing={1}>
-                    {pageContext.productName}
-                  </Caps>
-                </Heading>
-                {this.renderVariants()}
-                {this.renderProductActions()}
-                {this.renderSocialIcons()}
-                <Text bg="#32baaf" color="#fff" p={1} fontSize={14} fontWeight={600} style={{ borderRadius: '5px', width: 'fit-content' }}>
-                  <Image src={download} w={15} mx={2} alt="download" style={{ display: 'inline-block' }} />
-                  Read the science behind the program
-                </Text>
-                {this.renderTags()}
-              </Box>
-            </Flex>
-          </Row>
-          <Row px={20}>
-            {this.renderDescription()}
-          </Row>
-          <Row px={20}>
-            <Box style={{ width: '100%' }}>
-              <ProductSubscription />
-            </Box>
-          </Row>
-          <Row px={20}>
-            <ProductFaqs faqs={pageContext.faqs} />
-          </Row>
-        </Container>
-      </Layout>
+      <Product productData={pageContext} />
     );
   }
 }
