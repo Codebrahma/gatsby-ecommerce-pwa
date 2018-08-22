@@ -16,6 +16,11 @@ import minus from '../assets/icons/minus-solid.svg';
 import download from '../assets/icons/download-solid.svg';
 
 export default class ProductPage extends React.Component {
+
+  componentDidMount() {
+    this.props.initialiseProductData(7)
+  }
+
   renderVariants = () => {
     const { productData } = this.props;
     const options = {};
@@ -38,7 +43,7 @@ export default class ProductPage extends React.Component {
   }
 
   renderProductActions = () => {
-    const { itemCount, isInCart, productData } = this.props;
+    const { itemCount, isInCart, productData, buyNow, addItemToCart, changeItemCount } = this.props;
     const ActionButton = ({ renderCondition, buttonText, handleClick }) => (
       <Button
         bg={renderCondition ? '#f5f5f5' : '#000'}
@@ -85,7 +90,7 @@ export default class ProductPage extends React.Component {
               }
             >
               <CountButton
-                handleClick={() => this.changeItemCount(-7)}
+                handleClick={() => changeItemCount(itemCount - 7)}
                 renderCondition={!itemCount}
                 imageIcon={minus}
                 alternate="minus"
@@ -97,7 +102,7 @@ export default class ProductPage extends React.Component {
                 </Text>
               </Border>
               <CountButton
-                handleClick={() => this.changeItemCount(7)}
+                handleClick={() => changeItemCount(itemCount + 7)}
                 imageIcon={plus}
                 alternate="plus"
               />
@@ -113,12 +118,12 @@ export default class ProductPage extends React.Component {
         <div>
           <ActionButton
             renderCondition={(!itemCount || isInCart)}
-            handleClick={this.addItemToCart}
+            handleClick={addItemToCart}
             buttonText={isInCart ? 'in Cart' : 'add to cart'}
           />
           <ActionButton
             renderCondition={!itemCount}
-            handleClick={this.handleBuyNow}
+            handleClick={buyNow}
             buttonText="buy now"
           />
         </div>
