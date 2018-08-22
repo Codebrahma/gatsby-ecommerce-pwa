@@ -231,7 +231,7 @@ class HomePage extends Component {
           </Container>
           <Container>
             <Caps textAlign="center" fontSize={2}>
-            Featured Products
+              Featured Products
             </Caps>
             <Flex flexWrap="wrap">
               {
