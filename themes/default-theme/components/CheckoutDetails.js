@@ -3,37 +3,14 @@ import { navigate } from 'gatsby';
 import { Container, Flex, Box } from 'rebass';
 
 class CheckoutDetails extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
-  componentDidMount() {
-    const cartDetails = JSON.parse(localStorage.getItem('cart'));
-    this.setState({
-      cartDetails,
-    });
-    let totalPrice = 0;
-    if (cartDetails) {
-      Object.keys(cartDetails).map((key) => {
-        totalPrice += (cartDetails[key].productPrice / 7.0) * cartDetails[key].purchaseQuantity;
-        return true;
-      });
-    }
-    if (totalPrice === 0) {
-      navigate('/cart');
-    }
-  }
-
   render() {
-    const { cartDetails } = this.state;
+    const { cartDetails } = this.props;
     let itemCount = 0;
     let totalPrice = 0;
     if (cartDetails) {
-      Object.keys(cartDetails).map((key) => {
+      Object.keys(cartDetails).forEach((key) => {
         itemCount += 1;
         totalPrice += (cartDetails[key].productPrice / 7.0) * cartDetails[key].purchaseQuantity;
-        return true;
       });
     }
 
