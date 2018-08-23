@@ -5,7 +5,7 @@ import { Flex } from 'rebass';
 
 import ProductCard from './ProductCard';
 
-const ProductList = ({ products }) => (
+const ProductList = ({ products, onAddToCartClick }) => (
   <Flex flexWrap="wrap" mt={2}>
     {_.map(products, ({ node }, index) => (
       <ProductCard
@@ -15,6 +15,7 @@ const ProductList = ({ products }) => (
         description={node.description}
         images={node.images}
         productPrice={node.priceRange.minVariantPrice.amount}
+        onAddToCartClick={onAddToCartClick}
       />
     ))}
   </Flex>

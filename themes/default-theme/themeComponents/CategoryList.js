@@ -5,7 +5,7 @@ import ProductList from '../components/ProductList';
 
 export default class CategoryList extends React.Component {
   render() {
-    const { productsInCategory, categoryName } = this.props;
+    const { productsInCategory, categoryName, addProductToCart } = this.props;
     return (
       <Layout>
         <Container px={0} maxWidth="90%" mt={4}>
@@ -14,6 +14,7 @@ export default class CategoryList extends React.Component {
           </Caps>
           <ProductList
             products={productsInCategory}
+            onAddToCartClick={addProductToCart}
           />
         </Container>
       </Layout>
