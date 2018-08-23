@@ -3,7 +3,7 @@ import _ from 'lodash';
 import {
   Container, Flex, Box, Lead, Text, Button
 } from 'rebass';
-
+import GatsbyLink from 'gatsby-link';
 import FormInputField from '../components/Form';
 import CheckoutDetails from '../components/CheckoutDetails';
 import Layout from '../components/layout';
@@ -111,6 +111,12 @@ const addressFormFields = [
 ];
 
 export default class Checkout extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+    }
+  }
+  
   onPaymentSuccess = () => {
     this.setState({
       paymentSuccess: true,
@@ -125,7 +131,7 @@ export default class Checkout extends React.Component {
 
   render() {
     const { cartDetails, payment } = this.props;
-    const { paymentSuccess } =  this.props;
+    const { paymentSuccess } =  this.state;
     return (
       <Layout>
         <Container fontSize={1}>
@@ -163,24 +169,24 @@ export default class Checkout extends React.Component {
               </Container>
             </Box>
             {paymentSuccess ? 
-            <Container>
-              <Text textAlign="center" my={4} color="rgb(76,175,80)" fontWeight="bold">
-                Payment Success!
-              </Text>
-              <GatsbyLink to="/">
-                <Button px={2}>
-                  Continue Shopping
-                </Button>
-              </GatsbyLink>
-            </Container> :
-            <Box p={3} pt={4} width={[1, 1, 2 / 7]}>
-              <CheckoutDetails cartDetails={cartDetails}/>
-              <Container mt={2}>
-                <Text textAlign="center">
-                  {payment(this.renderPayButton, this.onPaymentSuccess)}
+              <Container>
+                <Text textAlign="center" my={4} color="rgb(76,175,80)" fontWeight="bold">
+                  Payment Success!
                 </Text>
-              </Container>
-            </Box>
+                <GatsbyLink to="/">
+                  <Button px={2}>
+                    Continue Shopping
+                  </Button>
+                </GatsbyLink>
+              </Container> :
+              <Box p={3} pt={4} width={[1, 1, 2 / 7]}>
+                <CheckoutDetails cartDetails={cartDetails}/>
+                <Container mt={2}>
+                  <Text textAlign="center">
+                    {payment(this.renderPayButton, this.onPaymentSuccess)}
+                  </Text>
+                </Container>
+              </Box>
             }
           </Flex>
         </Container>
