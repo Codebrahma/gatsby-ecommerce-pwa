@@ -1,7 +1,7 @@
 import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 
-export default class TakeMoney extends React.Component {
+export default class Payment extends React.Component {
   constructor(props) {
     super(props);
     this.state = {}

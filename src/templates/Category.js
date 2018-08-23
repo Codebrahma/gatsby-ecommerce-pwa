@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Caps } from 'rebass';
 import Category from 'theme/components/CategoryList';
 
 const addProductToCart = (product, purchaseQuantity) => {

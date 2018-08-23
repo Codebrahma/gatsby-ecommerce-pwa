@@ -1,14 +1,10 @@
 import React from 'react';
-import _ from 'lodash';
-import {
-  Container, Flex, Box, Lead, Text,
-} from 'rebass';
-import TakeMoney from '../components/TakeMoney';
+import Payment from '../components/Payment';
 import CheckoutPage from 'theme/components/CheckoutPage';
 
 export default class Checkout extends React.Component {
   renderPaymentSection = (payButton, onPaymentSuccess) => (
-    <TakeMoney
+    <Payment
       payButton={payButton}
       onPaymentSuccess={onPaymentSuccess}
       clearCartOnPayment={true}

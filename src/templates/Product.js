@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import _ from 'lodash';
 import { navigate } from 'gatsby';
 import PropTypes from 'prop-types';
 import Product from 'theme/components/ProductPage';
