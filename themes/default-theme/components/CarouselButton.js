@@ -7,11 +7,12 @@ const StyledCarouselButton = styled.div`
   background: rgb(158, 158, 158);
   width: fit-content;
   border-radius: 50%;
-  zIndex=2;
-  opacity=0.3;
+  zIndex: 2;
+  opacity: 0.8;
   color: white;
   top: 45%;
   cursor: pointer;
+  padding: 20px;
   ${({ position }) => (position === 'left' ? 'left: 2%' : 'right: 2%')}
 `;
 
