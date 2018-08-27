@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { navigate } from 'gatsby';
 import PropTypes from 'prop-types';
+// eslint-disable-next-line import/no-unresolved
 import Product from 'theme/components/ProductPage';
 
 class ProductItem extends Component {
@@ -22,9 +23,14 @@ class ProductItem extends Component {
     });
   }
 
-  initialiseProductData = initalProductCount => this.initalProductCount = initalProductCount;
+  getCurrentItemCountInCart = () => {
+    const { itemCount } = this.state;
+    return itemCount;
+  }
 
-  getCurrentItemCountInCart = () => this.state.itemCount;
+  initialiseProductData = (initalProductCount) => {
+    (this.initalProductCount = initalProductCount);
+  }
 
   updateCart = (newItemCount) => {
     const { pageContext: { productId } } = this.props;
@@ -44,9 +50,9 @@ class ProductItem extends Component {
 
   changeItemCount = (newItemCount) => {
     const updatedCount = newItemCount > 0 ? newItemCount : 0;
-    this.setState(prevState => ({
+    this.setState({
       itemCount: updatedCount,
-    }));
+    });
     this.updateCart(updatedCount);
     window.dispatchEvent(new CustomEvent('localstorage update'));
   }

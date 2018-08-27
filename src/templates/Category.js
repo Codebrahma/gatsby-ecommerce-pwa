@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+// eslint-disable-next-line import/no-unresolved
 import Category from 'theme/components/CategoryList';
 
 const addProductToCart = (product, purchaseQuantity) => {
