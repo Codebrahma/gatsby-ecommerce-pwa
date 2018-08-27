@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import StripeCheckout from 'react-stripe-checkout';
 
 export default class Payment extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {};
   }
 
   componentDidMount() {
@@ -27,12 +28,13 @@ export default class Payment extends React.Component {
   }
 
   onToken = (token) => {
+    const { onPaymentSuccess, clearCartOnPayment } = this.props;
     fetch('/save-stripe-token', {
       method: 'POST',
       body: JSON.stringify(token),
     }).then(() => {
-      this.props.onPaymentSuccess();
-      if (this.props.clearCartOnPayment) {
+      onPaymentSuccess();
+      if (clearCartOnPayment) {
         localStorage.setItem('cart', JSON.stringify({}));
         window.dispatchEvent(new CustomEvent('localstorage update'));
       }
@@ -47,7 +49,7 @@ export default class Payment extends React.Component {
 
   render() {
     const { appOnline } = this.state;
-    console.log(this.props)
+    const { payButton } = this.props;
     return (
       <div>
         {
@@ -57,13 +59,21 @@ export default class Payment extends React.Component {
               stripeKey="pk_test_rM2enW1rNROwx4ukBXGaIzhr"
               closed={this.onClosed}
             >
-              { this.props.payButton() }
+              { payButton() }
             </StripeCheckout>
           ) : (
-            <p>Please connect Internet to proceed for payment</p>
+            <p>
+Please connect Internet to proceed for payment
+            </p>
           )
         }
       </div>
     );
   }
 }
+
+Payment.propTypes = {
+  onPaymentSuccess: PropTypes.func.isRequired,
+  clearCartOnPayment: PropTypes.bool.isRequired,
+  payButton: PropTypes.func.isRequired,
+};

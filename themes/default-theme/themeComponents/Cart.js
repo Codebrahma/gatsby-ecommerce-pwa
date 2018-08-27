@@ -1,5 +1,6 @@
 import React from 'react';
 import GatsbyLink from 'gatsby-link';
+import PropTypes from 'prop-types';
 import {
   Container, Flex, Box, Button, Image, Text, Absolute, Relative,
 } from 'rebass';
@@ -98,29 +99,32 @@ export default class Cart extends React.Component {
     );
   }
 
-  displayCheckoutInfo = () => (
-    <Flex p={2} flexWrap="wrap">
-      <Box width={[1, 1 / 2, 1]}>
-        <Text textAlign="center" fontWeight="bold" fontSize={1} mb={3}>
-          {`Total: Rs. ${(this.props.checkOutCost).toFixed(2)}`}
-        </Text>
-      </Box>
-      <Box width={[1, 1 / 2, 1]}>
-        <Text textAlign="center">
-          <GatsbyLink to="/checkout">
-            <Button bg="black" px={2}>
-              Proceed to Checkout
-            </Button>
-          </GatsbyLink>
-        </Text>
-      </Box>
-    </Flex>
-  )
+  displayCheckoutInfo = () => {
+    const { checkOutCost } = this.props;
+    return (
+      <Flex p={2} flexWrap="wrap">
+        <Box width={[1, 1 / 2, 1]}>
+          <Text textAlign="center" fontWeight="bold" fontSize={1} mb={3}>
+            {`Total: Rs. ${(checkOutCost).toFixed(2)}`}
+          </Text>
+        </Box>
+        <Box width={[1, 1 / 2, 1]}>
+          <Text textAlign="center">
+            <GatsbyLink to="/checkout">
+              <Button bg="black" px={2}>
+                Proceed to Checkout
+              </Button>
+            </GatsbyLink>
+          </Text>
+        </Box>
+      </Flex>
+    );
+  }
 
 
   render() {
     const { checkOutCost } = this.props;
-    return(
+    return (
       <Layout>
         <Container>
           <Flex flexWrap="wrap">
@@ -136,6 +140,14 @@ export default class Cart extends React.Component {
           </Flex>
         </Container>
       </Layout>
-    )
+    );
   }
 }
+
+
+Cart.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  cartItems: PropTypes.object.isRequired,
+  removeItemFromCart: PropTypes.func.isRequired,
+  checkOutCost: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+};

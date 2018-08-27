@@ -1,5 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
+import PropTypes from 'prop-types';
 import {
   Container, Row, Text, Heading, Flex, Box, Image, Link, Button, Border, ButtonOutline, Caps,
 } from 'rebass';
@@ -24,6 +25,7 @@ export default class ProductPage extends React.Component {
 
   renderVariants = () => {
     const { productData } = this.props;
+
     const options = {};
     _.map(productData.variants, (variant) => {
       _.map(variant.selectedOptions, (item) => {
@@ -257,3 +259,19 @@ export default class ProductPage extends React.Component {
     );
   }
 }
+
+ProductPage.propTypes = {
+  initialiseProductData: PropTypes.func.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  productData: PropTypes.object.isRequired,
+  itemCount: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  isInCart: PropTypes.bool,
+  buyNow: PropTypes.func.isRequired,
+  addItemToCart: PropTypes.func.isRequired,
+  changeItemCount: PropTypes.func.isRequired,
+};
+
+ProductPage.defaultProps = {
+  itemCount: 0,
+  isInCart: false,
+};

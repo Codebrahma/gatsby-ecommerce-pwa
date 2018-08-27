@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+// eslint-disable-next-line import/no-unresolved
 import Category from 'theme/components/CategoryList';
 
 const addProductToCart = (product, purchaseQuantity) => {
@@ -11,18 +12,15 @@ const addProductToCart = (product, purchaseQuantity) => {
   currentCartItems[toBeAddedProduct.productId] = toBeAddedProduct;
   localStorage.setItem('cart', JSON.stringify(currentCartItems));
   window.dispatchEvent(new CustomEvent('localstorage update'));
-}
-
-const Categories = (props) => {
-  const { pageContext } = props;
-  return (
-    <Category
-      categoryName={pageContext.productType}
-      productsInCategory={pageContext.products}
-      addProductToCart={addProductToCart}
-      />
-  );
 };
+
+const Categories = ({ pageContext }) => (
+  <Category
+    categoryName={pageContext.productType}
+    productsInCategory={pageContext.products}
+    addProductToCart={addProductToCart}
+  />
+);
 
 Categories.propTypes = {
   pageContext: PropTypes.oneOfType([PropTypes.object]).isRequired,

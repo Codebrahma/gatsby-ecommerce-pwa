@@ -4,7 +4,6 @@ import { Link } from 'gatsby';
 import {
   Container, Flex, Carousel, Box, Caps, Relative,
 } from 'rebass';
-import PropTypes from 'prop-types';
 import { injectGlobal } from 'styled-components';
 import ProductCard from '../components/ProductCard';
 import HomeStep from '../components/HomeStep';
@@ -49,6 +48,17 @@ const planSteps = [
       'Our scientifically-developed, patent-pending products are proven to work. So just chomp away, experience the upgraded you and bask in the compliments.',
   },
 ];
+
+const addProductToCart = (product, purchaseQuantity) => {
+  const currentCartItems = JSON.parse(localStorage.getItem('cart')) || {};
+  const toBeAddedProduct = {
+    ...product,
+    purchaseQuantity,
+  };
+  currentCartItems[toBeAddedProduct.productId] = toBeAddedProduct;
+  localStorage.setItem('cart', JSON.stringify(currentCartItems));
+  window.dispatchEvent(new CustomEvent('localstorage update'));
+};
 
 class HomePage extends Component {
   state = {
@@ -102,19 +112,19 @@ class HomePage extends Component {
     return (carouselItems.length > 0
       && (
         <Relative>
-          <CarouselButton content={'<'} position="left" onClick={this.goToPrev}/>          
+          <CarouselButton content={'<'} position="left" onClick={this.goToPrev} />
           <Carousel index={currentIndex}>
             {
               _.map(carouselItems, item => (
                 <Box key={item.productId}>
                   <Link to={`product/${item.productId}`} style={{ margin: '0' }}>
-                    <img style={{ margin: '0 auto', width: "100vw", height: "60vh"}} src={item.image} alt="home-page-item" />
+                    <img style={{ margin: '0 auto', width: '100vw', height: '60vh' }} src={item.image} alt="home-page-item" />
                   </Link>
                 </Box>
               ))
             }
           </Carousel>
-          <CarouselButton content={'>'} position="right" onClick={this.goToNext}/>
+          <CarouselButton content={'>'} position="right" onClick={this.goToNext} />
         </Relative>
       )
     );
@@ -232,6 +242,7 @@ class HomePage extends Component {
                   description={node.description}
                   productPrice={node.priceRange.minVariantPrice.amount}
                   images={node.image}
+                  onAddToCartClick={addProductToCart}
                 />
               ))
             }
@@ -242,9 +253,6 @@ class HomePage extends Component {
     );
   }
 }
-
-HomePage.propTypes = {
-};
 
 export default HomePage;
 
