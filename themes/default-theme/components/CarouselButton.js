@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const StyledCarouselButton = styled.div`
@@ -11,10 +12,10 @@ const StyledCarouselButton = styled.div`
   color: white;
   top: 45%;
   cursor: pointer;
-  ${props => (props.position === 'left' ? 'left: 2%' : 'right: 2%')}
+  ${({ position }) => (position === 'left' ? 'left: 2%' : 'right: 2%')}
 `;
 
-export default ({ content, position, onClick }) => (
+const CarouselButton = ({ content, position, onClick }) => (
   <StyledCarouselButton
     onClick={onClick}
     position={position}
@@ -26,3 +27,11 @@ export default ({ content, position, onClick }) => (
     </span>
   </StyledCarouselButton>
 );
+
+CarouselButton.propTypes = {
+  content: PropTypes.string.isRequired,
+  position: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+};
+
+export default CarouselButton;

@@ -172,6 +172,7 @@ ProductCard.propTypes = {
   images: PropTypes.oneOfType([PropTypes.array]).isRequired,
   description: PropTypes.string,
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]),
+  onAddToCartClick: PropTypes.func.isRequired,
 };
 ProductCard.defaultProps = {
   description: '',

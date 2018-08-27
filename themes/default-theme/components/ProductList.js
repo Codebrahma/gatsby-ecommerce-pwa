@@ -23,6 +23,7 @@ const ProductList = ({ products, onAddToCartClick }) => (
 
 ProductList.propTypes = {
   products: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onAddToCartClick: PropTypes.func.isRequired,
 };
 
 export default ProductList;
