@@ -4,7 +4,7 @@ import StripeCheckout from 'react-stripe-checkout';
 export default class Payment extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {};
   }
 
   componentDidMount() {
@@ -47,7 +47,7 @@ export default class Payment extends React.Component {
 
   render() {
     const { appOnline } = this.state;
-    console.log(this.props)
+    console.log(this.props);
     return (
       <div>
         {
@@ -60,7 +60,9 @@ export default class Payment extends React.Component {
               { this.props.payButton() }
             </StripeCheckout>
           ) : (
-            <p>Please connect Internet to proceed for payment</p>
+            <p>
+Please connect Internet to proceed for payment
+            </p>
           )
         }
       </div>

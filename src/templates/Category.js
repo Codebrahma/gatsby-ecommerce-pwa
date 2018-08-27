@@ -11,7 +11,7 @@ const addProductToCart = (product, purchaseQuantity) => {
   currentCartItems[toBeAddedProduct.productId] = toBeAddedProduct;
   localStorage.setItem('cart', JSON.stringify(currentCartItems));
   window.dispatchEvent(new CustomEvent('localstorage update'));
-}
+};
 
 const Categories = (props) => {
   const { pageContext } = props;
@@ -20,7 +20,7 @@ const Categories = (props) => {
       categoryName={pageContext.productType}
       productsInCategory={pageContext.products}
       addProductToCart={addProductToCart}
-      />
+    />
   );
 };
 

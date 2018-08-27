@@ -18,6 +18,6 @@ export default class CategoryList extends React.Component {
           />
         </Container>
       </Layout>
-    )
+    );
   }
 }

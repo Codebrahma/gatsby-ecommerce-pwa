@@ -50,7 +50,7 @@ class Cart extends Component {
         cartItems={this.state.cartItems}
         checkOutCost={checkOutCost}
         removeItemFromCart={this.removeItemFromCart}
-       />
+      />
     );
   }
 }

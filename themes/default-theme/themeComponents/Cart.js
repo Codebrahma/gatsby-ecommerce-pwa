@@ -120,7 +120,7 @@ export default class Cart extends React.Component {
 
   render() {
     const { checkOutCost } = this.props;
-    return(
+    return (
       <Layout>
         <Container>
           <Flex flexWrap="wrap">
@@ -136,6 +136,6 @@ export default class Cart extends React.Component {
           </Flex>
         </Container>
       </Layout>
-    )
+    );
   }
 }

@@ -22,7 +22,7 @@ class ProductItem extends Component {
     });
   }
 
-  initialiseProductData = (initalProductCount) => this.initalProductCount = initalProductCount;
+  initialiseProductData = initalProductCount => this.initalProductCount = initalProductCount;
 
   getCurrentItemCountInCart = () => this.state.itemCount;
 
@@ -75,7 +75,7 @@ class ProductItem extends Component {
     const { itemCount, isInCart } = this.state;
 
     return (
-      <Product 
+      <Product
         itemCount={itemCount}
         isInCart={isInCart}
         productData={pageContext}
@@ -84,7 +84,7 @@ class ProductItem extends Component {
         changeItemCount={this.changeItemCount}
         getCurrentItemCountInCart={this.getCurrentItemCountInCart}
         initialiseProductData={this.initialiseProductData}
-        />
+      />
     );
   }
 }

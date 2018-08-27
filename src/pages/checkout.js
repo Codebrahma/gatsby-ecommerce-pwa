@@ -1,34 +1,35 @@
 import React from 'react';
-import Payment from '../components/Payment';
 import CheckoutPage from 'theme/components/CheckOutPage';
+import Payment from '../components/Payment';
 
 export default class Checkout extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
 
-    }
+    };
   }
+
   renderPaymentSection = (payButton, onPaymentSuccess) => (
     <Payment
       payButton={payButton}
       onPaymentSuccess={onPaymentSuccess}
-      clearCartOnPayment={true}
-      />
+      clearCartOnPayment
+    />
   )
 
   componentDidMount() {
     this.setState({
       cartItems: JSON.parse(localStorage.getItem('cart')) || {},
-    })
+    });
   }
-  
+
   render() {
     return (
-      <CheckoutPage 
+      <CheckoutPage
         cartDetails={this.state.cartItems}
         payment={this.renderPaymentSection}
       />
-    )
+    );
   }
 }

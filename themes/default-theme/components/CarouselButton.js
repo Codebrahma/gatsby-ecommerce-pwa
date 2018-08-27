@@ -11,10 +11,10 @@ const StyledCarouselButton = styled.div`
   color: white;
   top: 45%;
   cursor: pointer;
-  ${props => props.position === 'left' ? 'left: 2%' : 'right: 2%'}
+  ${props => (props.position === 'left' ? 'left: 2%' : 'right: 2%')}
 `;
 
-export default ({content, position, onClick}) => (
+export default ({ content, position, onClick }) => (
   <StyledCarouselButton
     onClick={onClick}
     position={position}
@@ -25,4 +25,4 @@ export default ({content, position, onClick}) => (
       </strong>
     </span>
   </StyledCarouselButton>
-)
+);

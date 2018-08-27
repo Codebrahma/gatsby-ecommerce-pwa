@@ -8,7 +8,8 @@
 const path = require('path');
 const _ = require('lodash');
 const themeRoot = require('./theme-path');
-const themeComponents = themeRoot + '/themeComponents'
+
+const themeComponents = `${themeRoot}/themeComponents`;
 
 //  exports.sourceNodes = async ({ actions }) => {....}
 exports.createPages = ({ graphql, actions }) => {
@@ -94,7 +95,7 @@ exports.onCreateWebpackConfig = ({
       extensions: ['.js'],
       alias: {
         'theme/components': themeComponents,
-      }
-    }
+      },
+    },
   });
-}
+};

@@ -102,19 +102,19 @@ class HomePage extends Component {
     return (carouselItems.length > 0
       && (
         <Relative>
-          <CarouselButton content={'<'} position="left" onClick={this.goToPrev}/>          
+          <CarouselButton content={'<'} position="left" onClick={this.goToPrev} />
           <Carousel index={currentIndex}>
             {
               _.map(carouselItems, item => (
                 <Box key={item.productId}>
                   <Link to={`product/${item.productId}`} style={{ margin: '0' }}>
-                    <img style={{ margin: '0 auto', width: "100vw", height: "60vh"}} src={item.image} alt="home-page-item" />
+                    <img style={{ margin: '0 auto', width: '100vw', height: '60vh' }} src={item.image} alt="home-page-item" />
                   </Link>
                 </Box>
               ))
             }
           </Carousel>
-          <CarouselButton content={'>'} position="right" onClick={this.goToNext}/>
+          <CarouselButton content={'>'} position="right" onClick={this.goToNext} />
         </Relative>
       )
     );
