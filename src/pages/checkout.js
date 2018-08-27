@@ -3,6 +3,12 @@ import Payment from '../components/Payment';
 import CheckoutPage from 'theme/components/CheckoutPage';
 
 export default class Checkout extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+
+    }
+  }
   renderPaymentSection = (payButton, onPaymentSuccess) => (
     <Payment
       payButton={payButton}
@@ -10,11 +16,17 @@ export default class Checkout extends React.Component {
       clearCartOnPayment={true}
       />
   )
+
+  componentDidMount() {
+    this.setState({
+      cartItems: JSON.parse(localStorage.getItem('cart')) || {},
+    })
+  }
+  
   render() {
-    const cartItems = JSON.parse(localStorage.getItem('cart')) || {};
     return (
       <CheckoutPage 
-        cartDetails={cartItems}
+        cartDetails={this.state.cartItems}
         payment={this.renderPaymentSection}
       />
     )

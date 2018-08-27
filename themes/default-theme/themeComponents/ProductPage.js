@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 import {
   Container, Row, Text, Heading, Flex, Box, Image, Link, Button, Border, ButtonOutline, Caps,
 } from 'rebass';
@@ -16,9 +17,9 @@ import minus from '../assets/icons/minus-solid.svg';
 import download from '../assets/icons/download-solid.svg';
 
 export default class ProductPage extends React.Component {
-
   componentDidMount() {
-    this.props.initialiseProductData(7)
+    const { initialiseProductData } = this.props;
+    initialiseProductData(7);
   }
 
   renderVariants = () => {
@@ -43,7 +44,9 @@ export default class ProductPage extends React.Component {
   }
 
   renderProductActions = () => {
-    const { itemCount, isInCart, productData, buyNow, addItemToCart, changeItemCount } = this.props;
+    const {
+      itemCount, isInCart, productData, buyNow, addItemToCart, changeItemCount,
+    } = this.props;
     const ActionButton = ({ renderCondition, buttonText, handleClick }) => (
       <Button
         bg={renderCondition ? '#f5f5f5' : '#000'}
@@ -210,7 +213,7 @@ export default class ProductPage extends React.Component {
       && productData.images[0].originalSrc
     ) || defaultImage;
 
-    return(
+    return (
       <Layout>
         <Container>
           <Row>
@@ -251,6 +254,6 @@ export default class ProductPage extends React.Component {
           </Row>
         </Container>
       </Layout>
-    )
+    );
   }
 }

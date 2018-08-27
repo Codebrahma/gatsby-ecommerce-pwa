@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import Img from 'gatsby-image';
-import { Link, graphql } from 'gatsby';
+import { Link } from 'gatsby';
 import {
   Container, Flex, Carousel, Box, Caps, Relative,
 } from 'rebass';
 import PropTypes from 'prop-types';
-import {
-  position, background, width, borderRadius, zIndex, opacity, top, space, color, left, right, style,
-} from 'styled-system';
-import styled, { injectGlobal } from 'styled-components';
+import { injectGlobal } from 'styled-components';
 import ProductCard from '../components/ProductCard';
 import HomeStep from '../components/HomeStep';
 
@@ -19,11 +15,6 @@ import smartImage from '../assets/images/eat_smart_3.png';
 import winLifeImage from '../assets/images/win_life_4.png';
 import Layout from '../components/layout';
 import CarouselButton from '../components/CarouselButton';
-
-const cursor = style({
-  prop: 'cursor',
-  cssProperty: 'cursor',
-});
 
 /* eslint-disable no-unused-expressions */
 injectGlobal`
@@ -66,7 +57,6 @@ class HomePage extends Component {
   }
 
   componentDidMount() {
-    const { data } = this.props;
     const carouselItems = [
       {
         image: require('../assets/images/banner-1.jpg'),
@@ -147,7 +137,6 @@ class HomePage extends Component {
   )
 
   render() {
-    const { data } = this.props;
     const featuredProducts = [
       {
         node: {
@@ -255,7 +244,6 @@ class HomePage extends Component {
 }
 
 HomePage.propTypes = {
-  data: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
 export default HomePage;
