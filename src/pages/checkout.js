@@ -1,6 +1,6 @@
 import React from 'react';
 import Payment from '../components/Payment';
-import CheckoutPage from 'theme/components/CheckoutPage';
+import CheckoutPage from 'theme/components/CheckOutPage';
 
 export default class Checkout extends React.Component {
   constructor(props) {
