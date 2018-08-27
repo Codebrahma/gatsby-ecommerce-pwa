@@ -14,16 +14,13 @@ const addProductToCart = (product, purchaseQuantity) => {
   window.dispatchEvent(new CustomEvent('localstorage update'));
 };
 
-const Categories = (props) => {
-  const { pageContext } = props;
-  return (
-    <Category
-      categoryName={pageContext.productType}
-      productsInCategory={pageContext.products}
-      addProductToCart={addProductToCart}
-    />
-  );
-};
+const Categories = ({ pageContext }) => (
+  <Category
+    categoryName={pageContext.productType}
+    productsInCategory={pageContext.products}
+    addProductToCart={addProductToCart}
+  />
+);
 
 Categories.propTypes = {
   pageContext: PropTypes.oneOfType([PropTypes.object]).isRequired,

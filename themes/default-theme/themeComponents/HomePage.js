@@ -49,6 +49,17 @@ const planSteps = [
   },
 ];
 
+const addProductToCart = (product, purchaseQuantity) => {
+  const currentCartItems = JSON.parse(localStorage.getItem('cart')) || {};
+  const toBeAddedProduct = {
+    ...product,
+    purchaseQuantity,
+  };
+  currentCartItems[toBeAddedProduct.productId] = toBeAddedProduct;
+  localStorage.setItem('cart', JSON.stringify(currentCartItems));
+  window.dispatchEvent(new CustomEvent('localstorage update'));
+};
+
 class HomePage extends Component {
   state = {
     currentIndex: 0,
@@ -231,6 +242,7 @@ class HomePage extends Component {
                   description={node.description}
                   productPrice={node.priceRange.minVariantPrice.amount}
                   images={node.image}
+                  onAddToCartClick={addProductToCart}
                 />
               ))
             }
