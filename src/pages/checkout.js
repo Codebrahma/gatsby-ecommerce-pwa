@@ -1,6 +1,6 @@
 import React from 'react';
 // eslint-disable-next-line import/no-unresolved
-import CheckoutPage from 'theme/components/CheckOutPage';
+import CheckoutPage from 'theme/components/CheckoutPage';
 import Payment from '../components/Payment';
 
 export default class Checkout extends React.Component {

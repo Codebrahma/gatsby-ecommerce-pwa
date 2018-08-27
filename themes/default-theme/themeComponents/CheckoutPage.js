@@ -199,3 +199,9 @@ export default class Checkout extends React.Component {
     );
   }
 }
+
+Checkout.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  cartDetails: PropTypes.object.isRequired,
+  payment: PropTypes.func.isRequired,
+};
