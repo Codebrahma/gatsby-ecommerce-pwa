@@ -1,4 +1,5 @@
 import React from 'react';
+// eslint-disable-next-line import/no-unresolved
 import CheckoutPage from 'theme/components/CheckOutPage';
 import Payment from '../components/Payment';
 
@@ -10,6 +11,12 @@ export default class Checkout extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.setState({
+      cartItems: JSON.parse(localStorage.getItem('cart')) || {},
+    });
+  }
+
   renderPaymentSection = (payButton, onPaymentSuccess) => (
     <Payment
       payButton={payButton}
@@ -18,16 +25,11 @@ export default class Checkout extends React.Component {
     />
   )
 
-  componentDidMount() {
-    this.setState({
-      cartItems: JSON.parse(localStorage.getItem('cart')) || {},
-    });
-  }
-
   render() {
+    const { cartItems } = this.state;
     return (
       <CheckoutPage
-        cartDetails={this.state.cartItems}
+        cartDetails={cartItems}
         payment={this.renderPaymentSection}
       />
     );

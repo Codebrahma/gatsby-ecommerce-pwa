@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import GatsbyLink from 'gatsby-link';
+// eslint-disable-next-line import/no-unresolved
 import CartPage from 'theme/components/Cart';
 
 class Cart extends Component {
@@ -45,9 +45,10 @@ class Cart extends Component {
 
   render() {
     const checkOutCost = this.getCheckoutMoney();
+    const { cartItems } = this.state;
     return (
       <CartPage
-        cartItems={this.state.cartItems}
+        cartItems={cartItems}
         checkOutCost={checkOutCost}
         removeItemFromCart={this.removeItemFromCart}
       />
