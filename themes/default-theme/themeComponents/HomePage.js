@@ -4,7 +4,6 @@ import { Link } from 'gatsby';
 import {
   Container, Flex, Carousel, Box, Caps, Relative,
 } from 'rebass';
-import PropTypes from 'prop-types';
 import { injectGlobal } from 'styled-components';
 import ProductCard from '../components/ProductCard';
 import HomeStep from '../components/HomeStep';
@@ -242,9 +241,6 @@ class HomePage extends Component {
     );
   }
 }
-
-HomePage.propTypes = {
-};
 
 export default HomePage;
 

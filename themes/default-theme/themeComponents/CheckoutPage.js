@@ -1,5 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
+import PropTypes from 'prop-types';
 import {
   Container, Flex, Box, Lead, Text, Button,
 } from 'rebass';
@@ -197,4 +198,14 @@ export default class Checkout extends React.Component {
       </Layout>
     );
   }
+<<<<<<< HEAD:themes/default-theme/themeComponents/CheckoutPage.js
 }
+=======
+}
+
+Checkout.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  cartDetails: PropTypes.object.isRequired,
+  payment: PropTypes.func.isRequired,
+};
+>>>>>>> themes/themeComponents eslint fix:themes/default-theme/themeComponents/CheckOutPage.js
