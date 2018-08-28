@@ -7,5 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "styled-components": "^3.4.2",
+    "rebass": "^2.1.0"    
+  }
 }
