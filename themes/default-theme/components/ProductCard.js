@@ -20,9 +20,9 @@ import {
   style,
 } from 'styled-system';
 
-import plus from '../../assets/icons/plus-solid.svg';
-import cart from '../../assets/icons/shopping-cart-solid.svg';
-import defaultImage from '../../assets/images/default.jpeg';
+import plus from '../assets/icons/plus-solid.svg';
+import cart from '../assets/icons/shopping-cart-solid.svg';
+import defaultImage from '../assets/images/default.jpeg';
 
 const Border = styled.div`
   ${borderTop}
@@ -65,33 +65,25 @@ class ProductCard extends Component {
     });
   }
 
-  addItemToCart = (product) => {
-    const currentCartItems = JSON.parse(localStorage.getItem('cart')) || {};
-    const toBeAddedProduct = Object.assign({}, product);
-    currentCartItems[toBeAddedProduct.productId] = toBeAddedProduct;
-    currentCartItems[toBeAddedProduct.productId].purchaseQuantity = 7;
-    localStorage.setItem('cart', JSON.stringify(currentCartItems));
-    window.dispatchEvent(new CustomEvent('localstorage update'));
-  }
-
-  handleAddClick = () => {
+  handleAddToCartClick = () => {
     const {
       productId,
       images,
       productName,
       description,
       productPrice,
+      onAddToCartClick,
     } = this.props;
     this.setState({
       isInCart: true,
     });
-    this.addItemToCart({
+    onAddToCartClick({
       productId,
       images,
       productName,
       description,
       productPrice,
-    });
+    }, 7);
   }
 
   renderCardFooter = () => {
@@ -128,7 +120,7 @@ class ProductCard extends Component {
           <CardButton
             imageIcon={plus}
             alt="plus"
-            handleClick={this.handleAddClick}
+            handleClick={this.handleAddToCartClick}
           />
         )
     );
@@ -180,6 +172,7 @@ ProductCard.propTypes = {
   images: PropTypes.oneOfType([PropTypes.array]).isRequired,
   description: PropTypes.string,
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]),
+  onAddToCartClick: PropTypes.func.isRequired,
 };
 ProductCard.defaultProps = {
   description: '',

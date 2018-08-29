@@ -2,6 +2,8 @@ require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 
+const themePath = require('./theme-path');
+
 module.exports = {
   siteMetadata: {
     title: 'Gatsby Default Starter',
@@ -28,22 +30,22 @@ module.exports = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'img',
-        path: `${__dirname}/src/assets/images`,
+        path: `${themePath}/assets/images`,
       },
     },
-    {
-      resolve: 'gatsby-plugin-manifest',
-      options: {
-        name: 'Growfit PWA',
-        short_name: 'Growfit PWA',
-        description: 'Ecommerce App',
-        start_url: '/',
-        display: 'standalone',
-        icon: 'src/assets/images/512.png',
-        theme_color: '#ffffff',
-        background_color: '#57A3E8',
-      },
-    },
+    // {
+    //   resolve: 'gatsby-plugin-manifest',
+    //   options: {
+    //     name: 'Growfit PWA',
+    //     short_name: 'Growfit PWA',
+    //     description: 'Ecommerce App',
+    //     start_url: '/',
+    //     display: 'standalone',
+    //     icon: `${themePath}/images/512.png`,
+    //     theme_color: '#ffffff',
+    //     background_color: '#57A3E8',
+    //   },
+    // },
 
     'gatsby-plugin-offline',
     'gatsby-plugin-netlify',
