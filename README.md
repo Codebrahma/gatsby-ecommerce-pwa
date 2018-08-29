@@ -11,7 +11,7 @@ Pay when you are back **online**.
 
 Make sure you install all the dependencies, use
 ```sh
-npm install
+yarn install
 ```
  **For Development** ,
 

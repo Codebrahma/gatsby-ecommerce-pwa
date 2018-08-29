@@ -5,7 +5,6 @@
   "private": true,
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
-    "axios": "^0.18.0",
     "babel-eslint": "^8.2.6",
     "chalk": "^2.4.1",
     "gatsby": "next",
@@ -36,9 +35,7 @@
     "react-spinkit": "^3.0.0",
     "react-stripe-checkout": "^2.6.3",
     "reactstrap": "^6.3.0",
-    "rebass": "^2.1.0",
-    "shopify-buy": "^1.6.0",
-    "styled-components": "^3.4.2"
+    "shopify-buy": "^1.6.0"
   },
   "keywords": [
     "gatsby"
