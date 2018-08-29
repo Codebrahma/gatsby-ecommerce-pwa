@@ -18,6 +18,7 @@
     "gatsby-plugin-sass": "next",
     "gatsby-plugin-sharp": "next",
     "gatsby-plugin-stripe-elements": "^1.0.7",
+    "gatsby-plugin-styled-components": "^2.0.11",
     "gatsby-source-filesystem": "next",
     "gatsby-source-shopify": "^1.1.0",
     "gatsby-transformer-sharp": "next",

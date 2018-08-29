@@ -12,6 +12,7 @@ module.exports = {
     'gatsby-plugin-stripe-elements',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-react-next',
+    'gatsby-plugin-styled-components',
     {
       resolve: 'gatsby-shopify-source',
       options: {
