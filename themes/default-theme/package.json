@@ -10,6 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "styled-components": "^3.4.2",
-    "rebass": "^2.1.0"    
+    "rebass": "^2.1.0"
   }
 }
