@@ -1,0 +1,43 @@
+default: &default
+  workdir_root: &workdir_root
+    /root/gatsby-ecommerce-pwa
+
+version: 2
+jobs:
+  lint:
+    docker:
+      - image: node:8
+    working_directory: *workdir_root
+
+    attach_workspace: &attach_workspace
+      attach_workspace:
+        at: *workdir_root
+
+    restore_cache:
+      keys:
+        - v1-dependencies-{{ checksum "package.json" }}
+        # fallback to using the latest cache if no exact match is found
+        - v1-dependencies-
+
+    save_cache: &save_cache
+      save_cache:
+        paths:
+          - node_modules
+        key: v1-dependencies-{{ checksum "package.json" }}
+        
+    <<: *default
+    steps:
+      - checkout
+      - run: yarn install
+      - run:
+          name: lint
+          command: npm run lint
+
+workflows:
+  version: 2
+  build-n-deploy:
+    jobs:
+      - lint:
+          filters:
+            tags:
+              only: /.*/
