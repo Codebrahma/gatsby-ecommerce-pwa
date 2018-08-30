@@ -6,6 +6,7 @@
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
     "babel-eslint": "^8.2.6",
+    "babel-plugin-styled-components": "^1.5.1",
     "chalk": "^2.4.1",
     "gatsby": "next",
     "gatsby-image": "next",
@@ -18,6 +19,7 @@
     "gatsby-plugin-sass": "next",
     "gatsby-plugin-sharp": "next",
     "gatsby-plugin-stripe-elements": "^1.0.7",
+    "gatsby-plugin-styled-components": "next",
     "gatsby-source-filesystem": "next",
     "gatsby-source-shopify": "^1.1.0",
     "gatsby-transformer-sharp": "next",
