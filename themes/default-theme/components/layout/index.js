@@ -5,8 +5,6 @@ import { Provider } from 'rebass';
 
 import Header from './Header';
 import InstallPrompt from './InstallPrompt';
-import '../../assets/images/512.png';
-
 
 class Layout extends React.Component {
   constructor(props) {

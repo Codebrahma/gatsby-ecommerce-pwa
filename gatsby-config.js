@@ -34,19 +34,19 @@ module.exports = {
         path: `${themePath}/assets/images`,
       },
     },
-    // {
-    //   resolve: 'gatsby-plugin-manifest',
-    //   options: {
-    //     name: 'Growfit PWA',
-    //     short_name: 'Growfit PWA',
-    //     description: 'Ecommerce App',
-    //     start_url: '/',
-    //     display: 'standalone',
-    //     icon: `${themePath}/images/512.png`,
-    //     theme_color: '#ffffff',
-    //     background_color: '#57A3E8',
-    //   },
-    // },
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        name: 'Growfit PWA',
+        short_name: 'Growfit PWA',
+        description: 'Ecommerce App',
+        start_url: '/',
+        display: 'standalone',
+        icon: 'pwa/icon.png',
+        theme_color: '#FFFFFF',
+        background_color: '#57A3E8',
+      },
+    },
 
     'gatsby-plugin-offline',
     'gatsby-plugin-netlify',
